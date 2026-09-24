@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dino Design System | Emilia Laviero</title>
+<meta name="description" content="Case study: building the Dino design system from zero, in Figma, with a live documentation site built with Astro.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="../" class="nav-badge nav-logo">Emilia Laviero</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="../#work">Work</a>
+      <a href="../#experiments">Experiments</a>
+      <a href="../#about">About</a>
+      <button type="button" class="nav-contact-btn" id="navContactBtn" aria-expanded="false" aria-controls="contactDropdown">Contact</button>
+    </div>
+    <div class="contact-dropdown" id="contactDropdown">
+      <div class="contact-email">
+        <span>lavieroemilia@gmail.com</span>
+        <button class="copy-icon-btn copy-email-btn" data-email="lavieroemilia@gmail.com" aria-label="Copiar email" title="Copiar email">
+          <svg class="icon-copy" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5L10 17.5L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="../#work">Work</a>
+  <a href="../#experiments">Experiments</a>
+  <a href="../#about">About</a>
+  <button type="button" class="nav-mobile-contact">Contact</button>
+</div>
+
+<main>
+
+  <a href="../" class="back-link">&larr; Back to home</a>
+
+  <section class="case-hero">
+    <p class="case-company">Dino Design System</p>
+    <h1>Building the foundation of a new product from zero. Created in Figma and documented in a live site built with Astro</h1>
+  </section>
+
+  <div class="case-hero-img">
+    <img src="../assets/images/dino-ds-hero.jpg" alt="Dino Design System: Built to scale. Designed for play. Previews of the type scale, button, progress bar and field documentation">
+  </div>
+
+  <section class="case-intro">
+    <p class="intro">Dino was a new product line within Ucademy: a gamified, mobile-first learning app for students preparing for competitive exams. When the team decided to build it, nothing existed yet. No visual language, no components, no shared rules. I designed the system that gave Dino its identity and the structure to scale with AI.</p>
+    <div class="meta-list">
+      <div class="meta-item">
+        <h5 class="label">Role</h5>
+        <p>Lead Product Designer</p>
+      </div>
+      <div class="meta-item">
+        <h5 class="label">Stack</h5>
+        <p>Figma · Astro · CSS · Claude Code · Vercel</p>
+      </div>
+      <div class="meta-item">
+        <h5 class="label">Year</h5>
+        <p>2026</p>
+      </div>
+      <a href="https://dino-design-system-v2.vercel.app/" target="_blank" rel="noopener" class="btn-primary">View the documentation site <span aria-hidden="true">&nearr;</span></a>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <h2>What problem does it solve?</h2>
+    <div class="case-body">
+      <p>The reason to build a structured system was consistency today and scalability tomorrow. Dino is designed to grow with AI-generated content and dynamic interfaces. Every design decision needed to be explicit, because implicit rules don&rsquo;t survive automation.</p>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <h2>The process</h2>
+    <div class="case-body">
+      <div class="block">
+        <p class="sub-label">1. Defining the foundations</p>
+        <p>I established what Dino should feel and not feel like: game-interface energy without sacrificing clarity or accessibility. Dark by default. Token-disciplined. Built to evolve.</p>
+        <p>Four core principles shaped every decision: craft, feedback-forward, token discipline, and dark-by-default with personality.</p>
+      </div>
+      <div class="block">
+        <p class="sub-label">2. Building the token architecture</p>
+        <p>The system follows a three-layer hierarchy: Primitives (raw values), Semantic (meaning), and Component (context-specific overrides). All values are defined as Figma Variables and exported directly to CSS. One change at the primitive level propagates everywhere.</p>
+      </div>
+      <div class="block">
+        <p class="sub-label">3. Designing the components</p>
+        <p>Each component was built with its full range of states and variants before touching documentation. Every decision follows strict token discipline. No hardcoded values anywhere in the system.</p>
+      </div>
+      <div class="block">
+        <p class="sub-label">4. Building the documentation site</p>
+        <p>I built a documentation site from scratch using Astro and vanilla CSS, deployed on Vercel. It pulls directly from the same token source as the product, so the documentation is never out of sync with the design. Each component page includes a live interactive playground, variant documentation, usage guidelines, and Do&rsquo;s and Don&rsquo;ts.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <h2>The result</h2>
+    <div class="case-body">
+      <p>A complete design system built by one designer: token architecture, Figma component library, and a live documentation site. It reduced handoff friction, gave engineering a reference they could actually use, and was built with the right structure to scale alongside AI-powered features.</p>
+    </div>
+  </section>
+
+  <section class="related-section" data-current="dino-design-system">
+    <div class="related-header">
+      <h2>More case studies</h2>
+      <div class="related-nav">
+        <button type="button" class="related-prev" aria-label="Proyectos anteriores"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M5 12L11 6M5 12L11 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="related-next" aria-label="Más proyectos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+    <div class="related-track"></div>
+    <div class="related-dots" aria-label="Posición en el carrusel"></div>
+  </section>
+
+  <footer class="contact" id="contact">
+    <div class="contact-card">
+      <h3>Thank you for reading!<br>I&rsquo;d love to know you too.</h3>
+      <div class="contact-links">
+        <div class="contact-email">
+          <span>lavieroemilia@gmail.com</span>
+          <button class="copy-icon-btn copy-email-btn" data-email="lavieroemilia@gmail.com" aria-label="Copiar email" title="Copiar email">
+            <svg class="icon-copy" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5L10 17.5L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <a href="https://www.linkedin.com/in/emilialaviero/" target="_blank" rel="noopener" class="contact-link">
+          LinkedIn: emilialaviero <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="https://medium.com/@emilaviero" target="_blank" rel="noopener" class="contact-link">
+          Medium: @emilialaviero <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="https://drive.google.com/file/d/1TCPcE9fgOwlY57MC0pf6gdawFP0CLo67/view?usp=sharing" target="_blank" rel="noopener" class="contact-link">
+          CV <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Emilia Laviero</span>
+      <span>&copy; <span id="year"></span></span>
+    </div>
+  </footer>
+
+</main>
+
+<script src="../assets/js/script.js"></script>
+</body>
+</html>

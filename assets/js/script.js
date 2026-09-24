@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const PROJECTS = [
     { id: 'dino', title: 'Dino, a learning app by Ucademy', services: 'Product Discovery, Product Strategy, App Design, Design System, Prototyping.', image: 'project-dino-app.jpg' },
     { id: 'quota-pms', title: 'Quota: A SaaS for property managers', services: 'Product Strategy, Research & Insights, UX Writing, Design System, Visual Design, Prototyping, User Testing.', image: 'project-quota-pms.jpg' },
-    { id: 'dino-design-system', title: 'Dino Design System', services: 'Design System, Claude Code, Astro.', image: 'project-dino-design-system.jpg', url: 'https://dino-design-system-v2.vercel.app/' },
+    { id: 'dino-design-system', title: 'Dino Design System', services: 'Design System, Claude Code, Astro.', image: 'project-dino-design-system.jpg' },
     { id: 'tenant-scoring', title: 'Streamlining the tenant screening process', services: 'Product Strategy, Research & Insights, Interaction, UX Writing, Visual Design, Prototyping.', image: 'project-tenant-scoring.jpg' },
     { id: 'attomo', title: 'Designing ATTOMO\u2019s website', services: 'Web Design, Information Architecture, UX Writing, Visual Design & Guidelines, Prototyping.', image: 'project-attomo.jpg' },
     { id: 'wow', title: 'WOW, the cultural social network', services: 'App Design, Product Strategy, User Research, Interaction, UX Writing, Visual Design, Prototyping.', image: 'project-wow.jpg' },

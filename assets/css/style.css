@@ -841,6 +841,10 @@ a.timeline-company:hover {
   margin: 0;
 }
 
+.case-body .block p + p:not(.sub-label) {
+  margin-top: 16px;
+}
+
 /* Tabla de OKRs */
 .okr-table {
   width: 100%;

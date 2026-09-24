@@ -14,6 +14,7 @@ pages/feature-advisor.html  → Case study: Feature Advisor (Experiments)
 pages/tenant-scoring.html   → Case study: Tenant Scoring
 pages/attomo.html           → Case study: ATTOMO Digital
 pages/wow.html              → Case study: WOW
+pages/dino-design-system.html → Case study: Dino Design System (enlaza a la documentación en Vercel)
 assets/css/style.css        → Hoja de estilos única para todo el sitio
 assets/js/script.js         → JS único (menú mobile, año del footer, dropdown de contacto, copiar email)
 assets/images/              → Todas las imágenes, ya optimizadas (JPEG, tamaños de display reales)
@@ -67,7 +68,7 @@ Escala tipográfica (medida del original; mobile por defecto, desktop desde 900p
 - Nav: "Emilia Laviero" a la izquierda; a la derecha una cápsula con Work, Experiments, About y Contact. Texto siempre negro. La sección activa se marca con un punto negro debajo del link (`.is-active`); en hover aparece el punto en gris suave, y en "Emilia Laviero" en negro. Solo en el home se marca la sección activa, detectada con el scroll (la experiencia y las fotos cuentan como About); en los case studies no se marca ninguna. Nunca hay dos puntos a la vez: con Contact abierto se oculta el de la sección. Lógica en `script.js`.
 - El menú mobile es un dropdown (`.nav-mobile-menu`) activado por un botón hamburguesa (`.nav-toggle`), visible bajo 900px.
 - Attomo no enlaza a la web actual de ATTOMO (cambiaron el diseño).
-- La card "Dino Design System" en el home linkea externamente a `https://dino-design-system-v2.vercel.app/` (target="_blank"), porque ese design system vive en otro proyecto.
+- Dino Design System tiene su propio case study (`pages/dino-design-system.html`); desde ahí el botón "View the documentation site" lleva a `https://dino-design-system-v2.vercel.app/`.
 - El sitio viejo tiene errores de links que ya están corregidos acá: la card de Quota en Dino apuntaba a `./attomo`, el video de RIFF tenía un ID de YouTube inválido (el correcto es `vDRZuveIakg`). Revisar links al migrar cada página.
 
 ## Workflow de trabajo con Emilia
