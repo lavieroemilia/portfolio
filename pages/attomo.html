@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feature Advisor | Emilia Laviero</title>
-<meta name="description" content="Feature Advisor: a conversational AI agent that questions the feature brief before the team commits to building it.">
+<title>ATTOMO Digital | Emilia Laviero</title>
+<meta name="description" content="Case study: designing a website for ATTOMO Digital to attract high-profile clients.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -49,85 +49,102 @@
   <a href="../" class="back-link">&larr; Back to home</a>
 
   <section class="case-hero">
-    <p class="case-company">Feature Advisor · Agentic tool</p>
-    <h1>A conversational AI agent that questions the feature brief before the team commits to building it</h1>
+    <p class="case-company">ATTOMO Digital</p>
+    <h1>Designing a website to attract high-profile clients</h1>
   </section>
 
-  <div class="case-hero-img band">
-    <img src="../assets/images/feature-advisor-hero.jpg" alt="Feature Advisor conversation: the agent asks about the feature and the product it will live in">
+  <div class="case-hero-img">
+    <img src="../assets/images/attomo-hero.jpg" alt="ATTOMO Digital website shown on a laptop">
   </div>
 
   <section class="case-intro">
-    <p class="intro">Feature Advisor is a conversational AI agent that helps product teams think through a feature before committing to it. You describe what you want to build, and the agent asks the questions your team probably hasn&rsquo;t asked yet: what behaviour changes, what the real risk is, what would prove this wrong. It ends with a downloadable brief everyone can align around.</p>
+    <p class="intro">ATTOMO Digital didn&rsquo;t have a website. For a technology consultancy trying to attract high-profile clients, that absence was saying something. The founders came to me to make a first impression strong enough to open doors that cold outreach couldn&rsquo;t. My challenge was to design something that felt like the kind of company they were becoming, not the one they had been.</p>
     <div class="meta-list">
       <div class="meta-item">
         <h5 class="label">Role</h5>
-        <p>Product Designer · Solo project</p>
+        <p>Web Designer</p>
       </div>
       <div class="meta-item">
-        <h5 class="label">Stack</h5>
-        <p>NotebookLM · Anthropic API · Claude Sonnet · Claude Code · Vercel</p>
+        <h5 class="label">Service</h5>
+        <p>Information Architecture · Interaction · UX Writing · Visual Design &amp; Guidelines · Web Design · Prototyping</p>
       </div>
       <div class="meta-item">
-        <h5 class="label">Year</h5>
-        <p>2026</p>
-      </div>
-      <a href="https://product-manager-feature-advisor.vercel.app/" target="_blank" rel="noopener" class="btn-primary">Open Feature Advisor <span aria-hidden="true">&nearr;</span></a>
-    </div>
-  </section>
-
-  <section class="case-section">
-    <h2>What problem does it solve?</h2>
-    <div class="case-body">
-      <p>AI makes it cheaper to ship, but shipping the wrong thing is not cheap at all.</p>
-      <p>As output becomes faster to produce, the space for strategic definition gets smaller. Teams ship more iterations with less clarity, and the cost shows up later: <strong>in launches that can&rsquo;t be measured, in roadmap items disconnected from business objectives</strong>, and in features that don&rsquo;t target a real change in user behaviour.</p>
-      <p>Building without clarity burns focus, erodes product knowledge, and distances the team from their users.</p>
-      <p>Feature Advisor creates that clarity upfront. The agent guides a conversation, evaluates the reasoning in real time, flags inconsistencies, and proposes outcomes, experiments and metrics the team hadn&rsquo;t considered. It doesn&rsquo;t fill in a form. It thinks alongside whoever is defining the feature.</p>
-    </div>
-  </section>
-
-  <section class="case-section">
-    <h2>How it works?</h2>
-    <div class="case-body">
-      <p>The agent runs as a fully conversational interface.</p>
-      <p>The user describes a feature in natural language. From there, Claude navigates five phases: context, opportunity, risks, validation, and brief. It makes one proposal at a time, evaluates each response against the frameworks it carries (Cagan, Torres, Seiden, Fitzpatrick, Singer, Maurya, Lean Analytics), and surfaces problems as they appear.</p>
-      <p>If an outcome describes a feature delivered instead of a behaviour changed, it says so before moving on. If a benchmark has no market basis, it flags it.</p>
-      <p>At the end, it synthesises everything into a downloadable Feature Brief.</p>
-    </div>
-  </section>
-
-  <section class="case-section">
-    <h2>Who it&rsquo;s for?</h2>
-    <div class="case-body">
-      <p>Product Owners, Product Managers, Product Designers, and anyone on a product team who needs to frame a problem before committing to a solution. People who know what a good brief looks like and want a faster way to get there, and to surface where the gaps are before they become expensive.</p>
-      <p>It also functions as a team alignment tool: filling in the brief together makes visible where there&rsquo;s agreement and where there are blind spots.</p>
-    </div>
-  </section>
-
-  <section class="case-section">
-    <h2>How I built it?</h2>
-    <div class="case-body">
-      <p>I started by uploading seven product frameworks to NotebookLM to extract and distill the core concepts from each author. Those summaries became the knowledge base the tool needed to reason from, and eventually the foundation of the system prompt itself: a hidden instruction set that defines how the model evaluates every response it receives, what makes a hypothesis valid, what makes an assumption falseable, when to propose and when to push back.</p>
-      <p>That&rsquo;s what turns a structured conversation into an agent that reasons.</p>
-      <p>With the prompt defined, I integrated the Anthropic API through Claude Code and deployed on Vercel. The conversation history is passed with every API call so the agent maintains full context across the session, and each response returns a typed JSON object with the current phase, message, optional quick-reply chips, and an incrementally updated brief that renders live.</p>
-    </div>
-  </section>
-
-  <section class="case-section">
-    <h2>What I learned</h2>
-    <div class="case-body">
-      <div class="learning-block simple">
-        <p><strong>A knowledge base only works when it becomes criteria.</strong></p>
-        <p class="learning-text">I assumed that feeding the model rich, structured content from seven frameworks would be enough for it to reason correctly. What I learned is that a model without evaluation criteria is just pattern-matching. <strong>The system prompt is where the thinking happens</strong>, not the training data you give it.</p>
-      </div>
-      <div class="learning-block simple">
-        <p><strong>Agentic design is prompt architecture</strong></p>
-        <p class="learning-text">Building this felt less like UI design and more like writing a spec: precise enough that the model knows what good looks like, flexible enough to handle what you didn&rsquo;t anticipate. The interface is almost irrelevant. The real product is what the model knows, and how it&rsquo;s been told to use it.</p>
+        <h5 class="label">Date</h5>
+        <p>March 2022</p>
       </div>
     </div>
   </section>
 
-  <section class="related-section" data-current="feature-advisor">
+  <figure class="case-figure bleed">
+    <img src="../assets/images/attomo-overview.jpg" alt="ATTOMO Digital home page sections" loading="lazy">
+  </figure>
+
+  <section class="case-section">
+    <h2>Visual direction</h2>
+    <div class="case-body">
+      <p>I suggested keeping the logo&rsquo;s black as the primary color and adding a vibrant accent color to bring a modern edge. The neon treatment in the services area, combined with gradient text, gives the site a dynamic, futuristic feel. I chose scroll-triggered transitions between elements to evoke both innovation and refinement.</p>
+      <div class="image-grid pages">
+        <img src="../assets/images/attomo-visual-mobile-1.webp" alt="Mobile home page with scroll-triggered transitions" loading="lazy">
+        <img src="../assets/images/attomo-visual-mobile-2.webp" alt="Mobile services section with neon treatment" loading="lazy">
+      </div>
+      <figure class="case-figure">
+        <img src="../assets/images/attomo-visual-desktop.webp" alt="Desktop services section with gradient text and neon accents" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <h2>Success stories</h2>
+    <div class="case-body">
+      <p>To attract clients from different industries with different goals, a complete, well-organized case studies section was essential. A filter system was the right solution to help users quickly find the cases relevant to the service they were looking for.</p>
+      <div class="image-grid">
+        <img src="../assets/images/attomo-cases-1.webp" alt="Case studies list with service filters" loading="lazy">
+        <img src="../assets/images/attomo-cases-2.webp" alt="Case study detail page" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <h2>ATTOMO Trends</h2>
+    <div class="case-body">
+      <p>The blog was key to positioning the consultancy as a technology thought leader while also driving organic traffic to the site.</p>
+      <div class="image-grid pages">
+        <img src="../assets/images/attomo-trends-1.jpg" alt="ATTOMO Trends blog home" loading="lazy">
+        <img src="../assets/images/attomo-trends-2.jpg" alt="ATTOMO Trends article page" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <h2>ATTOMO Digital Space</h2>
+    <div class="case-body">
+      <p>ATTOMO wanted a section to allow office space rentals for multiple uses. The page included hourly rates and a contact form to book a date.</p>
+      <div class="image-grid pages">
+        <img src="../assets/images/attomo-space-1.jpg" alt="Digital Space page with the available rooms" loading="lazy">
+        <img src="../assets/images/attomo-space-2.jpg" alt="Digital Space rates and booking form" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <h2>About ATTOMO</h2>
+    <div class="case-body">
+      <p>To help potential clients and collaborators learn more about the consultancy, I designed two key sections. &ldquo;About us&rdquo; presents the company&rsquo;s story and core values. &ldquo;Careers&rdquo; shows open positions, giving interested candidates the opportunity to join the team.</p>
+      <div class="image-grid pages">
+        <img src="../assets/images/attomo-about-1.jpg" alt="About us page with the company story and values" loading="lazy">
+        <img src="../assets/images/attomo-about-2.jpg" alt="Careers page with open positions" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <h2>Result</h2>
+    <div class="case-body">
+      <p>I don&rsquo;t have conversion data from this project. What I do know is that ATTOMO started landing new clients after the site launched. For a consultancy that previously had no digital presence, that shift mattered. If I were measuring it today, I&rsquo;d track whether the right type of client was reaching out, not just how many, because the brief was never about volume. It was about signal.</p>
+    </div>
+  </section>
+
+  <section class="related-section" data-current="attomo">
     <div class="related-header">
       <h2>More case studies</h2>
       <div class="related-nav">
