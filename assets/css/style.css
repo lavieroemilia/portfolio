@@ -77,6 +77,7 @@ main {
 }
 
 .nav-badge {
+  position: relative;
   display: flex;
   align-items: center;
   height: var(--nav-h);
@@ -96,101 +97,94 @@ main {
 }
 
 .nav-links a {
+  position: relative;
   display: flex;
   align-items: center;
   font-size: var(--fs-label);
   padding: 0 20px;
-  border-radius: var(--radius-pill);
-  transition: background-color 0.2s ease, color 0.2s ease;
+  color: var(--text);
 }
 
-.nav-links a:hover {
-  background: var(--text);
-  color: var(--white);
-}
-
-.nav-cta {
-  width: var(--nav-h);
-  height: var(--nav-h);
-  border: none;
-  cursor: pointer;
+/* Indicador: un punto debajo del texto. Activo = negro; hover = gris suave.
+   También en "Emilia Laviero" (vuelve al home) al hacer hover. */
+.nav-links a::after,
+.nav-links .nav-contact-btn::after,
+.nav-badge::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 7px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
-  background: var(--lime);
+  background: var(--text);
+  opacity: 0;
+  transform: translateX(-50%) scale(0);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links .nav-contact-btn:hover::after,
+.nav-badge:hover::after {
+  opacity: 0.3;
+  transform: translateX(-50%) scale(1);
+}
+
+.nav-badge:hover::after {
+  opacity: 1;
+}
+
+/* La cápsula del nombre no tiene padding interno: el punto sube 8px para quedar a la misma distancia del texto */
+.nav-badge::after {
+  bottom: 15px;
+}
+
+.nav-links a.is-active::after,
+.nav-links .nav-contact-btn.is-active::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* Lado derecho del nav: cápsula con los links + Contact (y hamburguesa en mobile) */
+.nav-right {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 12px;
+}
+
+/* "Contact" es un botón (abre el panel del email) con el mismo estilo que los links */
+.nav-links .nav-contact-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  background: none;
+  border: none;
+  font-family: var(--font);
+  font-size: var(--fs-label);
+  font-weight: 500;
   color: var(--text);
-  flex-shrink: 0;
-  transition: transform 0.2s ease;
-}
-
-.nav-cta:hover {
-  transform: scale(1.06);
-}
-
-@media (min-width: 900px) {
-  .nav-cta svg {
-    width: 26px;
-    height: 26px;
-  }
+  cursor: pointer;
 }
 
 /* ---------- Contact dropdown (nav) ---------- */
 
-.nav-contact {
-  position: relative;
-}
-
 .contact-dropdown {
   display: none;
-  flex-direction: column;
-  gap: 14px;
   position: absolute;
   top: calc(100% + 12px);
   right: 0;
   z-index: 101;
-  min-width: 260px;
   background: var(--white);
   border-radius: 20px;
-  padding: 20px;
+  padding: 18px 24px;
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.14);
+  white-space: nowrap;
 }
 
 .contact-dropdown.open {
-  display: flex;
-}
-
-.contact-dropdown-email {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 500;
-  word-break: break-all;
-}
-
-.contact-dropdown .copy-email-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  align-self: flex-start;
-  background: var(--lime);
-  border: none;
-  border-radius: var(--radius-pill);
-  padding: 10px 22px;
-  font-family: var(--font);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text);
-  cursor: pointer;
-  transition: transform 0.15s ease, background-color 0.2s ease;
-}
-
-.contact-dropdown .copy-email-btn:hover {
-  transform: scale(1.04);
-}
-
-.contact-dropdown .copy-email-btn.copied {
-  background: var(--lavender);
+  display: block;
 }
 
 .nav-toggle {
@@ -221,14 +215,25 @@ main {
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
 }
 
-.nav-mobile-menu a {
+.nav-mobile-menu a,
+.nav-mobile-menu .nav-mobile-contact {
   padding: 14px 16px;
   font-size: 16px;
   font-weight: 500;
   border-radius: 12px;
 }
 
-.nav-mobile-menu a:hover {
+.nav-mobile-menu .nav-mobile-contact {
+  text-align: left;
+  background: none;
+  border: none;
+  font-family: var(--font);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.nav-mobile-menu a:hover,
+.nav-mobile-menu .nav-mobile-contact:hover {
   background: var(--bg);
 }
 
@@ -934,6 +939,39 @@ a.timeline-company:hover {
   grid-template-columns: repeat(3, 1fr);
 }
 
+/* Columna izquierda con etiqueta + título (p. ej. "Design solutions" / "The cultural Tinder") */
+.case-aside h2 {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Cita destacada dentro de una sección */
+.case-body .quote-intro {
+  margin: 40px 0 16px;
+}
+
+.case-quote {
+  margin: 0 0 40px;
+  padding-left: var(--gutter);
+  border-left: 3px solid var(--text);
+}
+
+.case-quote p {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  font-style: italic;
+  margin: 0 0 12px;
+}
+
+.case-quote cite {
+  font-style: normal;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-soft);
+}
+
 /* Variante Problema / Solución (Tenant Scoring): el problema va en la columna izquierda */
 .case-problem {
   font-size: var(--fs-body);
@@ -987,6 +1025,13 @@ a.timeline-company:hover {
 .image-grid.pages img {
   border-radius: 10px;
   border: 1px solid var(--border);
+}
+
+/* Imágenes de distinta proporción que deben verse del mismo tamaño: misma caja, sin recortar */
+.image-grid.equal img {
+  aspect-ratio: 640 / 902;
+  object-fit: contain;
+  background: var(--white);
 }
 
 /* Outcomes: caja blanca con los números grandes */
@@ -1285,9 +1330,14 @@ a.timeline-company:hover {
 
   .image-grid.mobile,
   .image-grid.screens,
-  .image-grid.screens.three,
   .image-grid.pages {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Grupos de 3 pantallas: se mantienen juntos en una fila */
+  .image-grid.screens.three {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
 
   .grid-caption {

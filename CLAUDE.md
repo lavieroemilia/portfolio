@@ -13,7 +13,7 @@ pages/quota-pms.html        → Case study: Quota PMS
 pages/feature-advisor.html  → Case study: Feature Advisor (Lab)
 pages/tenant-scoring.html   → Case study: Tenant Scoring
 pages/attomo.html           → Case study: ATTOMO Digital
-pages/wow.html              → Case study: WOW (pendiente)
+pages/wow.html              → Case study: WOW
 assets/css/style.css        → Hoja de estilos única para todo el sitio
 assets/js/script.js         → JS único (menú mobile, año del footer, dropdown de contacto, copiar email)
 assets/images/              → Todas las imágenes, ya optimizadas (JPEG, tamaños de display reales)
@@ -55,6 +55,7 @@ Escala tipográfica (medida del original; mobile por defecto, desktop desde 900p
 2. `.case-hero-img`: imagen principal a todo el ancho de la ventana, justo después del título. Exportarla a 2400px. Si es una captura chica, usar la variante `.band` (franja oscura con la captura centrada a su tamaño real).
 3. `.case-intro`: intro a la izquierda, datos del proyecto a la derecha (Team/Role/Service/Date o lo que corresponda). Botón `.btn-primary` si hay link al producto.
 4. `.case-section`: título de sección (`h2`) en la columna izquierda y contenido en `.case-body` a la derecha, proporción 2:5. Sin cajas de color. Bloques con subtítulo: `.block` + `.sub-label`. Imágenes de cada sección dentro de `.case-body` (`.case-figure` con `figcaption`, `.image-grid`, `.image-grid.mobile`). Imágenes grandes entre secciones: `.case-figure.full` (con bordes redondeados) o `.case-figure.bleed` (a todo el ancho de la ventana).
+   - Columna izquierda con etiqueta + título (WOW, "Design solutions"): `.case-aside` con `.sub-label` + `h2`. Citas: `blockquote.case-quote` con `cite`.
    - Variante Problema/Solución (Tenant Scoring): en vez de `h2`, la columna izquierda lleva `.case-problem` (sub-label + texto) y la derecha `.case-body` con sub-label "Solution" + `p.solution` en tamaño h3. Pantallas mobile en `.image-grid.screens` (4 columnas, o `.three`), con `.grid-caption` como celda de texto dentro de la grilla.
 5. `.related-section` ("More case studies"): carrusel con todos los proyectos del portfolio menos el actual (3 visibles en desktop, 2 en tablet, 1 en mobile), flechas ← → a la derecha del título y stepper de puntos debajo. Las tarjetas se generan desde la lista `PROJECTS` en `script.js` (única fuente de verdad: para agregar o editar un proyecto, cambiarlo ahí). En el HTML solo va `<section class="related-section" data-current="id-de-la-página">` con su header, `.related-track` y `.related-dots`. Deja 120px de aire antes del footer.
 
@@ -62,8 +63,8 @@ Escala tipográfica (medida del original; mobile por defecto, desktop desde 900p
 
 - Sin frameworks, sin build step. HTML/CSS/JS a mano.
 - Todas las imágenes se auto-hostean en `assets/images/`, optimizadas (JPEG con calidad ajustada). Los GIFs animados se convierten a WebP animado con Python/Pillow (pesan hasta 10 veces menos y se usan igual, con `<img>`). Capturas de página completa: `.image-grid.pages` (2 columnas, también en mobile).
-- El botón de contacto (ícono de flecha en el nav) NO usa `mailto:`. Es un botón que despliega un menú (`.contact-dropdown`) con el email y un botón "Copiar" que copia al portapapeles y muestra "¡Copiado!" por 2s. En el footer, el email es texto con un botón de ícono al lado (`.copy-icon-btn`) sin fondo, que copia y muestra un check por 3s. Los links del footer (LinkedIn, Medium, CV) van en 4 columnas, en negro, con flecha ↗ y subrayado en hover. Lógica en `script.js`, estilos en `style.css` (`.nav-contact`, `.contact-dropdown`, `.copy-email-btn`).
-- Nav: botones de Work/Lab/About con el mismo margen arriba y abajo dentro de la caja blanca; hover con fondo `--text` y texto blanco.
+- Contacto sin `mailto:`. En el nav, "Contact" (último item, después de About) abre un panel (`.contact-dropdown`) con el email y el ícono de copiar (`.copy-icon-btn`), que muestra un check por 3s; mientras está abierto, Contact lleva el punto activo. En mobile, "Contact" está en el menú hamburguesa y abre el mismo panel. En el footer, el email es texto con el mismo ícono de copiar. Los links del footer (LinkedIn, Medium, CV) van en 4 columnas, en negro, con flecha ↗ y subrayado en hover. Lógica en `script.js`.
+- Nav: "Emilia Laviero" a la izquierda; a la derecha una cápsula con Work, Lab, About y Contact. Texto siempre negro. La sección activa se marca con un punto negro debajo del link (`.is-active`); en hover aparece el punto en gris suave, y en "Emilia Laviero" en negro. En el home la sección activa se detecta con el scroll (la experiencia y las fotos cuentan como About); en los case studies queda "Work" (Feature Advisor: "Lab"). Lógica en `script.js`.
 - El menú mobile es un dropdown (`.nav-mobile-menu`) activado por un botón hamburguesa (`.nav-toggle`), visible bajo 900px.
 - Attomo no enlaza a la web actual de ATTOMO (cambiaron el diseño).
 - La card "Dino Design System" en el home linkea externamente a `https://dino-design-system-v2.vercel.app/` (target="_blank"), porque ese design system vive en otro proyecto.
@@ -79,5 +80,4 @@ Escala tipográfica (medida del original; mobile por defecto, desktop desde 900p
 
 ## Pendiente
 
-1. Construir página de WOW (Attomo ya enlaza a ella).
-2. Conectar el sitio terminado al dominio de Emilia (Google Domains).
+1. Conectar el sitio terminado al dominio de Emilia (Google Domains).

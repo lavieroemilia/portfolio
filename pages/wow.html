@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WOW | Emilia Laviero</title>
+<meta name="description" content="Case study: WOW, a social app that makes art and culture feel as accessible as scrolling through Instagram.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="../" class="nav-badge nav-logo">Emilia Laviero</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="../#work">Work</a>
+      <a href="../#lab">Lab</a>
+      <a href="../#about">About</a>
+      <button type="button" class="nav-contact-btn" id="navContactBtn" aria-expanded="false" aria-controls="contactDropdown">Contact</button>
+    </div>
+    <div class="contact-dropdown" id="contactDropdown">
+      <div class="contact-email">
+        <span>lavieroemilia@gmail.com</span>
+        <button class="copy-icon-btn copy-email-btn" data-email="lavieroemilia@gmail.com" aria-label="Copiar email" title="Copiar email">
+          <svg class="icon-copy" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5L10 17.5L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="../#work">Work</a>
+  <a href="../#lab">Lab</a>
+  <a href="../#about">About</a>
+  <button type="button" class="nav-mobile-contact">Contact</button>
+</div>
+
+<main>
+
+  <a href="../" class="back-link">&larr; Back to home</a>
+
+  <section class="case-hero">
+    <p class="case-company">UX/UI Design Bootcamp · Final project</p>
+    <h1>WOW, the cultural social network</h1>
+  </section>
+
+  <div class="case-hero-img">
+    <img src="../assets/images/wow-hero.jpg" alt="WOW app on a phone resting on a concrete step">
+  </div>
+
+  <section class="case-intro">
+    <p class="intro">The question that started this project was simple: young people say they love art and culture, so why don&rsquo;t they actually engage with it more? I wanted to find out. As my final project at the UX/UI Design Bootcamp, I set out to design a social experience that would make culture feel as accessible and social as scrolling through Instagram.</p>
+    <div class="meta-list">
+      <div class="meta-item">
+        <h5 class="label">Role</h5>
+        <p>Product Designer</p>
+      </div>
+      <div class="meta-item">
+        <h5 class="label">Service</h5>
+        <p>Product Strategy · Research &amp; Insights · Interaction · UX Writing · Visual Design · Prototyping</p>
+      </div>
+      <div class="meta-item">
+        <h5 class="label">Date</h5>
+        <p>May 2021</p>
+      </div>
+      <a href="https://emilaviero.medium.com/acercando-el-arte-y-la-cultura-a-los-m%C3%A1s-j%C3%B3venes-a-trav%C3%A9s-del-ux-design-f828bf892c8" target="_blank" rel="noopener" class="btn-primary">Read full article <span aria-hidden="true">&nearr;</span></a>
+    </div>
+  </section>
+
+  <figure class="case-figure bleed">
+    <img src="../assets/images/wow-overview.jpg" alt="WOW screens: profile, splash screen, explore and events" loading="lazy">
+  </figure>
+
+  <section class="case-section">
+    <h2>Research</h2>
+    <div class="case-body">
+      <p>I launched a survey with 89 respondents and conducted 8 interviews with people aged 14 to 38. The most revealing finding: almost everyone stored recommendations in phone notes and screenshots. The behavior was already there. The infrastructure wasn&rsquo;t.</p>
+      <div class="image-grid">
+        <img src="../assets/images/wow-research-1.jpg" alt="Survey result: where people keep recommendations (54% phone notes, 40% screenshots, 20% write them down and forget them)" loading="lazy">
+        <img src="../assets/images/wow-research-2.jpg" alt="Four key insights from the interviews" loading="lazy">
+      </div>
+      <p class="quote-intro">One quote reframed the whole problem:</p>
+      <blockquote class="case-quote">
+        <p>&ldquo;If I go to an exhibition, I have to leave the house, the stakes are higher. I need to trust the recommendation a lot more.&rdquo;</p>
+        <cite>Guillermo, 27</cite>
+      </blockquote>
+      <figure class="case-figure">
+        <img src="../assets/images/wow-research-3.jpg" alt="Collage of WOW screens" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <h2>Research findings</h2>
+    <div class="case-body">
+      <p>Users wanted one place for recommendations and events, filtered by their own interests, showing what their close circle was actually consuming. Word of mouth from friends beat algorithms every time.</p>
+      <div class="image-grid screens three equal">
+        <img src="../assets/images/wow-findings-1.webp" alt="WOW splash screen and home feed animation" loading="lazy">
+        <img src="../assets/images/wow-findings-2.jpg" alt="User profile with completed and saved recommendations" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-aside">
+      <p class="sub-label">Design solutions</p>
+      <h2>The cultural Tinder</h2>
+    </div>
+    <div class="case-body">
+      <p>My initial references were Instagram and TikTok. But halfway through the wireframes, I realized the core interaction wasn&rsquo;t sharing, it was collecting and deciding. Swiping to save or dismiss turned out to be a much more honest model for that behavior, and it mapped directly to how people already managed recommendations in their notes app.</p>
+      <div class="image-grid screens three">
+        <img src="../assets/images/wow-tinder-1.jpg" alt="Feed card: a friend rated a film" loading="lazy">
+        <img src="../assets/images/wow-tinder-2.jpg" alt="Recommendation detail with watched and save actions" loading="lazy">
+        <img src="../assets/images/wow-tinder-3.webp" alt="Swiping through recommendations to save or dismiss them" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-aside">
+      <p class="sub-label">Design solutions</p>
+      <h2>Explore categories and discover recommendations</h2>
+    </div>
+    <div class="case-body">
+      <p>Younger users wouldn&rsquo;t engage with unfamiliar content unless they could filter by what they already cared about. Discovery needed a safe entry point before it could become adventurous.</p>
+      <div class="image-grid screens three">
+        <img src="../assets/images/wow-explore-1.jpg" alt="Explore: recently viewed and nearby plans on a map" loading="lazy">
+        <img src="../assets/images/wow-explore-2.jpg" alt="Categories: reading, film, theatre, exhibitions, music and more" loading="lazy">
+        <img src="../assets/images/wow-explore-3.jpg" alt="Weekly highlights and events for you" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-aside">
+      <p class="sub-label">Design solutions</p>
+      <h2>Discover events and buy tickets</h2>
+    </div>
+    <div class="case-body">
+      <p>People were losing momentum switching between apps to buy a ticket after a friend&rsquo;s recommendation. Keeping that flow inside WOW solved the friction, and gave the product a clear monetization model.</p>
+      <div class="image-grid screens three">
+        <img src="../assets/images/wow-events-1.jpg" alt="Events calendar with my plans" loading="lazy">
+        <img src="../assets/images/wow-events-2.jpg" alt="Concert detail with friends attending and buy ticket button" loading="lazy">
+        <img src="../assets/images/wow-events-3.jpg" alt="Ticket with QR code" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-aside">
+      <p class="sub-label">Design solutions</p>
+      <h2>Add a recommendation</h2>
+    </div>
+    <div class="case-body">
+      <p>Based on research insights, I proposed a design solution to drive adoption: letting users add recommendations as easily as saving a phone note.</p>
+      <p>I built this feature so users could keep doing what they already do with recommendations they receive, but with everything centralized in one place, automatically categorized, and visible to their circle.</p>
+      <div class="image-grid screens three">
+        <img src="../assets/images/wow-add-1.jpg" alt="Add: search and publish a review" loading="lazy">
+        <img src="../assets/images/wow-add-2.jpg" alt="Review form with tags, rating and voice note" loading="lazy">
+        <img src="../assets/images/wow-add-3.jpg" alt="Published review in the feed" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-aside">
+      <p class="sub-label">Design solutions</p>
+      <h2>Branding</h2>
+    </div>
+    <div class="case-body">
+      <p>I wanted the brand to feel young and creative. My starting point was nostalgia: 90s TV aesthetics, graffiti, cartoons. I chose teal as the base color and derived violet as the primary accent through color theory.</p>
+      <p>The name WOW is short, impossible to forget, and a little audacious, right for an app about experiences designed to leave you speechless.</p>
+      <figure class="case-figure">
+        <img src="../assets/images/wow-branding.jpg" alt="WOW color palette, typography (Archivo Black and Roboto) and UI components" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
+  <section class="related-section" data-current="wow">
+    <div class="related-header">
+      <h2>More case studies</h2>
+      <div class="related-nav">
+        <button type="button" class="related-prev" aria-label="Proyectos anteriores"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M5 12L11 6M5 12L11 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="related-next" aria-label="Más proyectos"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+    <div class="related-track"></div>
+    <div class="related-dots" aria-label="Posición en el carrusel"></div>
+  </section>
+
+  <footer class="contact" id="contact">
+    <div class="contact-card">
+      <h3>Thank you for reading!<br>I&rsquo;d love to know you too.</h3>
+      <div class="contact-links">
+        <div class="contact-email">
+          <span>lavieroemilia@gmail.com</span>
+          <button class="copy-icon-btn copy-email-btn" data-email="lavieroemilia@gmail.com" aria-label="Copiar email" title="Copiar email">
+            <svg class="icon-copy" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5L10 17.5L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <a href="https://www.linkedin.com/in/emilialaviero/" target="_blank" rel="noopener" class="contact-link">
+          LinkedIn: emilialaviero <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="https://medium.com/@emilaviero" target="_blank" rel="noopener" class="contact-link">
+          Medium: @emilialaviero <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="https://drive.google.com/file/d/1TCPcE9fgOwlY57MC0pf6gdawFP0CLo67/view?usp=sharing" target="_blank" rel="noopener" class="contact-link">
+          CV <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Emilia Laviero</span>
+      <span>&copy; <span id="year"></span></span>
+    </div>
+  </footer>
+
+</main>
+
+<script src="../assets/js/script.js"></script>
+</body>
+</html>

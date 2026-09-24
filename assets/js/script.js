@@ -21,6 +21,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Nav: sección activa (punto debajo del link)
+  // - En el home: la sección visible mientras se hace scroll, y la que se toca.
+  // - En los case studies: "Work" (Feature Advisor, que es de Lab: "Lab").
+  const navLinks = Array.from(document.querySelectorAll('.nav-links a'));
+  const setActive = (id) => {
+    navLinks.forEach((a) => a.classList.toggle('is-active', a.getAttribute('href').endsWith('#' + id)));
+  };
+  // [elemento, link que se activa]. La experiencia y las fotos también son "About".
+  const homeSections = [
+    [document.getElementById('work'), 'work'],
+    [document.getElementById('about'), 'about'],
+    [document.getElementById('lab'), 'lab'],
+    [document.querySelector('.experience'), 'about'],
+  ].filter(([el]) => el);
+
+  if (homeSections.length) {
+    const updateActive = () => {
+      const line = window.innerHeight * 0.4;
+      let current = null;
+      let currentTop = -Infinity;
+      homeSections.forEach(([el, id]) => {
+        const top = el.getBoundingClientRect().top;
+        if (top <= line && top > currentTop) { current = id; currentTop = top; }
+      });
+      setActive(current);
+    };
+    window.addEventListener('scroll', updateActive, { passive: true });
+    navLinks.forEach((a) => a.addEventListener('click', () => setActive(a.getAttribute('href').split('#')[1])));
+    updateActive();
+  } else if (location.pathname.includes('/pages/')) {
+    setActive(location.pathname.includes('feature-advisor') ? 'lab' : 'work');
+  }
+
   // Mobile menu toggle
   const toggleBtn = document.querySelector('.nav-toggle');
   const mobileMenu = document.getElementById('navMobileMenu');
@@ -47,21 +80,37 @@ document.addEventListener('DOMContentLoaded', () => {
   const contactBtn = document.getElementById('navContactBtn');
   const contactDropdown = document.getElementById('contactDropdown');
 
+  function setContactOpen(open) {
+    if (contactDropdown) contactDropdown.classList.toggle('open', open);
+    if (contactBtn) {
+      contactBtn.setAttribute('aria-expanded', String(open));
+      contactBtn.classList.toggle('is-active', open); // punto debajo de "Contact" mientras está abierto
+    }
+  }
+
   function closeContactDropdown() {
-    if (contactDropdown) contactDropdown.classList.remove('open');
-    if (contactBtn) contactBtn.setAttribute('aria-expanded', 'false');
+    setContactOpen(false);
   }
 
   if (contactBtn && contactDropdown) {
     contactBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       closeMobileMenu();
-      const isOpen = contactDropdown.classList.toggle('open');
-      contactBtn.setAttribute('aria-expanded', String(isOpen));
+      setContactOpen(!contactDropdown.classList.contains('open'));
     });
 
+    // "Contact" dentro del menú mobile abre el mismo panel
+    const mobileContact = document.querySelector('.nav-mobile-contact');
+    if (mobileContact) {
+      mobileContact.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeMobileMenu();
+        setContactOpen(true);
+      });
+    }
+
     document.addEventListener('click', (e) => {
-      if (!contactDropdown.contains(e.target) && !contactBtn.contains(e.target)) {
+      if (!contactDropdown.contains(e.target) && !contactBtn.contains(e.target) && !e.target.closest('.nav-mobile-contact')) {
         closeContactDropdown();
       }
     });
