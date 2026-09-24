@@ -11,7 +11,7 @@ index.html                  → Home
 pages/dino.html             → Case study: Dino by Ucademy
 pages/quota-pms.html        → Case study: Quota PMS
 pages/feature-advisor.html  → Case study: Feature Advisor (Lab)
-pages/tenant-scoring.html   → Case study: Tenant Scoring (pendiente)
+pages/tenant-scoring.html   → Case study: Tenant Scoring
 pages/attomo.html           → Case study: Attomo (pendiente)
 pages/wow.html              → Case study: WOW (pendiente)
 assets/css/style.css        → Hoja de estilos única para todo el sitio
@@ -54,7 +54,8 @@ Escala tipográfica (medida del original; mobile por defecto, desktop desde 900p
 1. `.case-hero`: nombre de la empresa en chico (`.case-company`) + H1 con el título real. Sin "Case Study".
 2. `.case-hero-img`: imagen principal a todo el ancho de la ventana, justo después del título. Exportarla a 2400px. Si es una captura chica, usar la variante `.band` (franja oscura con la captura centrada a su tamaño real).
 3. `.case-intro`: intro a la izquierda, datos del proyecto a la derecha (Team/Role/Service/Date o lo que corresponda). Botón `.btn-primary` si hay link al producto.
-4. `.case-section`: título de sección (`h2`) en la columna izquierda y contenido en `.case-body` a la derecha, proporción 2:5. Sin cajas de color. Bloques con subtítulo: `.block` + `.sub-label`. Imágenes de cada sección dentro de `.case-body` (`.case-figure` con `figcaption`, `.image-grid`, `.image-grid.mobile`). Imágenes grandes entre secciones: `.case-figure.full`.
+4. `.case-section`: título de sección (`h2`) en la columna izquierda y contenido en `.case-body` a la derecha, proporción 2:5. Sin cajas de color. Bloques con subtítulo: `.block` + `.sub-label`. Imágenes de cada sección dentro de `.case-body` (`.case-figure` con `figcaption`, `.image-grid`, `.image-grid.mobile`). Imágenes grandes entre secciones: `.case-figure.full` (con bordes redondeados) o `.case-figure.bleed` (a todo el ancho de la ventana).
+   - Variante Problema/Solución (Tenant Scoring): en vez de `h2`, la columna izquierda lleva `.case-problem` (sub-label + texto) y la derecha `.case-body` con sub-label "Solution" + `p.solution` en tamaño h3. Pantallas mobile en `.image-grid.screens` (4 columnas, o `.three`), con `.grid-caption` como celda de texto dentro de la grilla.
 5. `.related-section` ("More case studies"): dos `.related-card` con imagen, título y servicios. Títulos en inglés. Deja 120px de aire antes del footer.
 
 ## Convenciones establecidas
@@ -77,7 +78,6 @@ Escala tipográfica (medida del original; mobile por defecto, desktop desde 900p
 
 ## Pendiente
 
-1. Construir página de Tenant Scoring.
-2. Construir página de Attomo.
-3. Construir página de WOW.
-4. Conectar el sitio terminado al dominio de Emilia (Google Domains).
+1. Construir página de Attomo (Tenant Scoring ya enlaza a ella).
+2. Construir página de WOW.
+3. Conectar el sitio terminado al dominio de Emilia (Google Domains).

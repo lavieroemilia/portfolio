@@ -934,6 +934,51 @@ a.timeline-company:hover {
   grid-template-columns: repeat(3, 1fr);
 }
 
+/* Variante Problema / Solución (Tenant Scoring): el problema va en la columna izquierda */
+.case-problem {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+.case-problem p {
+  margin: 0;
+}
+
+.case-problem .sub-label,
+.case-body > .sub-label {
+  margin-bottom: 8px;
+}
+
+.case-body .solution {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  margin: 0;
+}
+
+/* Pantallas mobile: las capturas ya traen su forma de teléfono y sombra */
+.image-grid.screens {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.image-grid.screens.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.image-grid.screens img {
+  border-radius: 0;
+}
+
+.grid-caption {
+  align-self: center;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  margin: 0;
+}
+
+.stat-box.three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 /* Outcomes: caja blanca con los números grandes */
 .stat-box {
   display: grid;
@@ -1127,8 +1172,18 @@ a.timeline-company:hover {
     gap: 16px;
   }
 
-  .image-grid.mobile {
+  .image-grid.mobile,
+  .image-grid.screens,
+  .image-grid.screens.three {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-caption {
+    grid-column: 1 / -1;
+  }
+
+  .stat-box.three {
+    grid-template-columns: 1fr;
   }
 
   .stat-box {

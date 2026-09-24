@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tenant Scoring | Emilia Laviero</title>
+<meta name="description" content="Case study: a digital pre-scoring flow that helps rental agencies screen tenants faster at Quota.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <a href="../" class="nav-badge nav-logo">Emilia Laviero</a>
+  <div class="nav-links">
+    <a href="../#work">Work</a>
+    <a href="../#lab">Lab</a>
+    <a href="../#about">About</a>
+  </div>
+  <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+  <div class="nav-contact">
+    <button class="nav-cta" id="navContactBtn" aria-label="Contactar" aria-expanded="false" aria-controls="contactDropdown">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21 3L11 13M21 3L14.5 21L11 13M21 3L3 9.5L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="contact-dropdown" id="contactDropdown">
+      <p class="contact-dropdown-email">lavieroemilia@gmail.com</p>
+      <button class="copy-email-btn" data-email="lavieroemilia@gmail.com">
+        <span class="copy-email-label">Copiar</span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="../#work">Work</a>
+  <a href="../#lab">Lab</a>
+  <a href="../#about">About</a>
+</div>
+
+<main>
+
+  <a href="../" class="back-link">&larr; Back to home</a>
+
+  <section class="case-hero">
+    <p class="case-company">Quota</p>
+    <h1>Streamlining the tenant screening process</h1>
+  </section>
+
+  <div class="case-hero-img">
+    <img src="../assets/images/ts-hero.jpg" alt="Tenant onboarding on a phone: verify your data before other candidates">
+  </div>
+
+  <section class="case-intro">
+    <p class="intro">Quota is a Spanish startup that uses AI to score rental candidates and match them to the right properties. They needed a solution to collect tenant data and documentation faster, so agents could stop spending time on candidates who were never going to qualify.</p>
+    <div class="meta-list">
+      <div class="meta-item">
+        <h5 class="label">Team</h5>
+        <div class="team-avatars">
+          <a href="https://www.linkedin.com/in/pcardenaslaura/" target="_blank" rel="noopener" title="Laura P. Cárdenas" aria-label="Laura P. Cárdenas on LinkedIn">LC</a>
+          <a href="https://www.linkedin.com/in/carlos-fern%C3%A1ndez-casal-16837322b" target="_blank" rel="noopener" title="Carlos Fernández" aria-label="Carlos Fernández on LinkedIn">CF</a>
+          <a href="https://www.linkedin.com/in/karlo-mamic" target="_blank" rel="noopener" title="Karlo Mamic" aria-label="Karlo Mamic on LinkedIn">KM</a>
+        </div>
+      </div>
+      <div class="meta-item">
+        <h5 class="label">Role</h5>
+        <p>Lead Product Designer</p>
+      </div>
+      <div class="meta-item">
+        <h5 class="label">Service</h5>
+        <p>Product Strategy · Research &amp; Insights · Interaction · UX Writing · Visual Design · Prototyping</p>
+      </div>
+      <div class="meta-item">
+        <h5 class="label">Date</h5>
+        <p>2023</p>
+      </div>
+    </div>
+  </section>
+
+  <figure class="case-figure bleed">
+    <img src="../assets/images/ts-overview.jpg" alt="Pre-scoring flow: candidate list, invitation and preliminary result" loading="lazy">
+  </figure>
+
+  <section class="case-section">
+    <div class="case-problem">
+      <p class="sub-label">Problem</p>
+      <p>Agents were losing hours reviewing documents and scheduling visits with candidates who didn&rsquo;t fit the profile.</p>
+    </div>
+    <div class="case-body">
+      <p class="sub-label">Solution</p>
+      <p class="solution">We designed a digital pre-scoring flow that lets agents send a link to prospective tenants and arrange visits only with qualified candidates, saving time on both sides before anyone leaves the house.</p>
+      <div class="image-grid screens">
+        <img src="../assets/images/ts-prescoring-1.jpg" alt="WhatsApp message from the agency with the pre-scoring link" loading="lazy">
+        <img src="../assets/images/ts-prescoring-2.jpg" alt="Welcome screen: complete your tenant information" loading="lazy">
+        <img src="../assets/images/ts-prescoring-3.jpg" alt="Step: what is your name" loading="lazy">
+        <img src="../assets/images/ts-prescoring-4.jpg" alt="Step: employment status" loading="lazy">
+        <p class="grid-caption">The pre-scoring benefits both agents and tenants, since both can assess whether the rental is a good fit before the visit takes place.</p>
+        <img src="../assets/images/ts-prescoring-5.jpg" alt="Step: net monthly income" loading="lazy">
+        <img src="../assets/images/ts-prescoring-6.jpg" alt="Step: employment start date" loading="lazy">
+        <img src="../assets/images/ts-prescoring-7.jpg" alt="Positive preliminary result with recommended rent" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-problem">
+      <p class="sub-label">Problem</p>
+      <p>Manual document checks were slow and inconsistent.</p>
+    </div>
+    <div class="case-body">
+      <p class="sub-label">Solution</p>
+      <p class="solution">We integrated Open Banking and KYC tools to automatically verify identity and financial information using data from public institutions and banks, through a flow designed to be short, self-explanatory, and easy to complete.</p>
+      <div class="image-grid screens">
+        <img src="../assets/images/ts-banking-1.jpg" alt="Verify your income in less than 1 minute" loading="lazy">
+        <img src="../assets/images/ts-banking-2.jpg" alt="Choose how to verify your income" loading="lazy">
+        <img src="../assets/images/ts-banking-3.jpg" alt="Choose your bank" loading="lazy">
+        <img src="../assets/images/ts-banking-4.jpg" alt="Income verified confirmation" loading="lazy">
+        <img src="../assets/images/ts-banking-5.jpg" alt="Verification status for each candidate" loading="lazy">
+        <p class="grid-caption">Tenants can verify their income and financial situation through a short, self-explanatory flow, without needing help from the agent.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-problem">
+      <p class="sub-label">Problem</p>
+      <p>Real estate agencies were reluctant to send leads through a third-party platform.</p>
+    </div>
+    <div class="case-body">
+      <p class="sub-label">Solution</p>
+      <p class="solution">We gave agencies the ability to customize the onboarding with their own branding, removing that barrier to adoption.</p>
+      <figure class="case-figure">
+        <img src="../assets/images/ts-branding.jpg" alt="Brand settings: logo, colours, fonts and main button style" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-problem">
+      <p class="sub-label">Problem</p>
+      <p>The flow stalled when tenants didn&rsquo;t have their flatmates&rsquo; information on hand.</p>
+    </div>
+    <div class="case-body">
+      <p class="sub-label">Solution</p>
+      <p class="solution">We added an invitation feature so tenants could bring co-applicants into the process directly, giving agencies a complete picture of the group without having to chase everyone individually.</p>
+      <div class="image-grid screens">
+        <img src="../assets/images/ts-invite-1.jpg" alt="Add your flatmate" loading="lazy">
+        <img src="../assets/images/ts-invite-2.jpg" alt="Send an invitation by email or WhatsApp" loading="lazy">
+        <img src="../assets/images/ts-invite-3.jpg" alt="Invitation email received by the co-applicant" loading="lazy">
+        <p class="grid-caption">Putting the process in the tenants&rsquo; hands gives agencies a complete picture of the group without having to chase every candidate individually.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="case-problem">
+      <p class="sub-label">Problem</p>
+      <p>Sharing financial data is a significant trust barrier for many users.</p>
+    </div>
+    <div class="case-body">
+      <p class="sub-label">Solution</p>
+      <p class="solution">UX Writing was central to solving this: every step included benefit-focused copy, tooltips, and contextual help to reduce anxiety and build confidence throughout the flow.</p>
+      <div class="image-grid screens">
+        <img src="../assets/images/ts-writing-1.jpg" alt="Why do we need to know your income" loading="lazy">
+        <img src="../assets/images/ts-writing-2.jpg" alt="Where does your recommended rent come from" loading="lazy">
+        <img src="../assets/images/ts-writing-3.jpg" alt="Safe rental explanation" loading="lazy">
+        <img src="../assets/images/ts-writing-4.jpg" alt="Negative result with alternative recommended rent" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <h2>Impact</h2>
+    <div class="case-body">
+      <div class="stat-box three">
+        <div class="stat">
+          <span class="stat-value">+90%</span>
+          <p>of onboardings completed end-to-end</p>
+        </div>
+        <div class="stat">
+          <span class="stat-value">+60%</span>
+          <p>of SaaS users send invitations on a recurring basis</p>
+        </div>
+        <div class="stat">
+          <span class="stat-value">30%</span>
+          <p>reduction in time spent on tenant selection</p>
+        </div>
+      </div>
+      <div class="image-grid screens three">
+        <img src="../assets/images/ts-id-1.jpg" alt="Take a photo of your ID document" loading="lazy">
+        <img src="../assets/images/ts-id-2.jpg" alt="Front side of the document" loading="lazy">
+        <img src="../assets/images/ts-id-3.jpg" alt="Front side photo check" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="related-section">
+    <h2>More case studies</h2>
+    <div class="related-grid">
+      <a href="./attomo.html" class="related-card">
+        <div class="related-card-img">
+          <img src="../assets/images/project-attomo.jpg" alt="ATTOMO Digital website" loading="lazy">
+        </div>
+        <h3>Designing ATTOMO&rsquo;s website</h3>
+        <p>Web Design, Information Architecture, UX Writing, Visual Design &amp; Guidelines, Prototyping.</p>
+      </a>
+      <a href="./quota-pms.html" class="related-card">
+        <div class="related-card-img">
+          <img src="../assets/images/project-quota-pms.jpg" alt="Quota PMS dashboard" loading="lazy">
+        </div>
+        <h3>Quota: A SaaS for property managers</h3>
+        <p>Product Strategy, Research &amp; Insights, UX Writing, Design System, Visual Design, Prototyping, User Testing.</p>
+      </a>
+    </div>
+  </section>
+
+  <footer class="contact" id="contact">
+    <div class="contact-card">
+      <h3>Thank you for reading!<br>I&rsquo;d love to know you too.</h3>
+      <div class="contact-links">
+        <div class="contact-email">
+          <span>lavieroemilia@gmail.com</span>
+          <button class="copy-icon-btn copy-email-btn" data-email="lavieroemilia@gmail.com" aria-label="Copiar email" title="Copiar email">
+            <svg class="icon-copy" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5L10 17.5L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <a href="https://www.linkedin.com/in/emilialaviero/" target="_blank" rel="noopener" class="contact-link">
+          LinkedIn: emilialaviero <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="https://medium.com/@emilaviero" target="_blank" rel="noopener" class="contact-link">
+          Medium: @emilialaviero <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="https://drive.google.com/file/d/1TCPcE9fgOwlY57MC0pf6gdawFP0CLo67/view?usp=sharing" target="_blank" rel="noopener" class="contact-link">
+          CV <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Emilia Laviero</span>
+      <span>&copy; <span id="year"></span></span>
+    </div>
+  </footer>
+
+</main>
+
+<script src="../assets/js/script.js"></script>
+</body>
+</html>
