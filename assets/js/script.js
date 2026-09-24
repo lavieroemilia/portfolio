@@ -93,14 +93,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
       btn.classList.add('copied');
       const target = label || text;
-      if (target) {
-        const original = target.textContent;
-        target.textContent = '¡Copiado!';
-        setTimeout(() => {
-          target.textContent = original;
-          btn.classList.remove('copied');
-        }, 2000);
-      }
+      const original = target ? target.textContent : null;
+      if (target) target.textContent = '¡Copiado!';
+      if (btn.classList.contains('copy-icon-btn')) btn.setAttribute('aria-label', '¡Copiado!');
+      // El check del botón de ícono dura 3s; el "¡Copiado!" del menú, 2s
+      const duration = btn.classList.contains('copy-icon-btn') ? 3000 : 2000;
+      setTimeout(() => {
+        if (target) target.textContent = original;
+        if (btn.classList.contains('copy-icon-btn')) btn.setAttribute('aria-label', 'Copiar email');
+        btn.classList.remove('copied');
+      }, duration);
     });
   });
 });
