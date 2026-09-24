@@ -145,6 +145,11 @@ main {
   transform: translateX(-50%) scale(1);
 }
 
+.nav-links.contact-open a.is-active::after {
+  opacity: 0;
+  transform: translateX(-50%) scale(0);
+}
+
 /* Lado derecho del nav: cápsula con los links + Contact (y hamburguesa en mobile) */
 .nav-right {
   position: relative;
@@ -398,20 +403,20 @@ main {
 }
 
 .two-col h3,
-.lab-intro {
+.experiments-intro {
   font-size: var(--fs-h3);
   line-height: var(--lh-h3);
   font-weight: 500;
   margin: 0;
 }
 
-/* ---------- Lab ---------- */
+/* ---------- Experiments ---------- */
 
-.lab {
+.experiments {
   padding: var(--gutter) 0 0;
 }
 
-.lab-box {
+.experiments-box {
   background: var(--white);
   border-radius: var(--radius-lg);
   padding: var(--gutter);

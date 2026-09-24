@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // Smooth-scroll for in-page nav links (Work / Lab / About)
+  // Smooth-scroll for in-page nav links (Work / Experiments / About)
   document.querySelectorAll('.nav-links a[href^="#"], .nav-mobile-menu a[href^="#"]').forEach((link) => {
     link.addEventListener('click', (e) => {
       const targetId = link.getAttribute('href').slice(1);
@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Nav: sección activa (punto debajo del link)
   // - En el home: la sección visible mientras se hace scroll, y la que se toca.
-  // - En los case studies: "Work" (Feature Advisor, que es de Lab: "Lab").
   const navLinks = Array.from(document.querySelectorAll('.nav-links a'));
   const setActive = (id) => {
     navLinks.forEach((a) => a.classList.toggle('is-active', a.getAttribute('href').endsWith('#' + id)));
@@ -32,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const homeSections = [
     [document.getElementById('work'), 'work'],
     [document.getElementById('about'), 'about'],
-    [document.getElementById('lab'), 'lab'],
+    [document.getElementById('experiments'), 'experiments'],
     [document.querySelector('.experience'), 'about'],
   ].filter(([el]) => el);
 
@@ -50,8 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', updateActive, { passive: true });
     navLinks.forEach((a) => a.addEventListener('click', () => setActive(a.getAttribute('href').split('#')[1])));
     updateActive();
-  } else if (location.pathname.includes('/pages/')) {
-    setActive(location.pathname.includes('feature-advisor') ? 'lab' : 'work');
   }
 
   // Mobile menu toggle
@@ -85,6 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactBtn) {
       contactBtn.setAttribute('aria-expanded', String(open));
       contactBtn.classList.toggle('is-active', open); // punto debajo de "Contact" mientras está abierto
+      // Mientras Contact está abierto, se oculta el punto de la sección para que nunca haya dos marcados
+      const links = contactBtn.closest('.nav-links');
+      if (links) links.classList.toggle('contact-open', open);
     }
   }
 

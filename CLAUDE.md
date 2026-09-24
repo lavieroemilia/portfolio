@@ -10,7 +10,7 @@ El sitio de Framer es la referencia de diseño: antes de construir o ajustar alg
 index.html                  → Home
 pages/dino.html             → Case study: Dino by Ucademy
 pages/quota-pms.html        → Case study: Quota PMS
-pages/feature-advisor.html  → Case study: Feature Advisor (Lab)
+pages/feature-advisor.html  → Case study: Feature Advisor (Experiments)
 pages/tenant-scoring.html   → Case study: Tenant Scoring
 pages/attomo.html           → Case study: ATTOMO Digital
 pages/wow.html              → Case study: WOW
@@ -64,7 +64,7 @@ Escala tipográfica (medida del original; mobile por defecto, desktop desde 900p
 - Sin frameworks, sin build step. HTML/CSS/JS a mano.
 - Todas las imágenes se auto-hostean en `assets/images/`, optimizadas (JPEG con calidad ajustada). Los GIFs animados se convierten a WebP animado con Python/Pillow (pesan hasta 10 veces menos y se usan igual, con `<img>`). Capturas de página completa: `.image-grid.pages` (2 columnas, también en mobile).
 - Contacto sin `mailto:`. En el nav, "Contact" (último item, después de About) abre un panel (`.contact-dropdown`) con el email y el ícono de copiar (`.copy-icon-btn`), que muestra un check por 3s; mientras está abierto, Contact lleva el punto activo. En mobile, "Contact" está en el menú hamburguesa y abre el mismo panel. En el footer, el email es texto con el mismo ícono de copiar. Los links del footer (LinkedIn, Medium, CV) van en 4 columnas, en negro, con flecha ↗ y subrayado en hover. Lógica en `script.js`.
-- Nav: "Emilia Laviero" a la izquierda; a la derecha una cápsula con Work, Lab, About y Contact. Texto siempre negro. La sección activa se marca con un punto negro debajo del link (`.is-active`); en hover aparece el punto en gris suave, y en "Emilia Laviero" en negro. En el home la sección activa se detecta con el scroll (la experiencia y las fotos cuentan como About); en los case studies queda "Work" (Feature Advisor: "Lab"). Lógica en `script.js`.
+- Nav: "Emilia Laviero" a la izquierda; a la derecha una cápsula con Work, Experiments, About y Contact. Texto siempre negro. La sección activa se marca con un punto negro debajo del link (`.is-active`); en hover aparece el punto en gris suave, y en "Emilia Laviero" en negro. Solo en el home se marca la sección activa, detectada con el scroll (la experiencia y las fotos cuentan como About); en los case studies no se marca ninguna. Nunca hay dos puntos a la vez: con Contact abierto se oculta el de la sección. Lógica en `script.js`.
 - El menú mobile es un dropdown (`.nav-mobile-menu`) activado por un botón hamburguesa (`.nav-toggle`), visible bajo 900px.
 - Attomo no enlaza a la web actual de ATTOMO (cambiaron el diseño).
 - La card "Dino Design System" en el home linkea externamente a `https://dino-design-system-v2.vercel.app/` (target="_blank"), porque ese design system vive en otro proyecto.
