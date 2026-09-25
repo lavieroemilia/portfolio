@@ -17,7 +17,8 @@
   --font: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
 
   /* Escala tipográfica (medida del sitio original en Framer).
-     Valores mobile acá; desktop se redefine en @media (min-width: 900px). */
+     Valores mobile acá; tablet se redefine en @media (min-width: 641px)
+     y desktop en @media (min-width: 900px). */
   --fs-display: 28px;  --lh-display: 40px;  /* H1 */
   --fs-h2: 23px;       --lh-h2: 31px;       /* Títulos grandes: "For 5 years…", "Thank you" */
   --fs-h3: 22px;       --lh-h3: 32px;       /* Títulos de sección, intro, texto de cajas */
@@ -1232,6 +1233,19 @@ a.timeline-company:hover {
    Responsive
    ========================================================================== */
 
+/* Tablet: escala tipográfica intermedia entre mobile y desktop */
+@media (min-width: 641px) {
+  :root {
+    --fs-display: 44px;  --lh-display: 56px;
+    --fs-h2: 34px;       --lh-h2: 46px;
+    --fs-h3: 26px;       --lh-h3: 38px;
+    --fs-h4: 22px;       --lh-h4: 32px;
+    --fs-body-lg: 18px;  --lh-body-lg: 28px;
+    --fs-body: 16px;     --lh-body: 24px;
+    --fs-label: 16px;    --lh-label: 26px;
+  }
+}
+
 @media (min-width: 900px) {
   :root {
     --fs-display: 64px;  --lh-display: 72px;
@@ -1247,22 +1261,46 @@ a.timeline-company:hover {
 
 }
 
-/* Cuando las pills no entran en una fila, van en una grilla pareja
-   (2 filas de 4, o 4 filas de 2 en pantallas angostas), alineadas en columnas */
+/* Cuando las pills no entran en una fila, van en 2 filas parejas de 4.
+   Cada pill mantiene el ancho de su texto y cada fila reparte su espacio.
+   El ::after es un salto de línea invisible entre la pill 4 y la 5. */
 @media (max-width: 1100px) {
   .pill-row {
-    display: grid;
-    grid-template-columns: repeat(4, auto);
+    row-gap: 0;
   }
 
-  .pill {
-    text-align: center;
+  .pill-row::after {
+    content: '';
+    flex-basis: 100%;
+    order: 1;
+  }
+
+  .pill:nth-child(n+5) {
+    order: 2;
+    margin-top: 10px;
   }
 }
 
+/* Pantallas angostas: 4 filas de 2, una pill a cada borde */
 @media (max-width: 640px) {
   .pill-row {
+    display: grid;
     grid-template-columns: repeat(2, auto);
+    row-gap: 10px;
+  }
+
+  .pill-row::after {
+    content: none;
+  }
+
+  .pill,
+  .pill:nth-child(n+5) {
+    justify-self: start;
+    margin-top: 0;
+  }
+
+  .pill:nth-child(even) {
+    justify-self: end;
   }
 }
 

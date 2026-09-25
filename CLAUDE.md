@@ -32,25 +32,25 @@ Colores y forma:
 Espaciado:
 - `--gutter: 30px`: margen lateral, separación entre columnas y entre bloques, y padding de las cajas. El contenido ocupa todo el ancho de la ventana (sin max-width).
 
-Escala tipográfica (medida del original; mobile por defecto, desktop desde 900px):
+Escala tipográfica (desktop y mobile medidos del original; mobile por defecto, tablet desde 641px, desktop desde 900px):
 
-| Token | Desktop | Mobile | Uso |
-|---|---|---|---|
-| `--fs-display` | 64/72 | 28/40 | H1 |
-| `--fs-h2` | 44/60 | 23/31 | "For 5 years…", "Thank you", números de Outcomes |
-| `--fs-h3` | 32/46 | 22/32 | Títulos de sección, intro, texto de cajas |
-| `--fs-h4` | 26/36 | 20/30 | Títulos de tarjetas, fechas del timeline |
-| `--fs-body-lg` | 22/32 | 16/26 | Texto de los case studies |
-| `--fs-body` | 18/28 | 14/22 | Texto secundario, datos, descripciones |
-| `--fs-label` | 18/30 | 14/22 | Etiquetas ("Background", "Hypothesis"), nav |
-| `--fs-small` | 14/20 | 14/20 | Pills, tags, nombre de empresa |
+| Token | Desktop | Tablet | Mobile | Uso |
+|---|---|---|---|---|
+| `--fs-display` | 64/72 | 44/56 | 28/40 | H1 |
+| `--fs-h2` | 44/60 | 34/46 | 23/31 | "For 5 years…", "Thank you", números de Outcomes |
+| `--fs-h3` | 32/46 | 26/38 | 22/32 | Títulos de sección, intro, texto de cajas |
+| `--fs-h4` | 26/36 | 22/32 | 20/30 | Títulos de tarjetas, fechas del timeline |
+| `--fs-body-lg` | 22/32 | 18/28 | 16/26 | Texto de los case studies |
+| `--fs-body` | 18/28 | 16/24 | 14/22 | Texto secundario, datos, descripciones |
+| `--fs-label` | 18/30 | 16/26 | 14/22 | Etiquetas ("Background", "Hypothesis"), nav |
+| `--fs-small` | 14/20 | 14/20 | 14/20 | Pills, tags, nombre de empresa |
 
 - `--nav-h`: 64px desktop / 48px mobile (alto de las cápsulas del nav).
 
 Breakpoints:
-- Las pills del hero (`.pill-row`) reparten el espacio entre ellas según el ancho (`space-between`). Desde 1100px hacia abajo, donde no entran cómodas en una fila, van en una grilla pareja alineada en columnas: 2 filas de 4, y 4 filas de 2 desde 640px hacia abajo.
+- Las pills del hero (`.pill-row`) reparten el espacio entre ellas según el ancho (`space-between`). Desde 1100px hacia abajo, donde no entran cómodas en una fila, van en filas parejas: 2 filas de 4 (con un salto de línea invisible, `.pill-row::after`), y 4 filas de 2 desde 640px hacia abajo. Cada pill conserva el ancho de su texto y cada fila va de borde a borde.
 - **1100px o menos (tablet):** las cards de Work (`.project-grid`) y la sección personal (`.personal`) pasan a 2 columnas. El texto del recuadro lavanda (`.personal-blurb`) escala con la ventana: `clamp(20px, 3vw, 32px)`.
-- **899px o menos:** nav con menú hamburguesa, case studies en una columna, tipografía mobile.
+- **899px o menos:** nav con menú hamburguesa, case studies en una columna, tipografía tablet (mobile desde 640px hacia abajo).
 - **760px o menos (mobile):** cards de Work en 1 columna; personal en 3 fotos + texto a todo el ancho (en `--fs-body-lg`).
 
 ## Plantillas
