@@ -48,6 +48,7 @@ Escala tipográfica (medida del original; mobile por defecto, desktop desde 900p
 - `--nav-h`: 64px desktop / 48px mobile (alto de las cápsulas del nav).
 
 Breakpoints:
+- Las pills del hero (`.pill-row`) reparten el espacio entre ellas según el ancho (`space-between`). Desde 1100px hacia abajo, donde no entran cómodas en una fila, van en una grilla pareja alineada en columnas: 2 filas de 4, y 4 filas de 2 desde 640px hacia abajo.
 - **1100px o menos (tablet):** las cards de Work (`.project-grid`) y la sección personal (`.personal`) pasan a 2 columnas. El texto del recuadro lavanda (`.personal-blurb`) escala con la ventana: `clamp(20px, 3vw, 32px)`.
 - **899px o menos:** nav con menú hamburguesa, case studies en una columna, tipografía mobile.
 - **760px o menos (mobile):** cards de Work en 1 columna; personal en 3 fotos + texto a todo el ancho (en `--fs-body-lg`).

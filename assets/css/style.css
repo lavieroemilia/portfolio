@@ -263,6 +263,7 @@ main {
 .pill-row {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between; /* el espacio entre pills se reparte según el ancho */
   gap: 10px;
 }
 
@@ -1244,8 +1245,24 @@ a.timeline-company:hover {
     --nav-h: 64px;
   }
 
+}
+
+/* Cuando las pills no entran en una fila, van en una grilla pareja
+   (2 filas de 4, o 4 filas de 2 en pantallas angostas), alineadas en columnas */
+@media (max-width: 1100px) {
   .pill-row {
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+  }
+
+  .pill {
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .pill-row {
+    grid-template-columns: repeat(2, auto);
   }
 }
 
