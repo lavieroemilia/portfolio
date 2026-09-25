@@ -30,7 +30,7 @@ Colores y forma:
 - `--font: 'Geist'` (Google Fonts). Todo el texto usa peso 500, como el original.
 
 Espaciado:
-- `--gutter: 30px`: margen lateral, separación entre columnas y entre bloques, y padding de las cajas. En la home también es la separación vertical entre secciones (desktop y mobile). Única excepción: antes del título de Problems hay el doble (`calc(var(--gutter) * 2)`), para que el título sin caja no quede pegado a las cajas de arriba. No usar otros valores (40, 90px). El contenido ocupa todo el ancho de la ventana (sin max-width).
+- `--gutter: 30px`: margen lateral, separación entre columnas y entre bloques, y padding de las cajas. En la home también es la separación vertical entre secciones (desktop y mobile). Única excepción: arriba y abajo de Problems hay el doble (`calc(var(--gutter) * 2)`), el mismo valor en los dos lados, para que el título sin caja no quede pegado a las cajas de arriba. No usar otros valores (40, 90px). El contenido ocupa todo el ancho de la ventana (sin max-width).
 - Retícula: un solo contenedor (`main`, con `--gutter` a los lados) y 12 columnas implícitas. Todas las grillas usan `gap: var(--gutter)`, así que las de 2, 3 y 4 columnas son subdivisiones de las mismas 12 y comparten los mismos bordes. Dentro de las cajas con fondo, el contenido queda desplazado un `--gutter` (su padding).
 
 Escala tipográfica (desktop y mobile medidos del original; mobile por defecto, tablet desde 641px, desktop desde 900px):

@@ -416,7 +416,7 @@ main {
 
 /* Directamente sobre el fondo: label, intro y los tres proyectos */
 .experiments {
-  margin-top: var(--gutter);
+  margin-top: calc(var(--gutter) * 2); /* igual que el espacio arriba de Problems */
 }
 
 .experiments-box {
