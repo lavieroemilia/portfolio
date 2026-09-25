@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // Smooth-scroll for in-page nav links (Work / Experiments / About)
+  // Smooth-scroll for in-page nav links (Work / Playground / About)
   document.querySelectorAll('.nav-links a[href^="#"], .nav-mobile-menu a[href^="#"]').forEach((link) => {
     link.addEventListener('click', (e) => {
       const targetId = link.getAttribute('href').slice(1);
@@ -161,10 +161,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // acá y se actualiza en todos los case studies. `id` = nombre del archivo en /pages.
   // ---------------------------------------------------------------------------
   const PROJECTS = [
-    { id: 'dino', title: 'Dino, a learning app by Ucademy', services: 'Product Discovery, Product Strategy, App Design, Design System, Prototyping.', image: 'project-dino-app.jpg' },
-    { id: 'quota-pms', title: 'Quota: A SaaS for property managers', services: 'Product Strategy, Research & Insights, UX Writing, Design System, Visual Design, Prototyping, User Testing.', image: 'project-quota-pms.jpg' },
+    { id: 'dino', title: 'Designing a new learning experience from research to launch', services: 'Product Discovery, Product Strategy, App Design, Design System, Prototyping.', image: 'project-dino-app.jpg' },
+    { id: 'quota-pms', title: 'Simplifying a complex rental-management service for agencies and tenants', services: 'Product Strategy, Research & Insights, UX Writing, Design System, Visual Design, Prototyping, User Testing.', image: 'project-quota-pms.jpg' },
     { id: 'dino-design-system', title: 'Dino Design System', services: 'Design System, Claude Code, Astro.', image: 'project-dino-design-system.jpg' },
-    { id: 'tenant-scoring', title: 'Streamlining the tenant screening process', services: 'Product Strategy, Research & Insights, Interaction, UX Writing, Visual Design, Prototyping.', image: 'project-tenant-scoring.jpg' },
+    { id: 'tenant-scoring', title: 'Reducing friction in a complex tenant screening process', services: 'Product Strategy, Research & Insights, Interaction, UX Writing, Visual Design, Prototyping.', image: 'project-tenant-scoring.jpg' },
     { id: 'attomo', title: 'Designing ATTOMO\u2019s website', services: 'Web Design, Information Architecture, UX Writing, Visual Design & Guidelines, Prototyping.', image: 'project-attomo.jpg' },
     { id: 'wow', title: 'WOW, the cultural social network', services: 'App Design, Product Strategy, User Research, Interaction, UX Writing, Visual Design, Prototyping.', image: 'project-wow.jpg' },
     { id: 'feature-advisor', title: 'Feature Advisor, an agentic tool', services: 'AI-powered tool, Product Strategy.', image: 'lab-dino-preview.jpg' },

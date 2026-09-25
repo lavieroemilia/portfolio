@@ -412,17 +412,78 @@ main {
   margin: 0;
 }
 
-/* ---------- Experiments ---------- */
+/* ---------- Playground (id="experiments") ---------- */
 
+/* Un solo contenedor blanco: label, intro y los tres proyectos.
+   Mismo padding que el resto de las cajas de la home (--gutter) */
 .experiments {
-  padding: var(--gutter) 0 0;
+  margin-top: 60px; /* + el padding inferior de la última fila de Problems = 90px */
+  padding: var(--gutter);
+  background: var(--white);
+  border-radius: var(--radius-lg);
 }
 
 .experiments-box {
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  padding: var(--gutter);
-  margin-bottom: var(--gutter);
+  margin-bottom: 60px;
+}
+
+.experiments-intro {
+  text-wrap: pretty; /* evita una palabra sola en la última línea */
+}
+
+/* ---------- Problems ---------- */
+
+/* Sobre el fondo: título arriba y los cuatro problemas en una retícula 2 × 2.
+   Cada problema: divisor arriba, número chico y texto. */
+.problems {
+  padding-top: 90px;
+}
+
+.problems-title {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  font-weight: 500;
+  margin: 0 0 40px;
+  text-wrap: balance;
+}
+
+.problems-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 var(--gutter);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.problems-list li {
+  padding: var(--gutter) 0;
+  border-top: 1px solid var(--border);
+}
+
+.problems-num {
+  display: block;
+  margin-bottom: 12px;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-soft);
+}
+
+.problems-list p {
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body-lg);
+  margin: 0;
+  max-width: 880px;
+  text-wrap: pretty;
+}
+
+/* Desktop: la intro de Playground escala con la ventana para quedar
+   en dos líneas también en pantallas medianas (tope: tamaño h3) */
+@media (min-width: 1101px) {
+  .experiments-intro {
+    font-size: min(2.3vw, 32px);
+    line-height: 1.44;
+  }
 }
 
 /* ---------- Experience / timeline ---------- */
@@ -618,9 +679,61 @@ a.timeline-company:hover {
   transition: opacity 0.2s ease;
 }
 
-.copy-icon-btn:hover,
-.copy-icon-btn:focus-visible {
+.copy-icon-btn svg {
+  transition: opacity 0.2s ease;
+}
+
+.copy-icon-btn:hover svg,
+.copy-icon-btn:focus-visible svg {
   opacity: 0.6;
+}
+
+/* ---------- Tooltip ----------
+   Componente reutilizable: agregar data-tooltip="Texto" a cualquier botón o link.
+   Aparece arriba; con data-tooltip-pos="bottom", abajo.
+   Hover solo en dispositivos con mouse; con teclado, vía focus-visible. */
+
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  z-index: 10;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--text);
+  color: var(--white);
+  font-family: var(--font);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+[data-tooltip-pos="bottom"]::after {
+  bottom: auto;
+  top: calc(100% + 8px);
+  transform: translate(-50%, -4px);
+}
+
+[data-tooltip]:focus-visible::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (hover: hover) {
+  [data-tooltip]:hover::after {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 }
 
 .copy-icon-btn .icon-check,
@@ -646,21 +759,8 @@ a.timeline-company:hover {
    contenido en la columna derecha (2/3). Igual que el sitio original.
    ========================================================================== */
 
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: var(--fs-small);
-  color: var(--text-soft);
-  margin: 0 var(--gutter) 24px;
-}
-
-.back-link:hover {
-  color: var(--text);
-}
-
 .case-hero {
-  padding: 0 var(--gutter) 60px;
+  padding: 60px var(--gutter) 60px;
 }
 
 .case-company {
@@ -1182,12 +1282,23 @@ a.timeline-company:hover {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.85);
   color: var(--text);
-  transition: background-color 0.2s ease, color 0.2s ease;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.2s ease;
 }
 
-.related-card:hover .related-card-arrow {
-  background: var(--text);
-  color: var(--white);
+/* Aparece al pasar sobre la card completa (o al llegar con teclado) */
+.related-card:focus-visible .related-card-arrow {
+  opacity: 1;
+  transform: none;
+}
+
+@media (hover: hover) {
+  .related-card:hover .related-card-arrow {
+    opacity: 1;
+    transform: none;
+    background: rgba(255, 255, 255, 0.95);
+  }
 }
 
 .related-card h3 {
@@ -1261,7 +1372,7 @@ a.timeline-company:hover {
 
 }
 
-/* Cuando las pills no entran en una fila, van en 2 filas parejas de 4.
+/* Cuando las pills no entran en una fila, van en 2 filas (4 arriba, el resto abajo).
    Cada pill mantiene el ancho de su texto y cada fila reparte su espacio.
    El ::after es un salto de línea invisible entre la pill 4 y la 5. */
 @media (max-width: 1100px) {
@@ -1281,11 +1392,11 @@ a.timeline-company:hover {
   }
 }
 
-/* Pantallas angostas: 4 filas de 2, una pill a cada borde */
+/* Pantallas angostas: los textos de las pills son demasiado largos para
+   filas parejas, así que fluyen de izquierda a derecha con separación fija */
 @media (max-width: 640px) {
   .pill-row {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
+    justify-content: flex-start;
     row-gap: 10px;
   }
 
@@ -1293,14 +1404,9 @@ a.timeline-company:hover {
     content: none;
   }
 
-  .pill,
   .pill:nth-child(n+5) {
-    justify-self: start;
+    order: 0;
     margin-top: 0;
-  }
-
-  .pill:nth-child(even) {
-    justify-self: end;
   }
 }
 
@@ -1309,6 +1415,11 @@ a.timeline-company:hover {
   .project-grid,
   .personal {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  .experiments-box {
+    margin-bottom: 40px;
   }
 
   /* El texto crece con el ancho de la ventana para llenar el recuadro */
@@ -1352,11 +1463,7 @@ a.timeline-company:hover {
   }
 
   .case-hero {
-    padding: 0 0 40px;
-  }
-
-  .back-link {
-    margin-left: 0;
+    padding: 40px 0 40px;
   }
 }
 
@@ -1377,6 +1484,34 @@ a.timeline-company:hover {
 
   .timeline-content {
     grid-column: auto;
+  }
+
+  .problems {
+    padding-top: 60px;
+  }
+
+  .problems-title {
+    margin-bottom: 20px;
+  }
+
+  .experiments {
+    margin-top: 40px;
+  }
+
+  .experiments-box {
+    margin-bottom: var(--gutter);
+  }
+
+  .problems-list {
+    grid-template-columns: 1fr;
+  }
+
+  .problems-list li {
+    padding: 20px 0;
+  }
+
+  .problems-num {
+    margin-bottom: 8px;
   }
 
   .personal {
@@ -1441,6 +1576,19 @@ a.timeline-company:hover {
   .contact-links {
     grid-template-columns: 1fr;
     gap: 16px;
+  }
+
+  /* Links apilados: el tooltip va a la derecha para no tapar el link de arriba */
+  .contact-links [data-tooltip]::after {
+    left: calc(100% + 10px);
+    bottom: auto;
+    top: 50%;
+    transform: translate(-4px, -50%);
+  }
+
+  .contact-links [data-tooltip]:hover::after,
+  .contact-links [data-tooltip]:focus-visible::after {
+    transform: translate(0, -50%);
   }
 
   .related-section {
