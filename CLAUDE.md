@@ -70,6 +70,7 @@ Breakpoints:
 ## Convenciones establecidas
 
 - Sin frameworks, sin build step. HTML/CSS/JS a mano.
+- Caché: los links a `style.css` y `script.js` llevan `?v=AAAAMMDD` en las 8 páginas. Al publicar cambios de CSS o JS, actualizar ese número en todas (si no, los navegadores que ya visitaron el sitio muestran el HTML nuevo con el CSS viejo durante un rato).
 - Todas las imágenes se auto-hostean en `assets/images/`, optimizadas (JPEG con calidad ajustada). Los GIFs animados se convierten a WebP animado con Python/Pillow (pesan hasta 10 veces menos y se usan igual, con `<img>`). Capturas de página completa: `.image-grid.pages` (2 columnas, también en mobile).
 - Tooltips: componente CSS reutilizable, se activa con `data-tooltip="Texto"` (y `data-tooltip-pos="bottom"` para mostrarlo abajo). Aparece con hover (solo en dispositivos con mouse) y con `focus-visible`. No usar `title=""`. Textos en inglés: "Copy", "Open LinkedIn", "Open Medium", "Open CV". Todos los aria-labels también van en inglés.
 - Contacto sin `mailto:`. En el nav, "Contact" (último item, después de About) abre un panel (`.contact-dropdown`) con el email y el ícono de copiar (`.copy-icon-btn`), que muestra un check por 3s; mientras está abierto, Contact lleva el punto activo. En mobile, "Contact" está en el menú hamburguesa y abre el mismo panel. En el footer, el email es texto con el mismo ícono de copiar. Los links del footer (LinkedIn, Medium, CV) van en 4 columnas, en negro, con flecha ↗ y subrayado en hover. Lógica en `script.js`.
