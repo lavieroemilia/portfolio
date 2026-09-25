@@ -31,6 +31,7 @@ Colores y forma:
 
 Espaciado:
 - `--gutter: 30px`: margen lateral, separación entre columnas y entre bloques, y padding de las cajas. El contenido ocupa todo el ancho de la ventana (sin max-width).
+- Retícula: un solo contenedor (`main`, con `--gutter` a los lados) y 12 columnas implícitas. Todas las grillas usan `gap: var(--gutter)`, así que las de 2, 3 y 4 columnas son subdivisiones de las mismas 12 y comparten los mismos bordes. Dentro de las cajas con fondo, el contenido queda desplazado un `--gutter` (su padding).
 
 Escala tipográfica (desktop y mobile medidos del original; mobile por defecto, tablet desde 641px, desktop desde 900px):
 
@@ -55,7 +56,7 @@ Breakpoints:
 
 ## Plantillas
 
-**Home:** orden de lectura: hero (valor + pills de áreas), Work, Background / How I work, "The kind of problems I like working on" (`.problems`: sobre el fondo, sin caja; título arriba y los cuatro problemas en una retícula 2 × 2, cada uno con divisor arriba, número chico y texto en `--fs-body-lg`; una columna en mobile), Playground (`#experiments`: un solo contenedor blanco con label, intro a todo el ancho y los tres proyectos; en desktop la intro escala con `min(vw, 32px)` para quedar en dos líneas), How I got here, personal, contacto. Las secciones de texto van dentro de cajas con fondo (lavender, lime o blanco). El timeline de experiencia usa la misma grilla de 3 columnas que las cards: fecha en la 1ª, descripción desde la 2ª. Las cards de proyectos muestran al hacer hover un degradado oscuro, el título del case study (el mismo H1 de su página y de `PROJECTS` en `script.js`, en `--fs-body`) en blanco y pills blancas con los servicios, alineados abajo. En pantallas táctiles (`hover: none`) se muestran siempre.
+**Home:** orden de lectura: hero (valor + pills de áreas), Work, Background / How I work, "The kind of problems I like working on" (`.problems`: sobre el fondo, sin caja; título arriba y los cuatro problemas en bloques blancos redondeados 2 × 2, sin líneas, con el mismo padding, radio y gap que las otras cajas; número chico arriba a la izquierda y texto en `--fs-h4`; una columna en mobile), Playground (`#experiments`: un solo contenedor blanco con label, intro a todo el ancho y los tres proyectos; en desktop la intro escala con `min(vw, 32px)` para quedar en dos líneas), How I got here, personal, contacto. Las secciones de texto van dentro de cajas con fondo (lavender, lime o blanco). El timeline de experiencia usa la misma grilla de 3 columnas que las cards: fecha en la 1ª, descripción desde la 2ª. Las cards de proyectos muestran al hacer hover un degradado oscuro, el título del case study (el mismo H1 de su página y de `PROJECTS` en `script.js`, en `--fs-body`) en blanco y pills blancas con los servicios, alineados abajo. En pantallas táctiles (`hover: none`) se muestran siempre.
 
 **Case studies** (seguir este orden en toda página nueva):
 1. `.case-hero`: nombre de la empresa en chico (`.case-company`) + H1 con el título real. Sin "Case Study" ni link "Back to home" (el nav ya permite volver).

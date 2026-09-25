@@ -417,7 +417,7 @@ main {
 /* Un solo contenedor blanco: label, intro y los tres proyectos.
    Mismo padding que el resto de las cajas de la home (--gutter) */
 .experiments {
-  margin-top: 60px; /* + el padding inferior de la última fila de Problems = 90px */
+  margin-top: 90px;
   padding: var(--gutter);
   background: var(--white);
   border-radius: var(--radius-lg);
@@ -433,8 +433,8 @@ main {
 
 /* ---------- Problems ---------- */
 
-/* Sobre el fondo: título arriba y los cuatro problemas en una retícula 2 × 2.
-   Cada problema: divisor arriba, número chico y texto. */
+/* Título arriba y los cuatro problemas en bloques blancos redondeados, 2 × 2.
+   Mismo padding, radio y gap que el resto de las cajas de la home. */
 .problems {
   padding-top: 90px;
 }
@@ -443,37 +443,37 @@ main {
   font-size: var(--fs-h3);
   line-height: var(--lh-h3);
   font-weight: 500;
-  margin: 0 0 40px;
+  margin: 0 0 var(--gutter);
   text-wrap: balance;
 }
 
 .problems-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 var(--gutter);
+  gap: var(--gutter);
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .problems-list li {
-  padding: var(--gutter) 0;
-  border-top: 1px solid var(--border);
+  padding: var(--gutter);
+  background: var(--white);
+  border-radius: var(--radius-lg);
 }
 
 .problems-num {
   display: block;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   font-size: var(--fs-body);
   line-height: var(--lh-body);
   color: var(--text-soft);
 }
 
 .problems-list p {
-  font-size: var(--fs-body-lg);
-  line-height: var(--lh-body-lg);
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
   margin: 0;
-  max-width: 880px;
   text-wrap: pretty;
 }
 
@@ -1495,7 +1495,7 @@ a.timeline-company:hover {
   }
 
   .experiments {
-    margin-top: 40px;
+    margin-top: 60px;
   }
 
   .experiments-box {
@@ -1504,14 +1504,7 @@ a.timeline-company:hover {
 
   .problems-list {
     grid-template-columns: 1fr;
-  }
-
-  .problems-list li {
-    padding: 20px 0;
-  }
-
-  .problems-num {
-    margin-bottom: 8px;
+    gap: 20px; /* mismo gap que las cajas de Background / How I work en mobile */
   }
 
   .personal {
