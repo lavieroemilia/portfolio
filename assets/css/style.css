@@ -271,7 +271,7 @@ main {
   font-size: var(--fs-small);
   line-height: var(--lh-small);
   padding: 6px 16px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--text);
   border-radius: var(--radius-pill);
   white-space: nowrap;
 }
@@ -1249,6 +1249,20 @@ a.timeline-company:hover {
   }
 }
 
+/* Tablet: las cards de Work y la sección personal pasan a 2 columnas */
+@media (max-width: 1100px) {
+  .project-grid,
+  .personal {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* El texto crece con el ancho de la ventana para llenar el recuadro */
+  .personal-blurb {
+    font-size: clamp(20px, 3vw, 32px);
+    line-height: 1.45;
+  }
+}
+
 @media (max-width: 899px) {
   .related-track {
     --per-view: 2;
@@ -1321,6 +1335,8 @@ a.timeline-company:hover {
 
   .personal-blurb {
     grid-column: 1 / -1;
+    font-size: var(--fs-body-lg);
+    line-height: var(--lh-body-lg);
   }
 
   .experience {
