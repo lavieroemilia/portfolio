@@ -429,53 +429,70 @@ main {
 
 /* ---------- Problems ---------- */
 
-/* Una sola caja blanca (mismo padding y radio que las otras cajas de la home)
-   con el título y los cuatro problemas en bloques enmarcados más chicos, 2 × 2. */
+/* Misma retícula de 12 columnas que el resto de la home:
+   título a todo el ancho y los cuatro problemas en una fila (3 + 3 + 3 + 3) */
 .problems {
-  margin-top: var(--gutter);
-  padding: var(--gutter);
-  background: var(--white);
-  border-radius: var(--radius-lg);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gutter);
+  margin-top: calc(var(--gutter) * 2); /* una pausa antes del título, que va sin caja */
+}
+
+/* La lista no genera caja: sus ítems son celdas de la misma retícula.
+   role="list" en el HTML conserva la semántica de lista. */
+.problems-list {
+  display: contents;
+  list-style: none;
 }
 
 .problems-title {
-  font-size: var(--fs-h3);
-  line-height: var(--lh-h3);
+  grid-column: 1 / -1;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
   font-weight: 500;
-  margin: 0 0 var(--gutter);
+  margin: 0;
   text-wrap: balance;
 }
 
-.problems-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/* Bloques internos: blancos con borde negro (como las pills) y radio menor que la caja */
 .problems-list li {
-  padding: 20px;
-  background: var(--white);
-  border: 1px solid var(--text);
-  border-radius: 20px;
+  grid-column: span 3;
+  padding: var(--gutter);
+  background: rgba(255, 255, 255, 0.45); /* apenas más claro que el fondo */
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
 }
 
 .problems-num {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   font-size: var(--fs-body);
   line-height: var(--lh-body);
   color: var(--text-soft);
 }
 
 .problems-list p {
-  font-size: var(--fs-h4);
-  line-height: var(--lh-h4);
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body-lg);
   margin: 0;
   text-wrap: pretty;
+}
+
+/* Tablet: 2 × 2, en mitades como Background / How I work */
+@media (max-width: 1100px) {
+  .problems-list li {
+    grid-column: span 6;
+  }
+}
+
+/* Mobile: una columna */
+@media (max-width: 760px) {
+  .problems {
+    grid-template-columns: 1fr;
+  }
+
+  .problems-list li {
+    grid-column: auto;
+  }
 }
 
 /* Desktop: la intro de Playground escala con la ventana para quedar
@@ -1523,14 +1540,6 @@ a.timeline-company:hover {
   .timeline-content,
   .timeline-meta {
     grid-column: auto;
-  }
-
-  .problems-title {
-    margin-bottom: 20px;
-  }
-
-  .problems-list {
-    grid-template-columns: 1fr;
   }
 
   .personal {

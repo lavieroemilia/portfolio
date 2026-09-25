@@ -143,13 +143,13 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.add('copied');
       const target = label || text;
       const original = target ? target.textContent : null;
-      if (target) target.textContent = '¡Copiado!';
-      if (btn.classList.contains('copy-icon-btn')) btn.setAttribute('aria-label', '¡Copiado!');
-      // El check del botón de ícono dura 3s; el "¡Copiado!" del menú, 2s
+      if (target) target.textContent = 'Copied!';
+      if (btn.classList.contains('copy-icon-btn')) btn.setAttribute('aria-label', 'Copied!');
+      // El check del botón de ícono dura 3s; el "Copied!" del menú, 2s
       const duration = btn.classList.contains('copy-icon-btn') ? 3000 : 2000;
       setTimeout(() => {
         if (target) target.textContent = original;
-        if (btn.classList.contains('copy-icon-btn')) btn.setAttribute('aria-label', 'Copiar email');
+        if (btn.classList.contains('copy-icon-btn')) btn.setAttribute('aria-label', 'Copy email');
         btn.classList.remove('copied');
       }, duration);
     });
@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let d = 0; d < total; d++) {
           const b = document.createElement('button');
           b.type = 'button';
-          b.setAttribute('aria-label', `Ir al proyecto ${d + 1} de ${total}`);
+          b.setAttribute('aria-label', `Go to project ${d + 1} of ${total}`);
           b.addEventListener('click', () => goTo(d));
           dots.appendChild(b);
         }
