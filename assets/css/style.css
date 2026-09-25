@@ -416,11 +416,11 @@ main {
 
 /* Directamente sobre el fondo: label, intro y los tres proyectos */
 .experiments {
-  margin-top: 60px;
+  margin-top: var(--gutter);
 }
 
 .experiments-box {
-  margin-bottom: 60px;
+  margin-bottom: var(--gutter);
 }
 
 .experiments-intro {
@@ -429,10 +429,13 @@ main {
 
 /* ---------- Problems ---------- */
 
-/* Título arriba y los cuatro problemas en bloques blancos redondeados, 2 × 2.
-   Mismo padding, radio y gap que el resto de las cajas de la home. */
+/* Una sola caja blanca (mismo padding y radio que las otras cajas de la home)
+   con el título y los cuatro problemas en bloques enmarcados más chicos, 2 × 2. */
 .problems {
-  padding-top: 60px;
+  margin-top: var(--gutter);
+  padding: var(--gutter);
+  background: var(--white);
+  border-radius: var(--radius-lg);
 }
 
 .problems-title {
@@ -446,16 +449,18 @@ main {
 .problems-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--gutter);
+  gap: 20px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
+/* Bloques internos: blancos con borde negro (como las pills) y radio menor que la caja */
 .problems-list li {
-  padding: var(--gutter);
+  padding: 20px;
   background: var(--white);
-  border-radius: var(--radius-lg);
+  border: 1px solid var(--text);
+  border-radius: 20px;
 }
 
 .problems-num {
@@ -485,7 +490,7 @@ main {
 /* ---------- Experience / timeline ---------- */
 
 .experience {
-  padding: 60px 0;
+  padding: var(--gutter) 0;
 }
 
 /* Bloque lavanda con el label y el párrafo de intro; el timeline queda afuera.
@@ -510,7 +515,7 @@ main {
 }
 
 .timeline {
-  margin-top: 60px;
+  margin-top: var(--gutter);
   display: flex;
   flex-direction: column;
 }
@@ -524,8 +529,15 @@ main {
   border-top: 1px solid var(--border);
 }
 
+/* Líneas solo entre filas: ni arriba de la primera ni debajo de la última.
+   Sin esas líneas, tampoco su padding exterior, para mantener 30px entre secciones */
+.timeline-row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
 .timeline-row:last-child {
-  border-bottom: 1px solid var(--border);
+  padding-bottom: 0;
 }
 
 .timeline-date {
@@ -1448,10 +1460,6 @@ a.timeline-company:hover {
   }
 
 
-  .experiments-box {
-    margin-bottom: 40px;
-  }
-
   /* El texto crece con el ancho de la ventana para llenar el recuadro */
   .personal-blurb {
     font-size: clamp(20px, 3vw, 32px);
@@ -1504,7 +1512,6 @@ a.timeline-company:hover {
 
   .two-col {
     grid-template-columns: 1fr;
-    gap: 20px;
   }
 
   .timeline-row {
@@ -1518,25 +1525,12 @@ a.timeline-company:hover {
     grid-column: auto;
   }
 
-  .problems {
-    padding-top: 40px;
-  }
-
   .problems-title {
     margin-bottom: 20px;
   }
 
-  .experiments {
-    margin-top: 40px;
-  }
-
-  .experiments-box {
-    margin-bottom: var(--gutter);
-  }
-
   .problems-list {
     grid-template-columns: 1fr;
-    gap: 20px; /* mismo gap que las cajas de Background / How I work en mobile */
   }
 
   .personal {
@@ -1552,14 +1546,6 @@ a.timeline-company:hover {
     grid-column: 1 / -1;
     font-size: var(--fs-body-lg);
     line-height: var(--lh-body-lg);
-  }
-
-  .experience {
-    padding: 40px 0;
-  }
-
-  .timeline {
-    margin-top: 40px;
   }
 
   .learning-pair {
