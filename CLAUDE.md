@@ -47,6 +47,11 @@ Escala tipográfica (medida del original; mobile por defecto, desktop desde 900p
 
 - `--nav-h`: 64px desktop / 48px mobile (alto de las cápsulas del nav).
 
+Breakpoints:
+- **1100px o menos (tablet):** las cards de Work (`.project-grid`) y la sección personal (`.personal`) pasan a 2 columnas. El texto del recuadro lavanda (`.personal-blurb`) escala con la ventana: `clamp(20px, 3vw, 32px)`.
+- **899px o menos:** nav con menú hamburguesa, case studies en una columna, tipografía mobile.
+- **760px o menos (mobile):** cards de Work en 1 columna; personal en 3 fotos + texto a todo el ancho (en `--fs-body-lg`).
+
 ## Plantillas
 
 **Home:** las secciones de texto van dentro de cajas con fondo (lavender, lime o blanco). El timeline de experiencia usa la misma grilla de 3 columnas que las cards: fecha en la 1ª, descripción desde la 2ª. Las cards de proyectos muestran al hacer hover un degradado oscuro, el título del case study (el mismo H1 de su página, en `--fs-body`) en blanco y pills blancas con los servicios, alineados abajo. En pantallas táctiles (`hover: none`) se muestran siempre.
