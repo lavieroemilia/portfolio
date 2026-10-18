@@ -1,93 +1,61 @@
-# Portfolio de Emilia Laviero: contexto del proyecto
+# Portfolio de Emilia Laviero: el sitio publicado (V4)
 
-Sitio estático (HTML/CSS/JS plano, sin frameworks ni build step) que reemplaza el portfolio anterior hecho en Framer (emilialaviero.com). Emilia edita este sitio directamente, así que todo debe mantenerse simple: sin dependencias, sin bundlers, sin paso de compilación.
+Este repo es lo que sirve **emilialaviero.com** (GitHub Pages, rama `main`, dominio en `CNAME`). Es un sitio estático, en HTML, CSS y JS escritos a mano, sin frameworks ni paso de compilación.
 
-El sitio de Framer es la referencia de diseño: antes de construir o ajustar algo, medir el original (tamaños, espaciados, orden de contenido) y replicarlo.
+**No se edita acá.** El sitio se genera desde el laboratorio de V4, en el repo `portfolio-v2` (rama `v4-lab`, carpeta `v4-lab/`), con `tools/publish-v4.py`. Cada publicación borra y vuelve a escribir todo, salvo `.git`, `.gitignore`, `.nojekyll`, `.claude`, `CNAME` y este archivo, así que cualquier cambio hecho directamente acá se pierde.
 
-## Estructura
+Las decisiones de diseño y el historial de rondas están en `portfolio-v2/DESIGN-V4.md`. Leelo antes de proponer cambios.
+
+## Estructura publicada
 
 ```
-index.html                  → Home
-pages/dino.html             → Case study: Dino by Ucademy
-pages/quota-pms.html        → Case study: Quota PMS
-pages/feature-advisor.html  → Case study: Feature Advisor (Experiments)
-pages/tenant-scoring.html   → Case study: Tenant Scoring
-pages/attomo.html           → Case study: ATTOMO Digital
-pages/wow.html              → Case study: WOW
-pages/dino-design-system.html → Case study: Dino Design System (enlaza a la documentación en Vercel)
-assets/css/style.css        → Hoja de estilos única para todo el sitio
-assets/js/script.js         → JS único (menú mobile, año del footer, dropdown de contacto, copiar email)
-assets/images/              → Todas las imágenes, ya optimizadas (JPEG, tamaños de display reales)
-.claude/launch.json         → Servidor local para previsualizar (python http.server, puerto 8080). Ignorado en .gitignore.
+index.html                    → Home (en v4-lab: home-study.html)
+about.html                    → About
+pages/student-dashboard.html  → Student dashboard (en v4-lab: case-study.html)
+pages/dino.html               → Gamified learning app (Dino)
+pages/practice.html           → Tests and practice (Ucademy)
+pages/quota-pms.html          → Property management platform (Quota)
+pages/attomo.html, wow.html…  → Páginas de V1 sin versión V4: redirigen a Work
+assets/css/case-study.css     → Estilos compartidos de los case studies
+assets/js/                    → ribbon.js (la cinta), choreo.js (coreografía), content.js (textos), kinetic.js, faces.js, icons.js
+assets/img/                   → Imágenes propias de V4 (capturas en escenario, datos personales ocultos)
+assets/images/, assets/logos/ → Imágenes y logos de portfolio-v2
+assets/favicon.svg            → La E del logo sobre los cinco carriles
+CNAME, .nojekyll              → Dominio y servido tal cual (no tocar)
 ```
 
-## Design tokens (definidos en `:root` de style.css)
+## Cómo publicar un cambio
 
-Colores y forma:
-- `--bg: #f4f4f6`, `--text: #231b1b`, `--text-soft: rgba(35,27,27,0.65)`, `--border: rgba(35,27,27,0.15)`, `--white: #ffffff`
-- `--lavender: #dbccff`, `--lime: #c5ff89` (sampled del Framer original)
-- `--radius-lg: 30px`, `--radius-pill: 100px`
-- `--font: 'Geist'` (Google Fonts). Todo el texto usa peso 500, como el original.
+1. Hacer el cambio en `portfolio-v2/v4-lab/` y verlo en el servidor `portfolio-v2` (puerto 8081, `/v4-lab/home-study.html`).
+2. Commit en `portfolio-v2`, rama `v4-lab`.
+3. Generar el sitio en el worktree de este repo (`C:/Users/lavie/Proyectos/portfolio-web-v4`, rama `v4-launch`):
+   ```
+   python tools/publish-v4.py ../portfolio-web-v4      (desde portfolio-v2)
+   ```
+4. Revisarlo en el servidor `portfolio-v4-launch` (puerto 8083), en desktop y en mobile, con capturas headless de a una por vez.
+5. Commit en `v4-launch` y publicar: `git push origin v4-launch:main`. GitHub Pages tarda uno o dos minutos en actualizar el sitio.
 
-Espaciado:
-- `--gutter: 30px`: margen lateral, separación entre columnas y entre bloques, y padding de las cajas. En la home también es la separación vertical entre secciones (desktop y mobile). Única excepción: arriba y abajo de Problems hay el doble (`calc(var(--gutter) * 2)`), el mismo valor en los dos lados, para que el título sin caja no quede pegado a las cajas de arriba. No usar otros valores (40, 90px). El contenido ocupa todo el ancho de la ventana (sin max-width).
-- Retícula: un solo contenedor (`main`, con `--gutter` a los lados) y 12 columnas implícitas. Todas las grillas usan `gap: var(--gutter)`, así que las de 2, 3 y 4 columnas son subdivisiones de las mismas 12 y comparten los mismos bordes. Dentro de las cajas con fondo, el contenido queda desplazado un `--gutter` (su padding).
+Para volver a la versión anterior (V1), está guardada en la etiqueta `v1`.
 
-Escala tipográfica (desktop y mobile medidos del original; mobile por defecto, tablet desde 641px, desktop desde 900px):
+## Reglas que se mantienen
 
-| Token | Desktop | Tablet | Mobile | Uso |
-|---|---|---|---|---|
-| `--fs-display` | 64/72 | 44/56 | 28/40 | H1 |
-| `--fs-h2` | 44/60 | 34/46 | 23/31 | "For 5 years…", "Thank you", números de Outcomes |
-| `--fs-h3` | 32/46 | 26/38 | 22/32 | Títulos de sección, intro, texto de cajas |
-| `--fs-h4` | 26/36 | 22/32 | 20/30 | Títulos de tarjetas, fechas del timeline |
-| `--fs-body-lg` | 22/32 | 18/28 | 16/26 | Texto de los case studies |
-| `--fs-body` | 18/28 | 16/24 | 14/22 | Texto secundario, datos, descripciones |
-| `--fs-label` | 18/30 | 16/26 | 14/22 | Etiquetas ("Background", "Hypothesis"), nav |
-| `--fs-small` | 14/20 | 14/20 | 14/20 | Pills, tags, nombre de empresa |
-
-- `--nav-h`: 64px desktop / 48px mobile (alto de las cápsulas del nav).
-
-Breakpoints:
-- Las pills del hero (`.pill-row`) reparten el espacio entre ellas según el ancho (`space-between`). Desde 1100px hacia abajo van en 2 filas: 4 arriba y el resto abajo (con un salto de línea invisible, `.pill-row::after`), cada fila de borde a borde. Desde 640px hacia abajo fluyen de izquierda a derecha con separación fija, porque los textos son demasiado largos para filas parejas. Cada pill conserva el ancho de su texto.
-- **1100px o menos (tablet):** las cards de Work (`.project-grid`) y la sección personal (`.personal`) pasan a 2 columnas. El texto del recuadro lavanda (`.personal-blurb`) escala con la ventana: `clamp(20px, 3vw, 32px)`.
-- **899px o menos:** nav con menú hamburguesa, case studies en una columna, tipografía tablet (mobile desde 640px hacia abajo).
-- **760px o menos (mobile):** cards de Work en 1 columna; personal en 3 fotos + texto a todo el ancho (en `--fs-body-lg`).
-
-## Plantillas
-
-**Home:** orden de lectura: hero (valor + pills de áreas), Work, Background / How I work, "The kind of problems I like working on" (`.problems`: sobre el fondo, sin caja, en la retícula de 12 columnas: título a todo el ancho en `--fs-h2` y los cuatro problemas en una fila (3 columnas cada uno); 2 × 2 desde 1100px y una columna desde 760px. Módulos casi del color del fondo (blanco al 45%), borde `--border`, radio `--radius-lg`, sin sombra; texto en `--fs-body-lg`), Playground (`#experiments`: directamente sobre el fondo, sin caja; label, intro a todo el ancho y los tres proyectos; en desktop la intro escala con `min(vw, 32px)` para quedar en dos líneas), How I got here (`.experience-intro`: bloque lavanda con el label y el párrafo; el timeline queda afuera, sobre el fondo), personal, contacto. Las secciones de texto van dentro de cajas con fondo (lavender, lime o blanco). El timeline de experiencia usa la retícula de 12 columnas: fecha (columnas 1-3), puesto, empresa y descripción (4-10) y metadatos (11-12) como texto chico en gris, uno por línea y alineados a la derecha, sin pills (`.timeline-meta`). Desde 1100px hacia abajo los metadatos pasan debajo del contenido, en una línea. Las cards de proyectos muestran al hacer hover un degradado oscuro, el título del case study (el mismo H1 de su página y de `PROJECTS` en `script.js`, en `--fs-body`) en blanco y pills blancas con los servicios, alineados abajo. En pantallas táctiles (`hover: none`) se muestran siempre.
-
-**Case studies** (seguir este orden en toda página nueva):
-1. `.case-hero`: nombre de la empresa en chico (`.case-company`) + H1 con el título real. Sin "Case Study" ni link "Back to home" (el nav ya permite volver).
-2. `.case-hero-img`: imagen principal a todo el ancho de la ventana, justo después del título. Exportarla a 2400px. Si es una captura chica, usar la variante `.band` (franja oscura con la captura centrada a su tamaño real).
-3. `.case-intro`: intro a la izquierda, datos del proyecto a la derecha (Team/Role/Service/Date o lo que corresponda). Botón `.btn-primary` si hay link al producto.
-4. `.case-section`: título de sección (`h2`) en la columna izquierda y contenido en `.case-body` a la derecha, proporción 2:5. Sin cajas de color. Bloques con subtítulo: `.block` + `.sub-label`. Imágenes de cada sección dentro de `.case-body` (`.case-figure` con `figcaption`, `.image-grid`, `.image-grid.mobile`). Imágenes grandes entre secciones: `.case-figure.full` (con bordes redondeados) o `.case-figure.bleed` (a todo el ancho de la ventana).
-   - Columna izquierda con etiqueta + título (WOW, "Design solutions"): `.case-aside` con `.sub-label` + `h2`. Citas: `blockquote.case-quote` con `cite`.
-   - Variante Problema/Solución (Tenant Scoring): en vez de `h2`, la columna izquierda lleva `.case-problem` (sub-label + texto) y la derecha `.case-body` con sub-label "Solution" + `p.solution` en tamaño h3. Pantallas mobile en `.image-grid.screens` (4 columnas, o `.three`), con `.grid-caption` como celda de texto dentro de la grilla.
-5. `.related-section` ("More case studies"): carrusel con todos los proyectos del portfolio menos el actual (3 visibles en desktop, 2 en tablet, 1 en mobile), flechas ← → a la derecha del título y stepper de puntos debajo. El botón circular ↗ de cada tarjeta está oculto y aparece (blanco translúcido) al pasar sobre la tarjeta. Las tarjetas se generan desde la lista `PROJECTS` en `script.js` (única fuente de verdad: para agregar o editar un proyecto, cambiarlo ahí). En el HTML solo va `<section class="related-section" data-current="id-de-la-página">` con su header, `.related-track` y `.related-dots`. Deja 120px de aire antes del footer.
-
-## Convenciones establecidas
-
-- Sin frameworks, sin build step. HTML/CSS/JS a mano.
-- Caché: los links a `style.css` y `script.js` llevan `?v=AAAAMMDD` en las 8 páginas. Al publicar cambios de CSS o JS, actualizar ese número en todas (si no, los navegadores que ya visitaron el sitio muestran el HTML nuevo con el CSS viejo durante un rato).
-- Todas las imágenes se auto-hostean en `assets/images/`, optimizadas (JPEG con calidad ajustada). Los GIFs animados se convierten a WebP animado con Python/Pillow (pesan hasta 10 veces menos y se usan igual, con `<img>`). Capturas de página completa: `.image-grid.pages` (2 columnas, también en mobile).
-- Tooltips: componente CSS reutilizable, se activa con `data-tooltip="Texto"` (y `data-tooltip-pos="bottom"` para mostrarlo abajo). Aparece con hover (solo en dispositivos con mouse) y con `focus-visible`. No usar `title=""`. Textos en inglés: "Copy", "Open LinkedIn", "Open Medium", "Open CV". Todos los aria-labels también van en inglés.
-- Contacto sin `mailto:`. En el nav, "Contact" (último item, después de About) abre un panel (`.contact-dropdown`) con el email y el ícono de copiar (`.copy-icon-btn`), que muestra un check por 3s; mientras está abierto, Contact lleva el punto activo. En mobile, "Contact" está en el menú hamburguesa y abre el mismo panel. En el footer, el email es texto con el mismo ícono de copiar. Los links del footer (LinkedIn, Medium, CV) van en 4 columnas, en negro, con flecha ↗ y subrayado en hover. Lógica en `script.js`.
-- Nav: "Emilia Laviero" a la izquierda; a la derecha una cápsula con Work, Playground, About y Contact. El anchor sigue siendo `#experiments`. Texto siempre negro. La sección activa se marca con un punto negro debajo del link (`.is-active`); en hover aparece el punto en gris suave, y en "Emilia Laviero" en negro. Solo en el home se marca la sección activa, detectada con el scroll (la experiencia y las fotos cuentan como About); en los case studies no se marca ninguna. Nunca hay dos puntos a la vez: con Contact abierto se oculta el de la sección. Lógica en `script.js`.
-- El menú mobile es un dropdown (`.nav-mobile-menu`) activado por un botón hamburguesa (`.nav-toggle`), visible bajo 900px.
-- Attomo no enlaza a la web actual de ATTOMO (cambiaron el diseño).
-- Dino Design System tiene su propio case study (`pages/dino-design-system.html`); desde ahí el botón "View the documentation site" lleva a `https://dino-design-system-v2.vercel.app/`.
-- El sitio viejo tiene errores de links que ya están corregidos acá: la card de Quota en Dino apuntaba a `./attomo`, el video de RIFF tenía un ID de YouTube inválido (el correcto es `vDRZuveIakg`). Revisar links al migrar cada página.
-
-## Workflow de trabajo con Emilia
-
-- Se construye página por página, no todo de una vez.
-- Actuar como diseñador web experto Y como reclutador revisando el portfolio: señalar oportunidades de mejora a medida que aparecen (no es un clon pixel-perfect ciego del sitio viejo, tampoco un rediseño completo).
-- Preguntar ante ambigüedad antes de asumir.
-- Antes de dar por terminada una página: QA visual (screenshots en desktop y mobile) y mostrarle el resultado antes de pasar a la siguiente.
-- Preferencias personales de Emilia: llamarla "Ema", escribir en español, sin guiones largos ("—"), sin la estructura "no X, sino Y", sin sobre-explicar trabajo ya terminado.
+- La home lleva Work (filas de 2, 2 y 3), Approach (la cinta y los cinco sentidos), About, Reviews y contacto. La nav tiene Work, Approach, About y Contact. Por ahora no hay versión en español.
+- Las tarjetas de proyecto llevan un título corto que dice qué es el proyecto y, debajo, una frase que lo explica. Sin etiquetas ni rayas.
+- Case studies: portada completa y centrada; título y datos (Timeline, Role, Platform, Goal); resumen en tres columnas con una o dos frases resaltadas por columna; Decisions; Impact (sin métricas negativas); Learnings; More work.
+- Capturas: siempre enteras y sin datos personales (dos o tres dígitos ocultos). El fondo del escenario es distinto del de la captura, y la captura lleva una sola sombra.
+- Rol: *Sole Product Designer* solo en los case studies, nunca en la experiencia ni en el CV. El link del pie dice "Resume", nunca "CV".
+- Textos en inglés, sin palabras huérfanas en la última línea (`&nbsp;` antes de la última palabra) y sin punto final en los títulos.
 
 ## Pendiente
 
-1. Conectar el sitio terminado al dominio de Emilia (Google Domains).
+- Los links a CSS y JS no llevan versión (`?v=`), así que después de publicar algunos navegadores pueden mostrar archivos viejos durante un rato.
+- En la configuración de GitHub Pages, "Enforce HTTPS" está desactivado.
+- Nota: este archivo también se publica (emilialaviero.com/CLAUDE.md), igual que en V1.
+
+## Trabajo con Emilia
+
+- Llamarla "Ema", escribirle en español, sin guiones largos (—) y sin la estructura "no X, sino Y". No sobre-explicar el trabajo ya terminado.
+- Antes de construir, proponer el contenido y esperar que lo valide. Preguntar ante cualquier ambigüedad.
+- Mirar el trabajo como diseñadora web y como reclutadora, y señalar mejoras a medida que aparecen.
+- Antes de dar algo por terminado: QA visual en desktop y mobile, y mostrarle el resultado.
+- No atribuirle cosas que no dijo. Decir "the business", no "the business team".
