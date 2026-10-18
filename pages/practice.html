@@ -252,5 +252,16 @@
   $('.nav .menu').addEventListener('click', (e) => { const n = $('.nav'); n.classList.toggle('open'); e.currentTarget.setAttribute('aria-expanded', n.classList.contains('open')); });
 })();
 </script>
+<!-- Ronda 50: ir a Approach desde esta página, con un fundido a negro (la home abre directo en I listen) -->
+<div class="leave" aria-hidden="true"></div>
+<script>
+  (function () {
+    const leave = document.querySelector('.leave');
+    document.querySelectorAll('a[href$="#approach"]').forEach((a) => a.addEventListener('click', (e) => {
+      e.preventDefault(); leave.classList.add('on'); setTimeout(() => { location.href = a.href; }, 260);
+    }));
+    addEventListener('pageshow', () => leave.classList.remove('on'));
+  })();
+</script>
 </body>
 </html>

@@ -252,3 +252,7 @@ section { margin-bottom: 18vh; }
 
 /* Ronda 35: palabras clave resaltadas en el resumen (Challenge, What I did, Outcome), un solo color */
 .tldr mark { background: var(--l4); color: var(--ink); padding: .02em .22em; border-radius: .2em; font-weight: 650; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+/* Ronda 50: fundido a negro antes de ir a Approach en la home */
+.leave { position: fixed; inset: 0; z-index: 100; background: var(--bg); opacity: 0; pointer-events: none; transition: opacity .25s; }
+.leave.on { opacity: 1; }

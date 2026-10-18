@@ -3,6 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  // Ronda 50: si se llega con #approach (desde otra página), la pantalla empieza en negro y se quita el ancla, así el
+  // navegador no salta al comienzo de la sección; el script la lleva directo a I listen y se abre con un fundido.
+  if (location.hash === '#approach') { document.documentElement.classList.add('arrive'); history.replaceState(null, '', location.pathname + location.search); }
+</script>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <title>Emilia Laviero · Product Maker</title>
@@ -86,6 +91,8 @@
   .title-eyes { display: inline-block; height: .8em; width: 1.57em; margin: 0 .02em; vertical-align: -.04em; overflow: visible; }
   .fade { position: fixed; inset: 0; background: var(--bg); z-index: 30; opacity: 0; pointer-events: none; transition: opacity .2s; }
   .fade.on { opacity: 1; }
+  html.arrive .fade { opacity: 1; transition: none; }
+  .fade.slow { transition: opacity .5s; }
 
   .stage { position: relative; height: calc(var(--stage-vh) * 1vh); }
   .pin { position: sticky; top: 0; height: 100vh; overflow: hidden; z-index: 2; }
@@ -110,6 +117,11 @@
   #kinetic { position: absolute; inset: 0; pointer-events: none; }
   /* Rondas 45 y 47: pista del sentido siguiente. Su carril asoma por la derecha con el nombre (I see), más chico que el
      del sentido actual y a su misma altura, y debajo Scroll con una flecha que baja. Sin cápsula de progreso. */
+  /* Ronda 50: Skip, abajo a la derecha mientras se ve Approach; salta a About con el mismo fundido de la nav */
+  .skip { position: fixed; right: var(--gutter); bottom: 4vh; z-index: 22; display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border-radius: 99px; font-size: 14px; font-weight: 600; color: var(--text); background: rgba(22,16,31,.74); border: 1px solid rgba(255,241,228,.14); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity .3s, transform .3s; }
+  .skip.on { opacity: 1; pointer-events: auto; transform: none; }
+  .skip:hover { background: rgba(22,16,31,.9); }
+  .skip i { font-style: normal; }
   #sense-hint { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .35s; }
   #sense-hint.on { opacity: 1; }
   #sense-hint .peek { position: absolute; top: 0; bottom: 0; color: var(--ink); }
@@ -396,6 +408,7 @@
       <div id="kinetic" aria-hidden="true"></div>
       <div class="sr">A product is one body of many parts. So I shape it with all my senses.</div>
       <div id="acts"></div>
+      <button class="skip" type="button" data-jump="about">Skip<i aria-hidden="true">&darr;</i></button>
       <div id="sense-hint" aria-hidden="true">
         <span class="peek"><span class="peek-txt display"></span><span class="scroll">Scroll to see next<i>&darr;</i></span></span>
       </div>
@@ -424,7 +437,7 @@
   <section class="shuffle reviews" id="reviews" aria-labelledby="reviews-title">
     <div class="bg bg-persp"></div>
     <div class="pin">
-      <h2 class="display rv-title" id="reviews-title">Reviews that make me <span class="box">blush</span></h2>
+      <h2 class="display rv-title" id="reviews-title"><span class="box">Reviews</span> that make me blush</h2>
       <div class="rv-pile" id="pile"></div>
     </div>
   </section>
@@ -722,6 +735,7 @@
       reveal($('.tag', el), i === 0 ? ramp(y, start + 6, start + 28) : 1);
       reveal($('.desc', el), i === 0 ? ramp(y, start + 12, start + 34) : 1);
     });
+    $('.skip').classList.toggle('on', y > 15 && y < Choreo.RELEASE - 30);
     // Rondas 45 y 47: mientras se lee un sentido, su siguiente asoma por la derecha con el nombre y Scroll
     const held = A.findIndex((c) => Math.abs(y - c) < Choreo.HOLD + 8);
     hint.classList.toggle('on', held >= 0 && held < 4);
@@ -851,8 +865,24 @@
     if (j === 'approach') return jump(stageTop + Choreo.ACTS[0] / 100 * vh); // ronda 36: directo a "I listen"
     jump($('#' + j).getBoundingClientRect().top + scrollY);
   }));
-  // Al llegar desde otra página con #approach, el mismo destino que el clic en la nav: I listen
-  addEventListener('load', () => { if (location.hash === '#approach') scrollTo(0, stageTop + Choreo.ACTS[0] / 100 * vh); });
+  // Ronda 50: al llegar desde otra página con #approach, directo a I listen detrás del negro, y después el fundido
+  if (document.documentElement.classList.contains('arrive')) {
+    history.scrollRestoration = 'manual';
+    let opened = false;
+    const open = () => {
+      if (opened) return; opened = true;
+      layout();
+      scrollTo(0, stageTop + Choreo.ACTS[0] / 100 * vh);
+      y = (scrollY - stageTop) / vh * 100; dirty = true;
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        fadeEl.classList.add('on', 'slow');
+        document.documentElement.classList.remove('arrive');
+        requestAnimationFrame(() => { fadeEl.classList.remove('on'); setTimeout(() => fadeEl.classList.remove('slow'), 600); });
+      }));
+    };
+    (document.fonts ? document.fonts.ready : Promise.resolve()).then(open);
+    setTimeout(open, 1200); // si las fuentes tardan, se abre igual
+  }
   $('.nav .menu').addEventListener('click', (e) => { const n = $('.nav'); n.classList.toggle('open'); e.currentTarget.setAttribute('aria-expanded', n.classList.contains('open')); });
 
   /* ---------- Bucle ---------- */
