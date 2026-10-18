@@ -424,7 +424,7 @@
   <section class="shuffle reviews" id="reviews" aria-labelledby="reviews-title">
     <div class="bg bg-persp"></div>
     <div class="pin">
-      <h2 class="display rv-title" id="reviews-title">Blushing <span class="box">reviews</span></h2>
+      <h2 class="display rv-title" id="reviews-title">Reviews that make me <span class="box">blush</span></h2>
       <div class="rv-pile" id="pile"></div>
     </div>
   </section>
@@ -851,6 +851,8 @@
     if (j === 'approach') return jump(stageTop + Choreo.ACTS[0] / 100 * vh); // ronda 36: directo a "I listen"
     jump($('#' + j).getBoundingClientRect().top + scrollY);
   }));
+  // Al llegar desde otra página con #approach, el mismo destino que el clic en la nav: I listen
+  addEventListener('load', () => { if (location.hash === '#approach') scrollTo(0, stageTop + Choreo.ACTS[0] / 100 * vh); });
   $('.nav .menu').addEventListener('click', (e) => { const n = $('.nav'); n.classList.toggle('open'); e.currentTarget.setAttribute('aria-expanded', n.classList.contains('open')); });
 
   /* ---------- Bucle ---------- */
