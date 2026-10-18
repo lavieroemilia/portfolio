@@ -56,7 +56,7 @@
   function build({ portrait = false, aspect, entry, entryLead, entryCap } = {}) {
     aspect = aspect || (portrait ? 390 / 844 : 1.6);
     const a = aspect;
-    const narrow = portrait ? 0.22 : 0.08;
+    const narrow = portrait ? 0.1 : 0.04; // ronda 49: más discreta junto a About
     const FY = 2.5; // altura del mundo donde ocurren los sentidos (ronda 33: el eslalon termina antes)
 
     // Ronda 8: la cinta baja como un eslalon y la cámara la sigue. Primero a la izquierda (frase a la
@@ -97,7 +97,7 @@
     const IS = portrait ? 0.2 : 0.1;
     // Rondas 45 y 47: el carril del sentido siguiente asoma por la derecha (PEEK de la pantalla), así se entiende que hay más.
     // El carril mide 0,2 × ZOOM = 1,06 pantallas: para que asome PEEK, la cámara se corre (0,03 + PEEK) / ZOOM.
-    const PEEK = portrait ? 0.15 : 0.14, shift = (0.03 + PEEK) / ZOOM; // ronda 47: asoma más
+    const PEEK = 0.14, shift = portrait ? 0 : (0.03 + PEEK) / ZOOM; // ronda 49: en mobile el siguiente asoma abajo (home-study.html) // ronda 47: asoma más
     ACTS.forEach((c, i) => {
       const at = { cam: [ZOOM, LANE_X[i] + (i < 4 ? shift : 0), FY], icons: 0, iconSize: IS };
       add(c - HOLD, at);
@@ -113,8 +113,8 @@
   /* Recorrido de la cinta fuera del escenario, en el documento (px desde arriba de la página).
      m: { w, h, release (scrollY al soltar), work, next } posiciones medidas en la página. */
   function docPath(m, portrait) {
-    const W = portrait ? 0.22 : 0.08;
-    const xr = portrait ? 0.86 : 0.93, xl = portrait ? 0.12 : 0.1;
+    const W = portrait ? 0.1 : 0.04;
+    const xr = portrait ? 0.935 : 0.975, xl = portrait ? 0.12 : 0.1; // ronda 49: más pegada al borde, fuera del texto de About
     const yA = m.work + m.h * (portrait ? 0.04 : 0.07);
     // Baja por el centro, dobla a la derecha sobre Work, baja por el margen derecho detrás de los
     // proyectos y, justo antes de About, dobla a la izquierda: las puntas quedan señalando la sección.

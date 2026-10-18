@@ -144,6 +144,12 @@
   .k-measure .k-tok { position: static; transform: none; visibility: hidden; }
 
   /* Los sentidos: I, la ilustración y el nombre juntos al centro; frase y descripción centradas debajo */
+  /* Ronda 49 (mobile): los sentidos suben desde abajo como paneles de su color, con el borde negro de los carriles */
+  .act.up { border-top: var(--line-w) solid var(--outline); }
+  .act.up:nth-child(1) { background: var(--l0); border-top: 0; } .act.up:nth-child(2) { background: var(--l1); } .act.up:nth-child(3) { background: var(--l2); } .act.up:nth-child(4) { background: var(--l3); } .act.up:nth-child(5) { background: var(--l4); }
+  #sense-hint.up .peek { bottom: auto; height: calc(15vh); }
+  #sense-hint.up .peek-txt { top: 34%; font-size: 20px; }
+  #sense-hint.up .scroll { top: 58%; }
   .act { --cy: 42%; --wf: 90px; --ilw: 280px; --ilh: 210px; }
   .act .i, .act .word { position: absolute; top: var(--cy); font-size: var(--wf); line-height: 1; transform: translateY(-50%); }
   .act .i { right: calc(50% + var(--ilw) / 2 + 1.2vw); }
@@ -226,7 +232,7 @@
   .me .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .tape-wrap { position: absolute; left: -4%; right: -7%; bottom: 7%; transform: rotate(-5deg); filter: drop-shadow(2px 0 0 var(--outline)) drop-shadow(-2px 0 0 var(--outline)) drop-shadow(0 2px 0 var(--outline)) drop-shadow(0 -2px 0 var(--outline)) drop-shadow(5px 5px 0 var(--outline)); }
   .tape { background: var(--l4); color: var(--on4); padding: 18px 46px; font-family: var(--display-font), sans-serif; font-weight: var(--dw); font-stretch: var(--ds); font-size: clamp(16px, 1.45vw, 26px); line-height: 1.15; text-align: center; clip-path: polygon(0 0, 100% 0, 96% 50%, 100% 100%, 0 100%, 4% 50%); }
-  .me-text { grid-column: 7 / 11; display: grid; gap: 4vh; justify-items: start; }
+  .me-text { grid-column: 7 / 13; display: grid; gap: 4vh; justify-items: start; }
   .me-text h2.display { margin: 0; }
   .me-text .lead + .lead { margin-top: 1em; } /* ronda 46: dos párrafos, qué hago hoy y EdTech */
   .me-text .lead { font-size: clamp(17px, 1.35vw, 24px); line-height: 1.55; /* ronda 32: más aire entre líneas */ font-weight: 500; letter-spacing: -0.01em; }
@@ -264,7 +270,7 @@
   /* Reviews (ronda 29): el título a la izquierda, siempre a la vista; las tarjetas suben y se apilan a la derecha.
      En mobile, una debajo de otra, sin pila. */
   .shuffle.reviews .pin { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: 1fr; gap: 0 var(--gutter); align-items: center; padding: calc(var(--nav-h) + 4vh) var(--gutter) 5vh; }
-  .rv-title { grid-column: 2 / 6; grid-row: 1; color: var(--on0); font-size: clamp(36px, 4.4vw, 84px) !important; line-height: 1; }
+  .rv-title { grid-column: 2 / 6; grid-row: 1; color: var(--on0); font-size: clamp(36px, 4.4vw, 84px) !important; line-height: 1.18; }
   .rv-pile { grid-column: 6 / 13; grid-row: 1; position: relative; height: 100%; }
   .rv-card { position: absolute; left: 50%; top: 50%; width: min(600px, 100%); padding: clamp(22px, 2.2vw, 34px); background: var(--paper); color: var(--outline); border: var(--line-w) solid var(--outline); border-radius: 24px; box-shadow: 8px 8px 0 var(--outline); will-change: transform; overflow: hidden; }
   .rv-card .who { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; padding-right: 56px; position: relative; }
@@ -335,7 +341,7 @@
     .me > * { grid-column: 1 / -1 !important; }
     .me .photo { width: 82%; }
     /* Ronda 31: en mobile la cinta baja por el margen derecho; el texto termina antes para no pasar por encima */
-    .me-text { padding-right: 23vw; }
+    .me-text { padding-right: 10vw; } /* ronda 49: cinta más angosta, el texto gana ancho */
     .xp li { grid-template-columns: 1fr; gap: 4px; }
   }
   @media (max-aspect-ratio: 85/100) {
@@ -631,6 +637,15 @@
     dirty = true;
   }
 
+  // Mobile: altura (en pantallas) del borde de arriba del panel del sentido i. Asoma PEEK_UP mientras se lee el anterior
+  // y sube hasta cubrir la pantalla en el tramo entre los dos.
+  const PEEK_UP = 0.15;
+  function upTop(i) {
+    if (i === 0) return 0;
+    const A = Choreo.ACTS, H = Choreo.HOLD, c = A[i - 1];
+    const peek = 1 - PEEK_UP * smooth(ramp(y, c - H, c - H + 12));
+    return lerp(peek, 0, smooth(ramp(y, c + H, A[i] - H)));
+  }
   function show(el, on) { el.style.visibility = on ? 'visible' : 'hidden'; }
 
   function stageState() {
@@ -724,9 +739,18 @@
     const enter = smooth(ramp(y, start, start + 22)), exitP = smooth(ramp(y, A[4] + 35, A[4] + 75));
     acts.forEach((el, i) => {
       const L = ((0.2 * i - fx) * s + 0.5) * vw, R = ((0.2 * (i + 1) - fx) * s + 0.5) * vw;
-      show(el, y >= start && y < A[4] + 75 && R > 0 && L < vw);
-      el.style.clipPath = 'inset(0 ' + Math.max(0, vw - R).toFixed(1) + 'px 0 ' + Math.max(0, L).toFixed(1) + 'px)';
-      el.style.transform = 'translateY(' + (-exitP * 100) + 'vh)';
+      el.classList.toggle('up', portrait);
+      if (portrait && (i > 0 || y >= A[0])) {
+        // Ronda 49 (mobile): cada sentido sube desde abajo como un panel de su color; mientras se lee el anterior, asoma abajo
+        const T = vh * upTop(i);
+        show(el, y >= start && y < A[4] + 75 && T < vh);
+        el.style.clipPath = 'none';
+        el.style.transform = 'translateY(' + (T - exitP * vh).toFixed(1) + 'px)';
+      } else {
+        show(el, y >= start && y < A[4] + 75 && R > 0 && L < vw);
+        el.style.clipPath = 'inset(0 ' + Math.max(0, vw - R).toFixed(1) + 'px 0 ' + Math.max(0, L).toFixed(1) + 'px)';
+        el.style.transform = 'translateY(' + (-exitP * 100) + 'vh)';
+      }
       const e = i === 0 ? enter : 1;
       const base = portrait || !ILLUS ? 'translate(-50%,-50%) ' : 'translateY(-50%) ';
       $('.i', el).style.transform = base + (portrait ? 'translateY(' + ((1 - e) * 80) + '%)' : 'translateX(' + ((1 - e) * 120) + '%)');
@@ -746,11 +770,20 @@
     hint.classList.toggle('on', held >= 0 && held < 4);
     if (held >= 0 && held < 4) {
       const peek = $('.peek', hint), Rn = ((0.2 * (held + 1) - fx) * s + 0.5) * vw;
-      peek.style.left = Rn + 'px'; peek.style.width = Math.max(0, vw - Rn) + 'px';
       $('.peek-txt', peek).textContent = 'I ' + V4.SENSES[held + 1].name.toLowerCase();
+      hint.classList.toggle('up', portrait);
+      peek.style.color = portrait ? 'var(--on' + (held + 1) + ')' : '';
+      if (portrait) {
+        // En mobile el siguiente asoma abajo: nombre y Scroll centrados en la franja
+        peek.style.left = '0px'; peek.style.width = vw + 'px'; peek.style.top = (vh * upTop(held + 1)) + 'px';
+        $('.scroll', peek).style.top = $('.peek-txt', peek).style.top = '';
+      } else {
+      peek.style.top = '';
+      peek.style.left = Rn + 'px'; peek.style.width = Math.max(0, vw - Rn) + 'px';
       $('.scroll', peek).style.top = $('.desc', acts[held]).getBoundingClientRect().top + 'px'; // alineado con la descripción
       const w = $('.word', acts[held]).getBoundingClientRect();
       $('.peek-txt', peek).style.top = (w.top + w.height / 2) + 'px'; // y el nombre, con el del sentido actual
+      }
     }
     if (y >= start && y < A[4] + 40) {
       const active = clamp(Math.floor(fx / 0.2 + 1e-6), 0, 4);
