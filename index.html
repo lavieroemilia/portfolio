@@ -24,7 +24,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Anybody:wdth,wght@50..150,400..900&family=Unbounded:wght@400..900&family=Fredoka:wdth,wght@75..125,400..700&family=Bungee&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Bungee&display=swap" rel="stylesheet">
 <style>
   /* Estudio de movimiento V4, ronda 6. Panel "Lab" abajo a la izquierda: tipografía. */
   :root {
@@ -474,7 +474,7 @@
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const qs = new URLSearchParams(location.search);
-  const cfg = { type: qs.get('type') || 'bungee', pal: qs.get('pal') || 'bright' };
+  const cfg = { type: 'bungee', pal: qs.get('pal') || 'bright' };
   let P = Ribbon.PALETTES[cfg.pal] || Ribbon.PALETTES.bright;
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
   const lerp = (a, b, t) => a + (b - a) * t;
