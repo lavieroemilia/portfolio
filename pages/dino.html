@@ -1,331 +1,266 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dino by Ucademy | Emilia Laviero</title>
-<meta name="description" content="Case study: building and validating a mobile learning app in 5 months at Ucademy.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<title>Gamified learning app · Emilia Laviero</title>
+<meta name="description" content="An MVP for a new line of business at Ucademy, launched to find product-market fit.">
+<link rel="canonical" href="https://emilialaviero.com/pages/dino.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gamified learning app · Emilia Laviero">
+<meta property="og:description" content="An MVP for a new line of business at Ucademy, launched to find product-market fit.">
+<meta property="og:url" content="https://emilialaviero.com/pages/dino.html">
+<meta property="og:image" content="https://emilialaviero.com/assets/images/project-dino-app.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/style.css?v=20260925">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Bungee&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/case-study.css">
+<style>
+  /* Dino en la plantilla V4: el color del producto detrás de los teléfonos */
+  :root { --stage: #D3F4C5; }
+  .cover img { object-position: 50% 50%; }
+</style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="sticker" x="-20%" y="-60%" width="140%" height="220%" color-interpolation-filters="sRGB">
+    <feMorphology in="SourceAlpha" operator="dilate" radius="5" result="paperShape"/>
+    <feMorphology in="SourceAlpha" operator="dilate" radius="7.5" result="borderShape"/>
+    <feOffset in="borderShape" dx="3.5" dy="3.5" result="shadowShape"/>
+    <feFlood flood-color="#0A0710" result="ink"/>
+    <feComposite in="ink" in2="shadowShape" operator="in" result="shadow"/>
+    <feComposite in="ink" in2="borderShape" operator="in" result="border"/>
+    <feFlood flood-color="#FFF6EA"/>
+    <feComposite in2="paperShape" operator="in" result="paper"/>
+    <feMerge><feMergeNode in="shadow"/><feMergeNode in="border"/><feMergeNode in="paper"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</svg>
 
-<nav class="topnav">
-  <a href="../" class="nav-badge nav-logo">Emilia Laviero</a>
-  <div class="nav-right">
-    <div class="nav-links">
-      <a href="../#work">Work</a>
-      <a href="../#experiments">Playground</a>
-      <a href="../#about">About</a>
-      <button type="button" class="nav-contact-btn" id="navContactBtn" aria-expanded="false" aria-controls="contactDropdown">Contact</button>
-    </div>
-    <div class="contact-dropdown" id="contactDropdown">
-      <div class="contact-email">
-        <span>lavieroemilia@gmail.com</span>
-        <button class="copy-icon-btn copy-email-btn" data-email="lavieroemilia@gmail.com" aria-label="Copy email" data-tooltip="Copy" data-tooltip-pos="bottom">
-          <svg class="icon-copy" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5L10 17.5L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
-    </div>
-    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </button>
-  </div>
+<a class="brand display" href="../" aria-label="Emilia Laviero, home"><span class="sticker">Emilia Laviero</span></a>
+<nav class="nav" aria-label="Main">
+  <button class="menu" type="button" aria-expanded="false">Menu</button>
+  <ul>
+    <li><a class="nav-link is-active" href="../#work">Work</a></li>
+    <li><a class="nav-link" href="../#approach">Approach</a></li>
+    <li><a class="nav-link" href="../about.html">About</a></li>
+    <li><a class="nav-link" href="#contact">Contact</a></li>
+  </ul>
 </nav>
-<div class="nav-mobile-menu" id="navMobileMenu">
-  <a href="../#work">Work</a>
-  <a href="../#experiments">Playground</a>
-  <a href="../#about">About</a>
-  <button type="button" class="nav-mobile-contact">Contact</button>
-</div>
 
 <main>
+  <!-- 1 · La imagen primero (la composición de la portada de V2, a 3:1), el título debajo -->
+  <figure class="cover"><div class="frame"><img src="../assets/images/dino-hero.jpg" alt="Three Dino screens: a question with Dino offering help, the learning path and the chat with the AI tutor"></div></figure>
+  <header class="head grid">
+    <span class="chip">Dino by Ucademy</span>
+    <h1 class="display">Designing, launching and evaluating an MVP</h1>
+    <ul class="meta">
+      <li><span>Timeline</span>Jun – Nov 2025</li>
+      <li><span>Role</span>Product Maker</li>
+      <li><span>Platform</span>iOS and Android</li>
+      <li><span>Goal</span>Product-market fit</li>
+    </ul>
+  </header>
 
-
-  <section class="case-hero">
-    <p class="case-company">Dino by Ucademy</p>
-    <h1>Designing a new learning experience from research to launch</h1>
-  </section>
-
-  <div class="case-hero-img">
-    <img src="../assets/images/dino-hero.jpg" alt="Dino by Ucademy app screens: practice, learning path and AI tutor">
-  </div>
-
-  <section class="case-intro">
-    <p class="intro">Dino was a new product line within Ucademy: a gamified, mobile-first learning app for students preparing for competitive exams. The question driving the project was: can a student build a consistent study habit on their phone, without any external support?</p>
-    <div class="meta-list">
-      <div class="meta-item">
-        <h5 class="label">Team</h5>
-        <div class="team-avatars">
-          <a href="https://www.linkedin.com/in/ramirozandrino/" target="_blank" rel="noopener" title="Ramiro Zandrino" aria-label="Ramiro Zandrino on LinkedIn">RZ</a>
-          <a href="https://www.linkedin.com/in/jorge-gperez/" target="_blank" rel="noopener" title="Jorge G. Pérez" aria-label="Jorge G. Pérez on LinkedIn">JP</a>
-          <a href="https://www.linkedin.com/in/pablo-alonso-pomareta-6081771b8/" target="_blank" rel="noopener" title="Pablo Alonso Pomareta" aria-label="Pablo Alonso Pomareta on LinkedIn">PA</a>
-        </div>
-      </div>
-      <div class="meta-item">
-        <h5 class="label">Role</h5>
-        <p>Product Maker</p>
-      </div>
-      <div class="meta-item">
-        <h5 class="label">Service</h5>
-        <p>Product Discovery · Value Proposition · MVP Definition · UX Design · Visual Design · Product Metrics &amp; Iteration</p>
-      </div>
-      <div class="meta-item">
-        <h5 class="label">Date</h5>
-        <p>Jun &ndash; Nov 2025</p>
-      </div>
+  <!-- 2 · Resumen en tres frases -->
+  <section aria-label="Summary">
+    <div class="tldr">
+      <div><h2>The challenge</h2><p>Ucademy wanted to open a new line of business: a <mark>gamified mobile app</mark> for short study sessions before the university entrance exam. We launched it as an MVP to find product-market fit: could students <mark>build a study habit on their&nbsp;own</mark>?</p></div>
+      <div><h2>What I did</h2><p>I interviewed 6 students and 4 teachers, turned their five pain points into the principles of the MVP, <mark>designed the whole app</mark> and tracked its metrics after&nbsp;launch.</p></div>
+      <div><h2>The outcome</h2><p>1,000 downloads and 40% activation, above the 25% goal. Retention stayed low, so I recommended <mark>going back to product-market fit</mark> before redesigning&nbsp;more.</p></div>
     </div>
   </section>
 
-  <figure class="case-figure bleed">
-    <img src="../assets/images/dino-subjects.jpg" alt="Subject screen in Dino with progress per topic, surrounded by the available subjects" loading="lazy">
-  </figure>
-
-  <section class="case-section">
-    <h2>Discovery</h2>
-    <div class="case-body">
-      <p>We ran interviews with 6 students and 4 teachers. Five pain points came up consistently and shaped every design decision:</p>
-      <ul>
-        <li>They don&rsquo;t know where to start or how to prioritize the syllabus.</li>
-        <li>They have no real visibility into their progress. The only way to know is to take a test.</li>
-        <li>They get stuck when they don&rsquo;t understand something and have no one to ask.</li>
-        <li>They default to passive learning (reading, highlighting, watching videos) when what they need is practice.</li>
-        <li>When they&rsquo;re lost, they search YouTube for someone to explain it to them.</li>
-      </ul>
-      <p>Those five pain points became the five design principles for the MVP.</p>
-    </div>
-  </section>
-
-  <figure class="case-figure full">
-    <img src="../assets/images/dino-onboarding.jpg" alt="Dino onboarding flow: sign up, school year, study goals and reminders" loading="lazy">
-  </figure>
-
-  <section class="case-section">
-    <h2>The MVP</h2>
-    <div class="case-body">
-      <p>Every feature in the MVP traces back to something a student said in an interview.</p>
-      <ul>
-        <li>Varied practice with immediate automated feedback</li>
-        <li>Empathetic responses after each mistake</li>
-        <li>Visible progress along a structured learning path</li>
-        <li>Short-form video explanations (TikTok-style)</li>
-        <li>An AI tutor for moments of confusion</li>
-        <li>A leaderboard and friends invitations: <em>The interviews hadn&rsquo;t asked for either, but we believed social motivation would drive retention. Over time, the data would show that they added complexity without moving the metrics that mattered.</em></li>
-      </ul>
-    </div>
-  </section>
-
-  <figure class="case-figure full">
-    <img src="../assets/images/dino-mvp.jpg" alt="Practice flow: learning station, multiple choice question and correct answer feedback" loading="lazy">
-  </figure>
-
-  <section class="case-section">
-    <h2>Measuring</h2>
-    <div class="case-body">
-      <p>We launched with four OKRs that measured exactly what we needed to validate: whether a teenager could build a self-directed study habit on mobile.</p>
-      <p>Downloads were coming in and ads were working. Onboarding completion reached 80%. But less than 2% of users returned within the first seven days.</p>
-      <p>The activation numbers told one story. Retention told a completely different one.</p>
-      <div style="overflow-x:auto;">
-        <table class="okr-table">
-          <thead>
-            <tr>
-              <th>MVP</th>
-              <th>Target</th>
-              <th>Result</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Downloads</td>
-              <td>1,000</td>
-              <td class="met">&#10003; Met</td>
-            </tr>
-            <tr>
-              <td>Activation rate</td>
-              <td>25%</td>
-              <td class="met">&#10003; Met</td>
-            </tr>
-            <tr>
-              <td>7-day retention</td>
-              <td>30%</td>
-              <td class="not-met">&#10007; Not reached</td>
-            </tr>
-            <tr>
-              <td>30-day retention</td>
-              <td>15%</td>
-              <td class="not-met">&#10007; Not reached</td>
-            </tr>
-            <tr>
-              <td>Avg. daily usage</td>
-              <td>15 min</td>
-              <td class="not-met">&#10007; Not reached</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <figure class="case-figure full">
-    <img src="../assets/images/dino-measuring.jpg" alt="Result and daily challenges screens with rewards and progress" loading="lazy">
-  </figure>
-
-  <section class="case-section">
-    <h2>First iteration</h2>
-    <div class="case-body">
-      <h3>Closing the gap between registration and real value</h3>
-      <div class="block">
-        <p class="sub-label">Hypothesis</p>
-        <p>Users were completing onboarding but not starting their first practice session. We assumed the onboarding flow was ending too early, before the user had experienced any real value from the product.</p>
-      </div>
-      <div class="block">
-        <p class="sub-label">What we did</p>
-        <p>We added a mandatory first practice session at the end of onboarding, so users couldn&rsquo;t leave without completing at least one exercise.</p>
-      </div>
-      <div class="block">
-        <p class="sub-label">Result</p>
-        <p>+50% of users completing their first practice session. Early activation, validated. But this didn&rsquo;t move retention.</p>
-      </div>
-    </div>
-  </section>
-
-  <figure class="case-figure full">
-    <img src="../assets/images/dino-iteration-1.jpg" alt="Classification exercise with drag and drop and empathetic error feedback" loading="lazy">
-  </figure>
-
-  <section class="case-section">
-    <h2>Second iteration</h2>
-    <div class="case-body">
-      <h3>Encouraging users to come back</h3>
-      <div class="block">
-        <p class="sub-label">Hypothesis</p>
-        <p>Users who had activated once weren&rsquo;t returning because there was no trigger pulling them back. We assumed that adding external nudges would recover enough of them to move the 7-day retention metric.</p>
-      </div>
-      <div class="block">
-        <p class="sub-label">What we did</p>
-        <p>We activated push notifications and automated email sequences to encourage return visits.</p>
-      </div>
-      <div class="block">
-        <p class="sub-label">Result</p>
-        <p>Retention improved slightly, but nowhere near our OKRs. The problem wasn&rsquo;t the absence of a reminder. The product itself wasn&rsquo;t giving users a reason to come back.</p>
-      </div>
-    </div>
-  </section>
-
-  <figure class="case-figure full">
-    <img src="../assets/images/dino-profile.jpg" alt="Profile, achievements and friends screens" loading="lazy">
-  </figure>
-
-  <section class="case-section">
-    <h2>Third iteration</h2>
-    <div class="case-body">
-      <h3>The wrong call: Testing purchase intent too early</h3>
-      <div class="block">
-        <p class="sub-label">Hypothesis</p>
-        <p>The business team wanted to validate whether users would pay before investing further in the product.</p>
-      </div>
-      <div class="block">
-        <p class="sub-label">What we did</p>
-        <p>We introduced a paywall at the end of onboarding, before users completed their first practice session.</p>
-      </div>
-      <div class="block">
-        <p class="sub-label">Result</p>
-        <p>Drop-off increased significantly and the experiment returned no actionable data. Users hadn&rsquo;t experienced the core value of the product yet, so their refusal to pay didn&rsquo;t tell us whether they would pay after seeing it. We confirmed resistance, but we couldn&rsquo;t tell if that resistance was about price, trust, or simply timing. Worse, we distorted the funnel at the moment of highest abandonment risk, before a single habit had formed.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="case-section">
-    <h2>The decision</h2>
-    <div class="case-body">
-      <p>After five months, the product showed no organic traction and no signs of sustained habit formation. Scaling Dino would have meant significant investment in content, infrastructure, and marketing, with no clear signals of product-market fit.</p>
-      <p>We decided to shut the project down and redirect resources to lines with stronger traction. That decision is also product work.</p>
-    </div>
-  </section>
-
-  <figure class="case-figure full">
-    <img src="../assets/images/dino-decision.jpg" alt="True or false exercise with swipe interaction" loading="lazy">
-  </figure>
-
-  <section class="case-section">
-    <h2>What I learned</h2>
-    <div class="case-body">
-      <div class="learning-block">
-        <p>Completing onboarding is not the same as activating.</p>
-        <div class="learning-pair">
-          <div>
-            <p class="sub-label">What we assumed</p>
-            <p>90% onboarding completion meant users had understood the value of the product.</p>
+  <!-- 3 · Decisiones: una tarjeta grande que cambia con el scroll (desktop); en mobile, una debajo de otra -->
+  <section aria-labelledby="dec-title">
+    <h2 class="display sec-title" id="dec-title"><span class="box">Decisions</span></h2>
+    <div class="zoom" id="zoom">
+      <div class="zoom-sticky">
+        <div class="zcard gallery">
+          <div class="zframe">
+            <div class="zshot"><img src="../assets/images/dino-set-path.webp" alt=""></div>
+            <div class="zfoot">
+              <p class="zcaption" aria-live="polite"></p>
+              <div class="zmore" hidden>
+                <button type="button" data-shot="-1" aria-label="Previous screens">&larr;</button>
+                <span class="zcount" aria-live="polite">1 / 2</span>
+                <button type="button" data-shot="1" aria-label="Next screens">&rarr;</button>
+              </div>
+            </div>
           </div>
-          <div>
-            <p class="sub-label">What data showed</p>
-            <p>A 2% 7-day retention rate says otherwise. Since then, I always track time to first real value, not time to first click.</p>
-          </div>
-        </div>
-      </div>
-      <div class="learning-block">
-        <p>Without a habit, there&rsquo;s nothing to monetize</p>
-        <div class="learning-pair">
-          <div>
-            <p class="sub-label">What we assumed</p>
-            <p>We could measure willingness to pay before users had established any recurrence.</p>
-          </div>
-          <div>
-            <p class="sub-label">What data showed</p>
-            <p>Without prior engagement, the paywall only measured friction. The experiment contaminated the funnel and gave us no useful signal about the business model.</p>
+          <div class="ztext">
+            <nav class="zindex" aria-label="Decisions"></nav>
+            <ol class="zsteps"></ol>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="related-section" data-current="dino">
-    <div class="related-header">
-      <h2>More case studies</h2>
-      <div class="related-nav">
-        <button type="button" class="related-prev" aria-label="Previous projects"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M5 12L11 6M5 12L11 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button type="button" class="related-next" aria-label="Next projects"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      </div>
+  <!-- 3b · Impacto: las cifras, después de las decisiones -->
+  <section class="impact grid" aria-labelledby="impact-title">
+    <h2 class="display sec-title" id="impact-title" style="grid-column: 1 / -1"><span class="box">Impact</span></h2>
+    <p class="closing">Students found Dino easy to use and activated above target. After almost three months, we saw that building a study habit would need more time and resources. We decided to put them into Ucademy&rsquo;s mature verticals, which already brought in&nbsp;revenue.</p>
+    <div class="nums">
+      <div><b>1,000</b><p>downloads, the MVP goal</p></div>
+      <div><b>90%</b><p>completed onboarding</p></div>
+      <div><b>40%</b><p>activation: first practice completed (target: 25%)</p></div>
+      <div><b>+50%</b><p>completed their first practice after we moved it into onboarding</p></div>
     </div>
-    <div class="related-track"></div>
-    <div class="related-dots" aria-label="Carousel position"></div>
   </section>
 
-  <footer class="contact" id="contact">
-    <div class="contact-card">
-      <h3>Thank you for reading!<br>I&rsquo;d love to know you too.</h3>
-      <div class="contact-links">
-        <div class="contact-email">
-          <span>lavieroemilia@gmail.com</span>
-          <button class="copy-icon-btn copy-email-btn" data-email="lavieroemilia@gmail.com" aria-label="Copy email" data-tooltip="Copy">
-            <svg class="icon-copy" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5L10 17.5L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </div>
-        <a href="https://www.linkedin.com/in/emilialaviero/" target="_blank" rel="noopener" class="contact-link" data-tooltip="Open LinkedIn">
-          LinkedIn: emilialaviero <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="https://medium.com/@emilaviero" target="_blank" rel="noopener" class="contact-link" data-tooltip="Open Medium">
-          Medium: @emilialaviero <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="https://drive.google.com/file/d/1TCPcE9fgOwlY57MC0pf6gdawFP0CLo67/view?usp=sharing" target="_blank" rel="noopener" class="contact-link" data-tooltip="Open CV">
-          CV <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>Emilia Laviero</span>
-      <span>&copy; <span id="year"></span></span>
-    </div>
-  </footer>
+  <!-- 4 · Learnings -->
+  <section aria-labelledby="learn-title">
+    <h2 class="display sec-title" id="learn-title"><span class="box">Learnings</span></h2>
+    <div class="learn grid"><span class="n">01</span><h3>One store first</h3><p>Launching on both stores split a small team. I&rsquo;d start on iOS, where users were most likely to&nbsp;pay.</p></div>
+    <div class="learn grid"><span class="n">02</span><h3>Fewer features first</h3><p>We launched with many features at once, and most of the extras went unused. Next time I&rsquo;d launch a few complete features and add more only when the data backs&nbsp;them.</p></div>
+    <div class="learn grid"><span class="n">03</span><h3>Without a habit, there&rsquo;s nothing to monetize</h3><p>The paywall arrived before students had any recurrence, so it only measured friction. I&rsquo;d test willingness to pay once students come back on their&nbsp;own.</p></div>
+      </section>
 
+  <!-- 5 · Más case studies -->
+  <section class="divided" aria-labelledby="more-title">
+    <div class="more-head"><h2 class="display sec-title" id="more-title" style="margin: 0"><span class="box">More work</span></h2><a href="../#work">All projects ↗</a></div>
+    <div class="cards">
+      <a class="proj" href="student-dashboard.html"><span class="chip">Ucademy</span><div class="frame"><img src="../assets/images/project-ucademy-dashboard.jpg" alt="" loading="lazy"></div><h4>Student dashboard</h4><p class="desc">A redesigned start experience that guides students every day, from their first visit to exam&nbsp;day.</p></a>
+      <a class="proj" href="practice.html"><span class="chip">Ucademy</span><div class="frame"><img src="../assets/images/project-ucademy-practice.jpg" alt="" loading="lazy"></div><h4>Tests and practice</h4><p class="desc">A hidden feature turned into a sales argument and a reason for students to come&nbsp;back.</p></a>
+      <a class="proj" href="#"><span class="chip">Dino</span><div class="frame"><img src="../assets/images/project-dino-design-system.jpg" alt="" loading="lazy"></div><h4>Dino design system, built from zero</h4><span class="soon">Coming soon</span></a>
+    </div>
+  </section>
 </main>
 
-<script src="../assets/js/script.js?v=20260925"></script>
+<!-- 6 · Footer: el mismo de la home -->
+<footer class="contact" id="contact" aria-labelledby="contact-title">
+  <p class="label">Thank you for reading!</p>
+  <h2 class="display" id="contact-title">I&rsquo;d love to <span class="box">know you</span> too</h2>
+  <ul class="links">
+    <li><a href="#">lavieroemilia@gmail.com</a></li>
+    <li><a href="https://www.linkedin.com/in/emilialaviero/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+    <li><a href="https://medium.com/@emilaviero" target="_blank" rel="noopener">Medium ↗</a></li>
+    <li><a href="https://drive.google.com/file/d/1TCPcE9fgOwlY57MC0pf6gdawFP0CLo67/view?usp=sharing" target="_blank" rel="noopener">Resume ↗</a></li>
+  </ul>
+  <div class="foot"><span>Emilia Laviero &copy; 2026</span><span>Madrid, Spain</span><a class="to-top" href="#">Back to top ↑</a></div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const IMG = '../assets/images/';
+  const pic = (f) => (f.startsWith('../assets/img/') ? '' : IMG) + f; // las de V4 viven en v4-lab/img
+
+  /* Las decisiones de V2 (validadas el 8 de octubre). Títulos según lo que les aportamos y la función en la
+     etiqueta, como en el Student Dashboard (ronda 17) [HIPÓTESIS]. shots = las vistas de la decisión (teléfonos lado a lado). */
+  const DEC = [
+    { goal: 'Study habit', title: 'Show students how far they’ve come', feature: 'Learning path',
+      shots: [['dino-set-path.webp', 'The learning path, the syllabus behind the topic card, and the subject switcher.', 'The learning path, a subject’s syllabus, a topic in detail and the subject switcher'],
+              ['dino-set-stations.webp', 'A station opens a sheet to practise or read the theory; a locked one says what comes first.', 'Dino points to the first station, a station sheet and a locked station']],
+      need: 'One of the hardest parts of studying was not knowing how they were doing or how much they had left. Only an exam showed their progress.',
+      dec: 'Our learning framework was built on knowledge components: each concept unlocks once students have learned the ones before. Levels fit it best, and added gamification in a format students already knew from Duolingo. Each station opens a sheet to practise or read the theory.',
+      res: 'Students used it well from the start. One lesson: scrolling up matched the idea of climbing, but it went against the natural scroll and caused friction for some students. Usability should feel natural, and the concept should adapt to it.' },
+    { goal: 'Product-market fit', title: 'Make practice feel like a game', feature: 'Practice',
+      shots: [['dino-set-practice.webp', 'A question, a right answer and a wrong one, with Dino by the student’s side.', 'A multiple choice question, a right answer and a wrong one'],
+              ['../assets/img/dino-set-truefalse.webp', 'True or false: the card in the middle, swiped left for false and right for true.', 'A true or false card in the middle, swiped left for false and swiped right for true'],
+              ['dino-set-classify.webp', 'Classify: drag each item into its group, then check it with Dino.', 'Classify: the items, dragging them into groups and the result']],
+      need: 'Interviews showed students studied passively and got stuck with no one to ask.',
+      dec: 'Practice that feels like a game, not like studying: each question is a swipe, like TikTok, with instant feedback and Dino reacting to every answer. Exercise types unlock as students progress.',
+      res: 'Students rated the design and usability positively.' },
+    { goal: 'Product-market fit', title: 'Help students when they get stuck', feature: 'AI tutor',
+      shots: [['dino-set-tutor.webp', 'The AI tutor: a photo of your notes, and Dino explains it step by step.', 'The chat with Dino, a photo of notes and Dino’s step-by-step answer']],
+      need: 'When students got stuck, they had no one to ask.',
+      dec: 'A chat with Dino: students send a photo of their homework or notes, ask for a test or for a topic to be explained.',
+      res: 'The chat was easy to reach and use. What held it back was the AI: its answers were too generic for their syllabus, so students used it little.' },
+    { goal: 'Organic growth', title: 'Turn explanations into shareable videos', feature: 'Short videos',
+      shots: [['dino-set-videos.webp', 'A short video: it plays on its own, students can like it and share it without stopping it.', 'A short video, a liked video and the share sheet']],
+      need: 'Students searched YouTube for explanations, and Dino needed organic traffic.',
+      dec: 'Short vertical videos inside practice, like TikTok: someone explains the topic, and students can like and share it, bringing new students in.',
+      res: 'We didn’t get enough views or shares to validate it, because few students came back to the app.' },
+    { goal: 'Activation', title: 'Take students straight into practice', feature: 'Onboarding',
+      shots: [['dino-set-first-practice.webp', 'From choosing where to start to the first question, with Dino as a guide.', 'Six onboarding screens, from choosing a subject to the first question']],
+      need: 'After onboarding, students had to start their first practice on their own. With several sections in the app, many started exploring instead.',
+      dec: 'We made the first practice part of onboarding, before students reach the home screen: they choose where to start, and Dino explains the goal, how to ask him for help and how to begin.',
+      res: '<b>+50%</b> completed their first practice: 40% activation, above the 25% goal.' },
+    { goal: 'Study habit', title: 'Bring students back every day', feature: 'Reminders and streaks',
+      shots: [['dino-set-reminders.webp', 'Daily goal, reminder time and permission for notifications.', 'Daily study time, reminder time and the notifications permission'],
+              ['dino-set-streak.webp', 'The daily streak: a new record, and the calendar of days studied.', 'A new streak record and the streak calendar']],
+      need: 'Students who activated didn’t come back.',
+      dec: 'Students choose when to study, and Dino reminds them with push notifications and emails. A daily streak rewards every day they come back.',
+      res: 'Retention stayed very low, and that confirmed what was missing: reminding students wasn’t enough, they needed more value from Dino to come back.' },
+    { goal: 'Business model', title: 'Find out if students would pay', feature: 'Paywall',
+      shots: [['dino-set-paywall.webp', 'Two pre-paywall screens with students’ reviews, then the free trial offer.', 'Two pre-paywall screens and the free trial paywall']],
+      need: 'The business wanted to know if students would pay before investing further.',
+      dec: 'A paywall at the end of onboarding, before the first practice.',
+      res: 'It came too early: students hadn’t seen Dino’s value yet. Drop-off went up, and we couldn’t tell if the no was about price, trust or timing.' },
+    { goal: 'Product-market fit', title: 'Define product-market fit before redesigning more', feature: 'Recommendation',
+      shots: [['dino-set-profile.webp', 'Profile, achievements, friends and ranking: screens students barely visited.', 'Profile, achievements, friends and ranking']],
+      need: 'Varied exercises, gamification and reminders, and still nobody came back.',
+      dec: 'I recommended stopping the redesigns to define product-market fit first: who Dino was for and what value it gave them.',
+      res: 'We saw that building a study habit would need more time and resources. After almost three months, Ucademy moved them to lines with more traction.' }
+  ];
+  const nb = (s) => s.replace(/ (\S+)$/, '&nbsp;$1'); // ninguna palabra sola en la última línea
+  const num = (i) => String(i + 1).padStart(2, '0');
+  const zoom = $('#zoom');
+  zoom.style.setProperty('--steps', DEC.length);
+  $('.zindex').innerHTML = DEC.map((d, i) => '<button type="button" data-go="' + i + '" aria-label="Decision ' + (i + 1) + ': ' + d.title + '">' + num(i) + '</button>').join('');
+  $('.zsteps').innerHTML = DEC.map((d, i) => '<li class="zstep">'
+    + '<img class="zcrop on-stage" src="' + pic(d.shots[0][0]) + '" alt="' + d.shots[0][2] + '" loading="lazy">'
+    + '<p class="goal">' + num(i) + ' · ' + d.feature + ' · ' + d.goal + '</p><h3>' + d.title + '</h3>'
+    + '<div class="part"><span class="label">Need</span>' + nb(d.need) + '</div>'
+    + '<div class="part"><span class="label">Decision</span>' + nb(d.dec) + '</div>'
+    + '<div class="part result"><span class="label">Result</span>' + nb(d.res) + '</div></li>').join('');
+
+  /* La tarjeta: a la izquierda, los teléfonos de la decisión que se lee (cambian con un fundido);
+     las flechas chicas recorren las otras vistas de la misma decisión. */
+  const img = $('.zshot img'), caption = $('.zcaption'), more = $('.zmore'), count = $('.zcount');
+  const steps = $$('.zstep'), dots = $$('[data-go]');
+  const desktop = matchMedia('(min-width: 900px)');
+  let current = -1, shot = 0;
+
+  function show(i, k) {
+    const [file, cap, alt] = DEC[i].shots[k];
+    shot = k;
+    caption.textContent = cap;
+    more.hidden = DEC[i].shots.length < 2;
+    count.textContent = (k + 1) + ' / ' + DEC[i].shots.length;
+    const src = new URL(pic(file), location.href).href;
+    if (src === img.src) return;
+    img.classList.add('swap');
+    setTimeout(() => {
+      img.addEventListener('load', () => img.classList.remove('swap'), { once: true });
+      img.src = src; img.alt = alt;
+    }, 220);
+  }
+  function setStep(i) {
+    if (i === current) return;
+    current = i;
+    steps.forEach((s, k) => s.classList.toggle('is-active', k === i));
+    dots.forEach((d) => d.classList.toggle('is-active', +d.dataset.go === i));
+    show(i, 0);
+  }
+  $$('[data-shot]').forEach((b) => b.addEventListener('click', () => {
+    const n = DEC[current].shots.length;
+    show(current, (shot + +b.dataset.shot + n) % n);
+  }));
+  function onScroll() {
+    if (!desktop.matches) return;
+    const travel = zoom.offsetHeight - innerHeight;
+    const p = Math.min(0.999, Math.max(0, -zoom.getBoundingClientRect().top / travel));
+    setStep(Math.floor(p * steps.length));
+  }
+  dots.forEach((d) => d.addEventListener('click', () => {
+    const travel = zoom.offsetHeight - innerHeight;
+    const top = zoom.getBoundingClientRect().top + scrollY;
+    scrollTo({ top: top + (+d.dataset.go + 0.5) / steps.length * travel, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  }));
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  setStep(0);
+  onScroll();
+
+  $('.nav .menu').addEventListener('click', (e) => { const n = $('.nav'); n.classList.toggle('open'); e.currentTarget.setAttribute('aria-expanded', n.classList.contains('open')); });
+})();
+</script>
 </body>
 </html>

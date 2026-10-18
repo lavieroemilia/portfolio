@@ -1,329 +1,264 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quota PMS | Emilia Laviero</title>
-<meta name="description" content="Case study: designing a property management system for rental agencies at Quota, from research to production.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<title>Property management platform · Emilia Laviero</title>
+<meta name="description" content="One platform for rental agencies to manage properties, tenants, contracts and accounting.">
+<link rel="canonical" href="https://emilialaviero.com/pages/quota-pms.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Property management platform · Emilia Laviero">
+<meta property="og:description" content="One platform for rental agencies to manage properties, tenants, contracts and accounting.">
+<meta property="og:url" content="https://emilialaviero.com/pages/quota-pms.html">
+<meta property="og:image" content="https://emilialaviero.com/assets/images/project-quota-pms.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/style.css?v=20260925">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Bungee&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/case-study.css">
+<style>
+  /* Quota en la plantilla V4: el escenario es el color de la página; las capturas traen su propia sombra */
+  :root { --stage: var(--page); }
+  .cover img { object-position: 50% 50%; }
+  .zcrop.on-stage { padding: 0; } /* las imágenes ya traen su margen */
+</style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="sticker" x="-20%" y="-60%" width="140%" height="220%" color-interpolation-filters="sRGB">
+    <feMorphology in="SourceAlpha" operator="dilate" radius="5" result="paperShape"/>
+    <feMorphology in="SourceAlpha" operator="dilate" radius="7.5" result="borderShape"/>
+    <feOffset in="borderShape" dx="3.5" dy="3.5" result="shadowShape"/>
+    <feFlood flood-color="#0A0710" result="ink"/>
+    <feComposite in="ink" in2="shadowShape" operator="in" result="shadow"/>
+    <feComposite in="ink" in2="borderShape" operator="in" result="border"/>
+    <feFlood flood-color="#FFF6EA"/>
+    <feComposite in2="paperShape" operator="in" result="paper"/>
+    <feMerge><feMergeNode in="shadow"/><feMergeNode in="border"/><feMergeNode in="paper"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</svg>
 
-<nav class="topnav">
-  <a href="../" class="nav-badge nav-logo">Emilia Laviero</a>
-  <div class="nav-right">
-    <div class="nav-links">
-      <a href="../#work">Work</a>
-      <a href="../#experiments">Playground</a>
-      <a href="../#about">About</a>
-      <button type="button" class="nav-contact-btn" id="navContactBtn" aria-expanded="false" aria-controls="contactDropdown">Contact</button>
-    </div>
-    <div class="contact-dropdown" id="contactDropdown">
-      <div class="contact-email">
-        <span>lavieroemilia@gmail.com</span>
-        <button class="copy-icon-btn copy-email-btn" data-email="lavieroemilia@gmail.com" aria-label="Copy email" data-tooltip="Copy" data-tooltip-pos="bottom">
-          <svg class="icon-copy" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5L10 17.5L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
-    </div>
-    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </button>
-  </div>
+<a class="brand display" href="../" aria-label="Emilia Laviero, home"><span class="sticker">Emilia Laviero</span></a>
+<nav class="nav" aria-label="Main">
+  <button class="menu" type="button" aria-expanded="false">Menu</button>
+  <ul>
+    <li><a class="nav-link is-active" href="../#work">Work</a></li>
+    <li><a class="nav-link" href="../#approach">Approach</a></li>
+    <li><a class="nav-link" href="../about.html">About</a></li>
+    <li><a class="nav-link" href="#contact">Contact</a></li>
+  </ul>
 </nav>
-<div class="nav-mobile-menu" id="navMobileMenu">
-  <a href="../#work">Work</a>
-  <a href="../#experiments">Playground</a>
-  <a href="../#about">About</a>
-  <button type="button" class="nav-mobile-contact">Contact</button>
-</div>
 
 <main>
+  <!-- 1 · La imagen primero, el título debajo -->
+  <figure class="cover"><div class="frame"><img src="../assets/img/quota-hero.jpg" alt="The Quota dashboard: properties, incidents, invitations, the month's income and today's agenda"></div></figure>
+  <header class="head grid">
+    <span class="chip">Quota</span>
+    <h1 class="display">Rental management made simpler for&nbsp;agencies</h1>
+    <ul class="meta">
+      <li><span>Timeline</span>2021 – 2024</li>
+      <li><span>Role</span>Sole Product Designer</li>
+      <li><span>Platform</span>Web app and mobile web</li>
+      <li><span>Goal</span>Trial conversion</li>
+    </ul>
+  </header>
 
-
-  <section class="case-hero">
-    <p class="case-company">Quota</p>
-    <h1>Simplifying a complex rental-management service for agencies and tenants</h1>
-  </section>
-
-  <div class="case-hero-img">
-    <img src="../assets/images/quota-hero.jpg" alt="Quota PMS dashboard with properties, incidents and income overview">
-  </div>
-
-  <section class="case-intro">
-    <p class="intro">Quota was an early-stage B2B SaaS startup with an ambitious goal: to build the most complete property management system on the market for rental agencies. As Lead Product Designer, I owned the full design of the platform for three years, from the first research sessions to production.</p>
-    <div class="meta-list">
-      <div class="meta-item">
-        <h5 class="label">Team</h5>
-        <div class="team-avatars">
-          <span title="Jesús Ramos Escudero" aria-label="Jesús Ramos Escudero">JR</span>
-          <span title="Adrián Torres Serrano" aria-label="Adrián Torres Serrano">AT</span>
-          <a href="https://www.linkedin.com/in/carlos-fern%C3%A1ndez-casal-16837322b" target="_blank" rel="noopener" title="Carlos Fernández" aria-label="Carlos Fernández on LinkedIn">CF</a>
-          <a href="https://www.linkedin.com/in/karlo-mamic" target="_blank" rel="noopener" title="Karlo Mamic" aria-label="Karlo Mamic on LinkedIn">KM</a>
-        </div>
-      </div>
-      <div class="meta-item">
-        <h5 class="label">Role</h5>
-        <p>Lead Product Designer</p>
-      </div>
-      <div class="meta-item">
-        <h5 class="label">Service</h5>
-        <p>Research · UX · Design System · Prototyping · User Testing</p>
-      </div>
-      <div class="meta-item">
-        <h5 class="label">Date</h5>
-        <p>2021 &ndash; 2024</p>
-      </div>
+  <!-- 2 · Resumen en tres frases -->
+  <section aria-label="Summary">
+    <div class="tldr">
+      <div><h2>The challenge</h2><p>Rental agencies in Spain had to offer more and more management services, but they <mark>still ran them on old processes</mark>: spreadsheets, phone calls and disconnected tools. Quota wanted to bring all that work into <mark>one platform</mark>, simple enough for managers with no time to learn a new&nbsp;system.</p></div>
+      <div><h2>What I did</h2><p>For three years I ran continuous discovery with managers, Customer Care and Sales. I <mark>designed the whole platform</mark> and <mark>built its design system from zero</mark>, evolving it with every new&nbsp;module.</p></div>
+      <div><h2>The outcome</h2><p>We launched 15+ features and a gamified insurance app. Managers <mark>selected tenants twice as fast</mark> and did more of their daily work inside&nbsp;Quota.</p></div>
     </div>
   </section>
 
-  <figure class="case-figure full">
-    <img src="../assets/images/quota-properties.jpg" alt="Properties list in Quota PMS" loading="lazy">
-  </figure>
-
-  <section class="case-section">
-    <h2>Challenge</h2>
-    <div class="case-body">
-      <p>New regulations were reshaping the Spanish rental market, forcing real estate agencies to expand their services. Most were doing it without the right tools, managing their entire workflow across spreadsheets, phone calls, and disconnected third-party software.</p>
-      <p><strong>The design challenge was complexity without overwhelm.</strong></p>
-      <p>Each module had to be powerful enough to replace a dedicated tool, while staying intuitive for managers with no time to learn a new system from scratch.</p>
-      <p>Quota offered a one-month free trial, so driving engagement during that window was critical to converting users into paying subscribers.</p>
-    </div>
-  </section>
-
-  <figure class="case-figure full">
-    <img src="../assets/images/quota-tenant-profile.jpg" alt="Tenant profile with personal data, contact details and income" loading="lazy">
-  </figure>
-
-  <section class="case-section">
-    <h2>Continuous discovery</h2>
-    <div class="case-body">
-      <p>Over three years, I maintained a continuous research practice across three channels:</p>
-      <ul>
-        <li>I ran <strong>recurring interviews</strong> with property managers at different agency sizes and digital maturity levels, focusing on workflow and friction.</li>
-        <li>I kept an ongoing <strong>benchmark</strong> of direct and indirect competitors, tracking how the market was evolving and where Quota had room to differentiate.</li>
-        <li>And I treated <strong>Customer Care and Sales as a permanent insight channel</strong>.</li>
-      </ul>
-      <figure class="case-figure">
-        <img src="../assets/images/quota-contacts.jpg" alt="Contacts module in Quota PMS" loading="lazy">
-        <figcaption>The contacts module, where managers could view and filter tenants, owners, and suppliers across all their properties.</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <section class="case-section">
-    <h2>What I built and why</h2>
-    <div class="case-body">
-      <p>Property managers were running their entire workflow outside the platform. Each module was designed to pull one more piece of that workflow in, increasing the value of staying and the cost of leaving during the trial period.</p>
-      <p>The business goal for all PMS modules was to <strong>increase engagement</strong> during the trial period to <strong>drive subscription conversion</strong>.</p>
-      <p>Below you&rsquo;ll find a selection of the features I designed across those three years.</p>
-      <figure class="case-figure">
-        <img src="../assets/images/quota-accounting.jpg" alt="Accounting tab inside a rental property" loading="lazy">
-        <figcaption>The accounting tab inside a rental property, showing tenant and owner balances, transaction history, and payment status.</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <section class="case-section">
-    <h2>Tenant onboarding</h2>
-    <div class="case-body">
-      <div class="block">
-        <p class="sub-label">Problem</p>
-        <p>Managers were spending significant time collecting personal and financial data from candidates by phone or email, then re-entering it manually into their own systems.</p>
-      </div>
-      <div class="block">
-        <p class="sub-label">Solution</p>
-        <p>An invitation flow via WhatsApp or email where candidates completed and verified their own data. The profile arrived pre-filled on the manager&rsquo;s side and fed directly into the scoring module.</p>
-      </div>
-      <div class="block">
-        <p class="sub-label">Result</p>
-        <p>Managers eliminated manual data entry and moved faster into the qualification step.</p>
-      </div>
-      <p>Read the case study <a href="./tenant-scoring.html" class="inline-link">Streamlining the tenant screening process</a>.</p>
-      <div class="image-grid">
-        <img src="../assets/images/quota-onboarding-1.jpg" alt="Property detail with the invite candidate action" loading="lazy">
-        <img src="../assets/images/quota-onboarding-2.jpg" alt="Invite candidate modal" loading="lazy">
-      </div>
-    </div>
-  </section>
-
-  <section class="case-section">
-    <h2>CRM with tenant scoring</h2>
-    <div class="case-body">
-      <div class="block">
-        <p class="sub-label">Problem</p>
-        <p>With high candidate volume and no structured comparison tool, selection decisions relied on gut feeling and recency bias.</p>
-      </div>
-      <div class="block">
-        <p class="sub-label">Solution</p>
-        <p>A scoring system ranking candidates by credit history, employment status, and vulnerability risk, with each parameter visible so managers understood the reasoning behind every score.</p>
-      </div>
-      <div class="block">
-        <p class="sub-label">Result</p>
-        <p>Faster tenant selection and a trust signal with property owners, who could see objective data behind the recommendation.</p>
-      </div>
-      <figure class="case-figure">
-        <img src="../assets/images/quota-candidates.jpg" alt="Candidate list with scores" loading="lazy">
-        <figcaption>The candidate list, showing each applicant&rsquo;s score, income, property, and status at a glance.</figcaption>
-      </figure>
-      <figure class="case-figure">
-        <img src="../assets/images/quota-candidate-scoring.jpg" alt="Candidate detail with the Quota Score breakdown" loading="lazy">
-      </figure>
-    </div>
-  </section>
-
-  <section class="case-section">
-    <h2>Contract generation</h2>
-    <div class="case-body">
-      <div class="block">
-        <p class="sub-label">Problem</p>
-        <p>Managers drafted contracts manually or paid for external e-signature tools that weren&rsquo;t connected to any of their property or tenant data.</p>
-      </div>
-      <div class="block">
-        <p class="sub-label">Solution</p>
-        <p>A guided step-by-step flow that pulled existing platform data, auto-populated the contract, and sent it for digital signature without leaving the tool.</p>
-      </div>
-      <div class="block">
-        <p class="sub-label">Result</p>
-        <p>40% of users adopted it within the first weeks after launch.</p>
-      </div>
-      <div class="image-grid">
-        <img src="../assets/images/quota-contract-1.jpg" alt="Contract flow: choose how to create the contract" loading="lazy">
-        <img src="../assets/images/quota-contract-2.jpg" alt="Contract flow: rental duration" loading="lazy">
-        <img src="../assets/images/quota-contract-3.jpg" alt="Contract flow: parties of the contract" loading="lazy">
-        <img src="../assets/images/quota-contract-4.jpg" alt="Contract flow: contract clauses" loading="lazy">
-      </div>
-    </div>
-  </section>
-
-  <section class="case-section">
-    <h2>Gamified insurance app</h2>
-    <div class="case-body">
-      <div class="block">
-        <p class="sub-label">Goal</p>
-        <p>Reduce internal operational load by converting a manual process into self-service.</p>
-      </div>
-      <div class="block">
-        <p class="sub-label">Problem</p>
-        <p>Arranging rental insurance required contacting Quota&rsquo;s team directly, creating a bottleneck for managers and a constant support load for Quota&rsquo;s staff.</p>
-      </div>
-      <div class="block">
-        <p class="sub-label">Solution</p>
-        <p>A standalone web app for quick scoring and insurance purchase. I proposed adding progress bars and small rewards to reduce drop-off in a form-heavy flow, reusing data already in the platform so managers didn&rsquo;t re-enter anything.</p>
-      </div>
-      <div class="block">
-        <p class="sub-label">Result</p>
-        <p>Support requests related to insurance dropped by 50%.</p>
-      </div>
-      <div class="image-grid mobile">
-        <img src="../assets/images/quota-insurance-1.jpg" alt="Insurance app home with earnings and monthly activity" loading="lazy">
-        <img src="../assets/images/quota-insurance-2.jpg" alt="Insurance app achievements" loading="lazy">
-        <img src="../assets/images/quota-insurance-3.jpg" alt="Tenant profile in the insurance app" loading="lazy">
-        <img src="../assets/images/quota-insurance-4.jpg" alt="Insurance request: select a property" loading="lazy">
-        <img src="../assets/images/quota-insurance-5.jpg" alt="Insurance request: choose a method" loading="lazy">
-        <img src="../assets/images/quota-insurance-6.jpg" alt="Insurance request: invite the tenant" loading="lazy">
-      </div>
-    </div>
-  </section>
-
-  <section class="case-section">
-    <h2>Outcomes</h2>
-    <div class="case-body">
-      <div class="stat-box">
-        <div class="stat">
-          <span class="stat-value">&minus;50%</span>
-          <p>Reduction in Customer Care requests via self-service insurance flow.</p>
-        </div>
-        <div class="stat">
-          <span class="stat-value">+25%</span>
-          <p>Increase in average session time as managers completed more workflow in-platform.</p>
-        </div>
-        <div class="stat">
-          <span class="stat-value">40%</span>
-          <p>User adoption of contract generation within the first weeks after launch.</p>
-        </div>
-        <div class="stat">
-          <span class="stat-value">80%</span>
-          <p>Of users reported faster month-end financial management.</p>
+  <!-- 3 · Decisiones: variante galería (cada decisión tiene sus propias pantallas) -->
+  <section aria-labelledby="dec-title">
+    <h2 class="display sec-title" id="dec-title"><span class="box">Decisions</span></h2>
+    <div class="zoom" id="zoom">
+      <div class="zoom-sticky">
+        <div class="zcard gallery">
+          <div class="zframe">
+            <div class="zshot"><img src="../assets/img/quota-properties.jpg" alt=""></div>
+            <div class="zfoot">
+              <p class="zcaption" aria-live="polite"></p>
+              <div class="zmore" hidden>
+                <button type="button" data-shot="-1" aria-label="Previous screen">&larr;</button>
+                <span class="zcount" aria-live="polite">1 / 2</span>
+                <button type="button" data-shot="1" aria-label="Next screen">&rarr;</button>
+              </div>
+            </div>
+          </div>
+          <div class="ztext">
+            <nav class="zindex" aria-label="Decisions"></nav>
+            <ol class="zsteps"></ol>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="case-section">
-    <h2>The decision</h2>
-    <div class="case-body">
-      <p>By mid 2024, Quota couldn&rsquo;t close another funding round. Retention was good, engagement was up, but the acquisition model hadn&rsquo;t scaled. Without enough new customers coming in, the revenue base stayed too small to attract investors. The company shut down.</p>
-      <p>It was the clearest lesson of those three years: a product people use and like can still run out of time if the go-to-market problem isn&rsquo;t solved.</p>
-      <figure class="case-figure">
-        <img src="../assets/images/quota-incidents.jpg" alt="Incident management view" loading="lazy">
-        <figcaption>The incident management view, where managers could log repairs, assign a responsible person, and notify tenants and owners automatically.</figcaption>
-      </figure>
+  <!-- 3b · Impacto -->
+  <section class="impact grid" aria-labelledby="impact-title">
+    <h2 class="display sec-title" id="impact-title" style="grid-column: 1 / -1"><span class="box">Impact</span></h2>
+    <p class="closing">Each module brought one more part of the managers&rsquo; work into Quota, and average session time grew 25%. The platform and the insurance app shared one design system, which grew with the&nbsp;product.</p>
+    <div class="nums">
+      <div><b>15+</b><p>features launched in three years</p></div>
+      <div><b>2</b><p>products: the management platform and the insurance app</p></div>
+      <div><b>2&times;</b><p>faster tenant selection</p></div>
+      <div><b>50%</b><p>fewer insurance requests to Customer Care</p></div>
     </div>
   </section>
 
-  <section class="case-section">
-    <h2>What I learned</h2>
-    <div class="case-body">
-      <div class="learning-block simple">
-        <p>Your Customer Care team is a research team</p>
-        <p class="learning-text">CC and Sales tickets surfaced real pain faster and more consistently than any research session I ran.</p>
-      </div>
-      <div class="learning-block simple">
-        <p>Reducing friction is not the same as solving adoption</p>
-        <p class="learning-text">The friction that stopped growth wasn&rsquo;t in the product. It was in convincing agencies to switch in the first place.</p>
-      </div>
-    </div>
+  <!-- 4 · Learnings -->
+  <section aria-labelledby="learn-title">
+    <h2 class="display sec-title" id="learn-title"><span class="box">Learnings</span></h2>
+    <div class="learn grid"><span class="n">01</span><h3>Customer Care is a research team</h3><p>Customer Care and Sales tickets showed real pain faster and more often than any research session I&nbsp;ran.</p></div>
+    <div class="learn grid"><span class="n">02</span><h3>Less friction doesn&rsquo;t solve adoption</h3><p>Agencies that used Quota stayed and used it more. The harder problem was convincing them to switch tools in the first place, and without enough new customers, Quota closed in&nbsp;2024.</p></div>
+    <div class="learn grid"><span class="n">03</span><h3>Fit the customers who already said yes</h3><p>Getting an agency to start a trial was the hardest part, so when one did, we focused on a solution that fit them. Before product-market fit, adapting to the customers who already show interest matters more than building features for customers you don&rsquo;t have&nbsp;yet.</p></div>
   </section>
 
-  <section class="related-section" data-current="quota-pms">
-    <div class="related-header">
-      <h2>More case studies</h2>
-      <div class="related-nav">
-        <button type="button" class="related-prev" aria-label="Previous projects"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M5 12L11 6M5 12L11 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button type="button" class="related-next" aria-label="Next projects"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      </div>
+  <!-- 5 · Más case studies -->
+  <section class="divided" aria-labelledby="more-title">
+    <div class="more-head"><h2 class="display sec-title" id="more-title" style="margin: 0"><span class="box">More work</span></h2><a href="../#work">All projects ↗</a></div>
+    <div class="cards">
+      <a class="proj" href="student-dashboard.html"><span class="chip">Ucademy</span><div class="frame"><img src="../assets/images/project-ucademy-dashboard.jpg" alt="" loading="lazy"></div><h4>Student dashboard</h4><p class="desc">A redesigned start experience that guides students every day, from their first visit to exam&nbsp;day.</p></a>
+      <a class="proj" href="dino.html"><span class="chip">Dino</span><div class="frame"><img src="../assets/images/project-dino-app.jpg" alt="" loading="lazy"></div><h4>Gamified learning app</h4><p class="desc">An MVP for a new line of business at Ucademy, launched to find product-market&nbsp;fit.</p></a>
+      <a class="proj" href="#"><span class="chip">Quota</span><div class="frame"><img src="../assets/images/project-tenant-scoring.jpg" alt="" loading="lazy"></div><h4>Tenant screening with less friction</h4><span class="soon">Coming soon</span></a>
     </div>
-    <div class="related-track"></div>
-    <div class="related-dots" aria-label="Carousel position"></div>
   </section>
-
-  <footer class="contact" id="contact">
-    <div class="contact-card">
-      <h3>Thank you for reading!<br>I&rsquo;d love to know you too.</h3>
-      <div class="contact-links">
-        <div class="contact-email">
-          <span>lavieroemilia@gmail.com</span>
-          <button class="copy-icon-btn copy-email-btn" data-email="lavieroemilia@gmail.com" aria-label="Copy email" data-tooltip="Copy">
-            <svg class="icon-copy" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5L10 17.5L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </div>
-        <a href="https://www.linkedin.com/in/emilialaviero/" target="_blank" rel="noopener" class="contact-link" data-tooltip="Open LinkedIn">
-          LinkedIn: emilialaviero <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="https://medium.com/@emilaviero" target="_blank" rel="noopener" class="contact-link" data-tooltip="Open Medium">
-          Medium: @emilialaviero <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="https://drive.google.com/file/d/1TCPcE9fgOwlY57MC0pf6gdawFP0CLo67/view?usp=sharing" target="_blank" rel="noopener" class="contact-link" data-tooltip="Open CV">
-          CV <svg class="link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>Emilia Laviero</span>
-      <span>&copy; <span id="year"></span></span>
-    </div>
-  </footer>
-
 </main>
 
-<script src="../assets/js/script.js?v=20260925"></script>
+<!-- 6 · Footer: el mismo de la home -->
+<footer class="contact" id="contact" aria-labelledby="contact-title">
+  <p class="label">Thank you for reading!</p>
+  <h2 class="display" id="contact-title">I&rsquo;d love to <span class="box">know you</span> too</h2>
+  <ul class="links">
+    <li><a href="#">lavieroemilia@gmail.com</a></li>
+    <li><a href="https://www.linkedin.com/in/emilialaviero/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+    <li><a href="https://medium.com/@emilaviero" target="_blank" rel="noopener">Medium ↗</a></li>
+    <li><a href="https://drive.google.com/file/d/1TCPcE9fgOwlY57MC0pf6gdawFP0CLo67/view?usp=sharing" target="_blank" rel="noopener">Resume ↗</a></li>
+  </ul>
+  <div class="foot"><span>Emilia Laviero &copy; 2026</span><span>Madrid, Spain</span><a class="to-top" href="#">Back to top ↑</a></div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const pic = (f) => '../assets/img/' + f; // las capturas de Quota viven en v4-lab/img (tools/make-quota-images.py: números de documentos y teléfonos ocultos)
+
+  /* Decisiones de Quota PMS. Títulos según lo que les aportamos y la función en la etiqueta (como el Dashboard).
+     shots = las pantallas de la decisión: [archivo, leyenda, alt]. */
+  const DEC = [
+    { goal: 'Trial conversion', title: 'Bring the whole portfolio into one place', feature: 'Properties and contacts',
+      shots: [['quota-properties.jpg', 'Every property with its status, type, rent and address.', 'Grid of properties, each with a photo, status, type, rent and address'],
+              ['quota-contacts.jpg', 'Tenants, owners and suppliers in one contact book, linked to their rentals.', 'Contact list of tenants with phone, email, ID and rental']],
+      need: 'Managers kept their properties, tenants, owners and suppliers across spreadsheets, phones and different tools.',
+      dec: 'A property list with photos, status and rent at a glance, and one contact book for tenants, owners and suppliers, linked to each rental.',
+      res: 'Managers no longer had to jump between platforms to manage their properties.' },
+    { goal: 'Trial conversion', title: 'Make month-end accounting fast', feature: 'Accounting',
+      shots: [['quota-accounting.jpg', 'Accounting inside a rental: tenant and owner balances, and every transaction with its status.', 'A rental’s accounting tab with tenant and owner balances and a list of transactions']],
+      need: 'Rent, contracts and insurance lived in different places, so closing the month meant cross-checking them by hand.',
+      dec: 'Accounting inside each rental: tenant and owner balances, every transaction with its status, recurring transactions and invoices. The rent, the contract and the insurance were already in Quota, so accounting built on them.',
+      res: '<b>80%</b> said they closed the month faster. Fast accounting in one place also helped bring in new clients.' },
+    { goal: 'Trial conversion', title: 'Let candidates fill in their own data', feature: 'Tenant onboarding',
+      shots: [['quota-onboarding-1.jpg', 'A property, with the action to invite a candidate.', 'Property detail with the invite candidate action'],
+              ['quota-onboarding-2.jpg', 'The invitation: the candidate’s phone or email, or a link to copy.', 'Invite a candidate modal with name, phone and email']],
+      need: 'Managers collected candidates’ personal and financial data by phone or email, then typed it into their own systems.',
+      dec: 'An invitation by WhatsApp or email: candidates complete and verify their own data, and the profile arrives filled in, ready for scoring.',
+      res: 'Managers stopped re-entering data and moved faster to screening.' },
+    { goal: 'Trial conversion', title: 'Show the reasons behind every score', feature: 'Tenant scoring',
+      shots: [['quota-candidates.jpg', 'Every candidate with their score, income, property and status.', 'Candidate list with scores'],
+              ['quota-candidate-scoring.jpg', 'The Quota Score, parameter by parameter, next to the financial and risk analysis.', 'A candidate’s Quota Score with each parameter, financial information and risk analysis']],
+      need: 'With many candidates and no way to compare them, selection relied on gut feeling.',
+      dec: 'A score that ranks candidates by credit history, employment and vulnerability risk, with every parameter visible so managers can explain it to owners.',
+      res: '<b>2&times;</b> faster tenant selection, and owners could see the data behind each recommendation.' },
+    { goal: 'Trial conversion', title: 'Keep everyone posted on repairs', feature: 'Incidents',
+      shots: [['quota-incidents.jpg', 'Every incident with its property, due date, person in charge and status.', 'List of incidents with property, dates, person in charge and status']],
+      need: 'Repairs were coordinated by phone and messages, with tenants, owners and suppliers in separate conversations.',
+      dec: 'Managers log each incident, assign who is responsible and follow its due date. Tenants and owners are notified automatically.',
+      res: 'Contact with tenants was centralised in Quota.' },
+    { goal: 'Trial conversion', title: 'Draft contracts from data already in Quota', feature: 'Contracts',
+      shots: [['quota-contract-1.jpg', 'Choose how to create the contract.', 'Contract flow: choose how to create the contract'],
+              ['quota-contract-2.jpg', 'The rental dates and duration.', 'Contract flow: rental duration'],
+              ['quota-contract-3.jpg', 'The parties, already in Quota.', 'Contract flow: the parties of the contract'],
+              ['quota-contract-4.jpg', 'The clauses, ready to review before signing.', 'Contract flow: contract clauses']],
+      need: 'Managers drafted contracts by hand or paid for e-signature tools that weren’t connected to their data.',
+      dec: 'A step-by-step flow that fills in the contract with the property, the parties and the rent already in Quota, and sends it for digital signature.',
+      res: '<b>40%</b> adopted it in the first weeks after launch.' },
+    { goal: 'Operational load', title: 'Turn insurance into self-service', feature: 'Insurance app',
+      shots: [['quota-set-insurance-1.jpg', 'Earnings, achievements and a tenant profile: progress that rewards every step.', 'Insurance app home with earnings, achievements and a tenant profile'],
+              ['quota-set-insurance-2.jpg', 'Requesting insurance: choose the property and the method, then invite the tenant.', 'Insurance request: select a property, choose a method and invite the tenant']],
+      need: 'Arranging rental insurance meant contacting Quota’s team: a bottleneck for managers and constant work for Quota.',
+      dec: 'A mobile web app to score tenants and buy insurance on their own. I added progress bars and small rewards to reduce drop-off in a long form, and reused the data already in Quota.',
+      res: '<b>50%</b> fewer insurance requests to Customer Care.' }
+  ];
+  const nb = (s) => s.replace(/ (\S+)$/, '&nbsp;$1'); // ninguna palabra sola en la última línea
+  const num = (i) => String(i + 1).padStart(2, '0');
+  const zoom = $('#zoom');
+  zoom.style.setProperty('--steps', DEC.length);
+  $('.zindex').innerHTML = DEC.map((d, i) => '<button type="button" data-go="' + i + '" aria-label="Decision ' + (i + 1) + ': ' + d.title + '">' + num(i) + '</button>').join('');
+  $('.zsteps').innerHTML = DEC.map((d, i) => '<li class="zstep">'
+    + '<img class="zcrop on-stage" src="' + pic(d.shots[0][0]) + '" alt="' + d.shots[0][2] + '" loading="lazy">'
+    + '<p class="goal">' + num(i) + ' · ' + d.feature + ' · ' + d.goal + '</p><h3>' + d.title + '</h3>'
+    + '<div class="part"><span class="label">Need</span>' + nb(d.need) + '</div>'
+    + '<div class="part"><span class="label">Decision</span>' + nb(d.dec) + '</div>'
+    + '<div class="part result"><span class="label">Result</span>' + nb(d.res) + '</div></li>').join('');
+
+  /* La tarjeta: a la izquierda, las pantallas de la decisión que se lee (cambian con un fundido);
+     las flechas chicas recorren las otras pantallas de la misma decisión. */
+  const img = $('.zshot img'), caption = $('.zcaption'), more = $('.zmore'), count = $('.zcount');
+  const steps = $$('.zstep'), dots = $$('[data-go]');
+  const desktop = matchMedia('(min-width: 900px)');
+  let current = -1, shot = 0;
+
+  function show(i, k) {
+    const [file, cap, alt] = DEC[i].shots[k];
+    shot = k;
+    caption.textContent = cap;
+    more.hidden = DEC[i].shots.length < 2;
+    count.textContent = (k + 1) + ' / ' + DEC[i].shots.length;
+    const src = new URL(pic(file), location.href).href;
+    if (src === img.src) return;
+    img.classList.add('swap');
+    setTimeout(() => {
+      img.addEventListener('load', () => img.classList.remove('swap'), { once: true });
+      img.src = src; img.alt = alt;
+    }, 220);
+  }
+  function setStep(i) {
+    if (i === current) return;
+    current = i;
+    steps.forEach((s, k) => s.classList.toggle('is-active', k === i));
+    dots.forEach((d) => d.classList.toggle('is-active', +d.dataset.go === i));
+    show(i, 0);
+  }
+  $$('[data-shot]').forEach((b) => b.addEventListener('click', () => {
+    const n = DEC[current].shots.length;
+    show(current, (shot + +b.dataset.shot + n) % n);
+  }));
+  function onScroll() {
+    if (!desktop.matches) return;
+    const travel = zoom.offsetHeight - innerHeight;
+    const p = Math.min(0.999, Math.max(0, -zoom.getBoundingClientRect().top / travel));
+    setStep(Math.floor(p * steps.length));
+  }
+  dots.forEach((d) => d.addEventListener('click', () => {
+    const travel = zoom.offsetHeight - innerHeight;
+    const top = zoom.getBoundingClientRect().top + scrollY;
+    scrollTo({ top: top + (+d.dataset.go + 0.5) / steps.length * travel, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  }));
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  setStep(0);
+  onScroll();
+
+  $('.nav .menu').addEventListener('click', (e) => { const n = $('.nav'); n.classList.toggle('open'); e.currentTarget.setAttribute('aria-expanded', n.classList.contains('open')); });
+})();
+</script>
 </body>
 </html>

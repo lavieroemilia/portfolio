@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<title>Tests and practice · Emilia Laviero</title>
+<meta name="description" content="A hidden feature turned into a sales argument and a reason for students to come back.">
+<link rel="canonical" href="https://emilialaviero.com/pages/practice.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tests and practice · Emilia Laviero">
+<meta property="og:description" content="A hidden feature turned into a sales argument and a reason for students to come back.">
+<meta property="og:url" content="https://emilialaviero.com/pages/practice.html">
+<meta property="og:image" content="https://emilialaviero.com/assets/images/project-ucademy-practice.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Bungee&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/case-study.css">
+<style>
+  /* Practice en la plantilla V4: las pantallas enteras, con esquinas redondeadas y una sombra suave, sobre un verde
+     Ucademy claro (#1A9B7C al 20%, el mismo de tools/make-practice-images.py) */
+  :root { --stage: #D1EBE5; }
+  .cover img { object-position: 50% 50%; }
+  .zcrop.on-stage { padding: 0; } /* las imágenes ya traen su margen */
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="sticker" x="-20%" y="-60%" width="140%" height="220%" color-interpolation-filters="sRGB">
+    <feMorphology in="SourceAlpha" operator="dilate" radius="5" result="paperShape"/>
+    <feMorphology in="SourceAlpha" operator="dilate" radius="7.5" result="borderShape"/>
+    <feOffset in="borderShape" dx="3.5" dy="3.5" result="shadowShape"/>
+    <feFlood flood-color="#0A0710" result="ink"/>
+    <feComposite in="ink" in2="shadowShape" operator="in" result="shadow"/>
+    <feComposite in="ink" in2="borderShape" operator="in" result="border"/>
+    <feFlood flood-color="#FFF6EA"/>
+    <feComposite in2="paperShape" operator="in" result="paper"/>
+    <feMerge><feMergeNode in="shadow"/><feMergeNode in="border"/><feMergeNode in="paper"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</svg>
+
+<a class="brand display" href="../" aria-label="Emilia Laviero, home"><span class="sticker">Emilia Laviero</span></a>
+<nav class="nav" aria-label="Main">
+  <button class="menu" type="button" aria-expanded="false">Menu</button>
+  <ul>
+    <li><a class="nav-link is-active" href="../#work">Work</a></li>
+    <li><a class="nav-link" href="../#approach">Approach</a></li>
+    <li><a class="nav-link" href="../about.html">About</a></li>
+    <li><a class="nav-link" href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+  <!-- 1 · La imagen primero, el título debajo -->
+  <figure class="cover"><div class="frame"><img src="../assets/images/practice-hero.jpg" alt="The new Practice page: six ways to practise, statistics and recommended topics"></div></figure>
+  <header class="head grid">
+    <span class="chip">Ucademy</span>
+    <h1 class="display">Practice, from hidden feature to sales&nbsp;argument</h1>
+    <ul class="meta">
+      <li><span>Timeline</span>Q4 2024</li>
+      <li><span>Role</span>Product Designer</li>
+      <li><span>Platform</span>Web and app</li>
+      <li><span>Goal</span>Sales and engagement</li>
+    </ul>
+  </header>
+
+  <!-- 2 · Resumen en tres frases -->
+  <section aria-label="Summary">
+    <div class="tldr">
+      <div><h2>The challenge</h2><p>Practice had little weight in the design of Ucademy: it was hidden and the experience wasn&rsquo;t good, so <mark>few students used it</mark>. We wanted current students to practise more and know how they were doing on each topic, and to add <mark>practice modes for specific courses</mark> to reach a new&nbsp;audience.</p></div>
+      <div><h2>What I did</h2><p>I found why students didn&rsquo;t practise in the usage metrics and error reports. Then I <mark>turned Practice into six ways to practise</mark>, with progress per topic and an explanation for every answer, and set the scope with the developer and the&nbsp;CTO.</p></div>
+      <div><h2>The outcome</h2><p>Practice <mark>became a sales argument</mark>: sales doubled in the quarter after the launch. 50%+ of students tried the new modes and came back, and they created 20% more&nbsp;tests.</p></div>
+    </div>
+  </section>
+
+  <!-- 3 · Decisiones: variante galería (cada decisión tiene sus propias pantallas) -->
+  <section aria-labelledby="dec-title">
+    <h2 class="display sec-title" id="dec-title"><span class="box">Decisions</span></h2>
+    <div class="zoom" id="zoom">
+      <div class="zoom-sticky">
+        <div class="zcard gallery">
+          <div class="zframe">
+            <div class="zshot"><img src="../assets/img/practice-full.jpg" alt=""></div>
+            <div class="zfoot">
+              <p class="zcaption" aria-live="polite"></p>
+              <div class="zmore" hidden>
+                <button type="button" data-shot="-1" aria-label="Previous screen">&larr;</button>
+                <span class="zcount" aria-live="polite">1 / 2</span>
+                <button type="button" data-shot="1" aria-label="Next screen">&rarr;</button>
+              </div>
+            </div>
+          </div>
+          <div class="ztext">
+            <nav class="zindex" aria-label="Decisions"></nav>
+            <ol class="zsteps"></ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3b · Impacto -->
+  <section class="impact grid" aria-labelledby="impact-title">
+    <h2 class="display sec-title" id="impact-title" style="grid-column: 1 / -1"><span class="box">Impact</span></h2>
+    <p class="closing">Sales used Practice as a key argument, and oposiciones students used the case-based exams a lot. Fewer students wrote to Customer Care or reported&nbsp;errors.</p>
+    <div class="nums">
+      <div><b>2&times;</b><p>sales in the quarter after the launch</p></div>
+      <div><b>50%+</b><p>of students tried the new modes and came back</p></div>
+      <div><b>20%</b><p>more tests created by students</p></div>
+      <div><b>6</b><p>ways to practise, up from three types of test</p></div>
+    </div>
+  </section>
+
+  <!-- 4 · Learnings -->
+  <section aria-labelledby="learn-title">
+    <h2 class="display sec-title" id="learn-title"><span class="box">Learnings</span></h2>
+    <div class="learn grid"><span class="n">01</span><h3>Launch to sell, prioritise what students&nbsp;use</h3><p>Flashcards were a sales argument and could bring new students in, so launching them was the right call for the business. But students used them little, so improving them was never a priority. When usage shows a feature isn&rsquo;t used much, I put the effort into the features students do&nbsp;use.</p></div>
+    <div class="learn grid"><span class="n">02</span><h3>Keep the signal when you remove a dead&nbsp;end</h3><p>Locking topics without tests ended the false errors, but we lost track of which topics students wanted. Next time I&rsquo;d let students ask for tests on a&nbsp;topic.</p></div>
+  </section>
+
+  <!-- 5 · Más case studies -->
+  <section class="divided" aria-labelledby="more-title">
+    <div class="more-head"><h2 class="display sec-title" id="more-title" style="margin: 0"><span class="box">More work</span></h2><a href="../#work">All projects ↗</a></div>
+    <div class="cards">
+      <a class="proj" href="student-dashboard.html"><span class="chip">Ucademy</span><div class="frame"><img src="../assets/images/project-ucademy-dashboard.jpg" alt="" loading="lazy"></div><h4>Student dashboard</h4><p class="desc">A redesigned start experience that guides students every day, from their first visit to exam&nbsp;day.</p></a>
+      <a class="proj" href="dino.html"><span class="chip">Dino</span><div class="frame"><img src="../assets/images/project-dino-app.jpg" alt="" loading="lazy"></div><h4>Gamified learning app</h4><p class="desc">An MVP for a new line of business at Ucademy, launched to find product-market&nbsp;fit.</p></a>
+      <a class="proj" href="quota-pms.html"><span class="chip">Quota</span><div class="frame"><img src="../assets/images/project-quota-pms.jpg" alt="" loading="lazy"></div><h4>Property management platform</h4><p class="desc">One platform for rental agencies to manage properties, tenants, contracts and&nbsp;accounting.</p></a>
+    </div>
+  </section>
+</main>
+
+<!-- 6 · Footer: el mismo de la home -->
+<footer class="contact" id="contact" aria-labelledby="contact-title">
+  <p class="label">Thank you for reading!</p>
+  <h2 class="display" id="contact-title">I&rsquo;d love to <span class="box">know you</span> too</h2>
+  <ul class="links">
+    <li><a href="#">lavieroemilia@gmail.com</a></li>
+    <li><a href="https://www.linkedin.com/in/emilialaviero/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+    <li><a href="https://medium.com/@emilaviero" target="_blank" rel="noopener">Medium ↗</a></li>
+    <li><a href="https://drive.google.com/file/d/1TCPcE9fgOwlY57MC0pf6gdawFP0CLo67/view?usp=sharing" target="_blank" rel="noopener">Resume ↗</a></li>
+  </ul>
+  <div class="foot"><span>Emilia Laviero &copy; 2026</span><span>Madrid, Spain</span><a class="to-top" href="#">Back to top ↑</a></div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const pic = (f) => '../assets/img/' + f; // v4-lab/img, pantallas enteras armadas con tools/make-practice-images.py
+
+  /* Decisiones de Practice (V2, validadas el 8 de octubre; sin el Supuesto práctico como decisión aparte, 04 y 05 con los cambios de Ema). Títulos según lo que les
+     aportamos y la función en la etiqueta. shots = las pantallas de la decisión: [archivo, leyenda, alt]. */
+  const DEC = [
+    { goal: 'Sales argument', title: 'Give every student a way to practise', feature: 'Practice modes',
+      shots: [['practice-full.jpg', 'The Practice page: the six modes come first.', 'The Practice page with the six modes, statistics and recent tests'],
+              ['practice-quiz.jpg', 'Quiz: four options and a timer.', 'A quiz question with four options and a timer'],
+              ['practice-flashcards.jpg', 'Flashcards: collections per course, with how much you know.', 'Flashcard collections per course'],
+              ['practice-flashcard-voice.jpg', 'Answer out loud: the flashcard records your voice.', 'A flashcard recording a spoken answer']],
+      need: 'Three old formats, always the same kind of question. Practice felt dated next to competitors.',
+      dec: 'Six modes, each for a different intention. Some match the official exams of each academy; others, like true or false, make practice fun and varied.',
+      res: '<b>50%+</b> of students tried the new modes and came back to them.' },
+    { goal: 'Retention', title: 'Show students where to reinforce', feature: 'Progress',
+      shots: [['practice-full.jpg', 'Statistics and the topics to reinforce, on the Practice page.', 'The Practice page with statistics and recommended topics'],
+              ['practice-progress.jpg', 'My progress: hit rate and progress per course.', 'My progress page with progress per course'],
+              ['practice-progress-topics.jpg', 'Progress per topic, with the mistakes to review.', 'Progress per topic with mistakes to review']],
+      need: 'Students had no information about their progress or the topics they needed to reinforce.',
+      dec: 'Their progress and its evolution over time, and their weakest topics, from their results and self-assessment, one click away from practice.',
+      res: 'Students practised the topics we recommended.' },
+    { goal: 'Weekly engagement', title: 'Invite students to try again', feature: 'Recent tests',
+      shots: [['practice-full.jpg', 'Recent tests, each with its result and Repeat, at the end of the Practice page.', 'The Practice page with recent tests at the end'],
+              ['practice-results.jpg', 'A good result: repeat only the wrong answers.', 'Results of a test with a good score'],
+              ['practice-results-low.jpg', 'A low result: practise the mistakes or review the topic.', 'Results of a test with a low score']],
+      need: 'Nothing invited students to try a test again.',
+      dec: 'Their last tests with the result and a Repeat button, and results that offer to practise the mistakes.',
+      res: 'Students repeated a test when it went badly.' },
+    { goal: 'Weekly engagement', title: 'Make creating a test easy', feature: 'Test setup',
+      shots: [['practice-setup-course.jpg', 'Step 1: choose the course.', 'Test setup, step 1: choose the course'],
+              ['practice-setup-questions.jpg', 'Step 2: new, wrong or blank questions.', 'Test setup, step 2: type of questions'],
+              ['practice-setup.jpg', 'Step 3: each topic with its number of questions; a topic without tests is locked, with a message.', 'Test setup, step 3: topics with their number of questions, one locked']],
+      need: 'Creating a test was one page of dropdowns. Students scrolled a lot to find their course, and if it had no tests, the page just showed up empty and looked like an error.',
+      dec: 'A setup in three short steps, with clear guidance at each one. Small tags show how many questions each topic has and its status, and a topic without tests is locked, with a short message that says so.',
+      res: 'Fewer queries to Customer Care and fewer error reports.' },
+    { goal: 'Retention', title: 'Help students learn from every mistake', feature: 'Explanations',
+      shots: [['practice-question.jpg', 'A wrong answer explains why each option is right or wrong.', 'A wrong answer with the explanation of each option']],
+      need: 'Wrong answers came with no explanation, so students didn’t learn from their mistakes.',
+      dec: 'We added AI to the test creation flow I designed for teachers: they generate an explanation for every answer, so students get fuller explanations without more work for teachers.',
+      res: 'Fewer students reported an answer as wrong just to ask why it was right.' }
+  ];
+  const nb = (s) => s.replace(/ (\S+)$/, '&nbsp;$1'); // ninguna palabra sola en la última línea
+  const num = (i) => String(i + 1).padStart(2, '0');
+  const zoom = $('#zoom');
+  zoom.style.setProperty('--steps', DEC.length);
+  $('.zindex').innerHTML = DEC.map((d, i) => '<button type="button" data-go="' + i + '" aria-label="Decision ' + (i + 1) + ': ' + d.title + '">' + num(i) + '</button>').join('');
+  $('.zsteps').innerHTML = DEC.map((d, i) => '<li class="zstep">'
+    + '<img class="zcrop on-stage" src="' + pic(d.shots[0][0]) + '" alt="' + d.shots[0][2] + '" loading="lazy">'
+    + '<p class="goal">' + num(i) + ' · ' + d.feature + ' · ' + d.goal + '</p><h3>' + d.title + '</h3>'
+    + '<div class="part"><span class="label">Need</span>' + nb(d.need) + '</div>'
+    + '<div class="part"><span class="label">Decision</span>' + nb(d.dec) + '</div>'
+    + '<div class="part result"><span class="label">Result</span>' + nb(d.res) + '</div></li>').join('');
+
+  /* La tarjeta: a la izquierda, las pantallas de la decisión que se lee (cambian con un fundido);
+     las flechas chicas recorren las otras pantallas de la misma decisión. */
+  const img = $('.zshot img'), caption = $('.zcaption'), more = $('.zmore'), count = $('.zcount');
+  const steps = $$('.zstep'), dots = $$('[data-go]');
+  const desktop = matchMedia('(min-width: 900px)');
+  let current = -1, shot = 0;
+
+  function show(i, k) {
+    const [file, cap, alt] = DEC[i].shots[k];
+    shot = k;
+    caption.textContent = cap;
+    more.hidden = DEC[i].shots.length < 2;
+    count.textContent = (k + 1) + ' / ' + DEC[i].shots.length;
+    const src = new URL(pic(file), location.href).href;
+    if (src === img.src) return;
+    img.classList.add('swap');
+    setTimeout(() => {
+      img.addEventListener('load', () => img.classList.remove('swap'), { once: true });
+      img.src = src; img.alt = alt;
+    }, 220);
+  }
+  function setStep(i) {
+    if (i === current) return;
+    current = i;
+    steps.forEach((s, k) => s.classList.toggle('is-active', k === i));
+    dots.forEach((d) => d.classList.toggle('is-active', +d.dataset.go === i));
+    show(i, 0);
+  }
+  $$('[data-shot]').forEach((b) => b.addEventListener('click', () => {
+    const n = DEC[current].shots.length;
+    show(current, (shot + +b.dataset.shot + n) % n);
+  }));
+  function onScroll() {
+    if (!desktop.matches) return;
+    const travel = zoom.offsetHeight - innerHeight;
+    const p = Math.min(0.999, Math.max(0, -zoom.getBoundingClientRect().top / travel));
+    setStep(Math.floor(p * steps.length));
+  }
+  dots.forEach((d) => d.addEventListener('click', () => {
+    const travel = zoom.offsetHeight - innerHeight;
+    const top = zoom.getBoundingClientRect().top + scrollY;
+    scrollTo({ top: top + (+d.dataset.go + 0.5) / steps.length * travel, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  }));
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  setStep(0);
+  onScroll();
+
+  $('.nav .menu').addEventListener('click', (e) => { const n = $('.nav'); n.classList.toggle('open'); e.currentTarget.setAttribute('aria-expanded', n.classList.contains('open')); });
+})();
+</script>
+</body>
+</html>

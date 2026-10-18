@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<title>About · Emilia Laviero</title>
+<meta name="description" content="From writing stories to shaping products: how Emilia Laviero works, what she believes in and what she does outside work.">
+<link rel="canonical" href="https://emilialaviero.com/about.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About · Emilia Laviero">
+<meta property="og:description" content="From writing stories to shaping products: how Emilia Laviero works, what she believes in and what she does outside work.">
+<meta property="og:url" content="https://emilialaviero.com/about.html">
+<meta property="og:image" content="https://emilialaviero.com/assets/images/personal-photo-1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Bungee&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/case-study.css">
+<style>
+  /* Ronda 26: dos colores para resaltar (azafrán y periwinkle) y Mantras antes de Outside work.
+     Página About (ronda 25: misma grilla en las tres secciones, foto en 2-6 y texto en 7-12; un solo color para resaltar).
+     Ronda 24: Estructura de párrafos de Arodav: de dónde vengo, qué hago hoy y fuera del trabajo;
+     después, los mantras. La experiencia queda en el CV (ronda 36). Mismo lenguaje que los case studies. */
+  section { margin-bottom: 0; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* Bloques de historia: una foto en marco y, al lado, una frase en Bungee y los párrafos */
+  .story { align-items: center; }
+  .story .photo { position: relative; }
+  .story .photo .frame { border-radius: 24px; }
+  .story .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .story .txt { display: grid; gap: 3.2vh; justify-items: start; }
+  .story .say { font-family: var(--display); font-size: clamp(26px, 2.7vw, 50px); line-height: 1.05; text-wrap: balance; margin-bottom: 1.5vh; }
+  .story .txt p:not(.say) { font-size: clamp(16px, 1.1vw, 19px); line-height: 1.5; font-weight: 500; }
+  /* Ronda 38: una sola grilla en toda la página. Columna izquierda 2-6, derecha 7-12 (simétrica); el texto llena su columna */
+  .story .txt a { font-weight: 650; text-underline-offset: .18em; }
+
+  /* 1 · De dónde vengo y qué hago hoy */
+  .intro { min-height: calc(100vh - var(--nav-h) - 3vh); padding: 4vh 0 10vh; }
+  .intro .photo { grid-column: 2 / 6; }
+  .intro .photo .frame { aspect-ratio: 4 / 5; box-shadow: 10px 10px 0 var(--ink); transform: rotate(-1.5deg); }
+  .intro .photo img { object-position: 40% 50%; }
+  .intro .txt { grid-column: 7 / 12; }
+  mark { color: var(--ink); padding: .02em .22em; border-radius: .2em; font-weight: 650; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  mark { background: var(--l4); }
+  mark.alt { background: var(--l0); }
+  .pill-btn { margin-top: 1.5vh; display: inline-flex; align-items: center; gap: 10px; font-size: clamp(15px, 1.15vw, 18px); font-weight: 650; padding: 12px 20px; border-radius: 99px; background: var(--paper); border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); transition: transform .3s var(--spring), box-shadow .3s var(--spring); }
+  .pill-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+  .pill-btn svg { width: 16px; height: 16px; }
+
+
+  /* 2 · Fuera del trabajo: el texto a la izquierda, la foto del ensayo a la derecha */
+  .outside { padding: 16vh 0 22vh; }
+  .outside .sec-title { grid-column: 7 / 12; grid-row: 1; align-self: end; margin-bottom: 4vh; }
+  .outside .txt { grid-column: 7 / 12; grid-row: 2; align-self: start; }
+  .outside .photo { grid-column: 2 / 6; grid-row: 1 / 3; }
+  .outside .photo .frame { aspect-ratio: 4 / 5; box-shadow: 10px 10px 0 var(--ink); transform: rotate(1.5deg); }
+  .outside .photo img { object-position: 30% 50%; }
+
+  /* 3 · Mantras: el mazo de la home, sobre el papel (sin fondo de color) */
+  .mantras { position: relative; height: 320vh; }
+  .mantras .pin { position: sticky; top: 0; height: 100vh; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gutter); padding: calc(var(--nav-h) + 6vh) 0 8vh; }
+  .m-side { grid-column: 2 / 6; display: flex; flex-direction: column; justify-content: center; gap: 6vh; }
+  .m-side h2 { font-size: clamp(28px, 2.8vw, 50px); } /* ronda 36: mismo tamaño que los otros títulos */
+  .m-desc { font-size: clamp(16px, 1.1vw, 19px); line-height: 1.5; font-weight: 500; } /* ronda 27: igual que el resto del texto */
+  .deck-wrap { grid-column: 7 / 12; display: grid; grid-template-rows: 1fr auto; justify-items: center; gap: 2vh; }
+  .deck { position: relative; width: 100%; height: 100%; min-height: 50vh; }
+  .card { position: absolute; left: 50%; top: 50%; width: 100%; aspect-ratio: 5 / 4; border-radius: 24px; padding: clamp(22px, 2.4vw, 38px); display: flex; flex-direction: column; justify-content: space-between; border: var(--line-w) solid var(--ink); box-shadow: 8px 8px 0 var(--ink); will-change: transform; overflow: hidden; }
+  .card h3 { font-size: clamp(22px, 2.1vw, 38px); line-height: 1; position: relative; max-width: 12em; }
+  .card p { font-size: clamp(15px, 1.12vw, 19px); line-height: 1.5; font-weight: 500; position: relative; max-width: 44ch; }
+  .card svg { position: absolute; right: -10%; top: -26%; width: 42%; height: auto; }
+  .scroll-hint { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; display: inline-flex; gap: 8px; align-items: center; }
+  .scroll-hint i { font-style: normal; display: inline-block; animation: bob 1.4s ease-in-out infinite; }
+  @keyframes bob { 50% { transform: translateY(4px); } }
+
+  /* 4 · Tool stack: título y texto a la izquierda (2-6), las herramientas en grupos a la derecha (7-12) */
+  .stack { padding: 16vh 0 0; align-items: start; }
+  .stack .sec-title { grid-column: 2 / 6; grid-row: 1; align-self: end; margin-bottom: 4vh; }
+  .stack .lead { grid-column: 2 / 6; grid-row: 2; align-self: start; }
+  .stack .tools { grid-column: 7 / 12; grid-row: 1 / 3; align-self: center; margin-top: 0; }
+  .tools { list-style: none; display: grid; grid-template-columns: repeat(4, 72px); justify-content: center; gap: 24px 36px; /* centrado en la columna, como la carta de mantras */ margin-top: 14px; } /* 4 por fila, 3 renglones: nunca un logo solo */
+  .tool { display: grid; justify-items: center; gap: 10px; white-space: nowrap; font-size: 14px; font-weight: 600; text-align: center; }
+  .tool .logo { display: grid; place-items: center; width: 100%; max-width: 72px; aspect-ratio: 1; border-radius: 18px; background: #fff; border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); transition: transform .3s var(--spring), box-shadow .3s var(--spring); }
+  .tool .logo img { width: 32px; height: 32px; }
+  .tool:hover .logo { transform: translate(-2px, -2px) rotate(-4deg); box-shadow: 6px 6px 0 var(--ink); }
+
+
+  /* Footer: el de la home, con el email para copiar */
+  .links .email { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); font-size: clamp(15px, 1.2vw, 19px); font-weight: 650; padding: 12px 20px; border-radius: 99px; background: var(--paper); border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+  .copy { display: inline-grid; width: 22px; height: 22px; }
+  .copy svg { grid-area: 1 / 1; width: 100%; height: 100%; transition: opacity .2s, transform .3s var(--spring); }
+  .copy .i-check { opacity: 0; transform: scale(.4); }
+  .copy.done .i-copy { opacity: 0; transform: scale(.4); }
+  .copy.done .i-check { opacity: 1; transform: scale(1); }
+
+  @media (max-width: 899px) {
+    .intro { min-height: 0; padding: 4vh 0 12vh; }
+    .story .photo { margin: 0 8% 7vh 4%; }
+    .outside .photo { grid-row: 1 !important; }
+    .outside .sec-title { grid-row: 2 !important; }
+    .outside .txt { grid-row: 3 !important; }
+    .mantras .pin > * { grid-column: 1 / -1; }
+    .outside { padding: 2vh 0 12vh; }
+    .stack { padding: 4vh 0 10vh; }
+    .stack .sec-title, .stack .lead, .stack .tools { grid-row: auto !important; }
+    .stack .tools { margin-top: 5vh; }
+    .tools { grid-template-columns: repeat(4, 64px); justify-content: space-between; gap: 18px 12px; }
+    .tool { font-size: 12px; }
+    .mantras { height: auto; }
+    .mantras .pin { position: relative; height: auto; display: block; padding: 6vh 0 14vh; }
+    .m-side { margin-bottom: 6vh; }
+    .deck-wrap { display: block; }
+    .deck { height: auto; min-height: 0; display: grid; gap: 4vh; }
+    .card { position: relative; left: auto; top: auto; width: 100%; aspect-ratio: auto; gap: 4vh; transform: none !important; opacity: 1 !important; }
+    .scroll-hint { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .tool .logo, .pill-btn, .copy svg { transition: none; } .scroll-hint i { animation: none; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="sticker" x="-20%" y="-60%" width="140%" height="220%" color-interpolation-filters="sRGB">
+    <feMorphology in="SourceAlpha" operator="dilate" radius="5" result="paperShape"/>
+    <feMorphology in="SourceAlpha" operator="dilate" radius="7.5" result="borderShape"/>
+    <feOffset in="borderShape" dx="3.5" dy="3.5" result="shadowShape"/>
+    <feFlood flood-color="#0A0710" result="ink"/>
+    <feComposite in="ink" in2="shadowShape" operator="in" result="shadow"/>
+    <feComposite in="ink" in2="borderShape" operator="in" result="border"/>
+    <feFlood flood-color="#FFF6EA"/>
+    <feComposite in2="paperShape" operator="in" result="paper"/>
+    <feMerge><feMergeNode in="shadow"/><feMergeNode in="border"/><feMergeNode in="paper"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</svg>
+
+<a class="brand display" href="./" aria-label="Emilia Laviero, home"><span class="sticker">Emilia Laviero</span></a>
+<nav class="nav" aria-label="Main">
+  <button class="menu" type="button" aria-expanded="false">Menu</button>
+  <ul>
+    <li><a class="nav-link" href="#work">Work</a></li>
+    <li><a class="nav-link" href="#approach">Approach</a></li>
+    <li><a class="nav-link is-active" href="about.html" aria-current="page">About</a></li>
+    <li><a class="nav-link" href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+  <!-- 1 · De dónde vengo y qué hago hoy -->
+  <section class="story intro grid" aria-label="Where I come from">
+    <figure class="photo">
+      <div class="frame"><img src="assets/images/personal-photo-1.jpg" alt="Emilia smiling on the grass, holding a Truman Capote novel"></div>
+    </figure>
+    <div class="txt">
+      <h1 class="say">From writing stories to shaping&nbsp;products</h1>
+      <p>My story starts with words. I began my career coordinating creative projects and working in <mark>copywriting</mark>, writing for different brands and creating educational&nbsp;content.</p>
+      <p>Little by little, the words led me to the whole experience. First came UX writing, then <mark>product design</mark>. Over the past five years I&rsquo;ve designed <mark class="alt">B2B and B2C</mark> products in startups: first in PropTech, with tools for property management, and then in <mark class="alt">EdTech</mark>, with learning experiences and educational&nbsp;apps.</p>
+      <p>Today I work on <mark>strategy</mark>, asking the big questions that set a product&rsquo;s direction, and I <mark>build the solutions</mark> that answer&nbsp;them.</p>
+      <a class="pill-btn" href="https://drive.google.com/file/d/1TCPcE9fgOwlY57MC0pf6gdawFP0CLo67/view?usp=sharing" target="_blank" rel="noopener">View Resume <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </section>
+
+
+  <!-- 2 · Mantras (pasan de la home al About), sin fondo de color -->
+  <section class="mantras" id="mantras" aria-labelledby="mantras-h">
+    <div class="pin">
+      <div class="m-side">
+        <h2 class="display" id="mantras-h"><span class="box">Mantras</span></h2>
+        <p class="m-desc">What I believe in, and try to put into practice every&nbsp;day.</p>
+      </div>
+      <div class="deck-wrap"><div class="deck" id="deck"></div><span class="scroll-hint" aria-hidden="true">Scroll to shift <i>↓</i></span></div>
+    </div>
+  </section>
+
+  <!-- 4 · Tool stack (antes de Outside work). Pendiente de validar por Ema: el texto y la lista de herramientas -->
+  <section class="story stack grid" id="tool-stack" aria-labelledby="stack-h">
+    <h2 class="display sec-title" id="stack-h"><span class="box">Tool stack</span></h2>
+    <div class="txt lead">
+      <p>AI now takes care of much of the surface-level work in design. What keeps its value is thinking in systems and turning complexity into&nbsp;clarity.</p>
+      <p>I&rsquo;m always exploring and learning new tools. These are the ones I use most right&nbsp;now.</p>
+    </div>
+    <ul class="tools">
+      <li class="tool"><span class="logo"><img src="assets/logos/figma.svg" alt="" width="32" height="32"></span>Figma</li>
+      <li class="tool"><span class="logo"><img src="assets/logos/adobe.svg" alt="" width="32" height="32"></span>Adobe</li>
+      <li class="tool"><span class="logo"><img src="assets/logos/miro.svg" alt="" width="32" height="32"></span>Miro</li>
+      <li class="tool"><span class="logo"><img src="assets/logos/storybook.svg" alt="" width="32" height="32"></span>Storybook</li>
+      <li class="tool"><span class="logo"><img src="assets/logos/claude.svg" alt="" width="32" height="32"></span>Claude</li>
+      <li class="tool"><span class="logo"><img src="assets/logos/cursor.svg" alt="" width="32" height="32"></span>Cursor</li>
+      <li class="tool"><span class="logo"><img src="assets/logos/lovable.svg" alt="" width="32" height="32"></span>Lovable</li>
+      <li class="tool"><span class="logo"><img src="assets/logos/framer.svg" alt="" width="32" height="32"></span>Framer</li>
+      <li class="tool"><span class="logo"><img src="assets/logos/github.svg" alt="" width="32" height="32"></span>GitHub</li>
+      <li class="tool"><span class="logo"><img src="assets/logos/mixpanel.svg" alt="" width="32" height="32"></span>Mixpanel</li>
+      <li class="tool"><span class="logo"><img src="assets/logos/posthog.svg" alt="" width="32" height="32"></span>PostHog</li>
+      <li class="tool"><span class="logo"><img src="assets/logos/antigravity.svg" alt="" width="32" height="32"></span>Antigravity</li>
+    </ul>
+  </section>
+
+  <!-- 3 · Fuera del trabajo (texto de V3; los proyectos, como links dentro del texto) -->
+  <section class="story outside grid" id="outside-work" aria-labelledby="outside-h">
+    <h2 class="display sec-title" id="outside-h"><span class="box">Outside work</span></h2>
+    <div class="txt">
+      <p class="say">You&rsquo;ll usually find me creating&nbsp;stories</p>
+      <p>Theatre, cinema and literature have always been a big part of my life. I act, write scripts and work behind the scenes in&nbsp;theatre.</p>
+      <!-- Pendiente de validar por Ema: la frase de los tres proyectos (datos de V2) -->
+      <p>I&rsquo;m the assistant director of the play <a href="https://ladistorsion.vercel.app/" target="_blank" rel="noopener">La Distorsi&oacute;n&nbsp;↗</a>, and I wrote the short film <a href="https://www.youtube.com/watch?v=5o5coP0kEQQ" target="_blank" rel="noopener">Agobiada&nbsp;↗</a> and the fiction series <a href="https://www.youtube.com/watch?v=vDRZuveIakg" target="_blank" rel="noopener">Riff&nbsp;↗</a>.</p>
+      <p>I&rsquo;m also part of <a href="https://www.instagram.com/elchispazo.cc/" target="_blank" rel="noopener">El Chispazo&nbsp;↗</a>, a cultural project I organise with friends to bring people together through art, performance and creative&nbsp;experiences.</p>
+    </div>
+    <figure class="photo"><div class="frame"><img src="assets/images/personal-photo-2.jpg" alt="Emilia acting in a theatre rehearsal" loading="lazy"></div></figure>
+  </section>
+
+</main>
+
+<!-- Footer: el mismo de la home -->
+<footer class="contact" id="contact" aria-labelledby="contact-title">
+  <p class="label">Thank you for reading!</p>
+  <h2 class="display" id="contact-title">I&rsquo;d love to <span class="box">know you</span> too</h2>
+  <ul class="links">
+    <li><span class="email">lavieroemilia@gmail.com <button type="button" class="copy" data-email="lavieroemilia@gmail.com" aria-label="Copy email"><svg class="i-copy" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5L10 17.5L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></span></li>
+    <li><a href="https://www.linkedin.com/in/emilialaviero/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+    <li><a href="https://medium.com/@emilaviero" target="_blank" rel="noopener">Medium ↗</a></li>
+    <li><a href="https://drive.google.com/file/d/1TCPcE9fgOwlY57MC0pf6gdawFP0CLo67/view?usp=sharing" target="_blank" rel="noopener">Resume ↗</a></li>
+  </ul>
+  <div class="foot"><span>Emilia Laviero &copy; <span id="year">2026</span></span><span>Madrid, Spain</span><a class="to-top" href="#">Back to top ↑</a></div>
+</footer>
+
+<script src="assets/js/content.js"></script>
+<script>
+(function () {
+  'use strict';
+  const $ = (s, r = document) => r.querySelector(s);
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const desktop = matchMedia('(min-width: 900px)');
+  const nb = (s) => s.replace(/ (\S+)$/, '&nbsp;$1'); // ninguna palabra sola en la última línea
+
+  /* ---------- Mantras: el mazo de la home; la carta de adelante sale hacia la derecha ---------- */
+  const deck = $('#deck'), sec = $('.mantras');
+  const N = V4.MANTRAS.length;
+  const TILT = [-3, 2, -2, 3];
+  const CARD = ['var(--l0)', 'var(--l4)', 'var(--l1)', 'var(--l3)'];
+  const motif = '<svg viewBox="0 0 100 100" aria-hidden="true">' + [0, 1, 2, 3, 4].map((k) => '<circle cx="100" cy="0" r="' + (36 + k * 9) + '" stroke="var(--ink)" stroke-width="10.6" fill="none"/><circle cx="100" cy="0" r="' + (36 + k * 9) + '" stroke="var(--paper)" stroke-width="7.4" fill="none"/>').join('') + '</svg>';
+  const cards = V4.MANTRAS.map((m, i) => {
+    const el = document.createElement('article');
+    el.className = 'card';
+    el.style.background = CARD[i];
+    el.innerHTML = motif + '<h3 class="display">' + nb(m.title.replace(/\.$/, '')) + '</h3><p>' + nb(m.text) + '</p>';
+    deck.appendChild(el);
+    return el;
+  });
+  let k = 0, kTarget = 0;
+  function drawDeck() {
+    cards.forEach((el, i) => {
+      const pos = (((i - k) % N) + N) % N;
+      let depth = pos, x = 0, rot, z, op, lift = 0;
+      if (pos > N - 1) {
+        const e = N - pos;
+        depth = e * (N - 1);
+        x = Math.sin(e * Math.PI) * 52;
+        lift = Math.sin(e * Math.PI) * 10;
+        rot = 12 * Math.sin(e * Math.PI) + TILT[i] * e;
+        z = e < 0.5 ? 100 : 1;
+        op = 1;
+      } else {
+        rot = -1 + (TILT[i] + 1) * Math.min(depth, 1);
+        z = 50 - Math.round(depth * 4);
+        op = clamp(4 - depth, 0, 1);
+      }
+      const d = Math.min(depth, 3.5);
+      el.style.zIndex = z; el.style.opacity = op;
+      el.style.transform = 'translate(calc(-50% + ' + x + '%), calc(-50% - ' + (d * 14 + lift) + 'px)) scale(' + (1 - d * 0.045) + ') rotate(' + rot + 'deg)';
+    });
+  }
+  function onScroll() {
+    if (!desktop.matches) return;
+    const r = sec.getBoundingClientRect();
+    kTarget = clamp(-r.top / (sec.offsetHeight - innerHeight), 0, 1) * (N - 1);
+  }
+  (function tick() {
+    if (desktop.matches && Math.abs(kTarget - k) > 0.001) { k += (kTarget - k) * (reduced ? 1 : 0.14); drawDeck(); }
+    requestAnimationFrame(tick);
+  })();
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  onScroll(); drawDeck();
+
+  /* ---------- Footer: copiar el email (check durante 3 s), año y menú ---------- */
+  $('#year').textContent = new Date().getFullYear();
+  $('.copy').addEventListener('click', (e) => {
+    const b = e.currentTarget;
+    (navigator.clipboard ? navigator.clipboard.writeText(b.dataset.email) : Promise.reject()).catch(() => {});
+    b.classList.add('done'); b.setAttribute('aria-label', 'Copied');
+    setTimeout(() => { b.classList.remove('done'); b.setAttribute('aria-label', 'Copy email'); }, 3000);
+  });
+  $('.nav .menu').addEventListener('click', (e) => { const n = $('.nav'); n.classList.toggle('open'); e.currentTarget.setAttribute('aria-expanded', n.classList.contains('open')); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- V4: the ribbon, five lanes with staggered rounded tips (tools/make-v4-favicon.py) -->
+  <clipPath id="c"><rect width="64" height="64" rx="14"/></clipPath>
+  <rect width="64" height="64" rx="14" fill="#16101F"/>
+  <g clip-path="url(#c)"><rect x="-20" y="7.0" width="77" height="10.0" rx="5.0" fill="#9A8CFF"/><rect x="-20" y="17.0" width="69" height="10.0" rx="5.0" fill="#E07BFF"/><rect x="-20" y="27.0" width="61" height="10.0" rx="5.0" fill="#FF6B95"/><rect x="-20" y="37.0" width="53" height="10.0" rx="5.0" fill="#FF7A3D"/><rect x="-20" y="47.0" width="45" height="10.0" rx="5.0" fill="#FFB61E"/></g>
+</svg>
