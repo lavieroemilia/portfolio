@@ -358,6 +358,7 @@
     .box:hover, .pill:hover, .scroll-hint i, .sq .ear, .sq .mouth, .sq .tongue, .sq .hand { animation: none; }
   }
 </style>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="fcb351f4-7b90-480b-a4d0-76a9ef057f95"></script>
 </head>
 <body class="t-bungee">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -430,7 +431,7 @@
             <p class="lead">For the past five years, I&rsquo;ve worked on B2B <mark class="m1">SaaS</mark> and B2C products in startups. I help teams find <mark class="m0">clarity</mark>: identifying the real problems and prioritising the features that matter&nbsp;most.</p>
             <p class="lead">In <mark class="m1">EdTech</mark>, I found an industry I genuinely love: designing educational <mark class="m0">apps</mark>, building <mark class="m0">design systems</mark> and searching for <mark class="m1">product-market&nbsp;fit</mark>.</p>
           </div>
-          <a class="pill more" href="about.html" data-cursor="About me">Read more ↗</a>
+          <a class="pill more" data-umami-event="read-more-about" href="about.html" data-cursor="About me">Read more ↗</a>
         </div>
       </div>
     </div>
@@ -451,10 +452,10 @@
       <p class="label kick">Thank you for reading!</p>
       <h2 class="display reveal" id="contact-title">I&rsquo;d love to <span class="box">know you</span> too</h2>
       <ul class="links">
-        <li><span class="pill email">lavieroemilia@gmail.com <button type="button" class="copy" data-email="lavieroemilia@gmail.com" aria-label="Copy email" data-cursor="Copy"><svg class="i-copy" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5L10 17.5L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></span></li>
-        <li><a class="pill" href="https://www.linkedin.com/in/emilialaviero/" target="_blank" rel="noopener" data-cursor="Open LinkedIn">LinkedIn ↗</a></li>
-        <li><a class="pill" href="https://medium.com/@emilaviero" target="_blank" rel="noopener" data-cursor="Open Medium">Medium ↗</a></li>
-        <li><a class="pill" href="https://drive.google.com/file/d/1TCPcE9fgOwlY57MC0pf6gdawFP0CLo67/view?usp=sharing" target="_blank" rel="noopener" data-cursor="Open resume">Resume ↗</a></li>
+        <li><span class="pill email">lavieroemilia@gmail.com <button type="button" data-umami-event="copy-email" class="copy" data-email="lavieroemilia@gmail.com" aria-label="Copy email" data-cursor="Copy"><svg class="i-copy" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5L10 17.5L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></span></li>
+        <li><a data-umami-event="open-linkedin" class="pill" href="https://www.linkedin.com/in/emilialaviero/" target="_blank" rel="noopener" data-cursor="Open LinkedIn">LinkedIn ↗</a></li>
+        <li><a data-umami-event="open-medium" class="pill" href="https://medium.com/@emilaviero" target="_blank" rel="noopener" data-cursor="Open Medium">Medium ↗</a></li>
+        <li><a data-umami-event="open-resume" class="pill" href="https://drive.google.com/file/d/1TCPcE9fgOwlY57MC0pf6gdawFP0CLo67/view?usp=sharing" target="_blank" rel="noopener" data-cursor="Open resume">Resume ↗</a></li>
       </ul>
       <div class="foot-bottom"><span>Emilia Laviero &copy; <span id="year"></span></span><span>Madrid, Spain</span><a class="to-top" href="#top" data-jump="0">Back to top ↑</a></div>
     </div>
@@ -778,7 +779,7 @@
   const ROWS = [['two', ['Student Dashboard', 'Dino']], ['two', ['Practice', 'Quota PMS']], ['three', ['Tenant Scoring', 'Dino Design System', 'WOW']]];
   const company = (n) => V4.PROJECTS.find((p) => p.name === n).company;
   $('#work-grid').innerHTML = ROWS.map(([k, names]) => '<div class="work-row ' + k + '">' + names.map((n) =>
-    '<a class="proj" href="' + ({ 'Student Dashboard': 'pages/student-dashboard.html', 'Dino': 'pages/dino.html', 'Practice': 'pages/practice.html', 'Quota PMS': 'pages/quota-pms.html' }[n] || '#work') + '" data-cursor="' + (LINE[n][1] ? 'Coming soon' : 'Open case study') + '"><span class="chip">' + company(n) + '</span><div class="frame"><img src="assets/images/' + IMG[n] + '.jpg" alt="" loading="lazy"></div>'
+    '<a class="proj" data-umami-event="open-project" data-umami-event-project="' + n + '" href="' + ({ 'Student Dashboard': 'pages/student-dashboard.html', 'Dino': 'pages/dino.html', 'Practice': 'pages/practice.html', 'Quota PMS': 'pages/quota-pms.html' }[n] || '#work') + '" data-cursor="' + (LINE[n][1] ? 'Coming soon' : 'Open case study') + '"><span class="chip">' + company(n) + '</span><div class="frame"><img src="assets/images/' + IMG[n] + '.jpg" alt="" loading="lazy"></div>'
     + '<h3>' + LINE[n][0] + '</h3>' + (DESC[n] ? '<p class="desc">' + DESC[n] + '</p>' : '') + (LINE[n][1] ? '<span class="soon">Coming soon</span>' : '') + '</a>').join('') + '</div>').join('');
   $$('.proj').forEach((p) => {
     glue(p.querySelector('h3')); if (p.querySelector('.desc')) glue(p.querySelector('.desc'));
