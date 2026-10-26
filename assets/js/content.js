@@ -37,8 +37,8 @@
   ];
 
   const PROJECTS = [
-    { company: 'Ucademy', name: 'Student Dashboard' }, { company: 'Ucademy', name: 'Practice' },
-    { company: 'Dino', name: 'Dino' }, { company: 'Dino', name: 'Dino Design System' },
+    { company: 'Dino', name: 'Dino' }, { company: 'Ucademy', name: 'Student Dashboard' },
+    { company: 'Ucademy', name: 'Practice' }, { company: 'Dino', name: 'Dino Design System' },
     { company: 'Quota', name: 'Quota PMS' }, { company: 'Quota', name: 'Tenant Scoring' },
     { company: 'WOW', name: 'WOW' }
   ];

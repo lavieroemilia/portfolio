@@ -6,11 +6,11 @@
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <title>Gamified learning app · Emilia Laviero</title>
-<meta name="description" content="An MVP for a new line of business at Ucademy, launched to find product-market fit.">
+<meta name="description" content="A gamified study app for secondary school students, launched as an MVP to find product-market fit.">
 <link rel="canonical" href="https://emilialaviero.com/pages/dino.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Gamified learning app · Emilia Laviero">
-<meta property="og:description" content="An MVP for a new line of business at Ucademy, launched to find product-market fit.">
+<meta property="og:description" content="A gamified study app for secondary school students, launched as an MVP to find product-market fit.">
 <meta property="og:url" content="https://emilialaviero.com/pages/dino.html">
 <meta property="og:site_name" content="Emilia Laviero">
 <meta property="og:image" content="https://emilialaviero.com/assets/images/project-dino-app.jpg">
@@ -23,6 +23,69 @@
   /* Dino en la plantilla V4: el color del producto detrás de los teléfonos */
   :root { --stage: #D3F4C5; }
   .cover img { object-position: 50% 50%; }
+
+  /* Contenido de V5 (octubre de 2026): presentación debajo del título, dos párrafos en el resumen */
+  .head .desc { grid-column: 1 / 9; grid-row: 3; margin-top: 3vh; }
+  .head .meta { grid-row: 2 / 4; }
+  .tldr p + p { margin-top: 12px; }
+  .inline-link { font: inherit; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: .18em; cursor: pointer; }
+  .inline-link:hover { text-decoration-color: var(--l2); }
+
+  /* Decisiones en filas (sin JS): número y título fijos debajo de la nav mientras pasan el texto,
+     el resultado y las pantallas. Clases propias de Dino; .zoom sigue igual para los otros case studies. */
+  .dsteps { list-style: none; border-bottom: 1.5px solid var(--ink); }
+  .dstep { padding: 6vh 0; border-top: 1.5px solid var(--ink); }
+  .dstep-head { grid-column: 1 / 5; align-self: start; position: sticky; top: calc(var(--nav-h) + 4vh); }
+  .dstep-head .n { display: block; font-family: var(--display); font-size: 15px; margin-bottom: 14px; }
+  .dstep-head h3 { font-family: var(--display); font-weight: 400; font-size: clamp(22px, 2vw, 36px); line-height: 1.08; text-wrap: balance; }
+  .dstep-body { grid-column: 6 / 13; display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .dstep-body > p { max-width: 64ch; font-size: clamp(16px, 1.15vw, 19px); line-height: 1.55; }
+  /* El resultado: texto del mismo tamaño que los párrafos, en negrita, sin recuadro (pedido de Ema) */
+  .dstep-result { margin-top: .5vh; }
+  .dstep-result .label { display: inline-block; margin-bottom: 8px; padding: 3px 9px; font-size: 12px; background: var(--l4); border-radius: 99px; }
+  .dstep-result p { max-width: 64ch; font-size: clamp(16px, 1.15vw, 19px); line-height: 1.55; font-weight: 650; }
+  /* Las capturas sobre papel, con borde para que no se mezclen con el fondo de la página */
+  .shots { margin: 1.5vh 0 0; display: flex; justify-content: center; align-items: center; gap: clamp(10px, 1.2vw, 18px); padding: clamp(24px, 4vh, 48px) clamp(16px, 2vw, 32px); background: var(--paper); border: 1.5px solid var(--ink); border-radius: 24px; }
+  .shots img { flex: 1 1 0; min-width: 0; max-width: 200px; height: auto; filter: drop-shadow(0 1px 2px rgba(0,0,0,.08)) drop-shadow(0 4px 10px rgba(0,0,0,.06)); }
+
+  /* What we shipped: tres por fila, las pantallas sobre papel */
+  .shipped .intro { max-width: 52ch; margin: -2vh 0 6vh; font-size: clamp(16px, 1.15vw, 19px); line-height: 1.55; }
+  .shipped-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7vh var(--gutter); }
+  .shipped-grid figure { margin: 0; }
+  .shipped-grid .shots { margin: 0; aspect-ratio: 4 / 3; padding: 24px; }
+  .shipped-grid .shots img { flex: 0 1 auto; width: auto; height: 100%; max-width: 31%; object-fit: contain; }
+  .shipped-grid h3 { margin-top: 18px; font-family: var(--display); font-weight: 400; font-size: clamp(16px, 1.3vw, 22px); line-height: 1.15; }
+  .shipped-grid figcaption p { margin-top: 6px; max-width: 92%; font-size: clamp(15px, 1.05vw, 17px); line-height: 1.45; opacity: .85; }
+
+  /* Los cinco principios: un diálogo en papel, con el borde y la sombra dura de V4 */
+  .principles { width: min(720px, calc(100% - 32px)); max-height: 85vh; margin: auto; padding: 0; color: var(--ink); background: var(--paper); border: var(--line-w) solid var(--ink); border-radius: 24px; box-shadow: var(--hard); }
+  .principles::backdrop { background: rgba(22,16,31,.6); }
+  .principles[open] { animation: principles-in .4s var(--ease-out); }
+  @keyframes principles-in { from { opacity: 0; transform: translateY(12px); } }
+  .principles-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px clamp(20px, 2.4vw, 32px); }
+  .principles-head h2 { font-family: var(--display); font-weight: 400; font-size: clamp(20px, 1.7vw, 28px); line-height: 1.1; }
+  .principles-head form { margin: 0; }
+  .principles-close { width: 40px; height: 40px; flex: none; border: 1.5px solid var(--ink); border-radius: 50%; background: var(--paper); font-size: 22px; line-height: 1; transition: background .2s; }
+  .principles-close:hover { background: #fff; }
+  .principles table { width: 100%; border-collapse: collapse; font-size: clamp(15px, 1.05vw, 17px); line-height: 1.45; }
+  .principles th, .principles td { padding: 14px clamp(20px, 2.4vw, 32px); border-top: 1.5px solid var(--ink); text-align: left; vertical-align: top; }
+  .principles th + th, .principles td + td { border-left: 1.5px solid var(--rule); }
+  .principles th { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--soft); }
+  .principles td:last-child { font-weight: 650; }
+
+  @media (max-width: 899px) {
+    .head .desc, .head .meta { grid-row: auto; }
+    .dstep { padding: 5vh 0; }
+    .dstep-head { position: static; margin-bottom: 3vh; }
+    .shots { display: grid; grid-template-columns: repeat(2, minmax(0, 150px)); justify-content: center; gap: 12px; padding: 24px 16px; }
+    .shots:has(> img:nth-child(6)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .shots img { width: 100%; max-width: none; }
+    .shipped-grid { grid-template-columns: 1fr; gap: 6vh; }
+    .shipped-grid .shots { display: flex; padding: 20px; }
+    .principles { width: 100%; max-width: 100%; margin: auto 0 0; border-width: var(--line-w) 0 0; border-radius: 24px 24px 0 0; box-shadow: none; }
+    .principles th, .principles td { padding: 12px 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .principles[open] { animation: none; } }
 </style>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="fcb351f4-7b90-480b-a4d0-76a9ef057f95"></script>
 </head>
@@ -57,69 +120,118 @@
   <figure class="cover"><div class="frame"><img src="../assets/images/dino-hero.jpg" alt="Three Dino screens: a question with Dino offering help, the learning path and the chat with the AI tutor"></div></figure>
   <header class="head grid">
     <span class="chip">Dino by Ucademy</span>
-    <h1 class="display">Designing, launching and evaluating an MVP</h1>
+    <h1 class="display">Searching for product-market fit in a new line of business</h1>
+    <p class="desc">A gamified study app for secondary school students, launched as an MVP to find product-market&nbsp;fit.</p>
     <ul class="meta">
-      <li><span>Timeline</span>Jun – Nov 2025</li>
+      <li><span>Timeline</span>May – Nov 2025</li>
       <li><span>Role</span>Product Maker</li>
+      <li><span>Team</span>CEO, instructional designer, engineer</li>
       <li><span>Platform</span>iOS and Android</li>
-      <li><span>Goal</span>Product-market fit</li>
     </ul>
   </header>
 
-  <!-- 2 · Resumen en tres frases -->
+  <!-- 2 · Resumen: qué era, qué hice, qué pasó (contenido de V5) -->
   <section aria-label="Summary">
     <div class="tldr">
-      <div><h2>The challenge</h2><p>Ucademy wanted to open a new line of business: a <mark>gamified mobile app</mark> for short study sessions before the university entrance exam. We launched it as an MVP to find product-market fit: could students <mark>build a study habit on their&nbsp;own</mark>?</p></div>
-      <div><h2>What I did</h2><p>I interviewed 6 students and 4 teachers, turned their five pain points into the principles of the MVP, <mark>designed the whole app</mark> and tracked its metrics after&nbsp;launch.</p></div>
-      <div><h2>The outcome</h2><p>1,000 downloads and 40% activation, above the 25% goal. Retention stayed low, so I recommended <mark>going back to product-market fit</mark> before redesigning&nbsp;more.</p></div>
+      <div><h2>What it was</h2><p>Dino was a gamified mobile app to help secondary school students study on their own, launched by Ucademy as a new line of business. We started with the final year of high school, where Ucademy already had content and teachers. The MVP had one question to answer: could students <mark>build a study habit</mark> on their&nbsp;own?</p><p>I was the only designer on a four-person team, with the CEO as project lead, an instructional designer and an engineer, plus an external advisor we consulted at key&nbsp;moments.</p></div>
+      <div><h2>What I did</h2><p>From May to November 2025, I led the design of <mark>the whole app</mark> and took on much of the product&nbsp;work.</p><p>I interviewed students and teachers and turned their pain points into <button type="button" class="inline-link" data-dialog="principles">the MVP&rsquo;s principles</button>, designed every flow from onboarding to practice, prioritized the backlog with the CEO and set up the metrics we used to learn from each&nbsp;release.</p></div>
+      <div><h2>What happened</h2><p>Moving the first practice into onboarding took first-practice completion from <mark>under 15% to over 80%</mark>. Retention stayed close to zero, which showed the core experience wasn&rsquo;t valuable enough yet and led the business to focus on its established&nbsp;lines.</p></div>
     </div>
   </section>
 
-  <!-- 3 · Decisiones: una tarjeta grande que cambia con el scroll (desktop); en mobile, una debajo de otra -->
+  <!-- 3 · Restricciones: el patrón de Learnings -->
+  <section aria-labelledby="constraints-title">
+    <h2 class="display sec-title" id="constraints-title"><span class="box">Constraints</span></h2>
+    <div class="learn grid"><span class="n">01</span><h3>A fixed date</h3><p>We had to launch before September, when the school year started, which meant every feature had to fit a fixed date. App Store review then delayed the launch by almost a month, pushing it past the first weeks of&nbsp;class.</p></div>
+    <div class="learn grid"><span class="n">02</span><h3>No marketing team</h3><p>We had no dedicated marketing team, only part-time help from another business line, which made it hard to attract leads and reach our download goals. Without enough traffic, it took longer to measure reliably, read real interest and find the students most likely to&nbsp;stay.</p></div>
+    <div class="learn grid"><span class="n">03</span><h3>Limited direction</h3><p>Direction was limited too. The CEO led the project part-time, and a new project lead who was expected to join halfway through never arrived. In the last three weeks, someone from outside the project took over, with only a few hours a week to give&nbsp;it.</p></div>
+  </section>
+
+  <!-- 4 · Decisiones en filas: a la izquierda, número y título fijos (desktop); a la derecha, el texto,
+       el resultado y las pantallas. Sin JS de scroll. -->
   <section aria-labelledby="dec-title">
     <h2 class="display sec-title" id="dec-title"><span class="box">Decisions</span></h2>
-    <div class="zoom" id="zoom">
-      <div class="zoom-sticky">
-        <div class="zcard gallery">
-          <div class="zframe">
-            <div class="zshot"><img src="../assets/images/dino-set-path.webp" alt=""></div>
-            <div class="zfoot">
-              <p class="zcaption" aria-live="polite"></p>
-              <div class="zmore" hidden>
-                <button type="button" data-shot="-1" aria-label="Previous screens">&larr;</button>
-                <span class="zcount" aria-live="polite">1 / 2</span>
-                <button type="button" data-shot="1" aria-label="Next screens">&rarr;</button>
-              </div>
-            </div>
-          </div>
-          <div class="ztext">
-            <nav class="zindex" aria-label="Decisions"></nav>
-            <ol class="zsteps"></ol>
-          </div>
+    <ol class="dsteps">
+      <li class="dstep grid">
+        <div class="dstep-head"><span class="n">01</span><h3>Center the experience on the learning path</h3></div>
+        <div class="dstep-body">
+          <p>We had to decide what the app was built around: a learning path, or Dino as an AI tutor in a chat. Interviews supported both, since students wanted structured practice and also got stuck with no one to&nbsp;ask.</p>
+          <p>We built the experience around the learning path, with the tutor available when students got&nbsp;stuck.</p>
+          <p>Our practice model came from learning research: the syllabus was broken into knowledge components, each unlocked after the ones before it. A path showed students where they were and what came next. It also followed the same logic as Duolingo, so we chose a pattern students would already&nbsp;recognize.</p>
+          <div class="dstep-result"><span class="label">Result</span><p>Students understood how the path&nbsp;worked.</p></div>
+          <figure class="shots" role="img" aria-label="The learning path, a subject’s syllabus, a topic in detail and the subject switcher"><img src="../assets/images/dino-path.webp" alt="" loading="lazy"><img src="../assets/images/dino-syllabus.webp" alt="" loading="lazy"><img src="../assets/images/dino-syllabus-topic.webp" alt="" loading="lazy"><img src="../assets/images/dino-subjects.webp" alt="" loading="lazy"></figure>
         </div>
-      </div>
-    </div>
+      </li>
+      <li class="dstep grid">
+        <div class="dstep-head"><span class="n">02</span><h3>Put the core experience before growth features</h3></div>
+        <div class="dstep-body">
+          <p>The business saw a ranking and friend invites as growth engines, with a target of 0.5 referrals per student. We could launch with them or hold them until students valued the core&nbsp;experience.</p>
+          <p>I proposed leaving the ranking out of the MVP. It stayed in, since it was cheap to build, and I committed to the&nbsp;decision.</p>
+          <p>None of our interviews pointed to social features, and students share an app only once it&rsquo;s useful to them. At this stage, the priority was building what would make students want to come&nbsp;back.</p>
+          <div class="dstep-result"><span class="label">Result</span><p>Very few students opened the ranking. Most stayed on the home&nbsp;screen.</p></div>
+          <figure class="shots" role="img" aria-label="Profile, achievements, friends and ranking"><img src="../assets/images/dino-profile.webp" alt="" loading="lazy"><img src="../assets/images/dino-achievements.webp" alt="" loading="lazy"><img src="../assets/images/dino-friends.webp" alt="" loading="lazy"><img src="../assets/images/dino-ranking.webp" alt="" loading="lazy"></figure>
+        </div>
+      </li>
+      <li class="dstep grid">
+        <div class="dstep-head"><span class="n">03</span><h3>Get students to their first practice sooner</h3></div>
+        <div class="dstep-body">
+          <p>Over 90% of students finished onboarding, and fewer than 15% of them started a practice. We could keep guiding them from the home screen with stronger cues, or make the first practice the last step of&nbsp;onboarding.</p>
+          <p>I moved the first practice into onboarding. Students choose where to start, Dino explains how practice works and how to ask him for help, and the first question appears before the home&nbsp;screen.</p>
+          <p>The first station already had an animated halo, and it still depended on students taking the initiative while every other section competed for their attention. Onboarding had a 90% completion rate, so placing practice inside it removed that&nbsp;choice.</p>
+          <div class="dstep-result"><span class="label">Result</span><p>First-practice completion after onboarding went from under 15% to over 80%. Activation over downloads rose from about 7% to about 36% (target:&nbsp;25%).</p></div>
+          <figure class="shots" role="img" aria-label="Six onboarding screens, from choosing a subject to the first question"><img src="../assets/images/dino-first-1.webp" alt="" loading="lazy"><img src="../assets/images/dino-first-2.webp" alt="" loading="lazy"><img src="../assets/images/dino-first-3.webp" alt="" loading="lazy"><img src="../assets/images/dino-first-4.webp" alt="" loading="lazy"><img src="../assets/images/dino-first-5.webp" alt="" loading="lazy"><img src="../assets/images/dino-first-6.webp" alt="" loading="lazy"></figure>
+        </div>
+      </li>
+      <li class="dstep grid">
+        <div class="dstep-head"><span class="n">04</span><h3>Go back to discovery to find where the value was</h3></div>
+        <div class="dstep-body">
+          <p>Activation was above target, and close to zero students came back after the first week. The business asked for a new version of the experience. We could rebuild it around the learning path, rebuild it around the AI tutor, or pause and learn why students weren&rsquo;t&nbsp;returning.</p>
+          <p>I recommended pausing the redesigns to go back to discovery, and the team and the CEO agreed. With no way to reach inactive students, we opened Dino to Ucademy&rsquo;s current students. I aligned revenue, marketing and customer care, and got a list of about 20 active students to talk&nbsp;to.</p>
+          <p>Fixing activation had ruled out onboarding: students reached practice and still left, so the open question was the value of the core experience. Redesigning without users meant guessing again. Ucademy&rsquo;s students already paid for exam prep and weren&rsquo;t our target, though they were an audience we could actually&nbsp;reach.</p>
+          <div class="dstep-result"><span class="label">Result</span><p>They liked the design, and few used Dino regularly. They already had school and Ucademy classes, Dino didn&rsquo;t add enough on top, and Premium felt&nbsp;expensive.</p></div>
+        </div>
+      </li>
+    </ol>
   </section>
 
-  <!-- 3b · Impacto: las cifras, después de las decisiones -->
+  <!-- 5 · Impacto: el texto y las cuatro cifras de V5 -->
   <section class="impact grid" aria-labelledby="impact-title">
     <h2 class="display sec-title" id="impact-title" style="grid-column: 1 / -1"><span class="box">Impact</span></h2>
-    <p class="closing">Students found Dino easy to use and activated above target. After almost three months, we saw that building a study habit would need more time and resources. We decided to put them into Ucademy&rsquo;s mature verticals, which already brought in&nbsp;revenue.</p>
+    <div class="closing">
+      <p>Dino solved activation and didn&rsquo;t reach retention. The metrics, Ucademy&rsquo;s students and the teachers we visited pointed the same way: the practice formats didn&rsquo;t fit every subject, and the experience didn&rsquo;t give students enough reason to come back. A paywall at the end of onboarding, added to test willingness to pay, cut completion sharply without giving a clear&nbsp;signal.</p>
+      <p style="margin-top: 12px">In November, the business decided that finding product-market fit would take more time and resources than the revenue it could bring, and moved the team to Ucademy&rsquo;s established&nbsp;lines.</p>
+    </div>
     <div class="nums">
-      <div><b>1,000</b><p>downloads, the MVP goal</p></div>
-      <div><b>90%</b><p>completed onboarding</p></div>
-      <div><b>40%</b><p>activation: first practice completed (target: 25%)</p></div>
-      <div><b>+50%</b><p>completed their first practice after we moved it into onboarding</p></div>
+      <div><b>80%+</b><p>first-practice completion after onboarding, up from under 15%</p></div>
+      <div><b>~36%</b><p>activation over downloads (target: 25%)</p></div>
+      <div><b>1,000+</b><p>downloads, reached later than the month-one goal</p></div>
+      <div><b>Close to zero</b><p>retention after the first week (target: 30%)</p></div>
     </div>
   </section>
 
-  <!-- 4 · Learnings -->
+  <!-- 6 · Learnings: las reflexiones de V5 -->
   <section aria-labelledby="learn-title">
     <h2 class="display sec-title" id="learn-title"><span class="box">Learnings</span></h2>
-    <div class="learn grid"><span class="n">01</span><h3>One store first</h3><p>Launching on both stores split a small team. I&rsquo;d start on iOS, where users were most likely to&nbsp;pay.</p></div>
-    <div class="learn grid"><span class="n">02</span><h3>Fewer features first</h3><p>We launched with many features at once, and most of the extras went unused. Next time I&rsquo;d launch a few complete features and add more only when the data backs&nbsp;them.</p></div>
-    <div class="learn grid"><span class="n">03</span><h3>Without a habit, there&rsquo;s nothing to monetize</h3><p>The paywall arrived before students had any recurrence, so it only measured friction. I&rsquo;d test willingness to pay once students come back on their&nbsp;own.</p></div>
-      </section>
+    <div class="learn grid"><span class="n">01</span><h3>Fixing activation is what made the real question visible</h3><p>Once students reached practice and still left, the question moved from onboarding to the value of the core&nbsp;experience.</p></div>
+    <div class="learn grid"><span class="n">02</span><h3>Every feature and experiment needs a hypothesis</h3><p>Changing something every week is right when you&rsquo;re looking for product-market fit. We could only see who opened the ranking, an A/B test to collect phone numbers was reverted after a week of work, and the paywall only measured friction. Now I&rsquo;d agree on a hypothesis, a metric and the decision it informs before building&nbsp;anything.</p></div>
+    <div class="learn grid"><span class="n">03</span><h3>Without a habit, there&rsquo;s nothing to monetize</h3><p>The paywall arrived before students had any reason to come back. I&rsquo;d test willingness to pay only with students who already return on their&nbsp;own.</p></div>
+  </section>
+
+  <!-- 7 · Lo que lanzamos: el MVP tal como salió -->
+  <section class="shipped" aria-labelledby="shipped-title">
+    <h2 class="display sec-title" id="shipped-title"><span class="box">What we shipped</span></h2>
+    <p class="intro">A quick look at the MVP as it launched: the learning path, six practice formats, the AI tutor, short videos, daily challenges, reminders and&nbsp;streaks.</p>
+    <div class="shipped-grid">
+      <figure><div class="shots" role="img" aria-label="Dino points to the first station, a station sheet and a locked station"><img src="../assets/images/dino-station-start.webp" alt="" loading="lazy"><img src="../assets/images/dino-station-sheet.webp" alt="" loading="lazy"><img src="../assets/images/dino-station-locked.webp" alt="" loading="lazy"></div><figcaption><h3>Learning path</h3><p>A station opens a sheet to practise or read the theory; a locked one says what comes&nbsp;first.</p></figcaption></figure>
+      <figure><div class="shots" role="img" aria-label="A multiple choice question, a right answer and a wrong one"><img src="../assets/images/dino-quiz.webp" alt="" loading="lazy"><img src="../assets/images/dino-correct.webp" alt="" loading="lazy"><img src="../assets/images/dino-wrong.webp" alt="" loading="lazy"></div><figcaption><h3>Multiple choice</h3><p>A question, a right answer and a wrong one, with Dino by the student&rsquo;s&nbsp;side.</p></figcaption></figure>
+      <figure><div class="shots" role="img" aria-label="A true or false card"><img src="../assets/images/dino-truefalse.webp" alt="" loading="lazy"></div><figcaption><h3>True or false</h3><p>True or false: the card in the middle, swiped left for false and right for&nbsp;true.</p></figcaption></figure>
+      <figure><div class="shots" role="img" aria-label="Classify: the items, dragging them into groups and the result"><img src="../assets/images/dino-classify.webp" alt="" loading="lazy"><img src="../assets/images/dino-classify-drag.webp" alt="" loading="lazy"><img src="../assets/images/dino-classify-check.webp" alt="" loading="lazy"></div><figcaption><h3>Classify</h3><p>Classify: drag each item into its group, then check it with&nbsp;Dino.</p></figcaption></figure>
+      <figure><div class="shots" role="img" aria-label="The chat with Dino, a photo of notes and Dino’s step-by-step answer"><img src="../assets/images/dino-tutor.webp" alt="" loading="lazy"><img src="../assets/images/dino-tutor-ask.webp" alt="" loading="lazy"><img src="../assets/images/dino-tutor-answer.webp" alt="" loading="lazy"></div><figcaption><h3>AI tutor</h3><p>The AI tutor: a photo of your notes, and Dino explains it step by&nbsp;step.</p></figcaption></figure>
+      <figure><div class="shots" role="img" aria-label="A short video, a liked video and the share sheet"><img src="../assets/images/dino-video.webp" alt="" loading="lazy"><img src="../assets/images/dino-video-liked.webp" alt="" loading="lazy"><img src="../assets/images/dino-video-share.webp" alt="" loading="lazy"></div><figcaption><h3>Short videos</h3><p>A short video: it plays on its own, students can like it and share it without stopping&nbsp;it.</p></figcaption></figure>
+      <figure><div class="shots" role="img" aria-label="Daily study time, reminder time and the notifications permission"><img src="../assets/images/dino-time.webp" alt="" loading="lazy"><img src="../assets/images/dino-reminder.webp" alt="" loading="lazy"><img src="../assets/images/dino-permission.webp" alt="" loading="lazy"></div><figcaption><h3>Reminders</h3><p>Daily goal, reminder time and permission for&nbsp;notifications.</p></figcaption></figure>
+      <figure><div class="shots" role="img" aria-label="A new streak record and the streak calendar"><img src="../assets/images/dino-streak-record.webp" alt="" loading="lazy"><img src="../assets/images/dino-streak.webp" alt="" loading="lazy"></div><figcaption><h3>Streaks</h3><p>The daily streak: a new record, and the calendar of days&nbsp;studied.</p></figcaption></figure>
+    </div>
+  </section>
 
   <!-- 5 · Más case studies -->
   <section class="divided" aria-labelledby="more-title">
@@ -131,6 +243,21 @@
     </div>
   </section>
 </main>
+
+<!-- Los cinco principios del MVP, desde "What I did" -->
+<dialog class="principles" id="principles" aria-labelledby="principles-title">
+  <div class="principles-head"><h2 id="principles-title">The five principles</h2><form method="dialog"><button class="principles-close" aria-label="Close">&times;</button></form></div>
+  <table>
+    <thead><tr><th scope="col">What students told us</th><th scope="col">MVP principle</th></tr></thead>
+    <tbody>
+      <tr><td>They don&rsquo;t know where to start</td><td>A clear path</td></tr>
+      <tr><td>They can&rsquo;t see their progress</td><td>Visible progress</td></tr>
+      <tr><td>They get stuck with no one to ask</td><td>Help when you&rsquo;re stuck</td></tr>
+      <tr><td>They study passively</td><td>Active practice with instant feedback</td></tr>
+      <tr><td>They search YouTube for explanations</td><td>Short explanations in the flow</td></tr>
+    </tbody>
+  </table>
+</dialog>
 
 <!-- 6 · Footer: el mismo de la home -->
 <footer class="contact" id="contact" aria-labelledby="contact-title">
@@ -149,117 +276,13 @@
 (function () {
   'use strict';
   const $ = (s, r = document) => r.querySelector(s);
-  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-  const IMG = '../assets/images/';
-  const pic = (f) => (f.startsWith('../assets/img/') ? '' : IMG) + f; // las de V4 viven en v4-lab/img
-
-  /* Las decisiones de V2 (validadas el 8 de octubre). Títulos según lo que les aportamos y la función en la
-     etiqueta, como en el Student Dashboard (ronda 17) [HIPÓTESIS]. shots = las vistas de la decisión (teléfonos lado a lado). */
-  const DEC = [
-    { goal: 'Study habit', title: 'Show students how far they’ve come', feature: 'Learning path',
-      shots: [['dino-set-path.webp', 'The learning path, the syllabus behind the topic card, and the subject switcher.', 'The learning path, a subject’s syllabus, a topic in detail and the subject switcher'],
-              ['dino-set-stations.webp', 'A station opens a sheet to practise or read the theory; a locked one says what comes first.', 'Dino points to the first station, a station sheet and a locked station']],
-      need: 'One of the hardest parts of studying was not knowing how they were doing or how much they had left. Only an exam showed their progress.',
-      dec: 'Our learning framework was built on knowledge components: each concept unlocks once students have learned the ones before. Levels fit it best, and added gamification in a format students already knew from Duolingo. Each station opens a sheet to practise or read the theory.',
-      res: 'Students used it well from the start. One lesson: scrolling up matched the idea of climbing, but it went against the natural scroll and caused friction for some students. Usability should feel natural, and the concept should adapt to it.' },
-    { goal: 'Product-market fit', title: 'Make practice feel like a game', feature: 'Practice',
-      shots: [['dino-set-practice.webp', 'A question, a right answer and a wrong one, with Dino by the student’s side.', 'A multiple choice question, a right answer and a wrong one'],
-              ['../assets/img/dino-set-truefalse.webp', 'True or false: the card in the middle, swiped left for false and right for true.', 'A true or false card in the middle, swiped left for false and swiped right for true'],
-              ['dino-set-classify.webp', 'Classify: drag each item into its group, then check it with Dino.', 'Classify: the items, dragging them into groups and the result']],
-      need: 'Interviews showed students studied passively and got stuck with no one to ask.',
-      dec: 'Practice that feels like a game, not like studying: each question is a swipe, like TikTok, with instant feedback and Dino reacting to every answer. Exercise types unlock as students progress.',
-      res: 'Students rated the design and usability positively.' },
-    { goal: 'Product-market fit', title: 'Help students when they get stuck', feature: 'AI tutor',
-      shots: [['dino-set-tutor.webp', 'The AI tutor: a photo of your notes, and Dino explains it step by step.', 'The chat with Dino, a photo of notes and Dino’s step-by-step answer']],
-      need: 'When students got stuck, they had no one to ask.',
-      dec: 'A chat with Dino: students send a photo of their homework or notes, ask for a test or for a topic to be explained.',
-      res: 'The chat was easy to reach and use. What held it back was the AI: its answers were too generic for their syllabus, so students used it little.' },
-    { goal: 'Organic growth', title: 'Turn explanations into shareable videos', feature: 'Short videos',
-      shots: [['dino-set-videos.webp', 'A short video: it plays on its own, students can like it and share it without stopping it.', 'A short video, a liked video and the share sheet']],
-      need: 'Students searched YouTube for explanations, and Dino needed organic traffic.',
-      dec: 'Short vertical videos inside practice, like TikTok: someone explains the topic, and students can like and share it, bringing new students in.',
-      res: 'We didn’t get enough views or shares to validate it, because few students came back to the app.' },
-    { goal: 'Activation', title: 'Take students straight into practice', feature: 'Onboarding',
-      shots: [['dino-set-first-practice.webp', 'From choosing where to start to the first question, with Dino as a guide.', 'Six onboarding screens, from choosing a subject to the first question']],
-      need: 'After onboarding, students had to start their first practice on their own. With several sections in the app, many started exploring instead.',
-      dec: 'We made the first practice part of onboarding, before students reach the home screen: they choose where to start, and Dino explains the goal, how to ask him for help and how to begin.',
-      res: '<b>+50%</b> completed their first practice: 40% activation, above the 25% goal.' },
-    { goal: 'Study habit', title: 'Bring students back every day', feature: 'Reminders and streaks',
-      shots: [['dino-set-reminders.webp', 'Daily goal, reminder time and permission for notifications.', 'Daily study time, reminder time and the notifications permission'],
-              ['dino-set-streak.webp', 'The daily streak: a new record, and the calendar of days studied.', 'A new streak record and the streak calendar']],
-      need: 'Students who activated didn’t come back.',
-      dec: 'Students choose when to study, and Dino reminds them with push notifications and emails. A daily streak rewards every day they come back.',
-      res: 'Retention stayed very low, and that confirmed what was missing: reminding students wasn’t enough, they needed more value from Dino to come back.' },
-    { goal: 'Business model', title: 'Find out if students would pay', feature: 'Paywall',
-      shots: [['dino-set-paywall.webp', 'Two pre-paywall screens with students’ reviews, then the free trial offer.', 'Two pre-paywall screens and the free trial paywall']],
-      need: 'The business wanted to know if students would pay before investing further.',
-      dec: 'A paywall at the end of onboarding, before the first practice.',
-      res: 'It came too early: students hadn’t seen Dino’s value yet. Drop-off went up, and we couldn’t tell if the no was about price, trust or timing.' },
-    { goal: 'Product-market fit', title: 'Define product-market fit before redesigning more', feature: 'Recommendation',
-      shots: [['dino-set-profile.webp', 'Profile, achievements, friends and ranking: screens students barely visited.', 'Profile, achievements, friends and ranking']],
-      need: 'Varied exercises, gamification and reminders, and still nobody came back.',
-      dec: 'I recommended stopping the redesigns to define product-market fit first: who Dino was for and what value it gave them.',
-      res: 'We saw that building a study habit would need more time and resources. After almost three months, Ucademy moved them to lines with more traction.' }
-  ];
-  const nb = (s) => s.replace(/ (\S+)$/, '&nbsp;$1'); // ninguna palabra sola en la última línea
-  const num = (i) => String(i + 1).padStart(2, '0');
-  const zoom = $('#zoom');
-  zoom.style.setProperty('--steps', DEC.length);
-  $('.zindex').innerHTML = DEC.map((d, i) => '<button type="button" data-go="' + i + '" aria-label="Decision ' + (i + 1) + ': ' + d.title + '">' + num(i) + '</button>').join('');
-  $('.zsteps').innerHTML = DEC.map((d, i) => '<li class="zstep">'
-    + '<img class="zcrop on-stage" src="' + pic(d.shots[0][0]) + '" alt="' + d.shots[0][2] + '" loading="lazy">'
-    + '<p class="goal">' + num(i) + ' · ' + d.feature + ' · ' + d.goal + '</p><h3>' + d.title + '</h3>'
-    + '<div class="part"><span class="label">Need</span>' + nb(d.need) + '</div>'
-    + '<div class="part"><span class="label">Decision</span>' + nb(d.dec) + '</div>'
-    + '<div class="part result"><span class="label">Result</span>' + nb(d.res) + '</div></li>').join('');
-
-  /* La tarjeta: a la izquierda, los teléfonos de la decisión que se lee (cambian con un fundido);
-     las flechas chicas recorren las otras vistas de la misma decisión. */
-  const img = $('.zshot img'), caption = $('.zcaption'), more = $('.zmore'), count = $('.zcount');
-  const steps = $$('.zstep'), dots = $$('[data-go]');
-  const desktop = matchMedia('(min-width: 900px)');
-  let current = -1, shot = 0;
-
-  function show(i, k) {
-    const [file, cap, alt] = DEC[i].shots[k];
-    shot = k;
-    caption.textContent = cap;
-    more.hidden = DEC[i].shots.length < 2;
-    count.textContent = (k + 1) + ' / ' + DEC[i].shots.length;
-    const src = new URL(pic(file), location.href).href;
-    if (src === img.src) return;
-    img.classList.add('swap');
-    setTimeout(() => {
-      img.addEventListener('load', () => img.classList.remove('swap'), { once: true });
-      img.src = src; img.alt = alt;
-    }, 220);
-  }
-  function setStep(i) {
-    if (i === current) return;
-    current = i;
-    steps.forEach((s, k) => s.classList.toggle('is-active', k === i));
-    dots.forEach((d) => d.classList.toggle('is-active', +d.dataset.go === i));
-    show(i, 0);
-  }
-  $$('[data-shot]').forEach((b) => b.addEventListener('click', () => {
-    const n = DEC[current].shots.length;
-    show(current, (shot + +b.dataset.shot + n) % n);
-  }));
-  function onScroll() {
-    if (!desktop.matches) return;
-    const travel = zoom.offsetHeight - innerHeight;
-    const p = Math.min(0.999, Math.max(0, -zoom.getBoundingClientRect().top / travel));
-    setStep(Math.floor(p * steps.length));
-  }
-  dots.forEach((d) => d.addEventListener('click', () => {
-    const travel = zoom.offsetHeight - innerHeight;
-    const top = zoom.getBoundingClientRect().top + scrollY;
-    scrollTo({ top: top + (+d.dataset.go + 0.5) / steps.length * travel, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-  }));
-  addEventListener('scroll', onScroll, { passive: true });
-  addEventListener('resize', onScroll);
-  setStep(0);
-  onScroll();
+  /* Diálogos: un botón con data-dialog abre el <dialog> con ese id (los principios). Esc y la × lo cierran; también un clic fuera. */
+  document.querySelectorAll('[data-dialog]').forEach((b) => {
+    const d = document.getElementById(b.dataset.dialog);
+    if (!d || !d.showModal) return;
+    b.addEventListener('click', () => d.showModal());
+    d.addEventListener('click', (e) => { if (e.target === d) d.close(); });
+  });
 
   $('.nav .menu').addEventListener('click', (e) => { const n = $('.nav'); n.classList.toggle('open'); e.currentTarget.setAttribute('aria-expanded', n.classList.contains('open')); });
 })();

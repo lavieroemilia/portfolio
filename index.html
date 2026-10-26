@@ -809,7 +809,7 @@
     'Dino': 'An MVP for a new line of business at Ucademy, launched to find product-market fit.',
     'Practice': 'A hidden feature turned into a sales argument and a reason for students to come back.',
     'Quota PMS': 'One platform for rental agencies to manage properties, tenants, contracts and accounting.' };
-  const ROWS = [['two', ['Student Dashboard', 'Dino']], ['two', ['Practice', 'Quota PMS']], ['three', ['Tenant Scoring', 'Dino Design System', 'WOW']]];
+  const ROWS = [['two', ['Dino', 'Student Dashboard']], ['two', ['Practice', 'Quota PMS']], ['three', ['Tenant Scoring', 'Dino Design System', 'WOW']]];
   const company = (n) => V4.PROJECTS.find((p) => p.name === n).company;
   $('#work-grid').innerHTML = ROWS.map(([k, names]) => '<div class="work-row ' + k + '">' + names.map((n) =>
     '<a class="proj" data-umami-event="open-project" data-umami-event-project="' + n + '" href="' + ({ 'Student Dashboard': 'pages/student-dashboard.html', 'Dino': 'pages/dino.html', 'Practice': 'pages/practice.html', 'Quota PMS': 'pages/quota-pms.html' }[n] || '#work') + '" data-cursor="' + (LINE[n][1] ? 'Coming soon' : 'Open case study') + '"><span class="chip">' + company(n) + '</span><div class="frame"><img src="assets/images/' + IMG[n] + '.jpg" alt="" loading="lazy"></div>'
