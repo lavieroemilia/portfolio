@@ -1,24 +1,24 @@
-# Portfolio de Emilia Laviero: el sitio publicado (V4)
+# Portfolio de Emilia Laviero: el sitio publicado
 
 Este repo es lo que sirve **emilialaviero.com** (GitHub Pages, rama `main`, dominio en `CNAME`). Es un sitio estático, en HTML, CSS y JS escritos a mano, sin frameworks ni paso de compilación.
 
-**No se edita acá.** El sitio se genera desde el laboratorio de V4, en el repo `portfolio-v2` (rama `v4-lab`, carpeta `v4-lab/`), con `tools/publish-v4.py`. Cada publicación borra y vuelve a escribir todo, salvo `.git`, `.gitignore`, `.nojekyll`, `.claude`, `CNAME` y este archivo, así que cualquier cambio hecho directamente acá se pierde.
+**No se edita acá.** El sitio se genera desde el repo `portfolio-v2` (rama `v4-lab`, carpeta `site/`), con `tools/publish.py`. Cada publicación borra y vuelve a escribir todo, salvo `.git`, `.gitignore`, `.nojekyll`, `.claude`, `CNAME` y este archivo, así que cualquier cambio hecho directamente acá se pierde.
 
-Las decisiones de diseño y el historial de rondas están en `portfolio-v2/DESIGN-V4.md`. Leelo antes de proponer cambios.
+Las decisiones de diseño y el historial de rondas están en `portfolio-v2/DESIGN-PORTFOLIO.md`. Leelo antes de proponer cambios.
 
 ## Estructura publicada
 
 ```
-index.html                    → Home (en v4-lab: home-study.html)
+index.html                    → Home (en site/: index.html)
 about.html                    → About
-pages/student-dashboard.html  → Student dashboard (en v4-lab: case-study.html)
+pages/student-dashboard.html  → Student dashboard (en site/: student-dashboard.html)
 pages/dino.html               → Gamified learning app (Dino)
 pages/practice.html           → Tests and practice (Ucademy)
 pages/quota-pms.html          → Property management platform (Quota)
-pages/attomo.html, wow.html…  → Páginas de V1 sin versión V4: redirigen a Work
+pages/attomo.html, wow.html…  → Páginas de V1 sin versión actual: redirigen a Work
 assets/css/case-study.css     → Estilos compartidos de los case studies
 assets/js/                    → ribbon.js (la cinta), choreo.js (coreografía), content.js (textos), kinetic.js, faces.js, icons.js
-assets/img/                   → Imágenes propias de V4 (capturas en escenario, datos personales ocultos)
+assets/img/                   → Imágenes propias del sitio (capturas en escenario, datos personales ocultos)
 assets/images/, assets/logos/ → Imágenes y logos de portfolio-v2
 assets/favicon.svg            → La E del logo sobre los cinco carriles
 CNAME, .nojekyll              → Dominio y servido tal cual (no tocar)
@@ -26,11 +26,11 @@ CNAME, .nojekyll              → Dominio y servido tal cual (no tocar)
 
 ## Cómo publicar un cambio
 
-1. Hacer el cambio en `portfolio-v2/v4-lab/` y verlo en el servidor `portfolio-v2` (puerto 8081, `/v4-lab/home-study.html`).
+1. Hacer el cambio en `portfolio-v2/site/` y verlo en el servidor `portfolio-v2` (puerto 8081, `/site/`).
 2. Commit en `portfolio-v2`, rama `v4-lab`.
 3. Generar el sitio en el worktree de este repo (`C:/Users/lavie/Proyectos/portfolio-web-v4`, rama `v4-launch`):
    ```
-   python tools/publish-v4.py ../portfolio-web-v4      (desde portfolio-v2)
+   python tools/publish.py ../portfolio-web-v4      (desde portfolio-v2)
    ```
 4. Revisarlo en el servidor `portfolio-v4-launch` (puerto 8083), en desktop y en mobile, con capturas headless de a una por vez.
 5. Commit en `v4-launch` y publicar: `git push origin v4-launch:main`. GitHub Pages tarda uno o dos minutos en actualizar el sitio.
