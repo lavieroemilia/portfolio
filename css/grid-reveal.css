@@ -1,0 +1,131 @@
+/* ==========================================================================
+   grid-reveal.css
+   "Grid Reveal": transition from the menu to Work (desktop, 992px and up).
+   1. Leave (home or any page with the menu): the black of the Work tile grows to
+      the full screen as in the original click transition, but the "Work" title
+      travels straight to its final place in Work (no stop in the centre) and the
+      central block shrinks to the menu button of the inner pages.
+   2. Enter (work.html): the page starts on that same black frame; the real grid
+      lines of Work draw in and every cell they bound turns white, left to right.
+   ========================================================================== */
+
+/* Where the Work title ends. Keep in sync with work.css and editorial.css: rail (60px) +
+   grid margin (60px); --work-top minus the cap trim of .section-title (0.25em of 60px);
+   60px .section-title from a 36px tile title. */
+:root {
+  --grid-reveal-title-x: 120px;
+  --grid-reveal-title-y: calc(clamp(40px, 8vh, 80px) - 0.25 * 60px);
+  --grid-reveal-title-scale: calc(60 / 36);
+  /* The tile padding, where the title starts */
+  --grid-reveal-tile-padding: 23px;
+}
+
+/* --- 1. Leave ------------------------------------------------------------- */
+
+/* The tile keeps its padding (the original moves the title to column 2) */
+.nav-container.close.grid-reveal-leave .nav-tile.enlarge a {
+  padding-left: var(--grid-reveal-tile-padding);
+}
+
+/* The title goes straight to its place in Work, with the timing of the original title */
+.nav-container.close.grid-reveal-leave .nav-tile.enlarge .tile-title {
+  top: 0;
+  transform-origin: 0 0;
+  transform: translate(
+      calc(var(--grid-reveal-title-x) - var(--grid-reveal-tile-padding)),
+      calc(var(--grid-reveal-title-y) - var(--grid-reveal-tile-padding)))
+    scale(var(--grid-reveal-title-scale));
+}
+
+/* The central block shrinks to the 90px button of the inner pages (60px once at 2/3),
+   so the last frame here is the first frame of Work (and of the dark covers, css/cover-reveal.css). Same 0.5s swoop as the original close. */
+.nav-container.close.grid-reveal-leave .menu,
+.nav-container.close.cover-reveal-leave .menu {
+  left: calc(var(--button-size) / -6) !important;
+  width: var(--button-size) !important;
+  height: var(--button-size) !important;
+  transition: transform 0.5s var(--nav-easing-swoop) 0.05s, left 0.5s var(--nav-easing-swoop) 0.05s,
+    width 0.5s var(--nav-easing-swoop) 0.05s, height 0.5s var(--nav-easing-swoop) 0.05s !important;
+}
+
+.nav-container.close.grid-reveal-leave #nav-button,
+.nav-container.close.cover-reveal-leave #nav-button {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* The home hides the menu icons and shows the logo in the block; the inner pages show the
+   hamburger. The logo fades out and the hamburger (set by setMenuMode) fades in. */
+.nav-container.grid-reveal-leave .nav-button-svg,
+.nav-container.cover-reveal-leave .nav-button-svg {
+  display: block !important;
+}
+
+.nav-container.grid-reveal-leave .home-logo-container,
+.nav-container.cover-reveal-leave .home-logo-container {
+  opacity: 0;
+  transition: opacity 0.3s var(--nav-easing);
+}
+
+/* --- 2. Enter ------------------------------------------------------------- */
+
+/* Until the cells are built, the whole page is the black of the expanded tile */
+html.grid-reveal body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background-color: var(--surface--background-dark);
+}
+
+html.grid-reveal.grid-reveal-ready body::after {
+  content: none;
+}
+
+html.grid-reveal,
+html.grid-reveal body {
+  overflow: hidden;
+}
+
+.grid-reveal-cells {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.grid-reveal-cells > i {
+  position: absolute;
+  background-color: var(--surface--background-dark);
+  transform-origin: right center;
+}
+
+/* The real lines and the title sit above the black cells while they turn white */
+html.grid-reveal .work-grid > .line-v,
+html.grid-reveal .work-item > .line-h {
+  z-index: 60;
+}
+
+html.grid-reveal .work-aside-inner {
+  z-index: 70;
+}
+
+html.grid-reveal .section-title {
+  color: #fff;
+}
+
+html.grid-reveal .nav-page-title,
+html.grid-reveal .nav-brand {
+  opacity: 0 !important;
+}
+
+/* Work's own entrance (fades) is replaced by the reveal */
+html.grid-reveal .work-aside .section-title,
+html.grid-reveal .work-item > .line-h,
+html.grid-reveal .work-item .work-media,
+html.grid-reveal .work-item .work-split,
+html.grid-reveal .work-item .work-desc {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}

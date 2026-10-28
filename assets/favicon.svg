@@ -1,8 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- V4: the E of the logo on the five lanes (tools/make-v4-favicon.py) -->
-  <clipPath id="c"><rect width="64" height="64" rx="14"/></clipPath>
-  <g clip-path="url(#c)"><rect y="0.0" width="64" height="13.0" fill="#9A8CFF"/><rect y="12.8" width="64" height="13.0" fill="#E07BFF"/><rect y="25.6" width="64" height="13.0" fill="#FF6B95"/><rect y="38.4" width="64" height="13.0" fill="#FF7A3D"/><rect y="51.2" width="64" height="13.0" fill="#FFB61E"/>
-    <polygon points="20.6,13.6 49.6,13.6 49.6,23.6 30.6,23.6 30.6,29.6 45.6,29.6 45.6,39.6 30.6,39.6 30.6,45.6 49.6,45.6 49.6,55.6 20.6,55.6" fill="#0A0710" stroke="#0A0710" stroke-width="3.2" stroke-linejoin="round"/>
-    <polygon points="18,11 47,11 47,21 28,21 28,27 43,27 43,37 28,37 28,43 47,43 47,53 18,53" fill="#FFF6EA" stroke="#0A0710" stroke-width="3.2" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#6b57ff"/>
+  <g fill="#fff" transform="translate(88.09 81.63) scale(0.8705)">
+    <path d="M118.081 324.357L49.2422 284.635L49.125 191.55L118.081 151.76Z"/>
+    <path d="M198.67 105.441L129.653 144.14L129.889 332.134L198.67 371.851Z"/>
+    <path d="M336.335 107.56L211.597 179.538L211.622 100.147L336.292 28.0001Z"/>
+    <path d="M336.678 204.531L212.344 276.276L212.368 196.885L336.635 124.971Z"/>
+    <path d="M336.44 300.794L211.935 372.637L211.96 293.247L336.397 221.234Z"/>
   </g>
 </svg>

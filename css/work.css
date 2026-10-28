@@ -1,0 +1,376 @@
+/* ==========================================================================
+   work.css
+   Work: two editorial columns. The section title stays fixed (sticky) on the
+   left while the case studies pass on the right, one large cover per screen
+   with the next one peeking from below. Scroll is native: no snap, no autoplay.
+   ========================================================================== */
+
+.work-page {
+  /* Distance from the top of the screen to the line where the title and each cover start. */
+  --work-top: clamp(40px, 8vh, 80px);
+  /* How much of the next cover (plus the gap) stays visible at the bottom. */
+  --work-peek: clamp(80px, 14vh, 140px);
+  --work-gap: var(--body-gutter);
+  /* Cover + caption row (8px gap, 24px row). */
+  --work-split: 24px;
+  --work-card-h: calc(100svh - var(--work-top) - var(--work-peek));
+  /* Covers fill the column up to the right line of the grid. */
+  --work-card-w: 100%;
+
+  background-color: var(--surface--background-light);
+  color: var(--text--text-light);
+}
+
+.work-page .ui-label,
+.work-page .p,
+.work-page .annotation,
+.work-company,
+.work-timeline,
+.work-soon {
+  font-family: var(--font-family--font-1);
+  font-variation-settings: normal;
+}
+
+/* --- Layout: page-section + page-section-grid (12 columns, 24px gutter) --- */
+
+.work-section {
+  position: relative;
+  margin-left: 60px;
+  padding-top: var(--work-top);
+  padding-bottom: var(--work-peek);
+  overflow-x: clip;
+}
+
+.work-grid {
+  --col: calc((100% - 11 * var(--body-gutter)) / 12);
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--body-gutter);
+  max-width: 1920px;
+  margin-left: 60px;
+  margin-right: 120px;
+}
+
+/* Vertical lines on the grid edges and on the edge of the covers column, the full height of the section */
+.work-grid > .line-v {
+  top: calc(var(--work-top) * -1);
+  bottom: calc(var(--work-peek) * -1);
+}
+/* The lines frame the covers: they stay above the image and the hover lid */
+.work-grid > .line-v,
+.work-item > .line-h {
+  z-index: 2;
+}
+
+.work-grid > .line-v.at-start { left: 0; }
+.work-grid > .line-v.at-list { left: calc(4 * (var(--col) + var(--body-gutter))); }
+.work-grid > .line-v.at-end { right: 0; }
+
+/* --- Left column: sticky title (columns 1-4: room for the title and negative space) --- */
+
+.work-aside {
+  grid-column: 1 / span 4;
+  position: relative;
+}
+
+.work-aside-inner {
+  position: sticky;
+  top: var(--work-top);
+}
+
+/* The two title lines end on the vertical line of the covers column */
+.work-aside .section-title {
+  --section-title-line-end: var(--body-gutter);
+}
+
+/* --- Right column: case studies (columns 5-12, up to the right line of the grid) --- */
+
+.work-list {
+  grid-column: 5 / span 8;
+  display: flex;
+  flex-direction: column;
+  gap: var(--work-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.work-item {
+  position: relative;
+}
+
+/* Each cover starts on a line that runs across the page */
+.work-item > .line-h {
+  top: 0;
+}
+
+.work-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: var(--work-card-w);
+  height: var(--work-card-h);
+  color: inherit;
+  text-decoration: none;
+}
+
+a.work-card {
+  cursor: pointer;
+}
+
+a.work-card:focus-visible {
+  outline: 2px solid var(--accent--tab);
+  outline-offset: 4px;
+}
+
+.work-media {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background-color: var(--surface--overlay-subtle);
+}
+
+.work-media img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The sliding lid of the cover (.work-hover) is shared with the case study: css/cover.css */
+
+/* Caption row (title on the left, info on the right) */
+.work-split {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: var(--work-split);
+  min-width: 0;
+}
+
+.work-name {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  min-width: 0;
+}
+
+.work-title {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.work-company {
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--text--text-subtle-light);
+  white-space: nowrap;
+}
+
+/* Timeline of the case study (from its page), or "Coming soon" */
+.work-timeline,
+.work-soon {
+  flex: none;
+  white-space: nowrap;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--text--text-subtle-light);
+}
+
+/* Mobile and touch: the description is always visible under the caption */
+.work-desc {
+  display: none;
+}
+
+/* Desktop without a real pointer (touch laptops, tablets in landscape): show the description */
+@media screen and (min-width: 992px) and (not (any-hover: hover)) {
+  .work-desc { display: block; }
+  .work-card { height: auto; min-height: var(--work-card-h); }
+}
+
+/* --- Footer --- */
+
+.work-foot {
+  position: relative;
+  margin-left: 60px;
+  overflow-x: clip;
+}
+
+.work-foot-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-left: 60px;
+  margin-right: 120px;
+  padding: 24px 0 32px;
+}
+
+.work-foot .annotation {
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--text--text-subtle-light);
+}
+
+/* --- Entrance: lines draw like the home grid, text and covers fade in. Nothing moves on its own
+       after that, and the covers never change position. --- */
+
+.js .work-aside .section-title {
+  opacity: 0;
+  transition: opacity 1.25s ease-in-out 0.25s;
+}
+.js .work-aside.is-in .section-title {
+  opacity: 1;
+}
+
+.js .work-item > .line-h {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.5s cubic-bezier(.5,0,0,1);
+}
+.js .work-item.is-in > .line-h {
+  transform: scaleX(1);
+}
+
+.js .work-item .work-media,
+.js .work-item .work-split,
+.js .work-item .work-desc {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.js .work-item .work-split,
+.js .work-item .work-desc {
+  transform: translateY(8px);
+  transition: opacity 0.6s ease 0.15s, transform 0.6s cubic-bezier(.4,0,.2,1) 0.15s;
+}
+.js .work-item.is-in .work-media,
+.js .work-item.is-in .work-split,
+.js .work-item.is-in .work-desc {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Responsive (site breakpoints) --- */
+
+@media screen and (max-width: 991px) {
+  .work-page {
+    --work-top: 32px;
+    --work-peek: clamp(96px, 16svh, 160px);
+    /* The 48px menu bar at the bottom of the screen */
+    --work-card-h: calc(100svh - 48px - var(--work-top) - var(--work-peek));
+  }
+
+  .work-section {
+    margin-left: 0;
+    padding-bottom: calc(var(--work-top) + 48px);
+  }
+
+  .work-grid {
+    grid-template-columns: minmax(0, 1fr);
+    margin-left: 60px;
+    margin-right: 60px;
+  }
+
+  .work-grid > .line-v {
+    top: calc(var(--work-top) * -1);
+    bottom: calc((var(--work-top) + 48px) * -1);
+  }
+  .work-grid > .line-v.at-list { display: none; }
+
+  /* Natural reading on small screens: the title is not sticky */
+  .work-aside {
+    grid-column: 1;
+    margin-bottom: 24px;
+  }
+  .work-aside-inner {
+    position: static;
+    padding-top: 0;
+  }
+
+  .work-list {
+    grid-column: 1;
+  }
+
+  .work-item > .line-h {
+    display: none;
+  }
+
+  /* One cover per screen, the next one peeking: the card keeps the height of the screen and the
+     cover is square (it only trims the sides of the 3:2 images); the rest is white space under
+     the text, the same for every project. */
+  .work-card {
+    width: 100%;
+    height: auto;
+    min-height: var(--work-card-h);
+  }
+  .work-media {
+    flex: none;
+    aspect-ratio: 1 / 1;
+  }
+  /* The full title is always readable: the caption row grows instead of cutting it */
+  .work-split {
+    height: auto;
+    min-height: var(--work-split);
+    align-items: flex-start;
+  }
+  .work-name {
+    flex-wrap: wrap;
+    column-gap: 12px;
+    row-gap: 0;
+  }
+  .work-title {
+    white-space: normal;
+    overflow: visible;
+  }
+  .work-timeline,
+  .work-soon {
+    padding-top: 2px;
+  }
+  .work-desc {
+    display: block;
+    margin: 0;
+    padding-top: 4px;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .work-foot {
+    margin-left: 0;
+    padding-bottom: 48px;
+  }
+  .work-foot-inner {
+    margin-left: 60px;
+    margin-right: 60px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .work-grid,
+  .work-foot-inner {
+    margin-left: 32px;
+    margin-right: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .work-aside .section-title,
+  .js .work-item > .line-h,
+  .js .work-item .work-media,
+  .js .work-item .work-split,
+  .js .work-item .work-desc {
+    transition: none;
+  }
+}

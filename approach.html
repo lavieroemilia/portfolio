@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<!--
+  Approach. Built on the case study grid (css/case-study.css), the About cover and
+  presentation title (css/about.css) and css/approach.css.
+  Copy: the senses and the reviews as validated earlier; the title "I shape the whole
+  body of a product", the vision and the bridge "I make products with all five senses" validated by Ema. Illustrations: Ema's Lotties for the five senses.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Approach · Emilia Laviero</title>
+<meta name="description" content="How Emilia Laviero works: she listens, sees, speaks, tastes and makes, with every sense awake. Plus four reviews from people she has worked with.">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<script>
+  document.documentElement.classList.add("js");
+  // Cover Reveal: coming from the About or Approach tile of the menu (flag set by cover-reveal.js), the cover title is already in place
+  (function () {
+    try {
+      var t = +sessionStorage.getItem("coverReveal");
+      sessionStorage.removeItem("coverReveal");
+      if (t && Date.now() - t < 5000 && window.innerWidth > 991 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("cover-reveal");
+      }
+    } catch (e) {}
+  })();
+</script>
+<link rel="canonical" href="https://emilialaviero.com/approach.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Emilia Laviero">
+<meta property="og:title" content="Approach · Emilia Laviero">
+<meta property="og:description" content="How Emilia Laviero works: she listens, sees, speaks, tastes and makes, with every sense awake. Plus four reviews from people she has worked with.">
+<meta property="og:url" content="https://emilialaviero.com/approach.html">
+<meta property="og:image" content="https://emilialaviero.com/assets/images/og-home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="css/webflow.css?v=20261028a">
+<link rel="stylesheet" href="css/global.css?v=20261028a">
+<link rel="stylesheet" href="css/tiles.css?v=20261028a">
+<link rel="stylesheet" href="css/menu-button.css?v=12">
+<link rel="stylesheet" href="css/transitions.css?v=20261028a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..700&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<link rel="stylesheet" href="css/identity.css?v=20261028a">
+<link rel="stylesheet" href="css/interior-nav.css?v=20261028a">
+<link rel="stylesheet" href="css/editorial.css?v=20261028a">
+<link rel="stylesheet" href="css/grid-reveal.css?v=20261028a">
+<link rel="stylesheet" href="css/cover-reveal.css?v=3">
+<link rel="stylesheet" href="css/cover.css?v=1">
+<link rel="stylesheet" href="css/case-study.css?v=20261028a">
+<link rel="stylesheet" href="css/about.css?v=20261028a">
+<link rel="stylesheet" href="css/approach.css?v=20261028a">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="fcb351f4-7b90-480b-a4d0-76a9ef057f95" data-domains="emilialaviero.com,www.emilialaviero.com"></script>
+<script defer src="js/analytics.js?v=1"></script>
+</head>
+<body class="cs-page about-page approach-page" data-page-title="Approach">
+<div class="nav-container">
+<div class="nav-scroll-indicator"></div>
+<div class="nav-border-line"></div>
+<div class="nav"><nav class="nav-wrapper"><div class="nav-tile nav-tile-1"><a data-track="open-work" data-track-from="menu" id="tilework" href="work.html" data-first-cover="assets/images/project-dino-app.jpg" class="tile color work w-inline-block"><div class="tile-title">Work</div><div class="color-visual-container"><div class="color-tile-embed w-embed"></div><div class="color-visual-square"><div class="color-visual-square-square"><div class="color-color-block block-1"><div class="w-embed"><svg class="color-color-circle" viewBox="0 0 150 150">
+<path d="M75 25C42.7594 25 25 42.7563 25 75C25 107.244 42.7594 125 75 125C107.241 125 125 107.244 125 75C125 42.7563 107.241 25 75 25Z"/>
+</svg></div></div><div class="color-color-block block-2"><div class="w-embed"><svg class="color-color-circle" viewBox="0 0 150 150">
+<path d="M75 25C42.7594 25 25 42.7563 25 75C25 107.244 42.7594 125 75 125C107.241 125 125 107.244 125 75C125 42.7563 107.241 25 75 25Z"/>
+</svg></div></div></div></div></div></a></div><div class="nav-tile nav-tile-2"><a data-track="open-contact" data-track-from="menu" id="tilecontact" href="contact.html" class="tile contact w-inline-block"><div class="tile-title">Contact</div><div class="typography-visual-container"><div class="typography-visual-square"><div class="typography-visual-type-embed w-embed"><svg class="typography-visual-type contact-visual-type" viewBox="0 0 196 110" aria-hidden="true">
+  <defs>
+    <path id="contact-visual-type-path" d="M26 0.5L46 0.5L46 44L92 44L92 0.5L112 0.5L112 106.6L92 106.6L92 62L46 62L46 106.6L26 106.6ZM134 0.5L154 0.5L154 20.5L134 20.5ZM134 30L154 30L154 106.6L134 106.6ZM176 0.5L196 0.5L193 78L179 78ZM176 86.6L196 86.6L196 106.6L176 106.6Z">
+      <animate attributeName="d" dur="0.35s" fill="freeze" keyTimes="0; 1" keySplines=".4 0 .2 1" calcMode="spline" to="M0 0.5L34 0.5L34 40L66 40L66 0.5L100 0.5L100 106.6L66 106.6L66 66L34 66L34 106.6L0 106.6ZM114 0.5L148 0.5L148 28.5L114 28.5ZM114 36L148 36L148 106.6L114 106.6ZM162 0.5L196 0.5L191 70L167 70ZM162 78.6L196 78.6L196 106.6L162 106.6Z" begin="tilecontact.mouseover"/>
+      <animate attributeName="d" dur="0.35s" fill="freeze" keyTimes="0; 1" keySplines=".4 0 .2 1" calcMode="spline" to="M26 0.5L46 0.5L46 44L92 44L92 0.5L112 0.5L112 106.6L92 106.6L92 62L46 62L46 106.6L26 106.6ZM134 0.5L154 0.5L154 20.5L134 20.5ZM134 30L154 30L154 106.6L134 106.6ZM176 0.5L196 0.5L193 78L179 78ZM176 86.6L196 86.6L196 106.6L176 106.6Z" begin="tilecontact.mouseout"/>
+    </path>
+    <clipPath id="contact-visual-type-clip">
+      <use href="#contact-visual-type-path"/>
+    </clipPath>
+  </defs>
+  <use href="#contact-visual-type-path" stroke-width="4px" clip-path="url(#contact-visual-type-clip)"/>
+</svg></div></div></div></a></div><div class="nav-tile nav-tile-3"><a data-track="open-resume" data-track-from="menu" id="tileresume" href="https://drive.google.com/file/d/1UBUYoUBQmqR8Oo1AWpUcdBWm7KlIhkAL/view?usp=sharing" target="_blank" rel="noopener" class="tile resume w-inline-block"><div class="tile-title">Resume</div><div class="resume-visual-container"><div class="lottie-visual resume-visual" data-src="assets/lottie-animations/Profile 3.json" data-viewbox="27.9 58.6 1141.4 1141.4" data-motion="0,30" data-once></div></div></a></div><div class="nav-tile nav-tile-4"><a data-track="open-approach" data-track-from="menu" id="tileapproach" href="approach.html" class="tile motion approach w-inline-block"><div class="tile-title">Approach</div><div class="motion-visual-container"><div class="approach-visual" data-src="assets/lottie-animations/approach.svg"></div></div></a></div><div class="nav-tile nav-tile-5"><a data-track="open-about" data-track-from="menu" id="tileabout" href="about.html" class="tile voice-tone about w-inline-block"><div class="tile-title">About</div><div class="voice-tone-visual-container"><div class="w-embed"><svg class="voice-tone-quotation-mark left" width="204" height="163" viewBox="0 0 204 163">
+  <defs>
+    <clipPath id="clip-shape">
+      <path d="M8.16 50.9646C2.72 65.2502 0 82.2384 0 101.929C0 116.987 1.36 128.763 4.08 137.257C7.18857 145.751 12.0457 151.929 18.6514 155.79C25.2571 159.264 34 161.002 44.88 161.002C54.9829 161.002 63.1429 159.651 69.36 156.948C75.5771 154.245 80.0457 149.805 82.7657 143.628C85.8743 137.45 87.4286 129.149 87.4286 118.724C87.4286 107.528 86.0686 99.2266 83.3486 93.8213C81.0171 88.0298 77.1314 84.1689 71.6914 82.2384C66.2514 79.9218 59.0629 78.7635 50.1257 78.7635C47.4878 78.7635 44.9198 78.9721 42.4217 79.3891C43.1347 71.3966 44.537 64.4314 46.6286 58.4935C49.7371 50.7716 54.2057 44.594 60.0343 39.9609C65.8629 35.3277 72.8571 32.6251 81.0172 31.8529L75.7714 0C58.6743 2.31657 44.4914 7.91495 33.2229 16.7951C21.9543 25.2893 13.6 36.6791 8.16 50.9646Z"/>
+      <path d="M124.731 50.9646C119.291 65.2502 116.571 82.2384 116.571 101.929C116.571 116.987 117.931 128.763 120.651 137.257C123.76 145.751 128.617 151.929 135.223 155.79C141.829 159.264 150.571 161.002 161.451 161.002C171.554 161.002 179.714 159.651 185.931 156.948C192.149 154.245 196.617 149.805 199.337 143.628C202.446 137.45 204 129.149 204 118.724C204 107.528 202.64 99.2266 199.92 93.8213C197.589 88.0298 193.703 84.1689 188.263 82.2384C182.823 79.9218 175.634 78.7635 166.697 78.7635C164.059 78.7635 161.491 78.9721 158.993 79.3891C159.706 71.3966 161.108 64.4314 163.2 58.4935C166.309 50.7716 170.777 44.594 176.606 39.9609C182.434 35.3277 189.429 32.6251 197.589 31.8529L192.343 0C175.246 2.31657 161.063 7.91495 149.794 16.7951C138.526 25.2893 130.171 36.6791 124.731 50.9646Z"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip-shape)">
+    <path d="M8.16 50.9646C2.72 65.2502 0 82.2384 0 101.929C0 116.987 1.36 128.763 4.08 137.257C7.18857 145.751 12.0457 151.929 18.6514 155.79C25.2571 159.264 34 161.002 44.88 161.002C54.9829 161.002 63.1429 159.651 69.36 156.948C75.5771 154.245 80.0457 149.805 82.7657 143.628C85.8743 137.45 87.4286 129.149 87.4286 118.724C87.4286 107.528 86.0686 99.2266 83.3486 93.8213C81.0171 88.0298 77.1314 84.1689 71.6914 82.2384C66.2514 79.9218 59.0629 78.7635 50.1257 78.7635C47.4878 78.7635 44.9198 78.9721 42.4217 79.3891C43.1347 71.3966 44.537 64.4314 46.6286 58.4935C49.7371 50.7716 54.2057 44.594 60.0343 39.9609C65.8629 35.3277 72.8571 32.6251 81.0172 31.8529L75.7714 0C58.6743 2.31657 44.4914 7.91495 33.2229 16.7951C21.9543 25.2893 13.6 36.6791 8.16 50.9646Z"/>
+    <path d="M124.731 50.9646C119.291 65.2502 116.571 82.2384 116.571 101.929C116.571 116.987 117.931 128.763 120.651 137.257C123.76 145.751 128.617 151.929 135.223 155.79C141.829 159.264 150.571 161.002 161.451 161.002C171.554 161.002 179.714 159.651 185.931 156.948C192.149 154.245 196.617 149.805 199.337 143.628C202.446 137.45 204 129.149 204 118.724C204 107.528 202.64 99.2266 199.92 93.8213C197.589 88.0298 193.703 84.1689 188.263 82.2384C182.823 79.9218 175.634 78.7635 166.697 78.7635C164.059 78.7635 161.491 78.9721 158.993 79.3891C159.706 71.3966 161.108 64.4314 163.2 58.4935C166.309 50.7716 170.777 44.594 176.606 39.9609C182.434 35.3277 189.429 32.6251 197.589 31.8529L192.343 0C175.246 2.31657 161.063 7.91495 149.794 16.7951C138.526 25.2893 130.171 36.6791 124.731 50.9646Z"/>
+  </g>
+</svg>
+<svg class="voice-tone-quotation-mark right" width="204" height="163" viewBox="0 0 204 163">
+  <defs>
+    <clipPath id="clip-shape">
+      <path d="M8.16 50.9646C2.72 65.2502 0 82.2384 0 101.929C0 116.987 1.36 128.763 4.08 137.257C7.18857 145.751 12.0457 151.929 18.6514 155.79C25.2571 159.264 34 161.002 44.88 161.002C54.9829 161.002 63.1429 159.651 69.36 156.948C75.5771 154.245 80.0457 149.805 82.7657 143.628C85.8743 137.45 87.4286 129.149 87.4286 118.724C87.4286 107.528 86.0686 99.2266 83.3486 93.8213C81.0171 88.0298 77.1314 84.1689 71.6914 82.2384C66.2514 79.9218 59.0629 78.7635 50.1257 78.7635C47.4878 78.7635 44.9198 78.9721 42.4217 79.3891C43.1347 71.3966 44.537 64.4314 46.6286 58.4935C49.7371 50.7716 54.2057 44.594 60.0343 39.9609C65.8629 35.3277 72.8571 32.6251 81.0172 31.8529L75.7714 0C58.6743 2.31657 44.4914 7.91495 33.2229 16.7951C21.9543 25.2893 13.6 36.6791 8.16 50.9646Z"/>
+      <path d="M124.731 50.9646C119.291 65.2502 116.571 82.2384 116.571 101.929C116.571 116.987 117.931 128.763 120.651 137.257C123.76 145.751 128.617 151.929 135.223 155.79C141.829 159.264 150.571 161.002 161.451 161.002C171.554 161.002 179.714 159.651 185.931 156.948C192.149 154.245 196.617 149.805 199.337 143.628C202.446 137.45 204 129.149 204 118.724C204 107.528 202.64 99.2266 199.92 93.8213C197.589 88.0298 193.703 84.1689 188.263 82.2384C182.823 79.9218 175.634 78.7635 166.697 78.7635C164.059 78.7635 161.491 78.9721 158.993 79.3891C159.706 71.3966 161.108 64.4314 163.2 58.4935C166.309 50.7716 170.777 44.594 176.606 39.9609C182.434 35.3277 189.429 32.6251 197.589 31.8529L192.343 0C175.246 2.31657 161.063 7.91495 149.794 16.7951C138.526 25.2893 130.171 36.6791 124.731 50.9646Z"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip-shape)">
+    <path d="M8.16 50.9646C2.72 65.2502 0 82.2384 0 101.929C0 116.987 1.36 128.763 4.08 137.257C7.18857 145.751 12.0457 151.929 18.6514 155.79C25.2571 159.264 34 161.002 44.88 161.002C54.9829 161.002 63.1429 159.651 69.36 156.948C75.5771 154.245 80.0457 149.805 82.7657 143.628C85.8743 137.45 87.4286 129.149 87.4286 118.724C87.4286 107.528 86.0686 99.2266 83.3486 93.8213C81.0171 88.0298 77.1314 84.1689 71.6914 82.2384C66.2514 79.9218 59.0629 78.7635 50.1257 78.7635C47.4878 78.7635 44.9198 78.9721 42.4217 79.3891C43.1347 71.3966 44.537 64.4314 46.6286 58.4935C49.7371 50.7716 54.2057 44.594 60.0343 39.9609C65.8629 35.3277 72.8571 32.6251 81.0172 31.8529L75.7714 0C58.6743 2.31657 44.4914 7.91495 33.2229 16.7951C21.9543 25.2893 13.6 36.6791 8.16 50.9646Z"/>
+    <path d="M124.731 50.9646C119.291 65.2502 116.571 82.2384 116.571 101.929C116.571 116.987 117.931 128.763 120.651 137.257C123.76 145.751 128.617 151.929 135.223 155.79C141.829 159.264 150.571 161.002 161.451 161.002C171.554 161.002 179.714 159.651 185.931 156.948C192.149 154.245 196.617 149.805 199.337 143.628C202.446 137.45 204 129.149 204 118.724C204 107.528 202.64 99.2266 199.92 93.8213C197.589 88.0298 193.703 84.1689 188.263 82.2384C182.823 79.9218 175.634 78.7635 166.697 78.7635C164.059 78.7635 161.491 78.9721 158.993 79.3891C159.706 71.3966 161.108 64.4314 163.2 58.4935C166.309 50.7716 170.777 44.594 176.606 39.9609C182.434 35.3277 189.429 32.6251 197.589 31.8529L192.343 0C175.246 2.31657 161.063 7.91495 149.794 16.7951C138.526 25.2893 130.171 36.6791 124.731 50.9646Z"/>
+  </g>
+</svg>
+
+</div></div></a></div></nav></div>
+<div class="menu"><button id="nav-button" aria-label="Navigation menu" class="tile-menu-tile nav-button"><div class="nav-button-highlight"></div><div class="nav-button-content"><div class="nav-button-svg menu-logo w-embed"><svg viewBox="49.125 28 287.553 344.637" fill="currentColor">
+  <path d="M118.081 324.357L49.2422 284.635L49.125 191.55L118.081 151.76Z"/>
+  <path d="M198.67 105.441L129.653 144.14L129.889 332.134L198.67 371.851Z"/>
+  <path d="M336.335 107.56L211.597 179.538L211.622 100.147L336.292 28.0001Z"/>
+  <path d="M336.678 204.531L212.344 276.276L212.368 196.885L336.635 124.971Z"/>
+  <path d="M336.44 300.794L211.935 372.637L211.96 293.247L336.397 221.234Z"/>
+</svg></div><div class="nav-button-svg menu-hamburger w-embed"><svg viewBox="0 0 41 41" fill="currentColor">
+<path d="M32.6719 19.2188H8.32812V21.7812H32.6719V19.2188Z"/>
+<path d="M32.6719 9.96875H8.32812V12.5312H32.6719V9.96875Z"/>
+<path d="M32.6719 29.1094H8.32812V31.6719H32.6719V29.1094Z"/>
+</svg></div><div class="nav-button-svg menu-arrow w-embed">
+
+<div class="menu-arrow-icon">
+<svg viewBox="0 0 41 41" fill="currentColor">
+  <path d="M21.8547 31.1429L13.2634 22.208L32.4624 22.208V19.6455L13.2634 19.6455L21.8547 10.7107L20.0075 8.93457L8.47656 20.9268L20.0075 32.919L21.8547 31.1429Z"/>
+</svg>
+</div></div><div class="nav-button-svg menu-close w-embed"><svg viewBox="0 0 41 41" fill="currentColor">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M22.311 20.5001L30.8009 28.9899L28.9889 30.8019L20.4991 22.312L12.0092 30.8019L10.1973 28.9899L18.6871 20.5001L10.1973 12.0102L12.0092 10.1982L20.4991 18.6881L28.9889 10.1982L30.8009 12.0102L22.311 20.5001Z"/>
+</svg></div></div></button></div>
+<div class="nav-page-title"></div>
+<a data-track="open-home" data-track-from="rail" class="nav-brand" href="index.html">Emilia Laviero</a>
+<div class="nav-background"></div>
+</div>
+
+<main class="cs ab ap" id="main">
+
+  <!-- 1 · Cover: the dark opening of About: squares in the colours of
+       the senses on the cells of the grid, each with a rounded shape in the darker tone of its range,
+       some cut by the edges of the screen; the eye of "I see" in its pink square on the top line of the
+       title; a strip of the five colours hanging from the bottom line of the title, from 2/3 -->
+  <header class="ab-cover ap-cover" aria-labelledby="approach-title">
+    <div class="ab-cover-grid">
+      <span class="ab-cover-v at-start" aria-hidden="true"></span>
+      <span class="ab-cover-v at-title" aria-hidden="true"></span>
+      <span class="ab-cover-v at-box" aria-hidden="true"></span>
+      <span class="ab-cover-v at-end" aria-hidden="true"></span>
+      <span class="ab-cover-h at-1" aria-hidden="true"></span>
+      <span class="ab-cover-h at-2" aria-hidden="true"></span>
+      <span class="ab-cover-h at-3" aria-hidden="true"></span>
+      <span class="ab-cover-h at-4" aria-hidden="true"></span>
+      <span class="ap-sq ap-sq-top is-blue" aria-hidden="true"><i></i></span>
+      <div class="ap-sq ap-sq-eye is-pink" aria-hidden="true"><div class="ap-lottie" data-lottie-loop="assets/lottie-animations/Eye.json"></div></div>
+      <div class="ab-cover-title-row">
+        <h1 class="ab-cover-title" id="approach-title">Approach</h1>
+      </div>
+      <ul class="ap-swatches" aria-hidden="true">
+        <li class="is-blue"><i></i></li><li class="is-pink"><i></i></li><li class="is-green"><i></i></li><li class="is-purple"><i></i></li><li class="is-plum"><i></i></li>
+      </ul>
+      <span class="ap-sq ap-sq-low is-green" aria-hidden="true"><i></i></span>
+      <span class="ap-sq ap-sq-corner is-purple" aria-hidden="true"><i></i></span>
+    </div>
+  </header>
+
+  <div class="cs-body">
+    <div class="cs-wrap">
+      <span class="line-v at-start" aria-hidden="true"></span>
+      <span class="line-v at-end" aria-hidden="true"></span>
+
+      <!-- 2 · Presentation: the title in the middle of the screen, between two lines, and my vision
+           below it on the first two thirds, as "Who I am" on About. Title and vision validated by Ema
+           (26 Oct 2026) -->
+      <section class="cs-block ab-lead cs-reveal" aria-labelledby="lead-title">
+        <span class="line-v at-text" aria-hidden="true"></span>
+        <div class="ab-lead-box cs-fade">
+          <span class="line-h" aria-hidden="true"></span>
+          <span class="line-h at-bottom" aria-hidden="true"></span>
+          <h2 class="ab-lead-title" id="lead-title">I shape the whole body of a&nbsp;product</h2>
+        </div>
+      </section>
+
+      <section class="cs-block ab-intro-block ap-vision cs-reveal" aria-label="My vision">
+        <span class="line-h" aria-hidden="true"></span>
+        <span class="line-v ab-line-23" aria-hidden="true"></span>
+        <div class="ab-intro cs-fade">
+          <p class="ab-p"><mark>A product is one body of many parts</mark>: the people who use it, the business that sustains it, the data that explains it, the design that makes it clear and the technology that makes it real. When one part is missing, <mark>users feel&nbsp;it</mark>.</p>
+          <p class="ab-p">That&rsquo;s why I don&rsquo;t work one discipline at a time. I listen before defining the problem, see the whole picture before deciding, speak for users when they&rsquo;re not in the room, care about how it looks and feels, and build it with AI, so ideas reach real people&nbsp;fast.</p>
+        </div>
+      </section>
+
+      <!-- 3 · Bridge to the senses, as on About: the sentence in a grey box, after an empty cell and
+           followed by a 24px band between two lines. Validated by Ema (26 Oct 2026) -->
+      <section class="cs-block ab-voice has-line cs-reveal" aria-labelledby="senses-title">
+        <span class="line-h" aria-hidden="true"></span>
+        <span class="line-h at-gap" aria-hidden="true"></span>
+        <span class="line-h at-tail" aria-hidden="true"></span>
+        <span class="line-v at-box-end" aria-hidden="true"></span>
+        <div class="ab-voice-box cs-fade"><h2 class="ab-statement" id="senses-title">I make products with all five&nbsp;senses</h2></div>
+      </section>
+
+      <!-- 4 · The five senses, one under another, as the decisions of the case studies, in three:
+           the title stays put on the left (1/3) until the next sense pushes it up; the illustration on
+           the colour of its sense (the same as the About cover box), as tall as the text; then the
+           tagline and the text. 20px and two lines between senses, so the colours never touch.
+           Copy validated earlier. Each sense has Ema's Lottie: sense-listen.json,
+           Eye.json, sense-speak.json, sense-taste.json and sense-make.json -->
+      <section class="cs-block ap-senses" aria-labelledby="senses-title">
+        <ol class="cs-dlist">
+          <li class="cs-ditem ap-sense is-blue">
+            <div class="cs-ditem-head"><div class="cs-ditem-sticky"><h3 class="cs-dec-title">I listen</h3></div></div>
+            <div class="cs-ditem-body">
+              <div class="ap-visual" aria-hidden="true"><div class="ap-lottie" data-lottie-loop="assets/lottie-animations/sense-listen.json"></div></div>
+              <div class="cs-ditem-text">
+                <p class="ap-tagline">Understanding people before defining&nbsp;problems.</p>
+                <p class="cs-text">Listening to users, teams and stakeholders to uncover needs, challenge assumptions and consider different&nbsp;perspectives.</p>
+              </div>
+            </div>
+          </li>
+          <li class="cs-ditem ap-sense is-pink">
+            <div class="cs-ditem-head"><div class="cs-ditem-sticky"><h3 class="cs-dec-title">I see</h3></div></div>
+            <div class="cs-ditem-body">
+              <div class="ap-visual" aria-hidden="true"><div class="ap-lottie" data-lottie-loop="assets/lottie-animations/Eye.json"></div></div>
+              <div class="cs-ditem-text">
+                <p class="ap-tagline">Seeing the bigger&nbsp;picture.</p>
+                <p class="cs-text">Connecting user insights, business goals and data to identify opportunities and decide what matters&nbsp;most.</p>
+              </div>
+            </div>
+          </li>
+          <li class="cs-ditem ap-sense is-green">
+            <div class="cs-ditem-head"><div class="cs-ditem-sticky"><h3 class="cs-dec-title">I speak</h3></div></div>
+            <div class="cs-ditem-body">
+              <div class="ap-visual" aria-hidden="true"><div class="ap-lottie" data-lottie-loop="assets/lottie-animations/sense-speak.json"></div></div>
+              <div class="cs-ditem-text">
+                <p class="ap-tagline">The user&rsquo;s voice, even when they&rsquo;re not in the&nbsp;room.</p>
+                <p class="cs-text">Turning research into clear stories that guide decisions, communicate priorities and keep teams aligned around real user&nbsp;needs.</p>
+              </div>
+            </div>
+          </li>
+          <li class="cs-ditem ap-sense is-purple">
+            <div class="cs-ditem-head"><div class="cs-ditem-sticky"><h3 class="cs-dec-title">I taste</h3></div></div>
+            <div class="cs-ditem-body">
+              <div class="ap-visual" aria-hidden="true"><div class="ap-lottie" data-lottie-loop="assets/lottie-animations/sense-taste.json"></div></div>
+              <div class="cs-ditem-text">
+                <p class="ap-tagline">Good design takes good&nbsp;taste.</p>
+                <p class="cs-text">Applying visual craft, creativity and aesthetic judgement to create intuitive, cohesive and distinctive product&nbsp;experiences.</p>
+              </div>
+            </div>
+          </li>
+          <li class="cs-ditem ap-sense is-plum">
+            <div class="cs-ditem-head"><div class="cs-ditem-sticky"><h3 class="cs-dec-title">I make</h3></div></div>
+            <div class="cs-ditem-body">
+              <div class="ap-visual" aria-hidden="true"><div class="ap-lottie" data-lottie-loop="assets/lottie-animations/sense-make.json"></div></div>
+              <div class="cs-ditem-text">
+                <p class="ap-tagline">Beyond ideas and&nbsp;prototypes.</p>
+                <p class="cs-text">Designing, prototyping and building with AI tools to turn concepts into working products, ready to launch, test and&nbsp;improve.</p>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Empty row of the grid -->
+      <div class="cs-row" aria-hidden="true"><span class="line-v"></span></div>
+
+      <!-- 5 · Reviews: a carousel to the side, laid out like Mantras on About: the title on the first
+           third, the cards on the other two. Two cards in view and the third peeking on the right, so it
+           reads as a carousel; the arrows (on the text axis, between lines) or a swipe bring the rest.
+           Texts as validated earlier (permission confirmed by Ema); title shortened to "Reviews" -->
+      <section class="cs-block ab-band ap-reviews has-line cs-reveal" aria-labelledby="reviews-title">
+        <span class="line-h" aria-hidden="true"></span>
+        <span class="line-h at-bottom" aria-hidden="true"></span>
+        <div class="cs-side ap-rv-head cs-fade">
+          <h2 class="cs-h2" id="reviews-title">Reviews</h2>
+          <div class="ap-rv-nav">
+            <button class="ap-rv-btn" type="button" data-dir="-1" aria-label="Previous review" aria-controls="reviews-track"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></button>
+            <button class="ap-rv-btn" type="button" data-dir="1" aria-label="Next review" aria-controls="reviews-track"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></button>
+          </div>
+        </div>
+        <ul class="ap-rv-track cs-fade" id="reviews-track" tabindex="0" aria-label="Reviews">
+          <li class="ap-rv-card">
+            <span class="ap-rv-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote class="ap-rv-text"><p>Working with Emi is a pleasure. She takes feedback very well and always constructively, something that isn&rsquo;t easy to find and that I value enormously. She learns fast, genuinely cares about users, takes the time to talk to everyone involved so that research really has impact, and analyses metrics to evaluate next steps. I&rsquo;d recommend her without a doubt for any&nbsp;team.</p></blockquote>
+            <p class="ap-rv-who"><span class="ap-rv-name">Lucia</span><span>Design Lead at Ucademy</span></p>
+          </li>
+          <li class="ap-rv-card">
+            <span class="ap-rv-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote class="ap-rv-text"><p>Although Emi has an overwhelming capacity for execution that brings a lot of value to any company, she has the right skills to lead a team. I believe in her decision-making, her social skills to handle situations and, above all, her empathy to understand different positions and give her opinion without affecting anyone negatively, neither the person nor the&nbsp;company.</p></blockquote>
+            <p class="ap-rv-who"><span class="ap-rv-name">Rafael</span><span>Worked with Emilia at Ucademy</span></p>
+          </li>
+          <li class="ap-rv-card">
+            <span class="ap-rv-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote class="ap-rv-text"><p>Emilia is the person you want to work with: 100% committed, passionate about what she takes on, enthusiastic, solution-oriented, self-taught, always eager to learn, to innovate, to do better. She works with total professionalism and quality in her results and, at the same time, with great humanity. She builds excellent relationships with people. It&rsquo;s a pleasure to work with&nbsp;her!</p></blockquote>
+            <p class="ap-rv-who"><span class="ap-rv-name">Gianina</span><span>Emilia&rsquo;s manager</span></p>
+          </li>
+          <li class="ap-rv-card">
+            <span class="ap-rv-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote class="ap-rv-text"><p>I worked with Emilia on a Growth project for an online social change platform. Her work as communication coordinator, user support lead and in planning new strategies was key to the results we achieved. I learnt a lot from her skills as a writer and designer, and from how effectively she led the project. Her ability to coordinate teams and her communication skills make the&nbsp;difference.</p></blockquote>
+            <p class="ap-rv-who"><span class="ap-rv-name">Fran</span><span>Worked with Emilia at Barrios Activos</span></p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Empty row of the grid before the footer -->
+      <div class="cs-row" aria-hidden="true"><span class="line-v"></span></div>
+    </div>
+  </div>
+
+  <!-- Footer: three quiet columns on the thirds of the grid. Contact (the email copies the address,
+       no mailto), Sitemap (the main pages) and Work (the case studies that have a page) -->
+  <footer class="cs-footer" id="contact" aria-label="Footer">
+    <div class="cs-footer-inner">
+      <div class="cs-footer-cols">
+        <div class="cs-footer-col">
+          <p class="cs-footer-label">Contact</p>
+          <ul>
+            <li><button data-track="copy-email" data-track-from="footer" class="cs-footer-link" type="button" data-copy="lavieroemilia@gmail.com"><svg class="cs-footer-icon" viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5"/><path d="m2 4.5 6 4.5 6-4.5"/></svg><span class="copy-label" aria-live="polite">lavieroemilia@gmail.com</span></button></li>
+            <li><a data-track="open-linkedin" data-track-from="footer" class="cs-footer-link" href="https://www.linkedin.com/in/emilialaviero/" target="_blank" rel="noopener"><svg class="cs-footer-icon is-fill" viewBox="0 0 16 16" aria-hidden="true"><defs><mask id="cs-in-mask"><rect width="16" height="16" rx="3" fill="#fff"/><g fill="#000"><rect x="3" y="6.2" width="2.2" height="6.8"/><circle cx="4.1" cy="3.9" r="1.3"/><path d="M7 6.2h2.1v1c.4-.7 1.2-1.2 2.3-1.2 1.8 0 2.6 1.1 2.6 3V13h-2.2V9.4c0-.9-.3-1.5-1.2-1.5-.9 0-1.4.6-1.4 1.6V13H7z"/></g></mask></defs><rect width="16" height="16" rx="3" fill="currentColor" mask="url(#cs-in-mask)"/></svg>LinkedIn</a></li>
+            <li><a data-track="open-resume" data-track-from="footer" class="cs-footer-link" href="https://drive.google.com/file/d/1UBUYoUBQmqR8Oo1AWpUcdBWm7KlIhkAL/view?usp=sharing" target="_blank" rel="noopener"><svg class="cs-footer-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 1.5H4A1.5 1.5 0 0 0 2.5 3v10A1.5 1.5 0 0 0 4 14.5h8a1.5 1.5 0 0 0 1.5-1.5V5.5z"/><path d="M9.5 1.5v4h4M5.5 8.5h5M5.5 11h5"/></svg>Resume</a></li>
+          </ul>
+        </div>
+        <nav class="cs-footer-col" aria-label="Sitemap">
+          <p class="cs-footer-label">Sitemap</p>
+          <ul><li><a data-track="open-home" data-track-from="footer" class="cs-footer-link" href="index.html">Home</a></li><li><a data-track="open-work" data-track-from="footer" class="cs-footer-link" href="work.html">Work</a></li><li><a data-track="open-about" data-track-from="footer" class="cs-footer-link" href="about.html">About</a></li><li><a data-track="open-approach" data-track-from="footer" class="cs-footer-link" href="approach.html" aria-current="page">Approach</a></li><li><a data-track="open-contact" data-track-from="footer" class="cs-footer-link" href="contact.html">Contact</a></li></ul>
+        </nav>
+        <nav class="cs-footer-col" aria-label="Case studies">
+          <p class="cs-footer-label">Work</p>
+          <ul><li><a data-track="open-project" data-track-project="dino" data-track-from="footer" class="cs-footer-link" href="pages/dino.html">Gamified learning app</a></li><li><a data-track="open-project" data-track-project="student-dashboard" data-track-from="footer" class="cs-footer-link" href="pages/student-dashboard.html">Student dashboard</a></li><li><a data-track="open-project" data-track-project="practice" data-track-from="footer" class="cs-footer-link" href="pages/practice.html">Tests and practice</a></li><li><a data-track="open-project" data-track-project="quota" data-track-from="footer" class="cs-footer-link" href="pages/quota-pms.html">Property management platform</a></li></ul>
+        </nav>
+      </div>
+      <div class="cs-footer-bottom"><span>Emilia Laviero &copy; 2026</span><span>Madrid, Spain</span><a href="#main">Back to top ↑</a></div>
+    </div>
+  </footer>
+</main>
+
+<script src="js/nav-transitions.js?v=20261028a"></script>
+<script src="js/interior-nav.js?v=20261028b"></script>
+<script src="js/approach-tile.js?v=20261028a"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie_light.min.js"></script>
+<script src="js/lottie-tiles.js?v=20261028a"></script>
+<script src="js/grid-reveal.js?v=12"></script>
+<script src="js/cover-reveal.js?v=7"></script>
+<script src="js/case-study.js?v=20261026a"></script>
+<script src="js/lottie-loop.js?v=1"></script>
+<script src="js/approach.js?v=5"></script>
+</body>
+</html>

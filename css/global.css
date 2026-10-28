@@ -1,0 +1,340 @@
+/* global.css: site-wide embed (type scale, --button-size, tile hover, opening grid tokens). */
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-rendering: geometricPrecision;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  *::-webkit-scrollbar, ::-webkit-scrollbar {
+    display: none;
+  }
+
+  ::selection {
+    background-color: var(--accent--tab);
+    color: white;
+	}
+
+  body {
+    overscroll-behavior: none;
+  }
+
+  :root {
+    --button-size: 90px;
+    --nav-tile-gap: 10px;
+    --tile-transition: 0.35s cubic-bezier(.4,0,.2,1);
+  }
+
+  @media screen and (max-width: 991px) {
+    :root {
+      --button-size: 64px;
+      --nav-tile-gap: 5px;
+    }
+  }
+
+  .w-embed, [data-animation-type="rive"] {
+    line-height: 0;
+  }
+
+  h1,h2,h3,h4,h5,p, .h1,.h2,.h3,.h4,.h5 {
+    margin: 0;
+    padding: 0;
+  }
+
+  .title, h1, h2, h3, h4, .nav-header, .button, .h1,.h2,.h3,.h4, blockquote, q {
+    font-family: var(--font-family--title);
+  }
+
+  .title, h1, h2, h3, h4, .h1,.h2,.h3,.h4, blockquote, q {
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  .title, .nav-header {
+    font-variation-settings: "wght" 500, "wdth" 100, "ital" 0;
+  }
+
+  .title {
+    font-size: clamp(0px,10vw,200px);
+  }
+
+  h1, .h1 {
+    font-variation-settings: "wght" 520, "wdth" 106, "ital" 0;
+    font-size: 60px;
+  }
+
+  h2, .h2 {
+    font-variation-settings: "wght" 520, "wdth" 106, "ital" 0;
+    font-size: 40px;
+  }
+
+  h3, .h3 {
+    font-variation-settings: "wght" 520, "wdth" 106, "ital" 0;
+    font-size: 30px;
+  }
+
+  h4, .h4 {
+    font-variation-settings: "wght" 520, "wdth" 106, "ital" 0;
+    font-size: 24px;
+  }
+
+  blockquote, q {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    font-variation-settings: "wght" 520, "wdth" 106, "ital" 0;
+    vertical-align: baseline;
+    background: transparent;
+    quotes: none;
+  }
+
+  blockquote:before, blockquote:after,
+  q:before, q:after {
+    content: '';
+    content: none;
+  }
+
+  .tile-title {
+    font-variation-settings: "wght" 500;
+  }
+
+  .nav-header {
+    line-height: 100%;
+    letter-spacing: 0;
+    font-size: 36px;
+  }
+
+  .p-large, .p, .ui-label, .annotation, .p-small {
+    font-family: var(--font-family--font-1);
+  }
+
+  .p-large, .p, .p-small {
+    font-weight: 400;
+  }
+
+  button, input[type="submit"], input[type="reset"] {
+		background: none;
+    color: inherit;
+	}
+
+  .button {
+    line-height: 100%;
+    letter-spacing: 0.03em;
+    font-variation-settings: "wght" 500, "wdth" 100, "ital" 0;
+  }
+
+  .ui-label, .annotation {
+    font-weight: 500;
+  }
+
+  .p-large, .ui-label {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .p {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .annotation {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .p-small {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  @media screen and (max-width: 991px) {
+    .title {
+      font-size: clamp(36px,12vw,96px);
+    }
+
+    h1, .h1 {
+      font-size: 36px;
+    }
+
+    h2, .h2 {
+      font-size: 28px;
+    }
+
+    h3, .h3 {
+      font-size: 24px;
+    }
+
+    .nav-header {
+      font-size: 20px;
+    }
+
+    .ui-label {
+      font-size: 14px;
+    }
+
+    .annotation {
+      font-size: 10px;
+      line-height: 14px;
+    }
+
+    .bezier-point {
+      transform: scale(0.667);
+      stroke-width: 3px !important;
+    }
+  }
+
+  .tile * {
+    pointer-events: none;
+  }
+
+  .nav-scroll-indicator {
+    transform: scaleY(0);
+  }
+
+  .nav-button-svg.menu-svg-hidden {
+  	opacity: 0;
+    transform: scale(0.8);
+  }
+
+  @media screen and ((max-height: 399px) or ((max-width: 991px) and (max-height: 480px)) or (max-width: 249px)) {
+    .strategy-visual-container, .voice-tone-visual-container, .logo-visual-container, .typography-visual-container, .iconography-visual-container, .color-visual-container, .imagery-visual-container, .motion-visual-container {
+      display: none;
+    }
+  }
+
+  @media (any-hover: hover) {
+	.tile:hover {
+    background-color: var(--text--base) !important;
+    color: white !important;
+  }}
+
+  /* Opening */
+
+  .opening .tile-title {
+  	opacity: 1!important;
+    transform: scale(4)!important;
+  }
+
+  @media screen and (max-width: 991px) {
+    .opening .tile-title {
+      transform: scale(2.5)!important;
+    }
+  }
+
+  :root {
+    --nav-easing: cubic-bezier(.4,0,.2,1);
+    --nav-easing-swoop: cubic-bezier(.6,0,0,1);
+    --highest-tile-yeet: calc((max(100vw, 100vh) - 90px) / -4);
+    --overscroll-progress: 0;
+    --opening-margin: 120px;
+    --opening-gutter: 24px;
+    --opening-total-margins: calc(2 * var(--opening-margin));
+    --opening-total-gutters: calc(11 * var(--opening-gutter));
+    --opening-grid-width: calc(100vw - var(--opening-total-margins));
+    --opening-single-column: calc((var(--opening-grid-width) - var(--opening-total-gutters)) / 12);
+    --opening-col-1-left: var(--opening-margin);
+    --opening-col-1-right: calc(var(--opening-margin) + var(--opening-single-column));
+    --opening-col-2-left: calc(var(--opening-margin) + 1 * (var(--opening-single-column) + var(--opening-gutter)));
+    --opening-col-2-right: calc(var(--opening-margin) + 1 * (var(--opening-single-column) + var(--opening-gutter)) + var(--opening-single-column));
+    --opening-col-3-left: calc(var(--opening-margin) + 2 * (var(--opening-single-column) + var(--opening-gutter)));
+    --opening-col-3-right: calc(var(--opening-margin) + 2 * (var(--opening-single-column) + var(--opening-gutter)) + var(--opening-single-column));
+    --opening-col-4-left: calc(var(--opening-margin) + 3 * (var(--opening-single-column) + var(--opening-gutter)));
+    --opening-col-4-right: calc(var(--opening-margin) + 3 * (var(--opening-single-column) + var(--opening-gutter)) + var(--opening-single-column));
+    --opening-col-5-left: calc(var(--opening-margin) + 4 * (var(--opening-single-column) + var(--opening-gutter)));
+    --opening-col-5-right: calc(var(--opening-margin) + 4 * (var(--opening-single-column) + var(--opening-gutter)) + var(--opening-single-column));
+    --opening-col-6-left: calc(var(--opening-margin) + 5 * (var(--opening-single-column) + var(--opening-gutter)));
+    --opening-col-6-right: calc(var(--opening-margin) + 5 * (var(--opening-single-column) + var(--opening-gutter)) + var(--opening-single-column));
+    --opening-col-7-left: calc(var(--opening-margin) + 6 * (var(--opening-single-column) + var(--opening-gutter)));
+    --opening-col-7-right: calc(var(--opening-margin) + 6 * (var(--opening-single-column) + var(--opening-gutter)) + var(--opening-single-column));
+    --opening-col-8-left: calc(var(--opening-margin) + 7 * (var(--opening-single-column) + var(--opening-gutter)));
+    --opening-col-8-right: calc(var(--opening-margin) + 7 * (var(--opening-single-column) + var(--opening-gutter)) + var(--opening-single-column));
+    --opening-col-9-left: calc(var(--opening-margin) + 8 * (var(--opening-single-column) + var(--opening-gutter)));
+    --opening-col-9-right: calc(var(--opening-margin) + 8 * (var(--opening-single-column) + var(--opening-gutter)) + var(--opening-single-column));
+    --opening-col-10-left: calc(var(--opening-margin) + 9 * (var(--opening-single-column) + var(--opening-gutter)));
+    --opening-col-10-right: calc(var(--opening-margin) + 9 * (var(--opening-single-column) + var(--opening-gutter)) + var(--opening-single-column));
+    --opening-col-11-left: calc(var(--opening-margin) + 10 * (var(--opening-single-column) + var(--opening-gutter)));
+    --opening-col-11-right: calc(var(--opening-margin) + 10 * (var(--opening-single-column) + var(--opening-gutter)) + var(--opening-single-column));
+    --opening-col-12-left: calc(var(--opening-margin) + 11 * (var(--opening-single-column) + var(--opening-gutter)));
+    --opening-col-12-right: calc(100vw - var(--opening-margin));
+    --opening-span-1: var(--opening-single-column);
+    --opening-span-2: calc(2 * var(--opening-single-column) + var(--opening-gutter));
+    --opening-span-3: calc(3 * var(--opening-single-column) + 2 * var(--opening-gutter));
+    --opening-span-4: calc(4 * var(--opening-single-column) + 3 * var(--opening-gutter));
+    --opening-span-5: calc(5 * var(--opening-single-column) + 4 * var(--opening-gutter));
+    --opening-span-6: calc(6 * var(--opening-single-column) + 5 * var(--opening-gutter));
+    --opening-span-7: calc(7 * var(--opening-single-column) + 6 * var(--opening-gutter));
+    --opening-span-8: calc(8 * var(--opening-single-column) + 7 * var(--opening-gutter));
+    --opening-span-9: calc(9 * var(--opening-single-column) + 8 * var(--opening-gutter));
+    --opening-span-10: calc(10 * var(--opening-single-column) + 9 * var(--opening-gutter));
+    --opening-span-11: calc(11 * var(--opening-single-column) + 10 * var(--opening-gutter));
+    --opening-span-12: calc(12 * var(--opening-single-column) + 11 * var(--opening-gutter));
+
+    --body-margin-real: 120px;
+    --body-gutter: 24px;
+    --body-total-margins: calc(2 * var(--body-margin-real));
+    --body-total-gutters: calc(11 * var(--body-gutter));
+    --body-grid-width: min(calc(100vw - var(--body-total-margins)), 1920px);
+    --body-single-column: calc((var(--body-grid-width) - var(--body-total-gutters)) / 12);
+    --body-margin: calc((100vw - var(--body-grid-width)) / 2);
+    --body-col-1-left: var(--body-margin);
+    --body-col-1-right: calc(var(--body-margin) + var(--body-single-column));
+    --body-col-2-left: calc(var(--body-margin) + 1 * (var(--body-single-column) + var(--body-gutter)));
+    --body-col-2-right: calc(var(--body-margin) + 1 * (var(--body-single-column) + var(--body-gutter)) + var(--body-single-column));
+    --body-col-3-left: calc(var(--body-margin) + 2 * (var(--body-single-column) + var(--body-gutter)));
+    --body-col-3-right: calc(var(--body-margin) + 2 * (var(--body-single-column) + var(--body-gutter)) + var(--body-single-column));
+    --body-col-4-left: calc(var(--body-margin) + 3 * (var(--body-single-column) + var(--body-gutter)));
+    --body-col-4-right: calc(var(--body-margin) + 3 * (var(--body-single-column) + var(--body-gutter)) + var(--body-single-column));
+    --body-col-5-left: calc(var(--body-margin) + 4 * (var(--body-single-column) + var(--body-gutter)));
+    --body-col-5-right: calc(var(--body-margin) + 4 * (var(--body-single-column) + var(--body-gutter)) + var(--body-single-column));
+    --body-col-6-left: calc(var(--body-margin) + 5 * (var(--body-single-column) + var(--body-gutter)));
+    --body-col-6-right: calc(var(--body-margin) + 5 * (var(--body-single-column) + var(--body-gutter)) + var(--body-single-column));
+    --body-col-7-left: calc(var(--body-margin) + 6 * (var(--body-single-column) + var(--body-gutter)));
+    --body-col-7-right: calc(var(--body-margin) + 6 * (var(--body-single-column) + var(--body-gutter)) + var(--body-single-column));
+    --body-col-8-left: calc(var(--body-margin) + 7 * (var(--body-single-column) + var(--body-gutter)));
+    --body-col-8-right: calc(var(--body-margin) + 7 * (var(--body-single-column) + var(--body-gutter)) + var(--body-single-column));
+    --body-col-9-left: calc(var(--body-margin) + 8 * (var(--body-single-column) + var(--body-gutter)));
+    --body-col-9-right: calc(var(--body-margin) + 8 * (var(--body-single-column) + var(--body-gutter)) + var(--body-single-column));
+    --body-col-10-left: calc(var(--body-margin) + 9 * (var(--body-single-column) + var(--body-gutter)));
+    --body-col-10-right: calc(var(--body-margin) + 9 * (var(--body-single-column) + var(--body-gutter)) + var(--body-single-column));
+    --body-col-11-left: calc(var(--body-margin) + 10 * (var(--body-single-column) + var(--body-gutter)));
+    --body-col-11-right: calc(var(--body-margin) + 10 * (var(--body-single-column) + var(--body-gutter)) + var(--body-single-column));
+    --body-col-12-left: calc(var(--body-margin) + 11 * (var(--body-single-column) + var(--body-gutter)));
+    --body-col-12-right: calc(100vw - var(--body-margin));
+    --body-span-1: var(--body-single-column);
+    --body-span-2: calc(2 * var(--body-single-column) + var(--body-gutter));
+    --body-span-3: calc(3 * var(--body-single-column) + 2 * var(--body-gutter));
+    --body-span-4: calc(4 * var(--body-single-column) + 3 * var(--body-gutter));
+    --body-span-5: calc(5 * var(--body-single-column) + 4 * var(--body-gutter));
+    --body-span-6: calc(6 * var(--body-single-column) + 5 * var(--body-gutter));
+    --body-span-7: calc(7 * var(--body-single-column) + 6 * var(--body-gutter));
+    --body-span-8: calc(8 * var(--body-single-column) + 7 * var(--body-gutter));
+    --body-span-9: calc(9 * var(--body-single-column) + 8 * var(--body-gutter));
+    --body-span-10: calc(10 * var(--body-single-column) + 9 * var(--body-gutter));
+    --body-span-11: calc(11 * var(--body-single-column) + 10 * var(--body-gutter));
+    --body-span-12: calc(12 * var(--body-single-column) + 11 * var(--body-gutter));
+  }
+
+  @media (max-width: 991px) {
+    :root {
+      --opening-margin: 60px;
+      --opening-gutter: 12px;
+      --body-margin-real: 60px;
+      --body-gutter: 12px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    :root {
+      --opening-margin: 32px;
+      --body-margin-real: 32px;
+    }
+  }
+

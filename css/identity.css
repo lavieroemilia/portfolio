@@ -1,0 +1,204 @@
+/* ==========================================================================
+   identity.css
+   Emilia's identity applied to the base styles (Figma file
+   "Untitled", frames nav-1 3:67, nav-2 7:2, nav-3 1:129).
+   Loaded last. It only changes colours, type and the size of the central
+   block; motion, timings and hover behaviour stay in the original files.
+   ========================================================================== */
+
+/* --- Figma variables (names kept: "color/brand/indigo" -> --color--brand--indigo) --- */
+:root {
+  --color--brand--indigo: #6b57ff;
+  --color--brand--blue: #a9d3ff;
+  --color--brand--on-blue: #1c2f54;
+  --color--brand--plum: #f5cce8;
+  --color--brand--pink: #ffb2e6;
+  --color--brand--on-pink: #78212e;
+  --color--brand--green: #ade25d;
+  --color--brand--on-green: #3a5743;
+  --color--brand--purple: #e07bff;
+  --color--brand--on-purple: #690788;
+  --color--accent--azalea: #ad5297;
+  --color--black-white--white: #ffffff;
+  --surface--background-light: #ffffff;
+  --text--text-dark: #ffffff;
+
+  --font-family--font-1: "Inter", Arial, sans-serif;
+  /* Every title of the site (tiles, heros, case studies, footer). Figtree: capitals 0.70em tall,
+     ascender 0.95em and descender 0.25em, so a 1.2 line box puts the capitals 0.25em below its top */
+  --font-family--title: "Figtree", Arial, sans-serif;
+  /* Figtree reads lighter than Inter and DB Sharp at the same weight: section and case study
+     titles go up to 600. Tiles, home headlines, the Work title and hero titles use 520, the
+     weight the hero titles had (validated): the tile title keeps it when it grows into the hero.
+     Titles reset font-variation-settings, or the h1-h4 axes of global.css ("wght" 520) win */
+  --font-weight--title: 600;
+  --font-weight--title-strong: 520;
+  --font-weight--600: 600;
+  --font-size--30: 30px;
+  --line-height--36: 36px;
+  --line-height--43_2: 43.2px;
+  --letter-spacing---0_72: -0.72px;
+  --letter-spacing---0_6: -0.6px;
+
+  /* Colours used in Figma without a variable (values read from the design) */
+  --unbound--work-background: #4a2040;
+
+  /* Proposals, not in Figma yet. Mid tones:
+     orchid sits between azalea and plum and softens the light square of the Work picture;
+     violet sits between the tile purple and on-purple for the Resume circles. */
+  --color--orchid: #d18fc0;
+  --color--violet: #b04dcf;
+
+  /* The original accent (#0061fe) drives the button, the first headline, the logo
+     and the first colour of the lines. Figma uses indigo for all of them. */
+  --accent--tab: var(--color--brand--indigo);
+
+  /* Central block of nav-3 (Figma 190 x 183). Spacing between tiles stays the original
+     --nav-tile-gap (10px desktop, 5px mobile), as validated by Emilia. */
+  --button-width: 190px;
+  --button-height: 183px;
+}
+
+@media screen and (max-width: 991px) {
+  :root {
+    /* No mobile frame in Figma: the original 64px block is kept. */
+    --button-width: var(--button-size);
+    --button-height: var(--button-size);
+  }
+}
+
+/* --- Typography: Figma "Heading 3" style (Inter Semi Bold) --- */
+.nav-button-title,
+.tile-title {
+  font-family: var(--font-family--title);
+  font-weight: var(--font-weight--title-strong);
+  font-variation-settings: normal;
+}
+
+.nav-button-title {
+  /* No word alone on the last line (the last two words are also joined with &nbsp;) */
+  text-wrap: pretty;
+}
+
+.tile-title {
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Single intro screen. The first headline now lives in the purple 500px block,
+   so it takes the size it has there in Figma (nav-2, 62:303: 30/36, 396px wide) and the
+   mobile size of the second headline. */
+.nav-button-title.nav-button-title-1 {
+  font-size: clamp(14px, 4.8vw, 24px);
+  line-height: 1.25em;
+}
+
+@media screen and (min-width: 992px) {
+  .nav-button-title.nav-button-title-2 {
+    font-size: var(--font-size--30);
+  }
+
+  .nav-button-title.nav-button-title-1 {
+    max-width: 396px;
+    font-size: var(--font-size--30);
+    line-height: var(--line-height--36);
+  }
+
+  .tile-title {
+    font-size: var(--line-height--36);
+  }
+}
+
+/* --- Tile colours ---
+   Tiles that reuse a shared visual re-map the variables that visual already reads,
+   so its hover states keep working untouched. */
+.tile.work {
+  --color--accent--tangerine: var(--unbound--work-background);
+  --color--identity--on-orange: var(--color--brand--plum);
+  --color--accent--rust: var(--color--accent--azalea);
+}
+
+/* The title keeps plum; only the picture takes the softer orchid */
+.tile.work .color-visual-container {
+  --color--identity--on-orange: var(--color--orchid);
+}
+
+.tile.contact {
+  background-color: var(--color--brand--green);
+  color: var(--color--brand--on-green);
+}
+
+.tile.resume {
+  background-color: var(--color--brand--purple);
+  color: var(--color--brand--on-purple);
+}
+
+/* Three tones of the pink range, like each tile: pink background, on-pink for the
+   title and the dark shapes, azalea for the light ones. The Figma title (#8b2635, no
+   variable) moves to on-pink so the tile keeps to three colours. */
+.tile.approach {
+  --color--identity--purple: var(--color--brand--pink);
+  --color--identity--on-purple: var(--color--brand--on-pink);
+}
+
+.tile.motion.approach {
+  color: var(--color--brand--on-pink);
+}
+
+.tile.about {
+  --color--identity--yellow: var(--color--brand--blue);
+  --color--identity--on-yellow: var(--color--brand--on-blue);
+}
+
+/* --- Outer corners: same radii as the original corner tiles (8px desktop, 4px mobile) --- */
+.tile.work, .tile.contact, .tile.resume, .tile.approach, .tile.about {
+  border-radius: 0;
+}
+.tile.work { border-bottom-left-radius: 8px; }
+.tile.resume { border-bottom-right-radius: 8px; }
+.tile.approach { border-top-right-radius: 8px; }
+.tile.about { border-top-left-radius: 8px; }
+
+@media screen and (max-width: 991px) {
+  .tile.work { border-bottom-left-radius: 4px; }
+  .tile.resume { border-bottom-right-radius: 4px; }
+  .tile.approach { border-top-right-radius: 4px; }
+  .tile.about { border-top-left-radius: 4px; }
+}
+
+/* --- Logo inside the central block ---
+   Original: a 91px logo box pinned to the bottom-left corner. With a 90px block that
+   corner is also the centre. With the 190 x 183 block of nav-3 the box slides from the
+   corner (block 500px and larger) to the centre (block at its final size) as the block
+   shrinks, so nav-1 and nav-2 keep the corner and nav-3 shows the logo centred. */
+@media screen and (min-width: 992px) {
+  .nav-container.final .home-logo-container {
+    left: max(45px, calc(45px + (500px - 100%) * 50 / 310));
+    bottom: max(44.5px, calc(44.5px + (500px - 100%) * 47 / 317));
+  }
+}
+
+/* Small logo in the menu button: Emilia's logo is taller than the original 46 x 42, so it
+   takes the size it has in the Figma 91px block (43 x 52, 31 x 38 below 992px), centred. */
+.nav-container .nav-button-svg.menu-logo {
+  width: 43px;
+  left: calc(50% - 21.5px);
+  bottom: calc(50% - 26px);
+}
+@media screen and (max-width: 991px) {
+  .nav-container .nav-button-svg.menu-logo {
+    width: 31px;
+    left: calc(50% - 15.5px);
+    bottom: calc(50% - 19px);
+  }
+}
+
+/* --- Scroll chevrons ---
+   single intro screen. They now sit on the purple block, so they rest in
+   translucent white and the pulse lights them up in solid white. */
+.scroll-chevron {
+  color: color-mix(in srgb, var(--white) 45%, transparent);
+}
+.scroll-chevron.activated {
+  color: var(--white);
+}

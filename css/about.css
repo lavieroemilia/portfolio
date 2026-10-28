@@ -1,0 +1,933 @@
+/* ==========================================================================
+   about.css
+   About. Built on the case study grid (css/case-study.css):
+   six columns without gutters, lines as the structure, text at --cs-pad from
+   its lines. New here:
+   - Cover: the dark opening of the inner pages. Photos fill
+     the cells of the top row, square, on the grid; the page title below them
+     at the opening size (the menu tile title, four times larger).
+   - Who I am: the presentation on the first two thirds, the experience on the
+     last third, with the resume button in a single cell.
+   - Mantras: a looping illustration per
+     mantra (Emilia's Lotties), its name below and the text on a lid that rises on hover.
+   ========================================================================== */
+
+.about-page {
+  /* More air between sections: the empty rows of the grid and the cell above each bridge */
+  --cs-row: 160px;
+  --ab-gap: 160px;
+}
+
+@media screen and (max-width: 991px) {
+  .about-page { --ab-gap: 56px; }
+}
+
+/* H2 on this page, one step smaller than the case studies */
+.about-page .cs-h2 { font-size: 34px; }
+
+.ab-statement {
+  margin: 0;
+  font-family: var(--cs-title-font);
+  font-weight: var(--font-weight--title);
+  font-variation-settings: var(--cs-title-axes);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.ab-p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 29px;
+  text-wrap: pretty;
+}
+
+.ab-p a {
+  color: inherit;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--cs-line);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 0.3s var(--cs-ease);
+}
+
+.ab-p a:hover {
+  text-decoration-color: var(--color--brand--indigo);
+}
+
+/* --- 1. Cover ---------------------------------------------------------------- */
+
+/* The cover starts at the left edge of the screen, under the rail: the rail is black while the
+   cover is behind it, and the white of the page rises into it with the scroll */
+
+.ab-cover {
+  --ab-cover-gap: 13svh;
+  /* "About" is 2.699em wide (Figtree Semi Bold, -0.02em, measured at this size): it fills two columns, from 1/6
+     to 1/2, the size of "Approach" on its three. 240px are the rail and the margins of the grid; the cover is
+     the container, from the left edge of the screen. Keep in sync with js/cover-reveal.js */
+  --ab-title-size: calc((100cqw - 240px) / 3 / 2.699);
+  container-type: inline-size;
+  background-color: var(--surface--background-dark);
+  color: #fff;
+  overflow: hidden;
+}
+
+/* The grid of the page below (margins of .cs-wrap, six columns) in five rows
+   /voice-and-tone: cells, an empty row, the title, an empty row, cells */
+.ab-cover-grid {
+  /* Figtree: capitals 0.70em tall; with that line height the line box is exactly the capitals */
+  --ab-title-row: calc(var(--ab-title-size) * 0.7);
+  --ab-row-1: calc((max(100svh, 680px) - 2 * var(--ab-cover-gap) - var(--ab-title-row)) / 2);
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-rows: var(--ab-row-1) var(--ab-cover-gap) var(--ab-title-row) var(--ab-cover-gap) var(--ab-row-1);
+  min-height: 680px;
+  max-width: 1920px;
+  /* The rail (60px) and the grid margin (60px) */
+  margin-left: 120px;
+  margin-right: 120px;
+}
+
+/* Lines: the site line colour at 40% (#5f9dff) on dark. Vertical ones on the edges,
+   where the title starts (1/6) and where the colour box starts (2/3); horizontal ones across the
+   page on every row boundary */
+.ab-cover-v,
+.ab-cover-h {
+  position: absolute;
+  z-index: 2;
+  background-color: var(--color--accent--line);
+  pointer-events: none;
+}
+.ab-cover-v { top: 0; bottom: 0; width: 1px; }
+.ab-cover-v.at-start { left: 0; }
+.ab-cover-v.at-title { left: calc(100% / 6); }
+.ab-cover-v.at-box { left: calc(100% / 3 * 2); }
+.ab-cover-v.at-end { right: 0; }
+
+/* Horizontal lines from the rail line (60px from the grid) across the screen */
+.ab-cover-h { --ab-h-start: 60px; left: calc(var(--ab-h-start) * -1); right: -100vw; height: 1px; }
+.ab-cover-h.at-1 { top: var(--ab-row-1); }
+.ab-cover-h.at-2 { top: calc(var(--ab-row-1) + var(--ab-cover-gap)); }
+.ab-cover-h.at-3 { bottom: calc(var(--ab-row-1) + var(--ab-cover-gap)); }
+.ab-cover-h.at-4 { bottom: var(--ab-row-1); }
+
+/* Large quote marks: opening in the first cell, closing in the last one */
+.ab-cover-mark {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+  justify-self: center;
+  margin-top: 36px;
+  font-family: var(--cs-title-font);
+  font-weight: 700;
+  font-size: 120px;
+  line-height: 0.8;
+}
+
+.ab-cover-mark.is-end {
+  grid-column: 6;
+  grid-row: 5;
+  align-self: end;
+  margin: 0 0 4px;
+}
+
+.ab-shot {
+  position: relative;
+  margin: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.ab-shot img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ab-shot-portrait { grid-column: 2 / span 2; grid-row: 5; }
+.ab-shot-portrait img { object-position: 50% 28%; }
+.ab-shot-book { grid-column: 5; grid-row: 5; }
+.ab-shot-book img { object-position: 38% 40%; }
+
+/* The line at 1/2 runs the whole cover: the title ends on it and the portrait below too */
+.ab-cover-v.at-five { top: auto; bottom: 0; height: var(--ab-row-1); }
+.ab-cover-v.at-half { left: 50%; }
+.ab-cover-v.at-five { left: calc(100% / 6 * 5); }
+
+/* The colour box of the approach: one sense at a time */
+.ab-quote {
+  grid-column: 5 / -1;
+  grid-row: 1;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px var(--cs-pad) 18px;
+  background-color: var(--q-bg);
+  color: var(--q-ink);
+}
+.ab-quote.is-green  { --q-bg: var(--color--brand--green);  --q-ink: var(--color--brand--on-green); }
+.ab-quote.is-blue   { --q-bg: var(--color--brand--blue);   --q-ink: var(--color--brand--on-blue); }
+.ab-quote.is-pink   { --q-bg: var(--color--brand--pink);   --q-ink: var(--color--brand--on-pink); }
+.ab-quote.is-purple { --q-bg: var(--color--brand--purple); --q-ink: var(--color--brand--on-purple); }
+.ab-quote.is-plum   { --q-bg: var(--color--brand--plum);   --q-ink: var(--color--brand--on-pink); }
+
+.ab-quote-text {
+  flex: 1;
+  margin: 0;
+  font-family: var(--cs-title-font);
+  font-weight: var(--font-weight--title);
+  font-variation-settings: var(--cs-title-axes);
+  font-size: clamp(18px, 1.55vw, 26px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  transition: opacity 0.3s ease, transform 0.4s var(--cs-ease);
+}
+.ab-quote.is-changing .ab-quote-text { opacity: 0; transform: translateY(8px); }
+
+.ab-quote-mark {
+  font-family: var(--cs-title-font);
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 0.6;
+}
+
+.ab-quote-mark.is-end { align-self: flex-end; }
+
+/* "Change approach": a white pill, outside the box on its left, with a caret */
+.ab-suggest {
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  display: flex;
+  align-items: center;
+  margin-right: 12px;
+  transform: translateY(-50%);
+}
+
+.ab-suggest-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px 8px 12px;
+  border: 0;
+  border-radius: 10px;
+  background-color: #fff;
+  color: var(--text--text-light);
+  font: 500 15px/20px var(--cs-body-font);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.3s var(--cs-ease);
+}
+.ab-suggest-btn:hover { transform: translateY(-2px); }
+.ab-suggest-btn:focus-visible { outline: 2px solid var(--color--brand--blue); outline-offset: 3px; }
+/* The change icon turns half a circle on hover */
+.ab-suggest-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.5s var(--cs-ease);
+}
+.ab-suggest-btn:hover svg { transform: rotate(180deg); }
+
+.ab-suggest-caret { width: 8px; height: 14px; margin-left: -1px; fill: #fff; }
+
+/* While a new option arrives, the label gives way to three dots */
+.ab-suggest-dots { display: none; gap: 4px; padding: 7px 22px; }
+.ab-suggest-dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color--brand--indigo);
+  animation: ab-dot 0.9s ease-in-out infinite;
+}
+.ab-suggest-dots i:nth-child(2) { animation-delay: 0.15s; }
+.ab-suggest-dots i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes ab-dot { 50% { transform: translateY(-4px); opacity: 0.4; } }
+.ab-quote.is-changing .ab-suggest-label { display: none; }
+.ab-quote.is-changing .ab-suggest-dots { display: inline-flex; }
+
+/* The title in the middle row, from the line at 1/6, its capitals on the top line */
+.ab-cover-title-row {
+  grid-column: 2 / span 3;
+  grid-row: 3;
+  position: relative;
+}
+
+.ab-cover-title {
+  margin: 0;
+  font-family: var(--font-family--title);
+  font-weight: var(--font-weight--title-strong);
+  font-variation-settings: normal;
+  font-size: var(--ab-title-size);
+  line-height: 0.7;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+/* Entrance: the lines draw first (0.7s, cubic-bezier(.6,0,.6,1), one after
+   another), then the title rises, then the cells appear: quote marks, the colour box with its
+   button and the photos */
+.ab-cover { --ab-draw: 0.7s cubic-bezier(0.6, 0, 0.6, 1); }
+
+.js .ab-cover-v { transform: scaleY(0); transform-origin: 50% 0; }
+.js .ab-cover-v.at-five { transform-origin: 50% 100%; }
+/* Horizontal lines start on the left edge of the grid */
+.js .ab-cover-h { transform: scaleX(0); transform-origin: var(--ab-h-start) 0; }
+
+.js .ab-shot,
+.js .ab-quote,
+.js .ab-cover-mark,
+.js .ab-cover-title {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.js .ab-cover.is-in .ab-cover-v,
+.js .ab-cover.is-in .ab-cover-h {
+  transform: none;
+  transition: transform var(--ab-draw);
+}
+.js .ab-cover.is-in .ab-cover-h.at-2,
+.js .ab-cover.is-in .ab-cover-h.at-3 { transition-delay: 0s; }
+.js .ab-cover.is-in .ab-cover-v.at-start,
+.js .ab-cover.is-in .ab-cover-v.at-title { transition-delay: 0.1s; }
+.js .ab-cover.is-in .ab-cover-h.at-1,
+.js .ab-cover.is-in .ab-cover-h.at-4 { transition-delay: 0.2s; }
+.js .ab-cover.is-in .ab-cover-v.at-box,
+.js .ab-cover.is-in .ab-cover-v.at-end { transition-delay: 0.3s; }
+.js .ab-cover.is-in .ab-cover-v.at-half,
+.js .ab-cover.is-in .ab-cover-v.at-five { transition-delay: 0.45s; }
+
+.js .ab-cover.is-in .ab-shot,
+.js .ab-cover.is-in .ab-quote,
+.js .ab-cover.is-in .ab-cover-mark,
+.js .ab-cover.is-in .ab-cover-title {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s ease, transform 0.9s var(--cs-ease), background-color 0.5s var(--cs-ease), color 0.5s var(--cs-ease);
+}
+.js .ab-cover.is-in .ab-cover-title { transition-delay: 0.45s, 0.45s, 0s, 0s; }
+.js .ab-cover.is-in .ab-cover-mark { transition-delay: 0.75s, 0.75s, 0s, 0s; }
+.js .ab-cover.is-in .ab-quote { transition-delay: 0.85s, 0.85s, 0s, 0s; }
+.js .ab-cover.is-in .ab-shot-portrait { transition-delay: 0.95s; }
+.js .ab-cover.is-in .ab-shot-book { transition-delay: 1.05s; }
+.js .ab-cover.is-in .ab-cover-mark.is-end { transition-delay: 1.15s; }
+
+/* --- 2. Presentation title: in the middle of the screen, inside lines that follow it ---- */
+
+.ab-lead {
+  min-height: 80vh;
+  align-content: center;
+  padding: 0;
+}
+
+.ab-lead > .line-v.at-text {
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+  left: calc(100% / 6);
+}
+
+/* The two lines run across the page on the top of the capitals and under the last line */
+.ab-lead-box {
+  grid-column: 2 / span 4;
+  position: relative;
+  padding: 0 var(--cs-pad);
+}
+
+.ab-lead-box > .line-h { top: 0; }
+.ab-lead-box > .line-h.at-bottom { top: auto; bottom: 0; }
+
+/* Line height 1.1: the capitals start 0.2em below the top of the first line box
+   ((1.1 - 1.2) / 2 + 0.25) and the baseline of the last line is 0.9em below its top
+   ((1.1 - 1.2) / 2 + 0.95). The box moves up to the capitals and ends on the baseline, so the
+   two lines touch the title */
+.ab-lead-title {
+  --ab-lead-caps: 0.2;
+  position: relative;
+  top: calc(var(--ab-lead-caps) * -1em);
+  margin: 0 0 calc((0.9 - 1.1 - var(--ab-lead-caps)) * 1em);
+  font-family: var(--cs-title-font);
+  font-weight: var(--font-weight--title);
+  font-variation-settings: var(--cs-title-axes);
+  font-size: 64px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* --- 2. Who I am + experience ------------------------------------------------- */
+
+.about-page .ab-intro-block { padding-top: 0; padding-bottom: var(--cs-block); }
+
+.ab-line-23 {
+  z-index: 3;
+  left: calc(100% / 3 * 2);
+  top: 0;
+  bottom: 0;
+}
+
+.ab-intro {
+  grid-column: 1 / span 4;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: var(--cs-pad) var(--cs-pad) 0;
+}
+
+.ab-intro .ab-p {
+  max-width: 62ch;
+}
+
+.ab-exp {
+  grid-column: 5 / -1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ab-exp-label {
+  margin-bottom: 16px;
+  padding: 4px var(--cs-pad) 0;
+}
+
+/* The roles between lines, from the line at 2/3 to the right edge of the grid */
+.ab-jobs {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ab-jobs li:first-child { padding-top: var(--cs-pad); }
+
+.ab-jobs li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 16px var(--cs-pad);
+  border-bottom: var(--cs-border);
+}
+
+.ab-role {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+.ab-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text--text-subtle-light);
+}
+
+.ab-meta span:last-child {
+  flex: none;
+}
+
+/* The last role has no line under it: the only line between the list and the button is the
+   button's own top line */
+.ab-jobs li:last-child {
+  border-bottom: 0;
+}
+
+/* The button starts on the text axis, 48px under the last role, between its own two lines */
+.ab-exp-actions {
+  display: flex;
+  margin-top: 48px;
+  padding-left: var(--cs-pad);
+  border-top: var(--cs-border);
+  border-bottom: var(--cs-border);
+}
+
+.ab-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 64px;
+  padding: 0 var(--cs-pad);
+  background-color: var(--color--brand--indigo);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 0.35s var(--cs-ease);
+}
+
+.ab-button:hover {
+  background-color: var(--color--brand--on-purple);
+}
+
+.ab-button:focus-visible,
+.ab-link:focus-visible,
+.ab-mcard:focus-visible,
+.ab-p a:focus-visible {
+  outline: 2px solid var(--color--brand--indigo);
+  outline-offset: 4px;
+}
+
+/* --- 3. Stories ----------------------------------------------------------------- */
+
+.ab-band {
+  padding: 0;
+}
+
+.ab-band .cs-desc + .cs-desc {
+  margin-top: 16px;
+}
+
+/* Two stories side by side: the line between them is the axis in the middle of the grid */
+.ab-stories {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ab-story {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: var(--cs-pad) var(--cs-pad) 48px;
+}
+
+.ab-story + .ab-story {
+  border-left: var(--cs-border);
+}
+
+.ab-story .ab-p {
+  max-width: 62ch;
+  font-size: 20px;
+  line-height: 31px;
+}
+
+.ab-link {
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text--text-light);
+  text-decoration: underline;
+  text-decoration-color: var(--cs-line);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+  transition: text-decoration-color 0.3s var(--cs-ease);
+}
+
+.ab-link:hover {
+  text-decoration-color: var(--color--brand--indigo);
+}
+
+/* --- 4. Mantras: four cards, two by two, sharing their edges -------------------- */
+
+.ab-mcards {
+  grid-column: 3 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 20px;
+}
+
+/* Two lines with 20px of air between them, so the two illustrations never touch */
+.ab-mcard:nth-child(odd) {
+  border-right: var(--cs-border);
+}
+
+.ab-mcard {
+  display: flex;
+  flex-direction: column;
+  border-left: var(--cs-border);
+  outline: none;
+}
+
+.ab-mcard:nth-child(n + 3) {
+  border-top: var(--cs-border);
+}
+
+/* Square, the format of the Lotties: they reach every edge of the card */
+.ab-mvisual {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.ab-mvisual.is-green  { --bg: var(--color--brand--green);  --ink: var(--color--brand--on-green); }
+.ab-mvisual.is-blue   { --bg: var(--color--brand--blue);   --ink: var(--color--brand--on-blue); }
+.ab-mvisual.is-pink   { --bg: var(--color--brand--pink);   --ink: var(--color--brand--on-pink); }
+.ab-mvisual.is-purple { --bg: var(--color--brand--purple); --ink: var(--color--brand--on-purple); }
+.ab-mvisual { background-color: var(--bg); }
+
+/* The lid of Work, on hover or keyboard focus of the card */
+.ab-mvisual .work-hover .p { font-family: var(--cs-body-font); font-size: 15px; line-height: 23px; }
+
+@media screen and (min-width: 992px) and (any-hover: hover) {
+  .ab-mcard:hover .work-hover { transform: translateY(0); }
+  .ab-mcard:hover .work-hover .p {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.35s ease 0.12s, transform var(--cover-lid-duration) var(--cover-lid-ease) 0.08s;
+  }
+}
+@media screen and (min-width: 992px) {
+  .ab-mcard:focus-visible .work-hover { transform: translateY(0); }
+  .ab-mcard:focus-visible .work-hover .p { opacity: 1; transform: none; }
+}
+
+/* Name on the left, an info mark on the right (split caption) */
+.ab-msplit {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px var(--cs-pad) var(--cs-pad);
+}
+
+/* The title of the More work cells */
+.ab-mtitle {
+  margin: 0;
+  font-family: var(--cs-title-font);
+  font-weight: var(--font-weight--title);
+  font-variation-settings: var(--cs-title-axes);
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.ab-minfo {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text--text-subtle-light);
+}
+
+/* The text under the name: only where there is no lid (touch and below 992px) */
+.ab-mtext {
+  display: none;
+  margin: 0;
+  padding: 0 var(--cs-pad) var(--cs-pad);
+  font-size: 15px;
+  line-height: 23px;
+  text-wrap: pretty;
+}
+
+@media screen and (max-width: 991px), (not (any-hover: hover)) {
+  .ab-mtext { display: block; }
+  .ab-minfo { display: none; }
+}
+
+/* --- Mantra illustrations: Emilia's Lotties (assets/lottie-animations/mantra-*.json), in the
+   tones of each card and without their own background, looping while on screen
+   (js/lottie-loop.js). Each fills its square card, edge to edge ------------------------ */
+
+.ab-lottie {
+  position: absolute;
+  inset: 0;
+}
+
+.ab-lottie svg { display: block; }
+
+/* --- 5. Tools: four per row, each in its cell -------------------------------------- */
+
+.ab-tools {
+  grid-column: 3 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ab-tools li {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding: var(--cs-pad);
+  border-left: var(--cs-border);
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.ab-tools li:nth-child(n + 5) {
+  border-top: var(--cs-border);
+}
+
+.ab-tools img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.5s var(--cs-ease);
+}
+
+.ab-tools li:hover img {
+  transform: rotate(-8deg) scale(1.08);
+}
+
+/* --- 6. Bridge and Outside work: the last block keeps a large margin before the footer --- */
+
+/* The bridges: an empty cell, then the sentence in a grey box that fills one cell, aligned on the
+   left with the block below it. Lines follow the box: across the page above and below it, down the
+   page at its right edge */
+.ab-voice {
+  --ab-voice-tail: 24px;
+  grid-template-rows: var(--ab-gap) auto var(--ab-voice-tail);
+  padding: 0;
+}
+
+.ab-voice > .line-h { z-index: 5; }
+.ab-voice > .line-h.at-gap { top: var(--ab-gap); }
+.ab-voice > .line-h.at-tail { top: auto; bottom: var(--ab-voice-tail); }
+.ab-voice > .line-v {
+  z-index: 5;
+  top: 0;
+  bottom: 0;
+}
+.ab-voice > .line-v.at-box-end { left: 50%; }
+
+.ab-voice-box {
+  grid-column: 1 / span 3;
+  grid-row: 2;
+  padding: var(--cs-pad);
+  background-color: var(--surface--overlay-subtle);
+}
+
+/* The same space above the capitals and under the baseline as on the sides */
+.ab-voice-box .ab-statement {
+  margin: -0.2em 0 -0.22em;
+  font-size: 40px;
+  line-height: 1.12;
+}
+
+.ab-kicker {
+  margin-bottom: 20px;
+}
+
+/* Outside work, told as a story: an empty cell, the title (grey box, first half), the text one step
+   lower (second half), air, then three photos in a row across the grid, 200px before the footer.
+   Each box draws its own lines across the page, above and below it */
+.ab-outside {
+  grid-template-rows: var(--ab-gap) auto auto 64px auto;
+  padding: 0 0 200px;
+}
+
+.ab-outside-title,
+.ab-outside-text,
+.ab-photos {
+  position: relative;
+}
+
+.ab-outside-title::before,
+.ab-outside-title::after,
+.ab-outside-text::after,
+.ab-photos::before,
+.ab-photos::after {
+  content: "";
+  position: absolute;
+  z-index: 5;
+  left: -100vw;
+  right: -100vw;
+  height: 1px;
+  background-color: var(--cs-line);
+  pointer-events: none;
+}
+.ab-outside-title::before,
+.ab-photos::before { top: 0; }
+.ab-outside-title::after,
+.ab-outside-text::after,
+.ab-photos::after { bottom: 0; }
+
+.ab-outside-title { grid-row: 2; }
+
+/* The text box hangs from the bottom of the title, on the other half */
+.ab-outside-text {
+  grid-column: 4 / -1;
+  grid-row: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: var(--cs-pad);
+  border-left: var(--cs-border);
+}
+
+.ab-outside-text .ab-p { max-width: 58ch; }
+
+/* Three photos, one per third, with 20px and two lines between them so they never touch */
+.ab-photos {
+  grid-column: 1 / -1;
+  grid-row: 5;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 20px;
+}
+
+.ab-photos figure {
+  margin: 0;
+  border-left: var(--cs-border);
+  border-right: var(--cs-border);
+}
+.ab-photos figure:first-child { border-left: 0; }
+.ab-photos figure:last-child { border-right: 0; }
+
+.ab-photos img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.ab-photos figure:nth-child(1) img { object-position: 35% 50%; }
+.ab-photos figure:nth-child(2) img { object-position: 50% 30%; }
+.ab-photos figure:nth-child(3) img { object-position: 45% 50%; }
+
+/* --- Desktop: the bands fill their row, so the line at 1/3 reaches both edges ---- */
+
+@media screen and (min-width: 992px) {
+  .ab-band .ab-tools,
+  .ab-band .ab-mcards,
+  .ab-proof .ab-stories {
+    align-self: stretch;
+  }
+}
+
+/* --- Responsive (site breakpoints) --------------------------------------------- */
+
+@media screen and (max-width: 1199px) {
+  .ab-lead-title { font-size: 52px; }
+  .ab-voice-box .ab-statement { font-size: 36px; }
+  .ab-tools { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ab-tools li:nth-child(n + 4) { border-top: var(--cs-border); }
+  .ab-exp-actions { grid-template-columns: minmax(0, 1fr); }
+  .ab-exp-actions::after { display: none; }
+}
+
+@media screen and (max-width: 991px) {
+  .about-page .cs-h2 { font-size: 26px; }
+
+  /* The same five rows on two columns: the colour box above, the title, the two photos below.
+     The button goes inside the box */
+  /* The rail is the bar at the bottom: the lines run to the left edge of the screen */
+  .ab-cover-h { --ab-h-start: 100vw; }
+  .ab-cover { margin-left: 0; --ab-cover-gap: 40px; --ab-title-size: calc((100cqw - 120px) / 2.699); }
+  .ab-cover-grid {
+    --ab-row-1: 62vw;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-height: 0;
+    margin-left: 60px;
+    margin-right: 60px;
+  }
+  .ab-cover-v.at-title,
+  .ab-cover-mark { display: none; }
+  .ab-cover-v.at-box { left: 50%; }
+  .ab-quote { grid-column: 1 / -1; }
+  .ab-cover-title-row { grid-column: 1 / -1; }
+  .ab-cover-v.at-half,
+  .ab-cover-v.at-five { display: none; }
+  .ab-shot-portrait { grid-column: 1; }
+  .ab-shot-book { grid-column: 2; }
+  .ab-quote-text { font-size: 22px; }
+  .ab-suggest { position: static; transform: none; margin: 4px 0 0; }
+  .ab-suggest-caret { display: none; }
+  .ab-lead { min-height: 0; padding: 96px 0; }
+  .ab-lead > .line-v.at-text { display: none; }
+  .ab-lead-box { grid-column: 1 / -1; }
+  .ab-lead-title { font-size: 34px; }
+
+  .ab-intro,
+  .ab-exp,
+  .ab-stories,
+  .ab-mcards,
+  .ab-tools {
+    grid-column: 1 / -1;
+  }
+
+  .about-page .ab-intro-block { padding-bottom: var(--cs-block); }
+
+.ab-line-23 { display: none; }
+  .ab-voice-box { grid-column: 1 / -1; }
+  .ab-voice-box .ab-statement { font-size: 28px; }
+  .ab-voice > .line-v { display: none; }
+  .ab-voice { --ab-voice-tail: 16px; }
+  .ab-stories { grid-template-columns: minmax(0, 1fr); }
+  .ab-story + .ab-story { border-left: 0; border-top: var(--cs-border); }
+  .ab-exp { margin-top: 32px; }
+  .ab-exp-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ab-exp-actions::after { display: block; }
+
+  .ab-p { font-size: 16px; line-height: 26px; }
+  .ab-story .ab-p { font-size: 18px; line-height: 28px; }
+
+  .ab-stories,
+  .ab-mcards,
+  .ab-tools {
+    border-top: var(--cs-border);
+    border-bottom: var(--cs-border);
+  }
+  .ab-band { padding: var(--cs-block) 0; }
+  .ab-band > .line-h { display: none; }
+  .ab-voice + .ab-band { padding-top: 0; }
+
+  .ab-mcards { grid-template-columns: minmax(0, 1fr); border-left: var(--cs-border); }
+  .ab-mcard { border-left: 0; border-bottom: var(--cs-border); }
+  .ab-mcard:nth-child(odd) { border-right: 0; }
+  .ab-mcard + .ab-mcard { border-top: var(--cs-border); }
+
+  .ab-tools { border-left: var(--cs-border); }
+  .ab-tools li { border-left: 0; }
+  .ab-tools li:not(:nth-child(3n + 1)) { border-left: var(--cs-border); }
+
+  .ab-outside { grid-template-rows: var(--ab-gap) auto auto 40px auto; padding-bottom: 120px; }
+  .ab-outside-text { grid-column: 1 / -1; border-left: 0; padding-left: var(--cs-pad); }
+  .ab-photos { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 8px; }
+}
+
+@media screen and (max-width: 767px) {
+  .ab-cover-grid { margin-left: 32px; margin-right: 32px; }
+  /* The title on the whole width between the 32px margins */
+  .ab-cover { --ab-title-size: calc((100cqw - 64px) / 2.699); }
+}
+
+@media screen and (max-width: 479px) {
+  .ab-quote p { font-size: 18px; }
+  .ab-tools { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ab-tools li:nth-child(n + 3) { border-top: var(--cs-border); }
+  .ab-tools li:not(:nth-child(3n + 1)) { border-left: 0; }
+  .ab-tools li:nth-child(even) { border-left: var(--cs-border); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ab-button,
+  .ab-link,
+  .ab-p a,
+  .ab-tools img,
+  .js .ab-shot,
+  .js .ab-quote,
+  .js .ab-cover-mark,
+  .js .ab-cover-title,
+  .js .ab-cover-v,
+  .js .ab-cover-h {
+    transform: none !important;
+    transition: none !important;
+  }
+}

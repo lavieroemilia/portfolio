@@ -1,0 +1,56 @@
+/* menu-button.css: scroll chevrons inside the central button + arrow icon rotation on tablet/mobile. */
+
+.scroll-chevrons-container {
+  opacity: 0;
+  transition: opacity 1.5s;
+}
+
+.scroll-chevron {
+	position: absolute;
+	width: 52px;
+  right: 14px;
+  color: var(--color--accent--line-solid);
+  transition: transform 1.6s cubic-bezier(.2,0,.3,1), color 1.5s cubic-bezier(.2,0,.3,1);
+}
+
+.scroll-chevrons-container.visible {
+	opacity: 1;
+}
+
+.scroll-chevron.activated {
+	transform: translateY(18px);
+  color: var(--accent--tab);
+  transition: transform 0.65s cubic-bezier(.6,0,.6,1), color 0.65s cubic-bezier(.6,0,.6,1);
+}
+
+.scroll-chevron.chevron-1 {
+  bottom: 42px;
+}
+
+.scroll-chevron.chevron-2 {
+  bottom: 30px;
+}
+
+@media (max-width: 991px) {
+  .scroll-chevron {
+    width: 24px;
+    right: 16px;
+  }
+  .scroll-chevron.activated {
+    transform: translateY(14px);
+  }
+  .scroll-chevron.chevron-1 {
+    bottom: 31px;
+  }
+  .scroll-chevron.chevron-2 {
+    bottom: 22px;
+  }
+}
+
+
+@media (max-width: 991px) {
+	.menu-arrow-icon {
+  	transform: rotate(-90deg);
+  }
+}
+

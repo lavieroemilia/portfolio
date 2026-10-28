@@ -1,0 +1,193 @@
+/* ==========================================================================
+   webflow.css
+   Subset of the Webflow export (brand-app-site.webflow.css) that the home
+   experience depends on: normalize, Webflow base, design tokens, fonts and
+   every class used by the nav (tiles, gridlines, menu button).
+   Values are copied verbatim from the original stylesheet.
+   ========================================================================== */
+
+/* --- Normalize / Webflow base --- */
+html { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: sans-serif; height: 100%; }
+body { margin: 0; color: #333; background-color: #fff; min-height: 100%; font-family: Arial, sans-serif; font-size: 14px; line-height: 20px; }
+nav { display: block; }
+a { background-color: #0000; }
+a:active, a:hover { outline: 0; }
+svg:not(:root) { overflow: hidden; }
+button { color: inherit; font: inherit; margin: 0; overflow: visible; text-transform: none; -webkit-appearance: button; cursor: pointer; border: 0; }
+button::-moz-focus-inner { border: 0; padding: 0; }
+* { box-sizing: border-box; }
+h1, h2, h3, h4, h5, h6 { margin-bottom: 10px; font-weight: bold; }
+h3 { margin-top: 20px; font-size: 24px; line-height: 30px; }
+
+/* --- Design tokens --- */
+:root {
+  --text--text-light: #1e1919;
+  --color--identity--yellow: #fad24b;
+  --color--identity--on-yellow: #684505;
+  --color--identity--on-blue: #283750;
+  --color--identity--blue: #b4c8e1;
+  --color--identity--red: #fa551e;
+  --color--identity--on-red: #4e0119;
+  --color--accent--tangerine: #ff8c19;
+  --color--identity--on-orange: #6d2e09;
+  --color--identity--cyan: #3dd3ee;
+  --color--identity--on-cyan: #055463;
+  --color--identity--purple: #c8aff0;
+  --color--identity--on-purple: #682760;
+  --color--identity--on-pink: #892055;
+  --color--identity--pink: #ffafa5;
+  --color--accent--lime: #b4dc19;
+  --color--identity--on-green: #175641;
+  --surface--background-dark: #1e1919;
+  --white: white;
+  --color--accent--line-solid: #5f9dff;
+  --text--text-subtle-light: #736c64;
+  --text--text-subtle-dark: #bbb5ae;
+  --color--accent--line: #5f9dff66;
+  --color--accent--gold: #9b6400;
+  --color--accent--vivid-vargas: #fad24b;
+  --color--accent--canopy: #0f503c;
+  --color--accent--azalea: #cd2f7b;
+  --accent--ui-accent: #0061fe;
+  --text--text-dark: white;
+  --color--accent--zen: #14c8eb;
+  --color--accent--ocean: #007891;
+  --text--base: #1a1918;
+  --color--accent--orchid: #c8aff0;
+  --color--accent--plum: #78286e;
+  --color--accent--pink: #ffafa5;
+  --color--accent--navy: #283750;
+  --color--accent--cloud: #b4c8e1;
+  --accent--tab: #0061fe;
+  --color--accent--rust: #be4b0a;
+  --color--accent--coconut: #f7f5f2;
+  --color--accent--sunset: #fa551e;
+  --black: black;
+  --surface--background-light: white;
+  --annotation--annotation: #5f9dff;
+  --surface--overlay-subtle: #f7f6f5;
+  --color--accent--crimson: #9b0032;
+  --annotation--hairline: #c5dbff;
+  --button-size: 102px;
+  --nav-tile-gap: 10px;
+  --color--identity--orange: #f9a34b;
+  --color--identity--green: #b4dc19;
+  --accent--logo: white;
+}
+
+
+body { color: var(--text--text-light); font-family: "Inter", Arial, sans-serif; font-size: 14px; line-height: 20px; }
+.home { height: 300vh; }
+
+/* --- Nav: tiles, gridlines, menu button --- */
+.w-inline-block { max-width: 100%; display: inline-block; }
+.w-embed:before, .w-embed:after { content: " "; grid-area: 1 / 1 / 2 / 2; display: table; }
+.w-embed:after { clear: both; }
+.nav-container { position: relative; }
+.nav-wrapper { z-index: 2; grid-column-gap: 10px; grid-row-gap: 10px; justify-content: flex-start; align-items: stretch; position: absolute; inset: 0%; }
+.nav-wrapper.nav-wrapper-gridlines { z-index: 1; opacity: .4; }
+/* Width and height come from --button-width / --button-height (see identity.css). */
+.menu { z-index: 101; pointer-events: auto; width: var(--button-width); height: var(--button-height); justify-content: center; align-items: center; padding: 0; display: flex; position: fixed; }
+.tile { grid-column-gap: 16px; grid-row-gap: 16px; color: var(--text--text-light); border-radius: 0; flex-flow: column; justify-content: space-between; align-items: stretch; width: 100%; height: 100%; padding: 23px; text-decoration: none; transition: border-radius .35s, padding .35s, color .35s cubic-bezier(.4, 0, .2, 1), background-color .35s cubic-bezier(.4, 0, .2, 1); display: flex; overflow: hidden; }
+.tile.voice-tone { background-color: var(--color--identity--yellow); color: var(--color--identity--on-yellow); }
+.tile.strategy { grid-column-gap: 32px; grid-row-gap: 32px; background-color: var(--color--identity--on-blue); color: var(--color--identity--blue); border-top-left-radius: 8px; }
+.tile.typography { background-color: var(--color--identity--red); color: var(--color--identity--on-red); border-top-right-radius: 8px; }
+.tile.color { background-color: var(--color--accent--tangerine); color: var(--color--identity--on-orange); }
+.tile.logo { background-color: var(--color--identity--cyan); color: var(--color--identity--on-cyan); }
+.tile.motion { background-color: var(--color--identity--purple); color: var(--color--identity--on-purple); border-bottom-right-radius: 8px; }
+.tile.imagery { background-color: var(--color--identity--on-pink); color: var(--color--identity--pink); }
+.tile.iconography { background-color: var(--color--accent--lime); color: var(--color--identity--on-green); border-bottom-left-radius: 8px; }
+.nav-tile { padding: 0; position: absolute; }
+/* Five-tile pinwheel (Figma nav-3, 1280x832): each arm ends at the edge of the central block.
+   replaces the eight .nav-tile-N rules of the original. Mirrored vertically from the
+   Figma frame: About opens the menu across the top, Approach takes the top-right corner, Work
+   sits under About and Contact and Resume share the bottom arm in two equal halves (Figma: 295:400).
+   Outer corner radii follow the original (8px desktop, 4px mobile). */
+.nav-tile.nav-tile-1 { left: var(--nav-tile-gap); bottom: var(--nav-tile-gap); width: calc(50% - var(--button-width) / 2 - var(--nav-tile-gap) * 2); height: calc(50% + var(--button-height) / 2 - var(--nav-tile-gap)); transform-origin: 100% 0; }
+.nav-tile.nav-tile-2 { left: calc(50% - var(--button-width) / 2); bottom: var(--nav-tile-gap); width: calc((50% + var(--button-width) / 2 - var(--nav-tile-gap) * 2) / 2); height: calc(50% - var(--button-height) / 2 - var(--nav-tile-gap) * 2); transform-origin: 0 0; }
+.nav-tile.nav-tile-3 { right: var(--nav-tile-gap); bottom: var(--nav-tile-gap); width: calc((50% + var(--button-width) / 2 - var(--nav-tile-gap) * 2) / 2); height: calc(50% - var(--button-height) / 2 - var(--nav-tile-gap) * 2); transform-origin: 0 0; }
+.nav-tile.nav-tile-4 { right: var(--nav-tile-gap); top: var(--nav-tile-gap); width: calc(50% - var(--button-width) / 2 - var(--nav-tile-gap) * 2); height: calc(50% + var(--button-height) / 2 - var(--nav-tile-gap)); transform-origin: 0 100%; }
+.nav-tile.nav-tile-5 { left: var(--nav-tile-gap); top: var(--nav-tile-gap); width: calc(50% + var(--button-width) / 2 - var(--nav-tile-gap)); height: calc(50% - var(--button-height) / 2 - var(--nav-tile-gap) * 2); transform-origin: 100% 100%; }
+.nav-button-content { pointer-events: none; flex-flow: column; justify-content: space-between; align-items: flex-start; width: min(500px, min(100vw, 100vh) - 64px); max-width: 500px; height: 100%; padding: 22px; display: flex; position: relative; }
+.nav-button-svg { position: absolute; }
+.nav-button-svg.menu-logo { width: 46px; bottom: 23px; left: 22px; }
+.nav-button-svg.menu-close, .nav-button-svg.menu-arrow, .nav-button-svg.menu-hamburger { width: 62px; bottom: 14.5px; left: 14px; }
+.tile-line { background-color: var(--color--accent--line-solid); pointer-events: none; position: absolute; }
+.tile-line.nav-l { transform-origin: 0%; width: 1px; height: 300vh; top: 50%; left: 0; transform: translate(0, -50%); }
+.tile-line.nav-r { transform-origin: 100%; width: 1px; height: 300vh; top: 50%; right: 0; transform: translate(0, -50%); }
+.tile-line.nav-t { transform-origin: 50% 0; width: 300vw; height: 1px; top: 0; right: 50%; transform: translate(50%); }
+.tile-line.nav-b { transform-origin: 50% 100%; width: 300vw; height: 1px; bottom: 0; right: 50%; transform: translate(50%); }
+.tile-line-wrapper { width: 100%; height: 100%; position: relative; }
+.nav-button-title-container { flex: 1; align-self: stretch; position: relative; }
+.nav-button-title { transform-origin: 0 0; position: absolute; inset: 0% 0% auto; }
+.nav-button-title.nav-button-title-1 { opacity: 0; font-size: 36px; }
+.nav-button-title.nav-button-title-2 { opacity: 0; font-size: 29px; }
+.tile-title { transform-origin: 0%; letter-spacing: -.02em; font-family: "Figtree", Arial, sans-serif; font-size: min(2.75vw - 6px, 1.375vw + 15px); font-weight: 500; line-height: .8em; position: relative; top: 0; left: 0; transform: translate(0); }
+.tile-menu-tile { color: var(--text--text-light); border-radius: 6px; justify-content: flex-start; align-items: flex-start; width: 100%; height: 100%; padding: 23px; text-decoration: none; transition: border-color .4s cubic-bezier(.4, 0, .2, 1), background-color .4s cubic-bezier(.4, 0, .2, 1); display: flex; overflow: hidden; }
+.tile-menu-tile.nav-button { z-index: 2; background-color: var(--accent--tab); color: var(--white); text-align: left; cursor: pointer; border-radius: 0; flex: none; justify-content: flex-start; align-items: flex-end; padding: 0; display: block; position: relative; }
+.tile-menu-tile.nav-button:hover { border-color: #0000; }
+.tile-menu-tile.nav-button:focus-visible, .tile-menu-tile.nav-button[data-wf-focus-visible] { outline-offset: 4px; outline-color: var(--accent--tab); }
+.tile-menu-tile.nav-button.nav-button-gridline { background-color: #0000; overflow: visible; }
+.voice-tone-visual-container { flex: 1; max-height: min(70%, 25vh); position: relative; }
+.color-visual-container { flex-flow: column; flex: 1; justify-content: flex-end; align-items: stretch; position: relative; }
+.color-color-block { width: 50%; height: 50%; position: absolute; }
+.color-color-block.block-1 { background-color: var(--color--accent--rust); inset: 0% auto auto 0%; }
+.color-color-block.block-2 { background-color: var(--color--identity--on-orange); inset: auto 0% 0% auto; }
+.motion-visual-container { flex-flow: column; flex: 1; padding: 8px 14px; position: relative; }
+.motion-bezier-container { flex: 1; width: calc(100% - 28px); height: calc(100% - 16px); position: absolute; }
+.strategy-visual-container { flex-flow: column; flex: 1; justify-content: flex-end; display: flex; position: relative; }
+.strategy-bezier-container { flex: 1; width: calc(100% - 20px); height: calc(100% - 16px); position: absolute; }
+.strategy-visual-square { aspect-ratio: 1; max-width: 100%; max-height: 100%; padding: 8px 10px; position: absolute; left: 0; right: 0; }
+.motion-bezier-container-embed { width: 100%; height: calc(200% - 7.5px); position: absolute; top: calc(4px - 50%); }
+.strategy-bezier-container-embed { width: 100%; height: calc(200% - 8px); position: absolute; top: calc(4px - 50%); }
+.color-visual-square { aspect-ratio: 1; justify-content: flex-end; align-items: stretch; width: 100%; max-width: 100%; max-height: min(100%, 20vh); display: flex; position: absolute; bottom: 0; right: 0; }
+.color-visual-square-square { aspect-ratio: 1; height: 100%; position: relative; }
+.iconography-visual-square { justify-content: flex-start; align-items: stretch; width: 100%; max-width: 100%; height: 100%; max-height: min(100%, 15vh); display: flex; position: absolute; bottom: 0; }
+.iconography-visual-container { flex-flow: column; flex: 1; justify-content: flex-end; align-items: stretch; position: relative; }
+.iconography-visual-lock-embed { height: 100%; }
+.imagery-visual-container { flex-flow: column; flex: 1; justify-content: flex-end; align-items: stretch; position: relative; }
+.imagery-visual-square { aspect-ratio: 5 / 4; width: 100%; max-width: 100%; max-height: min(100%, 20vh); position: absolute; bottom: 0; right: 0; }
+.imagery-visual-picture { aspect-ratio: 5 / 4; max-height: 100%; margin-top: auto; margin-left: auto; position: relative; }
+.imagery-visual-picture-embed { width: 100%; height: 100%; position: relative; overflow: hidden; }
+.imagery-visual-picture-border { z-index: 2; border: 2px solid #fff; position: absolute; inset: 0%; }
+.typography-visual-type-embed { aspect-ratio: 196 / 110; justify-content: flex-end; align-items: flex-end; width: 100%; height: 100%; display: flex; }
+.typography-visual-container { flex-flow: column; flex: 1; justify-content: flex-end; align-items: flex-end; display: flex; position: relative; }
+.typography-visual-square { aspect-ratio: 196 / 110; justify-content: flex-end; align-items: stretch; width: 100%; max-width: 100%; max-height: min(100%, 12vh); display: flex; position: absolute; bottom: 0; }
+.color-tile-embed { display: none; }
+.strategy-sketch-1-embed { width: calc(112% - 50px); height: calc(62% - 12px); position: absolute; top: -10%; left: calc(27px - 3%); }
+.strategy-sketch-2-embed { width: calc(111% - 40px); height: calc(62% - 30px); position: absolute; top: 43%; left: calc(18px - 9%); }
+.logo-visual-container { flex-flow: column; flex: 1; justify-content: flex-end; align-items: stretch; position: relative; }
+.logo-visual-square { width: 100%; max-width: 100%; height: min(100%, 35vh); position: absolute; bottom: 0; right: 0; }
+.nav { z-index: 100; position: fixed; inset: 0%; overflow: hidden; }
+.home-logo-container { width: 100%; height: 100%; position: absolute; bottom: 50%; left: 50%; transform: translate(-50%, 50%); }
+.logo-visual-lottie, .logo-visual-outline-lottie { aspect-ratio: 1; height: 100%; margin-left: auto; position: absolute; right: 0; transform: translate(30%, 30%); }
+.scroll-chevrons { display: none; position: absolute; inset: 0%; }
+.nav-button-highlight { opacity: 0; pointer-events: none; visibility: hidden; will-change: opacity; background-color: #fff; transition-property: all; transition-duration: .2s; transition-timing-function: ease; position: absolute; inset: 0%; }
+@media screen and (max-width: 991px) {
+  .tile.voice-tone { border-top-right-radius: 4px; }
+  .tile.strategy { border-top-left-radius: 4px; }
+  .tile.typography { border-top-right-radius: 0; }
+  .tile.motion { border-bottom-right-radius: 4px; }
+  .tile.imagery { grid-column-gap: 48px; grid-row-gap: 48px; border-bottom-left-radius: 4px; }
+  .tile.iconography { border-bottom-left-radius: 0; }
+  .nav-button-content { padding: 17.7px 14.5px 17.7px 17px; }
+  .nav-button-svg.menu-logo { width: 33px; bottom: 16px; left: 16px; }
+  .nav-button-svg.menu-close, .nav-button-svg.menu-arrow, .nav-button-svg.menu-hamburger { width: 48px; bottom: 8px; left: 8px; }
+  .nav-button-title.nav-button-title-1 { font-size: 24px; }
+  .nav-button-title.nav-button-title-2 { font-size: clamp(14px, 4.8vw, 24px); line-height: 1.25em; }
+  .tile-title { font-size: 20px; }
+  .typography-visual-square { max-height: min(100%, 8vh); }
+  .logo-visual-lottie, .logo-visual-outline-lottie { height: 150%; left: 0; right: auto; transform: translate(-30%); }
+}
+@media screen and (max-width: 767px) {
+  /* Proposal, no mobile frame in Figma yet: same pinwheel; on phones the bottom arm is
+     split vertically (Resume in the corner, Contact next to the central block), two equal
+     halves. On tablets (768-991px) Contact and Resume stay side by side, as tall tiles. */
+  .nav-tile.nav-tile-2 { left: calc(50% - var(--button-width) / 2); bottom: auto; top: calc(50% + var(--button-height) / 2 + var(--nav-tile-gap)); width: calc(50% + var(--button-width) / 2 - var(--nav-tile-gap)); height: calc((50% - var(--button-height) / 2 - var(--nav-tile-gap) * 3) / 2); }
+  .nav-tile.nav-tile-3 { width: calc(50% + var(--button-width) / 2 - var(--nav-tile-gap)); height: calc((50% - var(--button-height) / 2 - var(--nav-tile-gap) * 3) / 2); }
+  .tile.strategy { grid-column-gap: 24px; grid-row-gap: 24px; }
+}
+@media screen and (max-width: 479px) {
+  .tile { padding: 8px; }
+  .iconography-visual-square { height: 84px; }
+}

@@ -1,0 +1,269 @@
+/* ==========================================================================
+   interior-nav.css
+   The global menu on inner pages: a fixed rail on the left
+   with the page title, a scroll indicator and the menu button. The button
+   opens the same tile menu as the home.
+   Five tiles, and a central block that
+   is not square once open (Figma 190 x 183).
+   ========================================================================== */
+
+/* --- Rail pieces (Webflow classes left out of webflow.css because the home hides them) --- */
+.nav-page-title { z-index: 99; color: var(--white); text-align: right; mix-blend-mode: difference; writing-mode: vertical-rl; text-orientation: mixed; position: fixed; top: 16px; left: 20px; transform: rotate(180deg); }
+.nav-border-line { z-index: 100; background-color: var(--color--accent--line); width: 1px; height: 300vh; position: fixed; top: 0%; bottom: 0%; left: 59px; }
+.nav-scroll-indicator { z-index: 98; background-color: var(--accent--tab); transform-origin: 0 0; width: 3px; height: 100%; position: fixed; top: 0%; left: 0; }
+.nav-background { z-index: 85; width: 60px; height: 100vh; display: none; position: fixed; top: 0%; bottom: 0%; left: 0%; overflow: scroll; }
+
+.nav-page-title {
+  font-family: var(--font-family--font-1);
+  font-weight: var(--font-weight--600);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+/* "Emilia Laviero" sits at the bottom of the rail,
+   in the brand indigo. It leads to the home. */
+.nav-brand {
+  z-index: 99;
+  position: fixed;
+  bottom: 16px;
+  left: 20px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  color: var(--color--brand--indigo);
+  font-family: var(--font-family--font-1);
+  font-weight: var(--font-weight--600);
+  font-size: 14px;
+  line-height: 22px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-brand:focus-visible {
+  outline: 2px solid var(--accent--tab);
+  outline-offset: 4px;
+}
+
+@media screen and (max-width: 991px) {
+  .nav-page-title { writing-mode: initial; text-orientation: initial; inset: auto 16px 13px auto; transform: none; }
+  .nav-brand { writing-mode: initial; text-orientation: initial; bottom: 13px; left: 16px; transform: none; }
+  .nav-border-line { width: 100vw; height: 1px; top: auto; bottom: 47px; left: 0; }
+  .nav-scroll-indicator { width: 100vw; height: 3px; top: auto; bottom: 0; left: 0; }
+  /* This bar takes the colour of the section behind it; Work only has white sections. */
+  .nav-background { z-index: 93; width: 100vw; height: 48px; display: block; top: auto; background-color: var(--surface--background-light); }
+}
+
+/* --- Open / close (original embed, values unchanged) --- */
+.nav-container.no-transitions * {
+  transition: none !important;
+}
+
+.nav-button-content h3 {
+  opacity: 0;
+}
+
+.nav {
+  pointer-events: none;
+}
+.nav-container.open .nav {
+  pointer-events: all;
+}
+
+.nav-wrapper {
+  transition: background-color 0.3s var(--nav-easing);
+}
+.nav-container.open .nav-wrapper {
+  background-color: white;
+  transition: background-color 0.3s var(--nav-easing) 0.2s;
+}
+
+.nav-container .menu {
+  left: calc(var(--button-size) / -6);
+  bottom: 50%;
+}
+
+.nav-container.open .menu {
+  transition: transform 0.5s var(--nav-easing-swoop), opacity 0.7s cubic-bezier(0.4, 0, 0.1, 1);
+  transform: translate(calc(50vw - var(--button-size) / 3), 50%);
+}
+
+.nav-container:not(.open) .menu {
+  transform: translate(0, 50%);
+  transition: transform 0.5s var(--nav-easing-swoop) 0.05s, opacity 0.7s cubic-bezier(0.4, 0, 0.1, 1);
+}
+
+/* Closed, the button keeps the original 90px (60px on the rail once scaled to 2/3);
+   open, it grows to the 190 x 183 central block of the new menu with the same 0.5s swoop. */
+@media screen and (min-width: 992px) {
+  .nav-container .menu {
+    width: var(--button-size);
+    height: var(--button-size);
+  }
+  .nav-container.open .menu {
+    left: calc(var(--button-width) / -6);
+    width: var(--button-width);
+    height: var(--button-height);
+    transform: translate(calc(50vw - var(--button-width) / 3), 50%);
+    transition: transform 0.5s var(--nav-easing-swoop), opacity 0.7s cubic-bezier(0.4, 0, 0.1, 1),
+      left 0.5s var(--nav-easing-swoop), width 0.5s var(--nav-easing-swoop), height 0.5s var(--nav-easing-swoop);
+  }
+  .nav-container:not(.open) .menu {
+    transition: transform 0.5s var(--nav-easing-swoop) 0.05s, opacity 0.7s cubic-bezier(0.4, 0, 0.1, 1),
+      left 0.5s var(--nav-easing-swoop) 0.05s, width 0.5s var(--nav-easing-swoop) 0.05s, height 0.5s var(--nav-easing-swoop) 0.05s;
+  }
+}
+
+/* Icons centred in the button. With the original 90px and 64px buttons this gives
+   the original offsets (14px / 8px); in the 190 x 183 block the close icon stays centred. */
+.nav-container .nav-button-content {
+  width: 100%;
+  max-width: none;
+}
+.nav-container .nav-button-svg.menu-close,
+.nav-container .nav-button-svg.menu-arrow,
+.nav-container .nav-button-svg.menu-hamburger {
+  left: calc(50% - 31px);
+  bottom: calc(50% - 31px);
+}
+.nav-container .nav-button-svg.menu-logo {
+  left: calc(50% - 23px);
+  bottom: calc(50% - 22px);
+}
+@media screen and (max-width: 991px) {
+  .nav-container .nav-button-svg.menu-close,
+  .nav-container .nav-button-svg.menu-arrow,
+  .nav-container .nav-button-svg.menu-hamburger {
+    left: calc(50% - 24px);
+    bottom: calc(50% - 24px);
+  }
+  .nav-container .nav-button-svg.menu-logo {
+    left: calc(50% - 16.5px);
+    bottom: calc(50% - 16px);
+  }
+}
+
+/* start warp */
+
+@keyframes nav-button-open {
+  20% { transform: scale(2, 0.7); }
+  40% { transform: scale(1.2, 0.82); }
+  60% { transform: scale(1, 0.93); }
+  75% { transform: scale(0.98, 0.97); }
+  90% { transform: scale(0.99, 0.99); }
+  100% { transform: scale(1); }
+}
+
+@keyframes nav-button-close {
+  30% { transform: scale(1.2, 0.85); }
+  60% { transform: scale(1.9, 0.7); }
+  80% { transform: scale(1.2, calc(2 / 3)); }
+  90% { transform: scale(0.7, 0.7); }
+  100% { transform: scale(0.666667, 0.666667); }
+}
+
+.nav-container.warp.open .nav-button {
+  animation: nav-button-open 0.4s linear 0.1s forwards;
+  transform: scale(calc(2 / 3));
+  transition: none;
+}
+
+.nav-container.warp:not(.open) .nav-button {
+  animation: nav-button-close 0.3s linear 0.05s forwards;
+  transition: none;
+}
+
+.nav-container:not(.warp) .nav-button {
+  transform: scale(calc(2 / 3));
+}
+
+@media (min-width: 992px) {
+  .nav-container:not(.outro) .nav-button:hover .nav-button-highlight {
+    opacity: 0.12;
+    visibility: visible;
+  }
+}
+
+@media (max-width: 991px) {
+  .nav-container.warp.open .nav-button {
+    transition: transform 0.5s var(--nav-easing-swoop) 0.1s;
+    transform: scale(1);
+    animation: none;
+  }
+  .nav-container.warp:not(.open) .nav-button {
+    transition: transform 0.3s var(--nav-easing);
+    transform: scale(calc(0.75));
+    animation: none;
+  }
+}
+
+/* end warp */
+
+.nav-container:not(.open) .nav-tile {
+  transition: transform 0.5s var(--nav-easing-swoop);
+}
+
+.nav-container.open .nav-tile {
+  opacity: 1;
+  transform: initial;
+  transition: transform 0.5s var(--nav-easing-swoop) 0.1s;
+}
+
+/* The five tiles wait outside the screen with the same vectors as on the home
+   (home-scroll.js), so opening the menu here repeats the end of the home choreography. */
+.nav-container:not(.open) .nav-tile-1 { transform: scale(2) translate(calc(var(--highest-tile-yeet) * 1), calc(var(--highest-tile-yeet) * -0.1)); }
+.nav-container:not(.open) .nav-tile-2 { transform: scale(2) translate(calc(var(--highest-tile-yeet) * -0.1), calc(var(--highest-tile-yeet) * -1)); }
+.nav-container:not(.open) .nav-tile-3 { transform: scale(2) translate(calc(var(--highest-tile-yeet) * -4), calc(var(--highest-tile-yeet) * -2)); }
+.nav-container:not(.open) .nav-tile-4 { transform: scale(2) translate(calc(var(--highest-tile-yeet) * -1), calc(var(--highest-tile-yeet) * 0.1)); }
+.nav-container:not(.open) .nav-tile-5 { transform: scale(2) translate(calc(var(--highest-tile-yeet) * 4), calc(var(--highest-tile-yeet) * 2)); }
+
+@media (max-width: 991px) {
+  .nav-container .menu {
+    left: 50%;
+    bottom: calc(var(--button-size) / -8);
+  }
+  .nav-container.open .menu {
+    transform: translate(-50%, calc(-50dvh - var(--button-size) * 3 / -8));
+  }
+  .nav-container:not(.open) .menu {
+    transform: translate(-50%, 0);
+  }
+  .nav-container:not(.open) .nav-button {
+    transform: scale(calc(3 / 4));
+  }
+
+  .nav-container:not(.open) .nav-tile-1 { transform: scale(2) translate(calc(var(--highest-tile-yeet) * 2), calc(var(--highest-tile-yeet) * -3)); }
+  .nav-container:not(.open) .nav-tile-2 { transform: scale(2) translate(calc(var(--highest-tile-yeet) * 0.25), calc(var(--highest-tile-yeet) * -1.5)); }
+  .nav-container:not(.open) .nav-tile-3 { transform: scale(2) translate(calc(var(--highest-tile-yeet) * -2), calc(var(--highest-tile-yeet) * -3)); }
+  .nav-container:not(.open) .nav-tile-4 { transform: scale(2) translate(calc(var(--highest-tile-yeet) * -2), calc(var(--highest-tile-yeet) * 3)); }
+  .nav-container:not(.open) .nav-tile-5 { transform: scale(2) translate(calc(var(--highest-tile-yeet) * -0.25), calc(var(--highest-tile-yeet) * 1.5)); }
+}
+
+.nav-container > *:not(.nav-background, .nav-page-title) {
+  transition: background-color 0.2s, transform 0.7s cubic-bezier(.4,0,.1,1), color 0.9s cubic-bezier(.2,.7,.45,1), opacity 0.7s cubic-bezier(.4,0,.1,1);
+}
+
+.nav-container .nav-page-title, .nav-container .nav-brand, .nav-background {
+  transition: transform 0.7s cubic-bezier(.4,0,.1,1), opacity 0.7s cubic-bezier(.4,0,.1,1);
+}
+
+.nav-background {
+  transition: transform 0.7s cubic-bezier(.4,0,.1,1), background-color 0.2s ease;
+}
+
+/* Overscroll at the end of the page fills the button clockwise and then opens the menu. */
+.tile-menu-tile.nav-button:not(.nav-button-gridline) {
+  background: conic-gradient(
+    from 0deg,
+    color-mix(in srgb, var(--accent--tab) 60%, black) 0deg,
+    color-mix(in srgb, var(--accent--tab) 60%, black) calc(var(--overscroll-progress) * 360deg),
+    var(--accent--tab) calc(var(--overscroll-progress) * 360deg)
+  );
+}
+
+.nav-container.open .tile-menu-tile.nav-button:not(.nav-button-gridline) {
+  background: var(--accent--tab);
+}
+
+.home-logo-container {
+  display: none;
+}

@@ -1,0 +1,251 @@
+/* ==========================================================================
+   contact.css
+   Contact: one screen, the cover with the contacts in it. On top
+   of the case study grid (css/case-study.css) and the About cover (css/about.css).
+   Composed of:
+   - Cells of colour with type in them ("Hi!" of the menu tile, "@"), each filling
+     its cell of the grid, with the glyph in the middle.
+   - The email on one line in a thin box, with a white button on its
+     left, which copies it (js/case-study.js).
+   - The LinkedIn button, as thin as the email box, hanging from the line under
+     the title on the title axis.
+   - A cursor with a name tag under the title, as a collaborator in a shared file.
+   ========================================================================== */
+
+.ct-cover .is-green  { --ct-bg: var(--color--brand--green);  --ct-ink: var(--color--brand--on-green); }
+.ct-cover .is-pink   { --ct-bg: var(--color--brand--pink);   --ct-ink: var(--color--brand--on-pink); }
+.ct-cover .is-purple { --ct-bg: var(--color--brand--purple); --ct-ink: var(--color--brand--on-purple); }
+.ct-cover .is-blue   { --ct-bg: var(--color--brand--blue);   --ct-ink: var(--color--brand--on-blue); }
+
+/* --- Cover -------------------------------------------------------------------- */
+
+/* "Contact" is 3.542em wide (Figtree Semi Bold, -0.02em, measured): it fills half the grid, from
+   1/6 to 2/3, as "Approach". Keep in sync with js/cover-reveal.js */
+.ct-cover {
+  --ct-em: 3.542;
+  --ab-title-size: calc((100cqw - 240px) / 2 / var(--ct-em));
+  /* The width of one column of the grid, and the height of the email and LinkedIn boxes */
+  --ct-cell: calc((100cqw - 240px) / 6);
+  --ct-strip: 72px;
+}
+
+/* Lines on the edges of the boxes only: at 1/2 in the top row (the email box starts there), at
+   1/3 and 1/2 in the bottom row (LinkedIn ends at 1/3, "@" sits between 1/2 and 2/3) */
+.ab-cover-v.ct-high { bottom: auto; height: var(--ab-row-1); }
+.ab-cover-v.ct-low { top: auto; bottom: 0; height: var(--ab-row-1); }
+.ab-cover-v.at-third { left: calc(100% / 3); }
+/* The line at 2/3 (where the title ends) starts under the email box, so it never crosses the email */
+.ct-cover .ab-cover-v.at-box { top: var(--ab-row-1); }
+.js .ab-cover-v.ct-low { transform-origin: 50% 100%; }
+
+/* Across the screen on the top of the email box and the bottom of the LinkedIn button */
+.ab-cover-h.ct-at-mail { top: calc(var(--ab-row-1) - var(--ct-strip)); }
+.ab-cover-h.ct-at-in { bottom: calc(var(--ab-row-1) - var(--ct-strip)); }
+.js .ab-cover.is-in .ab-cover-h.ct-at-mail,
+.js .ab-cover.is-in .ab-cover-h.ct-at-in { transition-delay: 0.35s; }
+
+/* A cell of colour with a glyph in the middle. It fills its whole cell, from line to line, and
+   sits above the lines, so no line runs through it */
+.ct-sq {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  align-self: stretch;
+  background-color: var(--ct-bg);
+  color: var(--ct-ink);
+}
+
+.ct-sq b {
+  font-family: var(--font-family--font-1);
+  font-weight: var(--font-weight--600);
+  font-size: calc(var(--ct-cell) * 0.6);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* "Hi!" of the menu tile: the first cell of the top row */
+.ct-sq-hi { grid-column: 1; grid-row: 1; }
+.ct-sq-hi svg { width: 62%; fill: var(--ct-ink); }
+
+/* "@": the bottom row, between 1/2 and 2/3 */
+.ct-sq-at { grid-column: 4; grid-row: 5; }
+
+/* The email on one line, in a thin box resting on the line above the title, from 1/2 to the edge */
+.ct-mail {
+  grid-column: 4 / -1;
+  grid-row: 1;
+  align-self: end;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  height: var(--ct-strip);
+  padding: 0 var(--cs-pad);
+  background-color: var(--ct-bg);
+  color: var(--ct-ink);
+  container-type: inline-size;
+}
+
+/* One line: 28px, or smaller when the box is narrower (the address is 13.1em wide, measured) */
+.ct-mail-text {
+  margin: 0;
+  font-family: var(--cs-title-font);
+  font-weight: var(--font-weight--title);
+  font-variation-settings: var(--cs-title-axes);
+  font-size: min(28px, 100cqw / 13.4);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+/* "Copy email": the white button of About on the left of the box; here the icon does not turn */
+.ct-copy-btn:hover svg { transform: none; }
+.ct-copy-btn.is-copied { color: var(--color--brand--on-green); }
+
+/* LinkedIn: as thin as the email box, from the title axis (1/6) to 1/3, under the line under the title */
+.ct-in {
+  grid-column: 2;
+  grid-row: 5;
+  align-self: start;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: var(--ct-strip);
+  padding: 0 var(--cs-pad);
+  background-color: var(--ct-bg);
+  color: var(--ct-ink);
+  font: 500 16px/20px var(--cs-body-font);
+  text-decoration: none;
+  transition: background-color 0.35s var(--cs-ease), color 0.35s var(--cs-ease);
+}
+
+.ct-in-icon { flex: none; width: 20px; height: 20px; }
+.ct-in-arrow { margin-left: auto; transition: transform 0.5s var(--cs-ease); }
+
+@media (any-hover: hover) {
+  .ct-in:hover { background-color: var(--ct-ink); color: #fff; }
+  .ct-in:hover .ct-in-arrow { transform: translate(3px, -3px); }
+}
+
+.ct-in:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+
+/* A cursor with its name tag under the title, as a collaborator in a shared file */
+.ct-cursor {
+  grid-column: 4;
+  grid-row: 4;
+  align-self: start;
+  justify-self: start;
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  align-items: flex-start;
+  margin: 14px 0 0 36%;
+}
+
+.ct-cursor svg {
+  width: 14px;
+  height: 16px;
+  margin-right: 2px;
+  fill: var(--color--brand--indigo);
+}
+
+.ct-cursor span {
+  margin-top: 12px;
+  padding: 4px 10px 5px;
+  border-radius: 6px;
+  background-color: var(--color--brand--indigo);
+  color: #fff;
+  font: 500 13px/18px var(--cs-body-font);
+}
+
+/* Entrance: after the lines and the title (css/about.css) */
+.js .ct-sq,
+.js .ct-mail,
+.js .ct-in,
+.js .ct-cursor {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.js .ab-cover.is-in .ct-sq,
+.js .ab-cover.is-in .ct-mail,
+.js .ab-cover.is-in .ct-in,
+.js .ab-cover.is-in .ct-cursor {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s ease, transform 0.9s var(--cs-ease), background-color 0.35s var(--cs-ease), color 0.35s var(--cs-ease);
+}
+.js .ab-cover.is-in .ct-sq-hi { transition-delay: 0.75s, 0.75s, 0s, 0s; }
+.js .ab-cover.is-in .ct-mail { transition-delay: 0.85s, 0.85s, 0s, 0s; }
+.js .ab-cover.is-in .ct-cursor { transition-delay: 0.95s, 0.95s, 0s, 0s; }
+.js .ab-cover.is-in .ct-in { transition-delay: 1.05s, 1.05s, 0s, 0s; }
+.js .ab-cover.is-in .ct-sq-at { transition-delay: 1.15s, 1.15s, 0s, 0s; }
+
+/* Once in, the cursor drifts a little, as someone reading */
+.js .ab-cover.is-in .ct-cursor svg,
+.js .ab-cover.is-in .ct-cursor span {
+  animation: ct-drift 6s ease-in-out 2s infinite;
+}
+@keyframes ct-drift {
+  0%, 100% { transform: none; }
+  40% { transform: translate(18px, -6px); }
+  70% { transform: translate(6px, 4px); }
+}
+
+/* --- Responsive (site breakpoints) --------------------------------------------- */
+
+@media screen and (max-width: 991px) {
+  /* Two columns, filling the screen: the email box above, the title on the whole width,
+     LinkedIn and "@" below. The button goes above the email box, on the text axis */
+  .ct-cover {
+    --ab-title-size: calc((100cqw - 120px) / var(--ct-em));
+    --ct-cell: calc((100cqw - 120px) / 2);
+    --ct-strip: 60px;
+  }
+  /* The page ends on the menu bar at the bottom of the screen (48px) */
+  .ct-cover .ab-cover-grid {
+    --ab-row-1: calc((100svh - 48px - 2 * var(--ab-cover-gap) - var(--ab-title-row)) / 2);
+  }
+  .ab-cover-v.at-box,
+  .ab-cover-v.ct-high,
+  .ab-cover-v.at-third { display: none; }
+  /* About hides its line at 1/2 here; Contact keeps it on the bottom row, between LinkedIn and "@" */
+  .ct-cover .ab-cover-v.ct-low.at-half { display: block; }
+  .ct-mail { grid-column: 1 / -1; }
+  .ct-copy {
+    position: absolute;
+    top: auto;
+    right: auto;
+    bottom: calc(100% + 12px);
+    left: var(--cs-pad);
+    margin: 0;
+    transform: none;
+  }
+  .ct-copy .ab-suggest-caret { display: none; }
+  .ct-cursor { grid-column: 2; grid-row: 5; margin: 12px 0 0 12%; }
+  .ct-in { grid-column: 1; }
+  .ct-sq-at { grid-column: 2; }
+}
+
+@media screen and (max-width: 767px) {
+  .ct-cover {
+    --ab-title-size: calc((100cqw - 64px) / var(--ct-em));
+    --ct-cell: calc((100cqw - 64px) / 2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .ct-sq,
+  .js .ct-mail,
+  .js .ct-in,
+  .js .ct-cursor,
+  .ct-in-arrow {
+    transform: none !important;
+    transition: none !important;
+  }
+  .js .ab-cover.is-in .ct-cursor svg,
+  .js .ab-cover.is-in .ct-cursor span { animation: none; }
+}

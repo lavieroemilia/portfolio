@@ -1,0 +1,42 @@
+/* home.css: home-only overrides (menu centred in the viewport, tiles inert until the end of the scroll). */
+
+	html, body {
+  	overscroll-behavior: none;
+  }
+
+	.nav {
+  	width: 100vw;
+    pointer-events: all;
+  }
+
+  ::-webkit-scrollbar {
+      display: none;
+  }
+
+  .nav-tile, .menu {
+  	pointer-events: none;
+  }
+  .nav-border-line {
+  	display: none;
+  }
+
+  /* Single intro screen: the title and graphic of each tile fade in with the
+     scroll (home-scroll.js), so only colour peeks in at first */
+  .nav .tile > * {
+  	filter: var(--tile-content-filter, none);
+  }
+
+  /* Centred with --button-width (the new central block is not square). */
+  .nav-container .menu {
+      left: calc(var(--button-width) / -6);
+      bottom: 50%;
+      transform: translate(calc(50vw - var(--button-width) / 3), 50%);
+  }
+
+  @media (max-width: 991px) {
+      .nav-container .menu {
+          left: 50%;
+          bottom: calc(var(--button-size) / -8);
+        	transform: translate(-50%, calc(-50dvh - var(--button-size) * 3 / -8));
+      }
+	}

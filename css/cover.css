@@ -1,0 +1,117 @@
+/* ==========================================================================
+   cover.css
+   The project covers, shared by Work and the case study (More work):
+   1. The sliding lid: on hover a grey lid the size of the cover rises from
+      below and covers the image (never the caption); the image never moves.
+      The text follows the lid with a short delay; on leave it goes back down.
+   2. The shared cover transition (cover.js): the cover grows from its place
+      into the hero of the case study.
+   ========================================================================== */
+
+:root {
+  --cover-lid-duration: 0.5s;
+  --cover-lid-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* --- 1. Lid ------------------------------------------------------------------ */
+
+.work-hover {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  padding: 20px;
+  background-color: var(--surface--overlay-subtle);
+  transform: translateY(100%);
+  transition: transform var(--cover-lid-duration) var(--cover-lid-ease);
+}
+
+.work-hover .p {
+  max-width: 350px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 22px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.2s ease, transform var(--cover-lid-duration) var(--cover-lid-ease);
+}
+
+/* Hover and keyboard focus, desktop only: any link that holds a cover with a lid */
+@media screen and (min-width: 992px) {
+  a:focus-visible .work-hover {
+    transform: translateY(0);
+  }
+  a:focus-visible .work-hover .p {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.35s ease 0.12s, transform var(--cover-lid-duration) var(--cover-lid-ease) 0.08s;
+  }
+}
+
+@media screen and (min-width: 992px) and (any-hover: hover) {
+  a:hover .work-hover {
+    transform: translateY(0);
+  }
+  a:hover .work-hover .p {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.35s ease 0.12s, transform var(--cover-lid-duration) var(--cover-lid-ease) 0.08s;
+  }
+}
+
+/* Opening a project: the lid goes down with its own leave animation, even under the pointer */
+a.cover-leaving .work-hover,
+a.cover-leaving:hover .work-hover,
+a.cover-leaving:focus-visible .work-hover {
+  transform: translateY(100%);
+  transition: transform var(--cover-lid-duration) var(--cover-lid-ease);
+}
+a.cover-leaving .work-hover .p,
+a.cover-leaving:hover .work-hover .p,
+a.cover-leaving:focus-visible .work-hover .p {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.2s ease, transform var(--cover-lid-duration) var(--cover-lid-ease);
+}
+
+/* No lid on touch screens and below 992px */
+@media screen and (max-width: 991px) {
+  .work-hover { display: none; }
+}
+@media screen and (min-width: 992px) and (not (any-hover: hover)) {
+  .work-hover { display: none; }
+}
+
+/* --- 2. Shared cover transition ------------------------------------------------ */
+
+/* Above the page, under the rail and the menu (z-index 85 and up) */
+.cover-flight {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+}
+
+/* The page fades to its background while the cover grows */
+.cover-flight-veil {
+  position: absolute;
+  inset: 0;
+  background-color: var(--surface--background-light);
+}
+
+.cover-flight-box {
+  position: absolute;
+  overflow: hidden;
+}
+
+.cover-flight-box img {
+  position: absolute;
+  display: block;
+  max-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-hover,
+  .work-hover .p {
+    transition: none;
+  }
+}

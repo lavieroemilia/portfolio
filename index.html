@@ -1,951 +1,128 @@
-<!doctype html>
+<!DOCTYPE html>
+<!--
+  Home: the five-tile menu. Texts, colours and tiles come from Emilia's Figma frames. See README.md.
+-->
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script>
-  // Ronda 50: si se llega con #approach (desde otra página), la pantalla empieza en negro y se quita el ancla, así el
-  // navegador no salta al comienzo de la sección; el script la lleva directo a I listen y se abre con un fundido.
-  if (location.hash === '#approach') { document.documentElement.classList.add('arrive'); history.replaceState(null, '', location.pathname + location.search); }
-</script>
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <title>Emilia Laviero · Product Maker</title>
-<meta name="description" content="Product Maker with a holistic approach, connecting people, business, technology and design into one body of work.">
+<meta content="I’m Emilia, Product Maker with a holistic approach, connecting people, business, technology and design into one body of work. From selected work to approach, this portfolio is the foundation for how I shape products and experiences." name="description">
+<meta content="width=device-width, initial-scale=1" name="viewport">
 <link rel="canonical" href="https://emilialaviero.com/">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Emilia Laviero">
 <meta property="og:title" content="Emilia Laviero · Product Maker">
 <meta property="og:description" content="Product Maker with a holistic approach, connecting people, business, technology and design into one body of work.">
 <meta property="og:url" content="https://emilialaviero.com/">
-<meta property="og:site_name" content="Emilia Laviero">
-<meta property="og:image" content="https://emilialaviero.com/assets/img/og-home.jpg?v=20261018c">
+<meta property="og:image" content="https://emilialaviero.com/assets/images/og-home.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="627">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="css/webflow.css?v=20261028a">
+<link rel="stylesheet" href="css/load-in.css?v=20261028a">
+<link rel="stylesheet" href="css/global.css?v=20261028a">
+<link rel="stylesheet" href="css/tiles.css?v=20261028a">
+<link rel="stylesheet" href="css/menu-button.css?v=20261024c">
+<link rel="stylesheet" href="css/transitions.css?v=20261028a">
+<link rel="stylesheet" href="css/home.css?v=20261028a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Bungee&display=swap" rel="stylesheet">
-<style>
-  /* Estudio de movimiento V4, ronda 6. Panel "Lab" abajo a la izquierda: tipografía. */
-  :root {
-    --gutter: clamp(20px, 4.4vw, 72px);
-    --col6: calc((100vw - 2 * var(--gutter)) / 6);
-    --col12: calc((100vw - 2 * var(--gutter)) / 12);
-    --nav-h: 64px;
-    --ease-out: cubic-bezier(.2, .8, .2, 1);
-    --spring: cubic-bezier(.34, 1.36, .5, 1);
-    --line-w: 2.5px;
-    --hard: 6px 6px 0 var(--outline);
-    --paper: #FFF6EA;
-    --text-font: 'Archivo', system-ui, sans-serif;
-  }
-  .t-archivo { --display-font: 'Archivo'; --dw: 800; --ds: 118%; --dt: -0.035em; }
-  .t-anybody { --display-font: 'Anybody'; --dw: 800; --ds: 125%; --dt: -0.03em; }
-  .t-unbounded { --display-font: 'Unbounded'; --dw: 700; --ds: 100%; --dt: -0.045em; }
-  .t-fredoka { --display-font: 'Fredoka'; --dw: 600; --ds: 112%; --dt: -0.01em; }
-  .t-bungee { --display-font: 'Bungee'; --dw: 400; --ds: 100%; --dt: -0.01em; }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: auto; }
-  body { background: var(--bg); color: var(--text); font-family: var(--text-font); font-weight: 450; -webkit-font-smoothing: antialiased; overflow-x: clip; }
-  a { color: inherit; }
-  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
-  p { text-wrap: pretty; }
-  .display { font-family: var(--display-font), sans-serif; font-weight: var(--dw); font-stretch: var(--ds); letter-spacing: var(--dt); line-height: .92; text-wrap: balance; }
-  .label { font-size: 13px; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
-  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-  :focus-visible { outline: 2px solid currentColor; outline-offset: 4px; border-radius: 6px; }
-
-  /* Palabra en recuadro: al pasar el mouse se sacude */
-  .box { display: inline-block; background: var(--paper); color: var(--outline); border: var(--line-w) solid var(--outline); box-shadow: 4px 4px 0 var(--outline); padding: .04em .16em .02em; border-radius: .14em; transform: rotate(-1.6deg); line-height: 1; }
-  .box:hover { animation: wiggle .6s var(--ease-out); }
-  @keyframes wiggle { 20% { transform: translateX(-6px) rotate(-4deg); } 45% { transform: translateX(6px) rotate(3deg); } 70% { transform: translateX(-3px) rotate(-2.5deg); } 100% { transform: translateX(0) rotate(-1.6deg); } }
-
-  /* Texto que aparece por palabra (lo mueve el scroll) */
-  .w { display: inline-block; overflow: hidden; vertical-align: bottom; padding: .1em .02em .14em; margin: -.1em -.02em -.14em; }
-  .w > span { display: inline-block; will-change: transform; }
-  .w.unit { overflow: visible; }
-
-  .cols { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(to right, currentColor 1px, transparent 1px); background-size: var(--col6) 100%; background-position: var(--gutter) 0; background-repeat: repeat-x; opacity: .09; }
-  .cols.c12 { background-size: var(--col12) 100%; opacity: .12; }
-  .cols::after { content: ''; position: absolute; top: 0; bottom: 0; right: var(--gutter); width: 1px; background: currentColor; }
-
-  #ribbon { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-
-  /* Nav (ronda 9): una sola cápsula oscura translúcida, links de texto y un punto debajo del activo.
-     Se lee igual sobre el fondo ciruela, los carriles y el papel. ES abre la versión en español. */
-  .nav { position: fixed; top: 0; right: 0; z-index: 20; height: var(--nav-h); display: flex; align-items: center; padding: 0 var(--gutter); }
-  .nav ul { display: flex; align-items: center; gap: 2px; list-style: none; padding: 4px 6px; border-radius: 99px; background: rgba(22,16,31,.74); border: 1px solid rgba(255,241,228,.14); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
-  .nav-link { position: relative; display: inline-block; padding: 8px 12px 10px; font-size: 14px; font-weight: 550; color: var(--text); text-decoration: none; opacity: .72; transition: opacity .2s; }
-  .nav-link::after { content: ''; position: absolute; left: 50%; bottom: 3px; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: currentColor; transform: scale(0); transition: transform .25s var(--spring), opacity .2s; }
-  .nav-link:hover, .nav-link.is-active { opacity: 1; }
-  .nav-link:hover::after { transform: scale(1); opacity: .45; }
-  .nav-link.is-active::after { transform: scale(1); opacity: 1; }
-  .nav .sep { width: 1px; height: 16px; margin: 0 4px; background: rgba(255,241,228,.22); }
-  .nav .menu { font-size: 14px; font-weight: 550; padding: 9px 16px; border-radius: 99px; color: var(--text); background: rgba(22,16,31,.74); border: 1px solid rgba(255,241,228,.14); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
-  .pill { display: inline-block; text-decoration: none; font-size: 14px; font-weight: 650; padding: 7px 14px; border-radius: 99px; background: var(--paper); color: var(--outline); border: 2px solid var(--outline); transition: background .25s; }
-  .pill:hover { animation: sway .55s var(--ease-out); }
-  @keyframes sway { 25% { transform: translateX(-5px); } 55% { transform: translateX(5px); } 80% { transform: translateX(-2px); } 100% { transform: translateX(0); } }
-  .nav .menu { display: none; }
-
-  /* El nombre: siempre etiqueta (contorno que sigue las letras); empieza chico arriba y viaja a la nav */
-  .brand { position: fixed; left: 0; top: 0; z-index: 21; text-decoration: none; white-space: nowrap; line-height: 1; }
-  .brand .sticker { display: inline-flex; align-items: center; color: var(--outline); filter: url(#sticker); }
-  .title-eyes { display: inline-block; height: .8em; width: 1.57em; margin: 0 .02em; vertical-align: -.04em; overflow: visible; }
-  .fade { position: fixed; inset: 0; background: var(--bg); z-index: 30; opacity: 0; pointer-events: none; transition: opacity .2s; }
-  .fade.on { opacity: 1; }
-  html.arrive .fade { opacity: 1; transition: none; }
-  .fade.slow { transition: opacity .5s; }
-
-  .stage { position: relative; height: calc(var(--stage-vh) * 1vh); }
-  .pin { position: sticky; top: 0; height: 100vh; overflow: hidden; z-index: 2; }
-  .scene { position: absolute; inset: 0; visibility: hidden; }
-
-  /* Hero: el título es el posicionamiento; debajo, la frase con "one body of work" resaltado */
-  /* Ronda 9: jerarquía clara. 1 el título, 2 la frase (texto corrido, suave), 3 el nombre en la nav. */
-  /* Ronda 20: un solo bloque centrado (nombre chico, título, frase), con un solo color de acento: la cinta */
-  /* Ronda 26: una sola tarjeta de papel con borde (título, bajada y descripción) y el logo montado
-     sobre su borde de arriba. La cinta baja desde arriba de la pantalla por detrás de los dos y los
-     carriles van asomando de a uno, en escalera, por debajo de la tarjeta. */
-  .hero { position: relative; z-index: 2; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4.5vh; padding: var(--nav-h) var(--gutter) 18vh; text-align: center; }
-  /* Lugar del logo: el nombre (fijo) se apoya acá al cargar y con el scroll viaja a la nav */
-  .hero-kicker { visibility: hidden; height: clamp(34px, 2.6vw, 46px); margin-bottom: calc(-4.5vh - clamp(34px, 2.6vw, 46px) / 2); }
-  .hero-card { display: grid; justify-items: center; gap: 2.6vh; max-width: 100%; padding: clamp(36px, 3.8vw, 66px) clamp(24px, 4.4vw, 80px) clamp(26px, 3.2vw, 56px); background: var(--paper); color: var(--outline); border: var(--line-w) solid var(--outline); border-radius: 28px; box-shadow: 10px 10px 0 var(--outline); }
-  .hero-title { font-size: clamp(40px, 6.2vw, 116px); line-height: .95; white-space: nowrap; }
-  .hero-tag { display: block; margin-top: .45em; font-size: .34em; line-height: 1.1; }
-  .hero-sub { max-width: 46ch; font-size: clamp(15px, 1.15vw, 19px); line-height: 1.5; font-weight: 500; text-wrap: balance; }
-  .nowrap { white-space: nowrap; }
-
-  /* Frases encadenadas (kinetic.js): letra clara con contorno y sombra negra; las resaltadas, sobre sandía */
-  #kinetic { position: absolute; inset: 0; pointer-events: none; }
-  /* Rondas 45 y 47: pista del sentido siguiente. Su carril asoma por la derecha con el nombre (I see), más chico que el
-     del sentido actual y a su misma altura, y debajo Scroll con una flecha que baja. Sin cápsula de progreso. */
-  /* Ronda 50: Skip, abajo a la derecha mientras se ve Approach; salta a About con el mismo fundido de la nav */
-  .skip { position: fixed; right: var(--gutter); bottom: 4vh; z-index: 22; display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border-radius: 99px; font-size: 14px; font-weight: 600; color: var(--text); background: rgba(22,16,31,.74); border: 1px solid rgba(255,241,228,.14); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity .3s, transform .3s; }
-  .skip.on { opacity: 1; pointer-events: auto; transform: none; }
-  .skip:hover { background: rgba(22,16,31,.9); }
-  .ico { display: block; } /* ronda 51: flecha de ícono en vez del carácter del sistema */
-  #sense-hint .scroll i { vertical-align: -2px; }
-  #sense-hint { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .35s; }
-  #sense-hint.on { opacity: 1; }
-  #sense-hint .peek { position: absolute; top: 0; bottom: 0; color: var(--ink); }
-  #sense-hint .peek-txt { position: absolute; left: 0; right: 0; top: 42%; transform: translateY(-50%); text-align: center; font-size: clamp(18px, 2vw, 34px); line-height: 1; white-space: nowrap; }
-  #sense-hint .scroll { position: absolute; left: 0; right: 0; top: 60%; padding: 0 8px; text-align: center; font-size: 13px; font-weight: 700; line-height: 1.4; } /* ronda 48: top = la descripción del sentido actual (JS) */
-  #sense-hint .scroll i { display: inline-block; margin-left: 5px; font-style: normal; animation: hint-bob 1.6s ease-in-out infinite; }
-  @media (max-width: 760px) { #sense-hint .peek-txt { font-size: 13px; line-height: 1.1; white-space: normal; padding: 0 6px; } #sense-hint .scroll { font-size: 12px; } #sense-hint .scroll i { display: flex; justify-content: center; margin: 4px 0 0; } }
-  @keyframes hint-bob { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
-  @media (prefers-reduced-motion: reduce) { #sense-hint .scroll i { animation: none; } }
-  /* Ronda 9: las frases guían el recorrido: más chicas, planas, sin contorno ni sombra. "One body of" solo cambia de color */
-  .k-tok { position: absolute; left: 0; top: 0; transform-origin: 0 0; display: inline-block; white-space: nowrap; line-height: 1; font-family: var(--display-font), sans-serif; font-weight: var(--dw); font-stretch: var(--ds); letter-spacing: var(--dt); color: var(--text); -webkit-text-stroke: .14em var(--bg); paint-order: stroke fill; visibility: hidden; transition: color .4s; }
-  /* El contorno del color del fondo recorta la cinta cuando la frase la cruza (sin sombras ni recuadros) */
-  .k-tok.hl { color: var(--hl); }
-  #kinetic.on-lane .k-tok { color: var(--on0); -webkit-text-stroke: 0; }
-  .k-measure { position: absolute; left: 50%; top: 0; transform: translateX(-50%); visibility: hidden; text-align: center; line-height: 1.16; text-wrap: balance; }
-  .k-measure .k-tok { position: static; transform: none; visibility: hidden; }
-
-  /* Los sentidos: I, la ilustración y el nombre juntos al centro; frase y descripción centradas debajo */
-  /* Ronda 49 (mobile): los sentidos suben desde abajo como paneles de su color, con el borde negro de los carriles */
-  .act.up { border-top: var(--line-w) solid var(--outline); }
-  .act.up:nth-child(1) { background: var(--l0); border-top: 0; } .act.up:nth-child(2) { background: var(--l1); } .act.up:nth-child(3) { background: var(--l2); } .act.up:nth-child(4) { background: var(--l3); } .act.up:nth-child(5) { background: var(--l4); }
-  #sense-hint.up .peek { bottom: auto; height: calc(15vh); }
-  #sense-hint.up .peek-txt { top: 34%; font-size: 20px; }
-  #sense-hint.up .scroll { top: 58%; }
-  .act { --cy: 42%; --wf: 90px; --ilw: 280px; --ilh: 210px; }
-  .act .i, .act .word { position: absolute; top: var(--cy); font-size: var(--wf); line-height: 1; transform: translateY(-50%); }
-  .act .i { right: calc(50% + var(--ilw) / 2 + 1.2vw); }
-  .act .word { left: calc(50% + var(--ilw) / 2 + 1.2vw); }
-  .act .badge { position: absolute; left: 50%; top: var(--cy); width: var(--ilw); height: var(--ilh); transform: translate(-50%, -50%); }
-  .act .badge svg, .floats svg { width: 100%; height: 100%; display: block; overflow: visible; }
-  /* Ronda 34, sin ilustración: "I listen" en una sola línea, centrada; la frase y la descripción debajo */
-  .act.flat .i { display: none; }
-  .act.flat .word { left: 50%; right: auto; top: var(--cy); white-space: nowrap; }
-  .act.flat .below { top: calc(var(--cy) + var(--wf) * .5 + 5vh); }
-  .act .below { position: absolute; left: 50%; top: calc(var(--cy) + var(--ilh) / 2 + 5vh); width: calc(6 * var(--col12)); transform: translateX(-50%); text-align: center; }
-  .act .tag { font-size: clamp(20px, 1.8vw, 32px); line-height: 1.15; font-weight: 700; letter-spacing: -0.015em; text-wrap: balance; }
-  .act .desc { margin: 2vh auto 0; width: calc(4 * var(--col12)); font-size: clamp(14px, 1.06vw, 17px); line-height: 1.5; opacity: .9; }
-  .floats { pointer-events: none; }
-  .floats .float { position: absolute; left: 0; top: 0; visibility: hidden; }
-
-  /* Gestos de las ilustraciones (faces.js) */
-  .face .lid { transform-box: fill-box; transform-origin: 50% 0; }
-  .face.blink .lid { animation: lid .28s ease-in-out; }
-  @keyframes lid { 45% { transform: scaleY(2.6); } }
-  .il .gest { transform-box: fill-box; transform-origin: center; }
-  .il.blink .gest { animation: hop .5s var(--spring); }
-  @keyframes hop { 40% { transform: scale(1.12) rotate(-3deg); } }
-  /* Ronda 33 · Listen: cinco barras verticales que suben y bajan como una frecuencia (cada una a su ritmo) */
-  .il .bar { transform-box: fill-box; transform-origin: center; animation: eq .9s ease-in-out infinite alternate; }
-  .il .b1 { animation-duration: .74s; } .il .b2 { animation-duration: .96s; animation-delay: -.3s; }
-  .il .b3 { animation-duration: .62s; animation-delay: -.5s; } .il .b4 { animation-duration: .88s; animation-delay: -.2s; }
-  .il .b5 { animation-duration: 1.1s; animation-delay: -.6s; }
-  @keyframes eq { 0% { transform: scaleY(.28); } 45% { transform: scaleY(.8); } 100% { transform: scaleY(1); } }
-  /* Ronda 33 · Taste: la boca cerrada; la lengua asoma por una comisura, recorre el labio de lado a lado y se esconde */
-  .il .lick { transform-box: fill-box; transform-origin: center; animation: lick 3.2s ease-in-out infinite; }
-  @keyframes lick { 0%, 8% { transform: translateX(-30px) scale(0); } 18% { transform: translateX(-27px) scale(1); } 52% { transform: translateX(0) scale(1.08); } 80% { transform: translateX(27px) scale(1); } 90%, 100% { transform: translateX(30px) scale(0); } }
-  .il .idx { transform-box: fill-box; transform-origin: 50% 95%; animation: idx 2.4s ease-in-out infinite; }
-  .il .thb { transform-box: fill-box; transform-origin: 95% 50%; animation: thb 2.4s ease-in-out infinite; }
-  .il .sel { transform-box: fill-box; transform-origin: center; animation: open 2.4s ease-in-out infinite; }
-  @keyframes idx { 0%, 15% { transform: rotate(-30deg); } 50%, 70% { transform: rotate(6deg); } 100% { transform: rotate(-30deg); } }
-  @keyframes thb { 0%, 15% { transform: rotate(24deg); } 50%, 70% { transform: rotate(-6deg); } 100% { transform: rotate(24deg); } }
-  @keyframes open { 0%, 15% { transform: scale(.62); } 50%, 70% { transform: scale(1.12); } 100% { transform: scale(.62); } }
-
-  /* Secciones de lectura */
-  .section { position: relative; padding: 16vh var(--gutter); }
-  .section > .bg, .shuffle > .bg { position: absolute; inset: 0; z-index: 0; }
-  .section > .inner { position: relative; z-index: 2; }
-  .section h2.display { font-size: clamp(36px, 4.4vw, 84px); margin-bottom: 3vh; } /* ronda 46: más chicos (antes hasta 120px) */
-
-  .bg-paper { background-color: #F3ECE0; background-image: linear-gradient(rgba(22,16,31,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(22,16,31,.07) 1px, transparent 1px); background-size: 48px 48px; }
-  .bg-dots { background-color: var(--bg); background-image: radial-gradient(rgba(255,241,228,.14) 1.2px, transparent 1.4px); background-size: 28px 28px; }
-  .bg-persp { background-color: var(--l0); overflow: hidden; }
-  .bg-persp::before { content: ''; position: absolute; left: -50%; right: -50%; bottom: 0; height: 70%; background-image: linear-gradient(rgba(255,241,228,.16) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(255,241,228,.16) 1.5px, transparent 1.5px); background-size: 90px 90px; transform: perspective(500px) rotateX(58deg); transform-origin: bottom; }
-  .bg-persp::after { content: ''; position: absolute; inset: 0; background: repeating-conic-gradient(from -90deg at 50% 32%, rgba(255,241,228,.09) 0deg .3deg, transparent .3deg 9deg); -webkit-mask: linear-gradient(#000 25%, transparent 60%); mask: linear-gradient(#000 25%, transparent 60%); }
-  .on-paper { color: var(--outline); }
-
-  /* Work */
-  .work-row { display: grid; gap: calc(var(--gutter) * 1.4) var(--gutter); margin-bottom: 9vh; }
-  .work-row.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .work-row.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .work-title { margin-bottom: 9vh !important; }
-  .proj { position: relative; display: block; text-decoration: none; }
-  .proj .frame { position: relative; aspect-ratio: 16 / 10; border: var(--line-w) solid var(--outline); border-radius: 22px; overflow: hidden; box-shadow: var(--hard); background: #fff; transition: transform .35s var(--spring), box-shadow .35s var(--spring); }
-  .proj .frame img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s var(--ease-out); }
-  .proj .sel { position: absolute; left: -10px; right: -10px; top: -10px; pointer-events: none; opacity: 0; transition: opacity .2s; }
-  .proj .sel i { position: absolute; width: 10px; height: 10px; background: #fff; border: 1.5px solid var(--l0); }
-  .proj .sel::before { content: ''; position: absolute; inset: 0; border: 1.5px solid var(--l0); border-radius: 4px; }
-  .proj .chip { position: absolute; top: -14px; left: 22px; z-index: 3; font-size: 12px; font-weight: 700; padding: 5px 11px; background: var(--paper); border: 2px solid var(--outline); border-radius: 99px; box-shadow: 3px 3px 0 var(--outline); }
-  /* Ronda 42: título arriba y la frase debajo, sin rayas ni etiquetas; la frase usa casi todo el ancho de la tarjeta */
-  .proj p.desc { margin-top: 10px; max-width: 92%; font-size: clamp(15px, 1.1vw, 18px); line-height: 1.45; opacity: .85; }
-  .proj h3 { margin-top: 22px; font-family: var(--display-font), sans-serif; font-weight: var(--dw); font-stretch: var(--ds); letter-spacing: -0.01em; font-size: clamp(16px, 1.3vw, 22px); line-height: 1.15; text-wrap: pretty; } /* ronda 28: a todo el ancho de la tarjeta */
-  .proj p { margin-top: 8px; font-size: clamp(15px, 1.1vw, 18px); line-height: 1.4; max-width: 38ch; opacity: .8; }
-  .proj .soon { display: inline-block; margin-top: 10px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; opacity: .55; }
-  .two .proj h3 { font-size: clamp(18px, 1.6vw, 28px); }
-  .proj:hover .frame, .proj:focus-visible .frame { transform: translate(-4px, -4px) rotate(-.6deg); box-shadow: 10px 10px 0 var(--outline); }
-  .proj:hover .frame img { transform: scale(1.04); }
-  .proj:hover .sel, .proj:focus-visible .sel { opacity: 1; }
-
-  /* About: la foto a la izquierda con la frase en una cinta; a la derecha, lo que hago hoy */
-  .about { color: var(--text); }
-  .me { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0 var(--gutter); align-items: center; }
-  .me .photo { grid-column: 2 / 6; position: relative; }
-  .me .photo .frame { aspect-ratio: 4 / 5; border: var(--line-w) solid var(--outline); border-radius: 24px; overflow: hidden; box-shadow: 10px 10px 0 var(--l1); background: var(--surface); transform: rotate(-1.5deg); }
-  .me .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .tape-wrap { position: absolute; left: -4%; right: -7%; bottom: 7%; transform: rotate(-5deg); filter: drop-shadow(2px 0 0 var(--outline)) drop-shadow(-2px 0 0 var(--outline)) drop-shadow(0 2px 0 var(--outline)) drop-shadow(0 -2px 0 var(--outline)) drop-shadow(5px 5px 0 var(--outline)); }
-  .tape { background: var(--l4); color: var(--on4); padding: 18px 46px; font-family: var(--display-font), sans-serif; font-weight: var(--dw); font-stretch: var(--ds); font-size: clamp(16px, 1.45vw, 26px); line-height: 1.15; text-align: center; clip-path: polygon(0 0, 100% 0, 96% 50%, 100% 100%, 0 100%, 4% 50%); }
-  .me-text { grid-column: 7 / 13; display: grid; gap: 4vh; justify-items: start; }
-  .me-text h2.display { margin: 0; }
-  .me-text .lead + .lead { margin-top: 1em; } /* ronda 46: dos párrafos, qué hago hoy y EdTech */
-  .me-text .lead { font-size: clamp(17px, 1.35vw, 24px); line-height: 1.55; /* ronda 32: más aire entre líneas */ font-weight: 500; letter-spacing: -0.01em; }
-  .me-text .origin { font-size: clamp(15px, 1.15vw, 19px); line-height: 1.55; max-width: 46ch; }
-  mark { color: var(--outline); padding: .02em .22em; border-radius: .2em; -webkit-box-decoration-break: clone; box-decoration-break: clone; font-weight: 650; }
-  .m0 { background: var(--l4); color: var(--on4); } .m1 { background: var(--l1); color: var(--on1); } .m2 { background: var(--l2); color: var(--on2); } .m3 { background: var(--l3); color: var(--on3); }
-  .been { margin-top: 18vh; background: var(--paper); color: var(--outline); border: var(--line-w) solid var(--outline); border-radius: 30px; box-shadow: 12px 12px 0 var(--l3); padding: clamp(24px, 4vw, 64px); }
-  .been-head { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 5vh; }
-  .been-head h3 { font-size: clamp(14px, 1vw, 16px); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-  .xp { list-style: none; display: grid; gap: 3.4vh; }
-  .xp li { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 5fr) minmax(0, 5fr); gap: var(--gutter); align-items: baseline; }
-  .xp .yrs { font-size: 13px; font-weight: 700; letter-spacing: .06em; }
-  .xp .role { font-family: var(--display-font), sans-serif; font-weight: var(--dw); font-stretch: var(--ds); font-size: clamp(20px, 1.9vw, 34px); line-height: 1.05; }
-  .xp .co { font-size: clamp(15px, 1.15vw, 19px); }
-
-  /* Mantras: título y frase a la izquierda, el mazo a la derecha; las cartas salen siempre hacia la derecha */
-  .shuffle { position: relative; height: 340vh; color: var(--text); }
-  .shuffle .pin { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); align-items: stretch; gap: var(--gutter); padding: calc(var(--nav-h) + 6vh) var(--gutter) 8vh; }
-  .m-side { display: flex; flex-direction: column; justify-content: center; gap: 3.5vh; padding-left: var(--col12); }
-  .ink-word { color: var(--outline); }
-  .m-side h2 { font-size: clamp(40px, 4.6vw, 86px) !important; }
-  .m-desc, .scroll-hint { color: var(--on0); }
-  .m-desc { max-width: 27ch; font-size: clamp(16px, 1.3vw, 22px); line-height: 1.4; font-weight: 600; text-wrap: balance; }
-  .deck-wrap { display: grid; grid-template-rows: 1fr auto; justify-items: center; gap: 2vh; }
-  .deck { position: relative; width: 100%; height: 100%; min-height: 50vh; }
-  .skill { position: absolute; left: 50%; top: 50%; width: min(48vw, 84vh, 680px); aspect-ratio: 5 / 3.8; border-radius: 24px; padding: clamp(22px, 2.4vw, 38px); display: flex; flex-direction: column; justify-content: space-between; border: var(--line-w) solid var(--outline); box-shadow: 8px 8px 0 var(--outline); will-change: transform; overflow: hidden; }
-  .skill h3 { font-size: clamp(22px, 2.1vw, 38px); line-height: 1; position: relative; max-width: 12em; }
-  .skill p { font-size: clamp(15px, 1.12vw, 19px); line-height: 1.5; font-weight: 500; position: relative; max-width: 44ch; }
-  .skill svg.motif { position: absolute; right: -10%; top: -26%; width: 42%; height: auto; }
-  .scroll-hint { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; display: inline-flex; gap: 8px; align-items: center; }
-  .scroll-hint i { font-style: normal; display: inline-block; animation: bob 1.4s ease-in-out infinite; }
-  @keyframes bob { 50% { transform: translateY(4px); } }
-
-
-  /* Reviews (ronda 29): el título a la izquierda, siempre a la vista; las tarjetas suben y se apilan a la derecha.
-     En mobile, una debajo de otra, sin pila. */
-  .shuffle.reviews .pin { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: 1fr; gap: 0 var(--gutter); align-items: center; padding: calc(var(--nav-h) + 4vh) var(--gutter) 5vh; }
-  .rv-title { grid-column: 2 / 6; grid-row: 1; color: var(--on0); font-size: clamp(36px, 4.4vw, 84px) !important; line-height: 1.18; }
-  .rv-pile { grid-column: 6 / 13; grid-row: 1; position: relative; height: 100%; }
-  .rv-card { position: absolute; left: 50%; top: 50%; width: min(600px, 100%); padding: clamp(22px, 2.2vw, 34px); background: var(--paper); color: var(--outline); border: var(--line-w) solid var(--outline); border-radius: 24px; box-shadow: 8px 8px 0 var(--outline); will-change: transform; overflow: hidden; }
-  .rv-card .who { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; padding-right: 56px; position: relative; }
-  .rv-card .av { flex: none; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--outline); font-family: var(--display-font), sans-serif; font-weight: var(--dw); font-size: 17px; }
-  .rv-card .name { display: block; font-size: 17px; font-weight: 700; }
-  .rv-card .ctx { display: block; font-size: 14px; font-weight: 550; opacity: .62; }
-  .rv-card blockquote { position: relative; display: grid; gap: 12px; font-size: clamp(15px, 1.12vw, 19px); line-height: 1.5; font-weight: 500; }
-  /* Sticker redondo y retícula en la esquina (Byooooob) */
-  .rv-card .grid-corner { position: absolute; right: 0; bottom: 0; width: 34%; height: 46%; background-image: linear-gradient(rgba(10,7,16,.14) 1px, transparent 1px), linear-gradient(90deg, rgba(10,7,16,.14) 1px, transparent 1px); background-size: 16px 16px; -webkit-mask: linear-gradient(135deg, transparent 30%, #000 70%); mask: linear-gradient(135deg, transparent 30%, #000 70%); pointer-events: none; }
-  .rv-card .stamp { position: absolute; right: 18px; top: 18px; width: 54px; height: 54px; transform: rotate(12deg); }
-  @media (max-aspect-ratio: 85/100), (max-width: 899px) {
-    .shuffle.reviews { height: auto !important; }
-    .shuffle.reviews .pin { position: relative; height: auto; overflow: visible; display: block; padding: 14vh var(--gutter); }
-    .rv-title { margin-bottom: 6vh; }
-    .rv-pile { height: auto; display: grid; gap: 4vh; }
-    .rv-card { position: relative; left: auto; top: auto; width: 100%; transform: none !important; }
-    .rv-card .stamp { width: 44px; height: 44px; right: 14px; top: 14px; }
-    .rv-card .who { padding-right: 44px; }
-  }
-
-  /* Contacto: el cierre del portfolio actual, con cápsulas */
-  /* Ronda 11: el footer es siempre el mismo, en la home y en los case studies: fondo oscuro para separar */
-  .contact { min-height: 86vh; display: grid; align-content: end; padding-bottom: 5vh; background: var(--bg); color: var(--text); }
-  .contact .kick { margin-bottom: 2.5vh; }
-  .contact h2.display { max-width: 12em; }
-  .links { list-style: none; display: flex; flex-wrap: wrap; gap: 12px; margin: 6vh 0 12vh; }
-  .links .pill { font-size: clamp(15px, 1.2vw, 19px); padding: 12px 20px; box-shadow: 4px 4px 0 var(--outline); }
-  .email { display: inline-flex; align-items: center; gap: 10px; }
-  .copy { display: inline-grid; width: 22px; height: 22px; }
-  .copy svg { grid-area: 1 / 1; width: 100%; height: 100%; transition: opacity .2s, transform .3s var(--spring); }
-  .copy .i-check { opacity: 0; transform: scale(.4); }
-  .copy.done .i-copy { opacity: 0; transform: scale(.4); }
-  .copy.done .i-check { opacity: 1; transform: scale(1); }
-  .foot-bottom { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: baseline; font-size: 14px; font-weight: 600; border-top: 1.5px solid var(--line); padding-top: 18px; }
-  /* Ronda 25 (referencia: adrianaurrego.com): nombre y año · ciudad · volver arriba */
-  .foot-bottom > :nth-child(2) { text-align: center; }
-  .foot-bottom .to-top { justify-self: end; text-decoration: none; color: inherit; }
-  .foot-bottom .to-top:hover { text-decoration: underline; text-underline-offset: .2em; }
-  @media (max-width: 640px) { .foot-bottom { grid-template-columns: 1fr 1fr; } .foot-bottom > :nth-child(2) { text-align: right; } .foot-bottom .to-top { grid-column: 1 / -1; justify-self: start; } }
-
-  /* Cursor propio */
-  .has-cursor, .has-cursor * { cursor: none !important; }
-  .cursor { position: fixed; left: 0; top: 0; z-index: 60; pointer-events: none; opacity: 0; transition: opacity .2s; }
-  .has-cursor .cursor { opacity: 1; }
-  .cursor svg { display: block; width: 28px; height: 28px; filter: drop-shadow(2px 2px 0 var(--outline)); transition: transform .25s var(--spring); transform-origin: 3px 3px; }
-  .cursor.is-link svg { transform: scale(1.18) rotate(-8deg); }
-  .cursor .tag { position: absolute; left: 24px; top: 24px; white-space: nowrap; font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 99px; background: var(--paper); color: var(--outline); border: 2px solid var(--outline); box-shadow: 3px 3px 0 var(--outline); transform: scale(0); transform-origin: 0 0; transition: transform .3s var(--spring); }
-  .cursor.has-tag .tag { transform: scale(1); }
-
-  .lab { position: fixed; left: 12px; bottom: 12px; z-index: 40; background: #fff; color: #111; border-radius: 14px; padding: 10px 12px; font: 600 12px/1.2 system-ui, sans-serif; display: grid; gap: 7px; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
-  .lab div { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
-  .lab span { width: 62px; color: #666; font-weight: 500; }
-  .lab button { padding: 5px 9px; border-radius: 99px; background: #eee; font-size: 12px; }
-  .lab button.on { background: #111; color: #fff; }
-  .lab .min { position: absolute; top: 4px; right: 6px; padding: 0 4px; background: none; color: #999; }
-  .lab.closed > div { display: none; }
-
-  @media (max-width: 899px) {
-    :root { --nav-h: 56px; }
-    .nav ul { display: none; position: absolute; right: var(--gutter); top: calc(var(--nav-h) - 2px); flex-direction: column; align-items: stretch; gap: 0; padding: 8px; border-radius: 18px; min-width: 150px; }
-    .nav .sep { width: auto; height: 1px; margin: 6px 12px; }
-    .nav-link { display: block; padding: 10px 12px; font-size: 16px; }
-    .nav-link::after { left: auto; right: 10px; top: 50%; bottom: auto; margin: -2px 0 0; }
-    .nav.open ul { display: flex; }
-    .nav .menu { display: inline-block; }
-    .work-row.two, .work-row.three { grid-template-columns: 1fr; }
-    .me { grid-template-columns: 1fr; }
-    .me > * { grid-column: 1 / -1 !important; }
-    .me .photo { width: 82%; }
-    /* Ronda 31: en mobile la cinta baja por el margen derecho; el texto termina antes para no pasar por encima */
-    .me-text { padding-right: 10vw; } /* ronda 49: cinta más angosta, el texto gana ancho */
-    .xp li { grid-template-columns: 1fr; gap: 4px; }
-  }
-  @media (max-aspect-ratio: 85/100) {
-    .hero-title { font-size: 13.5vw; white-space: normal; }
-    .hero-tag { font-size: .42em; }
-    .hero-sub { font-size: 15px; }
-    .act .i, .act .word { left: 50%; right: auto; transform: translate(-50%, -50%); }
-    .act .i { top: calc(var(--cy) - var(--ilh) / 2 - var(--wf) * .7); }
-    .act .word { top: calc(var(--cy) + var(--ilh) / 2 + var(--wf) * .7); }
-    .act .below { left: calc(var(--gutter) + 15vw); right: calc(var(--gutter) + 15vw); width: auto; /* rondas 45 y 47: libre de la franja del sentido siguiente */ transform: none; top: calc(var(--cy) + var(--ilh) / 2 + var(--wf) * 1.45); text-align: center; }
-    .act .tag { font-size: 19px; }
-    .act .desc { max-width: none; width: auto; font-size: 14px; }
-    .shuffle .pin { grid-template-columns: 1fr; grid-template-rows: auto 1fr; gap: 2vh; padding-top: calc(var(--nav-h) + 3vh); }
-    .m-side { gap: 1.5vh; justify-content: start; }
-    .m-desc { font-size: 15px; max-width: none; }
-    .skill { width: min(86vw, 60vh); aspect-ratio: 4 / 4.6; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .proj .frame { transition: none; }
-    .box:hover, .pill:hover, .scroll-hint i, .sq .ear, .sq .mouth, .sq .tongue, .sq .hand { animation: none; }
-  }
-</style>
-<script defer src="https://cloud.umami.is/script.js" data-website-id="fcb351f4-7b90-480b-a4d0-76a9ef057f95"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..700&display=block">
+<link rel="stylesheet" href="css/identity.css?v=20261028a">
+<link rel="stylesheet" href="css/grid-reveal.css?v=20261028a">
+<link rel="stylesheet" href="css/cover-reveal.css?v=3">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="fcb351f4-7b90-480b-a4d0-76a9ef057f95" data-domains="emilialaviero.com,www.emilialaviero.com"></script>
+<script defer src="js/analytics.js?v=1"></script>
 </head>
-<body class="t-bungee">
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <!-- Logo (ronda 24, como FlowFest): contorno de papel ajustado a las letras, borde negro fino -->
-  <filter id="sticker" x="-20%" y="-60%" width="140%" height="220%" color-interpolation-filters="sRGB">
-    <feMorphology in="SourceAlpha" operator="dilate" radius="2.2" result="paperShape"/>
-    <feMorphology in="SourceAlpha" operator="dilate" radius="3.8" result="borderShape"/>
-    <feOffset in="borderShape" dx="0" dy="2.5" result="shadowShape"/>
-    <feFlood flood-color="#0A0710" result="shade"/>
-    <feComposite in="shade" in2="shadowShape" operator="in" result="shadow"/>
-    <feFlood flood-color="#0A0710" result="ink"/>
-    <feComposite in="ink" in2="borderShape" operator="in" result="border"/>
-    <feFlood flood-color="#FFF6EA"/>
-    <feComposite in2="paperShape" operator="in" result="paper"/>
-    <feMerge><feMergeNode in="shadow"/><feMergeNode in="border"/><feMergeNode in="paper"/><feMergeNode in="SourceGraphic"/></feMerge>
-  </filter>
+<body class="home">
+<div class="nav-container">
+<div class="nav"><nav class="nav-wrapper"><div class="nav-tile nav-tile-1"><a data-track="open-work" data-track-from="menu" id="tilework" href="work.html" data-first-cover="assets/images/project-dino-app.jpg" class="tile color work w-inline-block"><div class="tile-title">Work</div><div class="color-visual-container"><div class="color-tile-embed w-embed"></div><div class="color-visual-square"><div class="color-visual-square-square"><div class="color-color-block block-1"><div class="w-embed"><svg class="color-color-circle" viewBox="0 0 150 150">
+<path d="M75 25C42.7594 25 25 42.7563 25 75C25 107.244 42.7594 125 75 125C107.241 125 125 107.244 125 75C125 42.7563 107.241 25 75 25Z"/>
+</svg></div></div><div class="color-color-block block-2"><div class="w-embed"><svg class="color-color-circle" viewBox="0 0 150 150">
+<path d="M75 25C42.7594 25 25 42.7563 25 75C25 107.244 42.7594 125 75 125C107.241 125 125 107.244 125 75C125 42.7563 107.241 25 75 25Z"/>
+</svg></div></div></div></div></div></a></div><div class="nav-tile nav-tile-2"><a data-track="open-contact" data-track-from="menu" id="tilecontact" href="contact.html" class="tile contact w-inline-block"><div class="tile-title">Contact</div><div class="typography-visual-container"><div class="typography-visual-square"><div class="typography-visual-type-embed w-embed"><svg class="typography-visual-type contact-visual-type" viewBox="0 0 196 110" aria-hidden="true">
+  <defs>
+    <path id="contact-visual-type-path" d="M26 0.5L46 0.5L46 44L92 44L92 0.5L112 0.5L112 106.6L92 106.6L92 62L46 62L46 106.6L26 106.6ZM134 0.5L154 0.5L154 20.5L134 20.5ZM134 30L154 30L154 106.6L134 106.6ZM176 0.5L196 0.5L193 78L179 78ZM176 86.6L196 86.6L196 106.6L176 106.6Z">
+      <animate attributeName="d" dur="0.35s" fill="freeze" keyTimes="0; 1" keySplines=".4 0 .2 1" calcMode="spline" to="M0 0.5L34 0.5L34 40L66 40L66 0.5L100 0.5L100 106.6L66 106.6L66 66L34 66L34 106.6L0 106.6ZM114 0.5L148 0.5L148 28.5L114 28.5ZM114 36L148 36L148 106.6L114 106.6ZM162 0.5L196 0.5L191 70L167 70ZM162 78.6L196 78.6L196 106.6L162 106.6Z" begin="tilecontact.mouseover"/>
+      <animate attributeName="d" dur="0.35s" fill="freeze" keyTimes="0; 1" keySplines=".4 0 .2 1" calcMode="spline" to="M26 0.5L46 0.5L46 44L92 44L92 0.5L112 0.5L112 106.6L92 106.6L92 62L46 62L46 106.6L26 106.6ZM134 0.5L154 0.5L154 20.5L134 20.5ZM134 30L154 30L154 106.6L134 106.6ZM176 0.5L196 0.5L193 78L179 78ZM176 86.6L196 86.6L196 106.6L176 106.6Z" begin="tilecontact.mouseout"/>
+    </path>
+    <clipPath id="contact-visual-type-clip">
+      <use href="#contact-visual-type-path"/>
+    </clipPath>
+  </defs>
+  <use href="#contact-visual-type-path" stroke-width="4px" clip-path="url(#contact-visual-type-clip)"/>
+</svg></div></div></div></a></div><div class="nav-tile nav-tile-3"><a data-track="open-resume" data-track-from="menu" id="tileresume" href="https://drive.google.com/file/d/1UBUYoUBQmqR8Oo1AWpUcdBWm7KlIhkAL/view?usp=sharing" target="_blank" rel="noopener" class="tile resume w-inline-block"><div class="tile-title">Resume</div><div class="resume-visual-container"><div class="lottie-visual resume-visual" data-src="assets/lottie-animations/Profile 3.json" data-viewbox="27.9 58.6 1141.4 1141.4" data-motion="0,30" data-once></div></div></a></div><div class="nav-tile nav-tile-4"><a data-track="open-approach" data-track-from="menu" id="tileapproach" href="approach.html" class="tile motion approach w-inline-block"><div class="tile-title">Approach</div><div class="motion-visual-container"><div class="approach-visual" data-src="assets/lottie-animations/approach.svg"></div></div></a></div><div class="nav-tile nav-tile-5"><a data-track="open-about" data-track-from="menu" id="tileabout" href="about.html" class="tile voice-tone about w-inline-block"><div class="tile-title">About</div><div class="voice-tone-visual-container"><div class="w-embed"><svg class="voice-tone-quotation-mark left" width="204" height="163" viewBox="0 0 204 163">
+  <defs>
+    <clipPath id="clip-shape">
+      <path d="M8.16 50.9646C2.72 65.2502 0 82.2384 0 101.929C0 116.987 1.36 128.763 4.08 137.257C7.18857 145.751 12.0457 151.929 18.6514 155.79C25.2571 159.264 34 161.002 44.88 161.002C54.9829 161.002 63.1429 159.651 69.36 156.948C75.5771 154.245 80.0457 149.805 82.7657 143.628C85.8743 137.45 87.4286 129.149 87.4286 118.724C87.4286 107.528 86.0686 99.2266 83.3486 93.8213C81.0171 88.0298 77.1314 84.1689 71.6914 82.2384C66.2514 79.9218 59.0629 78.7635 50.1257 78.7635C47.4878 78.7635 44.9198 78.9721 42.4217 79.3891C43.1347 71.3966 44.537 64.4314 46.6286 58.4935C49.7371 50.7716 54.2057 44.594 60.0343 39.9609C65.8629 35.3277 72.8571 32.6251 81.0172 31.8529L75.7714 0C58.6743 2.31657 44.4914 7.91495 33.2229 16.7951C21.9543 25.2893 13.6 36.6791 8.16 50.9646Z"/>
+      <path d="M124.731 50.9646C119.291 65.2502 116.571 82.2384 116.571 101.929C116.571 116.987 117.931 128.763 120.651 137.257C123.76 145.751 128.617 151.929 135.223 155.79C141.829 159.264 150.571 161.002 161.451 161.002C171.554 161.002 179.714 159.651 185.931 156.948C192.149 154.245 196.617 149.805 199.337 143.628C202.446 137.45 204 129.149 204 118.724C204 107.528 202.64 99.2266 199.92 93.8213C197.589 88.0298 193.703 84.1689 188.263 82.2384C182.823 79.9218 175.634 78.7635 166.697 78.7635C164.059 78.7635 161.491 78.9721 158.993 79.3891C159.706 71.3966 161.108 64.4314 163.2 58.4935C166.309 50.7716 170.777 44.594 176.606 39.9609C182.434 35.3277 189.429 32.6251 197.589 31.8529L192.343 0C175.246 2.31657 161.063 7.91495 149.794 16.7951C138.526 25.2893 130.171 36.6791 124.731 50.9646Z"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip-shape)">
+    <path d="M8.16 50.9646C2.72 65.2502 0 82.2384 0 101.929C0 116.987 1.36 128.763 4.08 137.257C7.18857 145.751 12.0457 151.929 18.6514 155.79C25.2571 159.264 34 161.002 44.88 161.002C54.9829 161.002 63.1429 159.651 69.36 156.948C75.5771 154.245 80.0457 149.805 82.7657 143.628C85.8743 137.45 87.4286 129.149 87.4286 118.724C87.4286 107.528 86.0686 99.2266 83.3486 93.8213C81.0171 88.0298 77.1314 84.1689 71.6914 82.2384C66.2514 79.9218 59.0629 78.7635 50.1257 78.7635C47.4878 78.7635 44.9198 78.9721 42.4217 79.3891C43.1347 71.3966 44.537 64.4314 46.6286 58.4935C49.7371 50.7716 54.2057 44.594 60.0343 39.9609C65.8629 35.3277 72.8571 32.6251 81.0172 31.8529L75.7714 0C58.6743 2.31657 44.4914 7.91495 33.2229 16.7951C21.9543 25.2893 13.6 36.6791 8.16 50.9646Z"/>
+    <path d="M124.731 50.9646C119.291 65.2502 116.571 82.2384 116.571 101.929C116.571 116.987 117.931 128.763 120.651 137.257C123.76 145.751 128.617 151.929 135.223 155.79C141.829 159.264 150.571 161.002 161.451 161.002C171.554 161.002 179.714 159.651 185.931 156.948C192.149 154.245 196.617 149.805 199.337 143.628C202.446 137.45 204 129.149 204 118.724C204 107.528 202.64 99.2266 199.92 93.8213C197.589 88.0298 193.703 84.1689 188.263 82.2384C182.823 79.9218 175.634 78.7635 166.697 78.7635C164.059 78.7635 161.491 78.9721 158.993 79.3891C159.706 71.3966 161.108 64.4314 163.2 58.4935C166.309 50.7716 170.777 44.594 176.606 39.9609C182.434 35.3277 189.429 32.6251 197.589 31.8529L192.343 0C175.246 2.31657 161.063 7.91495 149.794 16.7951C138.526 25.2893 130.171 36.6791 124.731 50.9646Z"/>
+  </g>
 </svg>
-<canvas id="ribbon" aria-hidden="true"></canvas>
-<div class="fade" aria-hidden="true"></div>
-<div class="cursor" aria-hidden="true"><svg viewBox="0 0 28 28"><path d="M3 3 L25 12.5 L14.5 15 L11 25.5 Z" fill="#FFB61E" stroke="#0A0710" stroke-width="2.2" stroke-linejoin="round"/></svg><span class="tag"></span></div>
+<svg class="voice-tone-quotation-mark right" width="204" height="163" viewBox="0 0 204 163">
+  <defs>
+    <clipPath id="clip-shape">
+      <path d="M8.16 50.9646C2.72 65.2502 0 82.2384 0 101.929C0 116.987 1.36 128.763 4.08 137.257C7.18857 145.751 12.0457 151.929 18.6514 155.79C25.2571 159.264 34 161.002 44.88 161.002C54.9829 161.002 63.1429 159.651 69.36 156.948C75.5771 154.245 80.0457 149.805 82.7657 143.628C85.8743 137.45 87.4286 129.149 87.4286 118.724C87.4286 107.528 86.0686 99.2266 83.3486 93.8213C81.0171 88.0298 77.1314 84.1689 71.6914 82.2384C66.2514 79.9218 59.0629 78.7635 50.1257 78.7635C47.4878 78.7635 44.9198 78.9721 42.4217 79.3891C43.1347 71.3966 44.537 64.4314 46.6286 58.4935C49.7371 50.7716 54.2057 44.594 60.0343 39.9609C65.8629 35.3277 72.8571 32.6251 81.0172 31.8529L75.7714 0C58.6743 2.31657 44.4914 7.91495 33.2229 16.7951C21.9543 25.2893 13.6 36.6791 8.16 50.9646Z"/>
+      <path d="M124.731 50.9646C119.291 65.2502 116.571 82.2384 116.571 101.929C116.571 116.987 117.931 128.763 120.651 137.257C123.76 145.751 128.617 151.929 135.223 155.79C141.829 159.264 150.571 161.002 161.451 161.002C171.554 161.002 179.714 159.651 185.931 156.948C192.149 154.245 196.617 149.805 199.337 143.628C202.446 137.45 204 129.149 204 118.724C204 107.528 202.64 99.2266 199.92 93.8213C197.589 88.0298 193.703 84.1689 188.263 82.2384C182.823 79.9218 175.634 78.7635 166.697 78.7635C164.059 78.7635 161.491 78.9721 158.993 79.3891C159.706 71.3966 161.108 64.4314 163.2 58.4935C166.309 50.7716 170.777 44.594 176.606 39.9609C182.434 35.3277 189.429 32.6251 197.589 31.8529L192.343 0C175.246 2.31657 161.063 7.91495 149.794 16.7951C138.526 25.2893 130.171 36.6791 124.731 50.9646Z"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip-shape)">
+    <path d="M8.16 50.9646C2.72 65.2502 0 82.2384 0 101.929C0 116.987 1.36 128.763 4.08 137.257C7.18857 145.751 12.0457 151.929 18.6514 155.79C25.2571 159.264 34 161.002 44.88 161.002C54.9829 161.002 63.1429 159.651 69.36 156.948C75.5771 154.245 80.0457 149.805 82.7657 143.628C85.8743 137.45 87.4286 129.149 87.4286 118.724C87.4286 107.528 86.0686 99.2266 83.3486 93.8213C81.0171 88.0298 77.1314 84.1689 71.6914 82.2384C66.2514 79.9218 59.0629 78.7635 50.1257 78.7635C47.4878 78.7635 44.9198 78.9721 42.4217 79.3891C43.1347 71.3966 44.537 64.4314 46.6286 58.4935C49.7371 50.7716 54.2057 44.594 60.0343 39.9609C65.8629 35.3277 72.8571 32.6251 81.0172 31.8529L75.7714 0C58.6743 2.31657 44.4914 7.91495 33.2229 16.7951C21.9543 25.2893 13.6 36.6791 8.16 50.9646Z"/>
+    <path d="M124.731 50.9646C119.291 65.2502 116.571 82.2384 116.571 101.929C116.571 116.987 117.931 128.763 120.651 137.257C123.76 145.751 128.617 151.929 135.223 155.79C141.829 159.264 150.571 161.002 161.451 161.002C171.554 161.002 179.714 159.651 185.931 156.948C192.149 154.245 196.617 149.805 199.337 143.628C202.446 137.45 204 129.149 204 118.724C204 107.528 202.64 99.2266 199.92 93.8213C197.589 88.0298 193.703 84.1689 188.263 82.2384C182.823 79.9218 175.634 78.7635 166.697 78.7635C164.059 78.7635 161.491 78.9721 158.993 79.3891C159.706 71.3966 161.108 64.4314 163.2 58.4935C166.309 50.7716 170.777 44.594 176.606 39.9609C182.434 35.3277 189.429 32.6251 197.589 31.8529L192.343 0C175.246 2.31657 161.063 7.91495 149.794 16.7951C138.526 25.2893 130.171 36.6791 124.731 50.9646Z"/>
+  </g>
+</svg>
 
-<a class="brand display" href="#top" data-jump="0" aria-label="Emilia Laviero, back to top"><span class="sticker">Emilia Laviero</span></a>
-<nav class="nav" aria-label="Main">
-  <button class="menu" type="button" aria-expanded="false">Menu</button>
-  <ul>
-    <li><a class="nav-link" href="#work" data-jump="work">Work</a></li>
-    <li><a class="nav-link" href="#approach" data-jump="approach">Approach</a></li>
-    <li><a class="nav-link" href="about.html">About</a></li>
-    <li><a class="nav-link" href="#contact" data-jump="contact">Contact</a></li>
-  </ul>
-</nav>
+</div></div></a></div></nav><div class="nav-wrapper nav-wrapper-gridlines"><div class="menu"><div class="tile-menu-tile nav-button nav-button-gridline"><div class="tile-line nav-l"></div><div class="tile-line nav-r"></div><div class="tile-line nav-t"></div><div class="tile-line nav-b"></div></div></div><div class="nav-tile nav-tile-1 nav-tile-gridlines"><div class="tile-line-wrapper"><div class="tile-line nav-l"></div><div class="tile-line nav-r"></div><div class="tile-line nav-t"></div><div class="tile-line nav-b"></div></div></div><div class="nav-tile nav-tile-2 nav-tile-gridlines"><div class="tile-line-wrapper"><div class="tile-line nav-l"></div><div class="tile-line nav-r"></div><div class="tile-line nav-t"></div><div class="tile-line nav-b"></div></div></div><div class="nav-tile nav-tile-3 nav-tile-gridlines"><div class="tile-line-wrapper"><div class="tile-line nav-l"></div><div class="tile-line nav-r"></div><div class="tile-line nav-t"></div><div class="tile-line nav-b"></div></div></div><div class="nav-tile nav-tile-4 nav-tile-gridlines"><div class="tile-line-wrapper"><div class="tile-line nav-l"></div><div class="tile-line nav-r"></div><div class="tile-line nav-t"></div><div class="tile-line nav-b"></div></div></div><div class="nav-tile nav-tile-5 nav-tile-gridlines"><div class="tile-line-wrapper"><div class="tile-line nav-l"></div><div class="tile-line nav-r"></div><div class="tile-line nav-t"></div><div class="tile-line nav-b"></div></div></div></div></div><div class="menu"><button id="nav-button" aria-label="Navigation menu" tabindex="0" class="tile-menu-tile nav-button"><div class="nav-button-highlight"></div><div class="scroll-chevrons w-embed">
 
-<main id="top">
-  <header class="hero" id="hero">
-    <div class="hero-kicker" aria-hidden="true"></div>
-    <div class="hero-card">
-      <h1 class="hero-title display">Product Maker<span class="hero-tag">with a holistic approach</span></h1>
-      <p class="hero-sub">Connecting people, business, technology and design into <span class="nowrap">one body of work.</span></p>
-    </div>
-  </header>
+<div class="scroll-chevrons-container">
+    <svg class="scroll-chevron chevron-1" width="26" height="14" viewBox="0 0 26 14" fill="currentColor">
+    <path d="M23.2161 0.352539L13 10.1757L2.78391 0.352539L1.00781 2.19967L13 13.7306L24.9922 2.19967L23.2161 0.352539Z"/>
+    </svg>
+    <svg class="scroll-chevron chevron-2" width="26" height="14" viewBox="0 0 26 14" fill="currentColor">
+    <path d="M23.2161 0.352539L13 10.1757L2.78391 0.352539L1.00781 2.19967L13 13.7306L24.9922 2.19967L23.2161 0.352539Z"/>
+    </svg>
+</div></div><div class="nav-button-content"><div class="nav-button-title-container"><h3 class="nav-button-title nav-button-title-1">I’m Emilia, Product Maker with a holistic approach, connecting people, business, technology and design into one body of&nbsp;work.</h3><h3 class="nav-button-title nav-button-title-2">From selected work to approach, this portfolio is the foundation for how I shape products and&nbsp;experiences.</h3><div class="w-embed w-script"></div></div><div class="nav-button-svg menu-logo w-embed"><svg viewBox="49.125 28 287.553 344.637" fill="currentColor">
+  <path d="M118.081 324.357L49.2422 284.635L49.125 191.55L118.081 151.76Z"/>
+  <path d="M198.67 105.441L129.653 144.14L129.889 332.134L198.67 371.851Z"/>
+  <path d="M336.335 107.56L211.597 179.538L211.622 100.147L336.292 28.0001Z"/>
+  <path d="M336.678 204.531L212.344 276.276L212.368 196.885L336.635 124.971Z"/>
+  <path d="M336.44 300.794L211.935 372.637L211.96 293.247L336.397 221.234Z"/>
+</svg></div><div class="nav-button-svg menu-hamburger w-embed"><svg viewBox="0 0 41 41" fill="currentColor">
+<path d="M32.6719 19.2188H8.32812V21.7812H32.6719V19.2188Z"/>
+<path d="M32.6719 9.96875H8.32812V12.5312H32.6719V9.96875Z"/>
+<path d="M32.6719 29.1094H8.32812V31.6719H32.6719V29.1094Z"/>
+</svg></div><div class="nav-button-svg menu-arrow w-embed">
 
-  <section class="section on-paper" id="work" aria-labelledby="work-title">
-    <div class="bg bg-paper"></div>
-    <div class="inner">
-      <h2 class="display work-title reveal" id="work-title"><span class="box">Work</span></h2>
-      <div id="work-grid"></div>
-    </div>
-  </section>
+<div class="menu-arrow-icon">
+<svg viewBox="0 0 41 41" fill="currentColor">
+  <path d="M21.8547 31.1429L13.2634 22.208L32.4624 22.208V19.6455L13.2634 19.6455L21.8547 10.7107L20.0075 8.93457L8.47656 20.9268L20.0075 32.919L21.8547 31.1429Z"/>
+</svg>
+</div></div><div class="nav-button-svg menu-close w-embed"><svg viewBox="0 0 41 41" fill="currentColor">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M22.311 20.5001L30.8009 28.9899L28.9889 30.8019L20.4991 22.312L12.0092 30.8019L10.1973 28.9899L18.6871 20.5001L10.1973 12.0102L12.0092 10.1982L20.4991 18.6881L28.9889 10.1982L30.8009 12.0102L22.311 20.5001Z"/>
+</svg></div></div><div class="home-logo-container w-embed"><svg class="home-logo" viewBox="-106.667 -101.333 606.667 606.667">
+  <path d="M118.081 324.357L49.2422 284.635L49.125 191.55L118.081 151.76Z"/>
+  <path d="M198.67 105.441L129.653 144.14L129.889 332.134L198.67 371.851Z"/>
+  <path d="M336.335 107.56L211.597 179.538L211.622 100.147L336.292 28.0001Z"/>
+  <path d="M336.678 204.531L212.344 276.276L212.368 196.885L336.635 124.971Z"/>
+  <path d="M336.44 300.794L211.935 372.637L211.96 293.247L336.397 221.234Z"/>
+</svg></div></button></div>
+</div>
 
-  <section class="stage" id="approach" aria-label="Approach">
-    <div class="pin">
-      <div id="kinetic" aria-hidden="true"></div>
-      <div class="sr">A product is one body of many parts. So I shape it with all my senses.</div>
-      <div id="acts"></div>
-      <button class="skip" type="button" data-jump="about">Skip</button>
-      <div id="sense-hint" aria-hidden="true">
-        <span class="peek"><span class="peek-txt display"></span><span class="scroll">Scroll to see next<i><svg class="ico" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M12 4v16M5 13l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></span>
-      </div>
-    </div>
-  </section>
-
-  <section class="section about" id="about" aria-labelledby="about-h">
-    <div class="bg bg-dots"></div>
-    <div class="inner">
-      <div class="me">
-        <figure class="photo"><div class="frame"><img src="assets/images/about-emilia.jpg" alt="Portrait of Emilia Laviero" loading="lazy"></div></figure>
-        <div class="me-text">
-          <h2 class="display reveal" id="about-h"><span class="box">About me</span></h2>
-          <div class="leads">
-            <p class="lead">For the past five years, I&rsquo;ve worked on B2B <mark class="m1">SaaS</mark> and B2C products in startups. I help teams find <mark class="m0">clarity</mark>: identifying the real problems and prioritising the features that matter&nbsp;most.</p>
-            <p class="lead">In <mark class="m1">EdTech</mark>, I found an industry I genuinely love: designing educational <mark class="m0">apps</mark>, building <mark class="m0">design systems</mark> and searching for <mark class="m1">product-market&nbsp;fit</mark>.</p>
-          </div>
-          <a class="pill more" data-umami-event="read-more-about" href="about.html" data-cursor="About me">Read more ↗</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Reviews (ronda 28, referencias: FlowFest Love y Kissies from our partners de Byooooob): el título queda
-       fijo y las tarjetas se apilan encima con el scroll -->
-  <section class="shuffle reviews" id="reviews" aria-labelledby="reviews-title">
-    <div class="bg bg-persp"></div>
-    <div class="pin">
-      <h2 class="display rv-title" id="reviews-title"><span class="box">Reviews</span> that make me blush</h2>
-      <div class="rv-pile" id="pile"></div>
-    </div>
-  </section>
-
-  <footer class="section contact" id="contact" aria-labelledby="contact-title">
-    <div class="inner">
-      <p class="label kick">Thank you for reading!</p>
-      <h2 class="display reveal" id="contact-title">I&rsquo;d love to <span class="box">know you</span> too</h2>
-      <ul class="links">
-        <li><span class="pill email">lavieroemilia@gmail.com <button type="button" data-umami-event="copy-email" class="copy" data-email="lavieroemilia@gmail.com" aria-label="Copy email" data-cursor="Copy"><svg class="i-copy" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5L10 17.5L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></span></li>
-        <li><a data-umami-event="open-linkedin" class="pill" href="https://www.linkedin.com/in/emilialaviero/" target="_blank" rel="noopener" data-cursor="Open LinkedIn">LinkedIn ↗</a></li>
-        <li><a data-umami-event="open-medium" class="pill" href="https://medium.com/@emilaviero" target="_blank" rel="noopener" data-cursor="Open Medium">Medium ↗</a></li>
-        <li><a data-umami-event="open-resume" class="pill" href="https://drive.google.com/file/d/1TCPcE9fgOwlY57MC0pf6gdawFP0CLo67/view?usp=sharing" target="_blank" rel="noopener" data-cursor="Open resume">Resume ↗</a></li>
-      </ul>
-      <div class="foot-bottom"><span>Emilia Laviero &copy; <span id="year"></span></span><span>Madrid, Spain</span><a class="to-top" href="#top" data-jump="0">Back to top ↑</a></div>
-    </div>
-  </footer>
-</main>
-
-<script src="assets/js/ribbon.js"></script>
-<script src="assets/js/choreo.js"></script>
-<script src="assets/js/content.js"></script>
-<script src="assets/js/faces.js"></script>
-<script src="assets/js/kinetic.js"></script>
-<script>
-(function () {
-  'use strict';
-  const $ = (s, r = document) => r.querySelector(s);
-  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const qs = new URLSearchParams(location.search);
-  const cfg = { type: 'bungee', pal: qs.get('pal') || 'bright' };
-  let P = Ribbon.PALETTES[cfg.pal] || Ribbon.PALETTES.bright;
-  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
-  const lerp = (a, b, t) => a + (b - a) * t;
-  const smooth = (t) => t * t * (3 - 2 * t);
-  const ramp = (v, a, b) => clamp((v - a) / (b - a), 0, 1);
-  document.documentElement.style.setProperty('--stage-vh', Choreo.STAGE_VH);
-
-  const root = document.documentElement.style;
-  function applyPalette() {
-    P = Ribbon.PALETTES[cfg.pal] || Ribbon.PALETTES.bright;
-    for (const k of ['bg', 'surface', 'text', 'soft', 'line', 'ink', 'outline']) root.setProperty('--' + k, P[k]);
-    P.lanes.forEach((c, i) => { root.setProperty('--l' + i, c); root.setProperty('--on' + i, P.on[i]); });
-    // Palabras resaltadas sobre el fondo oscuro: el primer carril, salvo que la paleta pida otro con más contraste
-    root.setProperty('--hl', P.hl || P.lanes[0]);
-  }
-  applyPalette();
-
-  function applyConfig() {
-    document.body.className = 't-' + cfg.type;
-    applyPalette();
-    $$('.lab button[data-k]').forEach((b) => b.classList.toggle('on', cfg[b.dataset.k] === b.dataset.v));
-    if (document.fonts) document.fonts.ready.then(layout); else layout();
-  }
-
-  /* ---------- Ninguna palabra sola en la última línea ---------- */
-  function glue(el) {
-    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
-    let lastNode = null, n;
-    while ((n = walker.nextNode())) if (/ /.test(n.nodeValue)) lastNode = n;
-    if (lastNode) { const v = lastNode.nodeValue, i = v.trimEnd().lastIndexOf(' '); if (i > 0) lastNode.nodeValue = v.slice(0, i) + ' ' + v.slice(i + 1); }
-  }
-
-  /* ---------- Texto que aparece por palabra ---------- */
-  function split(el) {
-    const units = [];
-    const nodes = [...el.childNodes];
-    el.textContent = '';
-    nodes.forEach((nd) => {
-      if (nd.nodeType === 1) {
-        const w = document.createElement('span'); w.className = 'w unit';
-        const inner = document.createElement('span'); inner.appendChild(nd); w.appendChild(inner);
-        el.appendChild(w); units.push({ el: inner, box: true });
-        return;
-      }
-      nd.textContent.split(/([ \t\n\r]+)/).forEach((part) => {
-        if (!part) return;
-        if (/^[ \t\n\r]+$/.test(part)) { el.appendChild(document.createTextNode(' ')); return; }
-        const w = document.createElement('span'); w.className = 'w';
-        const inner = document.createElement('span'); inner.textContent = part; w.appendChild(inner);
-        el.appendChild(w); units.push({ el: inner });
-      });
-    });
-    el._units = units;
-  }
-  function reveal(el, p) {
-    const U = el._units, n = U.length;
-    U.forEach((u, i) => {
-      const t = smooth(ramp(p, (i / n) * 0.6, (i / n) * 0.6 + 0.4));
-      if (u.box) { u.el.style.transform = 'scale(' + (0.3 + 0.7 * t) + ') rotate(' + ((1 - t) * -14) + 'deg)'; u.el.style.opacity = t > 0.02 ? 1 : 0; }
-      else u.el.style.transform = 'translateY(' + ((1 - t) * 115) + '%)';
-    });
-  }
-
-  /* ---------- Los sentidos ---------- */
-  const actsEl = $('#acts');
-  // Ronda 34: sin ilustraciones hasta tener unas que convenzan a Ema (faces.js queda como está); I y el nombre, juntos
-  const ILLUS = false;
-  const acts = V4.SENSES.map((s, i) => {
-    const el = document.createElement('article');
-    el.className = 'scene act' + (ILLUS ? '' : ' flat'); el.style.color = 'var(--on' + i + ')';
-    el.innerHTML = '<div class="cols c12"></div><h2 class="sr">I ' + s.name.toLowerCase() + '</h2>'
-      + '<span class="i display" aria-hidden="true">I</span>'
-      + (ILLUS ? '<div class="badge">' + Faces.svg(i) + '</div>' : '')
-      + '<span class="word display" aria-hidden="true">' + (ILLUS ? '' : 'I ') + s.name.toLowerCase() + '</span>'
-      + '<div class="below"><p class="tag">' + s.tagline + '</p><p class="desc">' + s.text + '</p></div>';
-    actsEl.appendChild(el);
-    return el;
-  });
-  Faces.start();
-  let lastActive = -1;
-  const hint = $('#sense-hint');
-
-  // Pegado anti-huérfanas y partición por palabras
-  $$('.act .tag, .act .desc, .me-text p, .tape, .m-desc, .skill-src, .reveal').forEach(glue);
-  $$('.reveal, .act .tag, .act .desc').forEach(split);
-
-  /* ---------- Frases encadenadas ---------- */
-  const T = (s, keys = {}, hl = []) => s.split(' ').map((t, j) => ({ t, k: keys[j] || t.toLowerCase().replace(/[.,]/g, ''), hl: hl.includes(j) }));
-  const SEQ = [
-    { hold: [-50, -12] },
-    { tokens: T('A product is one body of many parts', { 7: 'part' }, [3, 4, 5]), hold: [30, 170], side: 'right' }, // ronda 32: entra antes, cuando la cinta ya dobló
-    // Ronda 33: de la primera frase se pasa directo a la de los sentidos (ronda 34: frase elegida por Ema)
-    { tokens: T('So I shape it with all my senses'), hold: [236, 262] },
-    { hold: [284, 1e9] }
-  ];
-  const kin = Kinetic.create($('#kinetic'), SEQ);
-
-  /* ---------- Escenario ---------- */
-  const canvas = $('#ribbon'), ctx = canvas.getContext('2d');
-  const stage = $('.stage');
-  const brand = $('.brand');
-  let vw = 0, vh = 0, dpr = 1, portrait = false, KF = null, stageTop = 0, HP = null, BK = null, DOC = null, BR = null, SQ = null, HK = 1;
-  let y = 0, vel = 0, last = performance.now(), dirty = true;
-
-  function layout() {
-    vw = innerWidth; vh = innerHeight; dpr = Math.min(2, devicePixelRatio || 1);
-    portrait = vw / vh < 0.85;
-    canvas.width = Math.round(vw * dpr); canvas.height = Math.round(vh * dpr);
-    // Hasta el Approach la cinta es angosta: pasa entre las dos primeras cards de Work
-    // Hasta el Approach: cinta ancha; los carriles avanzan en escalera, con puntas redondeadas
-    const entryW = portrait ? 0.5 : 0.24;
-    // Ronda 30: al final de Work la cinta vuelve con el ancho que tiene en el Approach (no se angosta antes de
-    // "A product…") y pasa por debajo de los títulos de la última fila
-    const workW = portrait ? 0.2 : 0.11;
-    KF = Choreo.build({ portrait, aspect: vw / vh, entry: workW });
-    stageTop = stage.getBoundingClientRect().top + scrollY;
-    const hc = $('.hero-card').getBoundingClientRect(), fr = $('.proj .frame').getBoundingClientRect();
-    const lastRow = $$('.work-row'); const yL = Math.max(...$$('.proj', lastRow[lastRow.length - 1]).map((p) => p.getBoundingClientRect().bottom)) + scrollY;
-    HP = heroPath(entryW, 0.5, -2, (fr.top + fr.height / 2 + scrollY) / vh, (hc.bottom + scrollY) / vh, workW, yL / vh);
-    // Ronda 29: al cargar, la punta más larga (4 carriles de escalón + su punta redonda) termina antes del borde
-    // de abajo; si no entra, el escalón se achica y vuelve a su medida a medida que se hace scroll
-    const laneW = entryW * vw / 5, head = hc.bottom + scrollY + 0.04 * vh;
-    HK = clamp((vh * 0.95 - head - laneW / 2) / (Math.max(...STAIR) * laneW), 0.3, 1);
-    const kk = $('.hero-kicker').getBoundingClientRect();
-    BK = { cx: kk.left + kk.width / 2, cy: kk.top + kk.height / 2 + scrollY, f: kk.height * 0.62 };
-    const top = (el) => el.getBoundingClientRect().top + scrollY;
-    // Al soltarse el escenario la cinta baja por el margen de About y señala Mantras
-    DOC = Choreo.docPath({ w: vw, h: vh, release: stageTop + Choreo.RELEASE / 100 * vh, work: top($('#about')), next: top($('#reviews')) }, portrait);
-
-    // Sentidos: la ilustración al centro, con la I y el nombre a los lados (en mobile, apilados)
-    const wf = portrait ? vw * 0.12 : clamp(vw * 0.058, 40, 112);
-    // Sin ilustración: el hueco entre la I y el nombre es un espacio (en mobile, una línea debajo de la otra)
-    const ilw = ILLUS ? (portrait ? vw * 0.56 : vw * 0.2) : (portrait ? 0 : wf * 0.32), cy = portrait ? 0.38 : 0.42;
-    SQ = { w: ilw, x: vw / 2, cy };
-    acts.forEach((a) => {
-      a.style.setProperty('--wf', wf + 'px'); a.style.setProperty('--cy', cy * 100 + '%');
-      a.style.setProperty('--ilw', ilw + 'px'); a.style.setProperty('--ilh', (ILLUS ? ilw * 0.75 : (portrait ? 0 : wf)) + 'px');
-    });
-
-    // Frases
-    const size = portrait ? vw * 0.064 : clamp(vw * 0.03, 24, 54);
-    SEQ.forEach((s) => {
-      if (!s.tokens) return;
-      s.cy = 0.5;
-      // A un costado de la cinta: a la derecha cuando la cinta baja por la izquierda, y al revés
-      if (s.side === 'right') { s.cx = portrait ? 0.61 : 0.6; s.maxW = portrait ? 0.66 : 0.6; }
-      if (s.side === 'left') { s.cx = portrait ? 0.39 : 0.4; s.maxW = portrait ? 0.66 : 0.6; }
-    });
-    kin.layout(size, portrait ? vw * 0.9 : vw * 0.78);
-
-    brand.style.fontSize = '100px'; brand.style.transform = 'none';
-    BR = { w100: brand.offsetWidth, h100: brand.offsetHeight };
-    measureShuffle();
-    dirty = true;
-  }
-
-  // Mobile: altura (en pantallas) del borde de arriba del panel del sentido i. Asoma PEEK_UP mientras se lee el anterior
-  // y sube hasta cubrir la pantalla en el tramo entre los dos.
-  const PEEK_UP = 0.15;
-  function upTop(i) {
-    if (i === 0) return 0;
-    const A = Choreo.ACTS, H = Choreo.HOLD, c = A[i - 1];
-    const peek = 1 - PEEK_UP * smooth(ramp(y, c - H, c - H + 12));
-    return lerp(peek, 0, smooth(ramp(y, c + H, A[i] - H)));
-  }
-  function show(el, on) { el.style.visibility = on ? 'visible' : 'hidden'; }
-
-  function stageState() {
-    const st = Object.assign({}, Ribbon.stateAt(KF, y));
-    if (st.cam[0] < 1.5 && !reduced) {
-      const wob = clamp(vel * 0.05, 0, 0.22);
-      st.weights = st.weights.map((w, i) => w * (1 + wob * [0.6, -0.3, 0.4, -0.5, 0.2][i]));
-    }
-    return st;
-  }
-  // Hero y Work (ronda 22): dos tramos pegados a la página, en alturas de pantalla.
-  // 1 · Baja desde arriba de la pantalla, por detrás del logo y la tarjeta, y sigue por el centro (entre las dos primeras cards);
-  //     a la mitad de la primera card dobla a la izquierda por detrás de ella y sale de la pantalla,
-  //     sin llegar a los títulos de los proyectos. La punta va siempre a 3/4 de la pantalla.
-  // 2 · Al final de Work vuelve a entrar por la izquierda, dobla al centro y llega al escenario con la
-  //     punta a 3/4 de la pantalla, donde la toma el primer fotograma del Approach.
-  // K: cuánto camino se ve (largo hasta la punta) según el scroll; entre fotogramas, lineal.
-  // Escalera de los carriles (en anchos de carril): la misma en todas las secciones
-  const STAIR = Choreo.LEAD;
-  function heroPath(W, hx, yP, yT, yB, W2, yL) {
-    const a = vw / vh, r = 0.035, Y = Choreo.HEAD_Y, seam = stageTop / vh;
-    // El tramo horizontal del final de Work va por debajo de los títulos de la última fila
-    const yR = Math.min(seam + 0.3, Math.max(seam - 0.12, yL + W2 * a / 2 + 0.05));
-    const rH = Math.max(r * vw, W * vw * 0.56) / vh, rH2 = Math.max(r * vw, W2 * vw * 0.56) / vh;
-    const p1 = [[hx, yP], [hx, yT], [-0.3, yT]];
-    const t1 = yT - yP, h1 = (hx + 0.3) * a;
-    // Al cargar asoman todos los carriles por debajo de la tarjeta, en escalera: el más corto
-    // (la punta común) apenas se ve y cada uno de los otros baja un ancho de carril más
-    const K1 = [[0, Math.max(0.01, yB + 0.04 - yP)], [Math.max(0.2, yT - Y), t1], [yT - 0.3, t1 + h1]];
-    const p2 = [[-0.3, yR], [0.5, yR], [0.5, seam + 3]];
-    const h2 = 0.8 * a;
-    // Al llegar al escenario la punta queda a 3/4 de la pantalla, donde la toma el primer fotograma del Approach
-    const K2 = [[yR - 1.05, 0], [yR - 0.45, h2], [seam, h2 + (seam + Y - yR)]];
-    return { W, r, segs: [{ W, pts: p1, K: K1, M: Choreo.pathMeter(p1, a, rH) }, { W: W2, pts: p2, K: K2, M: Choreo.pathMeter(p2, a, rH2) }] };
-  }
-  function heroStates(sY) {
-    const off = sY / vh;
-    return HP.segs.map(({ W, pts, K, M }) => {
-      let i = 0;
-      while (i < K.length - 2 && off > K[i + 1][0]) i++;
-      const s = lerp(K[i][1], K[i + 1][1], ramp(off, K[i][0], K[i + 1][0]));
-      if (s <= 0) return null;
-      const lk = lerp(HK, 1, smooth(ramp(off, 0, 0.35)));
-      return { pts: pts.map(([x, d]) => [x, d - off]), W, r: HP.r, t0: 0, t1: clamp(M.tOf(s), 0, 1), weights: [1, 1, 1, 1, 1], cam: [1, 0.5, 0.5], icons: 0, cap: 'pill', lead: STAIR.map((l) => l * lk) };
-    }).filter(Boolean);
-  }
-  function docState(sY) {
-    const st = { pts: DOC.pts.map(([x, d]) => [x, (d - sY) / vh]), W: DOC.W, r: DOC.r, t0: 0, weights: [1, 1, 1, 1, 1], cam: [1, 0.5, 0.5], icons: 0, cap: 'pill', lead: Choreo.LEAD };
-    st.t1 = Ribbon.headT({ w: vw, h: vh }, st, Choreo.HEAD_Y * vh, 0.3);
-    return st;
-  }
-
-  // El logo: al cargar está centrado arriba del título; sube con la página (sin pisar el título)
-  // y, al llegar arriba, se achica y se corre a su lugar en la nav
-  function drawBrand(sY) {
-    const navH = vw < 900 ? 56 : 64, stick = BK.cy - navH / 2;
-    const p = smooth(ramp(sY, stick - vh * 0.12, stick));
-    const f = lerp(BK.f, portrait ? 14 : 17, p);
-    const w = BR.w100 * f / 100, h = BR.h100 * f / 100;
-    const gutter = clamp(vw * 0.044, 20, 72); // el mismo --gutter (ronda 25)
-    const cx = lerp(BK.cx, gutter + 10 + w / 2, p), cy = Math.max(BK.cy - sY, navH / 2);
-    brand.style.fontSize = f + 'px';
-    brand.style.transform = 'translate(' + (cx - w / 2) + 'px,' + (cy - h / 2) + 'px)';
-  }
-
-  function draw() {
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, vw, vh);
-    // Antes del escenario (hero y Work) la cinta va pegada a la página; después, la coreografía
-    // Ronda 29: fuera del escenario la cinta está pegada a la página, así que usa el scroll real (sin suavizado):
-    // si no, se atrasa y se adelanta respecto de las tarjetas y parece rebotar. La escalera tampoco se estira
-    // con la velocidad: los carriles solo avanzan por su camino.
-    const sY = stageTop + y / 100 * vh, yr = (scrollY - stageTop) / vh * 100;
-    const onStage = yr >= 0 && y < Choreo.RELEASE;
-    const sts = yr < 0 ? heroStates(scrollY) : [y < Choreo.RELEASE ? stageState() : docState(scrollY)];
-    sts.forEach((t) => {
-      if (!reduced && onStage && t.lead) t.lead = t.lead.map((l) => l * (1 + clamp(vel * 0.25, 0, 0.8)));
-      t.icons = 0;
-      Ribbon.render(ctx, { w: vw, h: vh }, t, P, 'flow');
-    });
-    const st = sts[sts.length - 1] || KF[0];
-    drawBrand(sY);
-
-    kin.update(y);
-    $('#kinetic').classList.toggle('on-lane', y > 200);
-
-    const A = Choreo.ACTS, start = A[0] - Choreo.HOLD - 1;
-    const [s, fx] = st.cam;
-
-    // Sentidos: la ilustración queda fija y la franja nueva la atraviesa
-    const enter = smooth(ramp(y, start, start + 22)), exitP = smooth(ramp(y, A[4] + 35, A[4] + 75));
-    acts.forEach((el, i) => {
-      const L = ((0.2 * i - fx) * s + 0.5) * vw, R = ((0.2 * (i + 1) - fx) * s + 0.5) * vw;
-      el.classList.toggle('up', portrait);
-      if (portrait && (i > 0 || y >= A[0])) {
-        // Ronda 49 (mobile): cada sentido sube desde abajo como un panel de su color; mientras se lee el anterior, asoma abajo
-        const T = vh * upTop(i);
-        show(el, y >= start && y < A[4] + 75 && T < vh);
-        el.style.clipPath = 'none';
-        el.style.transform = 'translateY(' + (T - exitP * vh).toFixed(1) + 'px)';
-      } else {
-        show(el, y >= start && y < A[4] + 75 && R > 0 && L < vw);
-        el.style.clipPath = 'inset(0 ' + Math.max(0, vw - R).toFixed(1) + 'px 0 ' + Math.max(0, L).toFixed(1) + 'px)';
-        el.style.transform = 'translateY(' + (-exitP * 100) + 'vh)';
-      }
-      const e = i === 0 ? enter : 1;
-      const base = portrait || !ILLUS ? 'translate(-50%,-50%) ' : 'translateY(-50%) ';
-      $('.i', el).style.transform = base + (portrait ? 'translateY(' + ((1 - e) * 80) + '%)' : 'translateX(' + ((1 - e) * 120) + '%)');
-      $('.word', el).style.transform = base + (portrait ? 'translateY(' + (-(1 - e) * 80) + '%)' : 'translateX(' + (-(1 - e) * 40) + '%)');
-      $('.i', el).style.opacity = $('.word', el).style.opacity = e > 0.02 ? 1 : 0;
-      // La ilustración de Listen entra con un pequeño rebote (ya no viene de la pantalla de los cinco carriles)
-      if (i === 0 && ILLUS) {
-        const t = ramp(y, start - 4, start + 16), pop = t <= 0 ? 0 : t >= 1 ? 1 : smooth(t) + Math.sin(t * Math.PI) * 0.12;
-        $('.badge', el).style.transform = 'translate(-50%, -50%) scale(' + pop.toFixed(3) + ')';
-      }
-      reveal($('.tag', el), i === 0 ? ramp(y, start + 6, start + 28) : 1);
-      reveal($('.desc', el), i === 0 ? ramp(y, start + 12, start + 34) : 1);
-    });
-    $('.skip').classList.toggle('on', y > 15 && y < Choreo.RELEASE - 30);
-    // Rondas 45 y 47: mientras se lee un sentido, su siguiente asoma por la derecha con el nombre y Scroll
-    const held = A.findIndex((c) => Math.abs(y - c) < Choreo.HOLD + 8);
-    hint.classList.toggle('on', held >= 0 && held < 4);
-    if (held >= 0 && held < 4) {
-      const peek = $('.peek', hint), Rn = ((0.2 * (held + 1) - fx) * s + 0.5) * vw;
-      $('.peek-txt', peek).textContent = 'I ' + V4.SENSES[held + 1].name.toLowerCase();
-      hint.classList.toggle('up', portrait);
-      peek.style.color = portrait ? 'var(--on' + (held + 1) + ')' : '';
-      if (portrait) {
-        // En mobile el siguiente asoma abajo: nombre y Scroll centrados en la franja
-        peek.style.left = '0px'; peek.style.width = vw + 'px'; peek.style.top = (vh * upTop(held + 1)) + 'px';
-        $('.scroll', peek).style.top = $('.peek-txt', peek).style.top = '';
-      } else {
-      peek.style.top = '';
-      peek.style.left = Rn + 'px'; peek.style.width = Math.max(0, vw - Rn) + 'px';
-      $('.scroll', peek).style.top = $('.desc', acts[held]).getBoundingClientRect().top + 'px'; // alineado con la descripción
-      const w = $('.word', acts[held]).getBoundingClientRect();
-      $('.peek-txt', peek).style.top = (w.top + w.height / 2) + 'px'; // y el nombre, con el del sentido actual
-      }
-    }
-    if (y >= start && y < A[4] + 40) {
-      const active = clamp(Math.floor(fx / 0.2 + 1e-6), 0, 4);
-      if (active !== lastActive) {
-        if (lastActive >= 0) { Faces.blink($('.face', acts[active])); Faces.blink($('.face', acts[lastActive])); }
-        lastActive = active;
-      }
-    } else lastActive = -1;
-
-    $$('.reveal').forEach((el) => { const r = el.getBoundingClientRect(); if (r.top < vh * 1.2 && r.bottom > -50) reveal(el, ramp(vh * 0.95 - r.top, 0, vh * 0.35)); });
-
-    const sec = ['work', 'approach', 'about', 'contact'].map((id) => $('#' + id).getBoundingClientRect().top);
-    const navKey = sec[3] < vh * 0.5 ? 'contact' : sec[2] < vh * 0.5 ? 'about' : sec[1] < vh * 0.5 ? 'approach' : sec[0] < vh * 0.5 ? 'work' : '';
-    $$('.nav-link[data-jump]').forEach((a) => a.classList.toggle('is-active', a.dataset.jump === navKey && scrollY > vh * 0.3));
-  }
-
-  /* ---------- Work ---------- */
-  const IMG = { 'Student Dashboard': 'project-ucademy-dashboard', 'Practice': 'project-ucademy-practice', 'Dino': 'project-dino-app', 'Dino Design System': 'project-dino-design-system', 'Quota PMS': 'project-quota-pms', 'Tenant Scoring': 'project-tenant-scoring', 'WOW': 'project-wow' };
-  const LINE = { 'Student Dashboard': ['Student dashboard', 0], 'Practice': ['Tests and practice', 0], 'Dino': ['Gamified learning app', 0], 'Tenant Scoring': ['Tenant screening with less friction', 1], 'Quota PMS': ['Property management platform', 0], 'WOW': ['A social network for culture', 1], 'Dino Design System': ['Dino design system, built from zero', 1] };
-  // Sin ATTOMO; filas de 2, 2 y 3.
-  // Título corto (qué es) y una frase que explica el proyecto (ronda 40). Los demás proyectos todavía no la tienen.
-  const DESC = { 'Student Dashboard': 'A redesigned start experience that guides students every day, from their first visit to exam day.',
-    'Dino': 'An MVP for a new line of business at Ucademy, launched to find product-market fit.',
-    'Practice': 'A hidden feature turned into a sales argument and a reason for students to come back.',
-    'Quota PMS': 'One platform for rental agencies to manage properties, tenants, contracts and accounting.' };
-  const ROWS = [['two', ['Dino', 'Student Dashboard']], ['two', ['Practice', 'Quota PMS']], ['three', ['Tenant Scoring', 'Dino Design System', 'WOW']]];
-  const company = (n) => V4.PROJECTS.find((p) => p.name === n).company;
-  $('#work-grid').innerHTML = ROWS.map(([k, names]) => '<div class="work-row ' + k + '">' + names.map((n) =>
-    '<a class="proj" data-umami-event="open-project" data-umami-event-project="' + n + '" href="' + ({ 'Student Dashboard': 'pages/student-dashboard.html', 'Dino': 'pages/dino.html', 'Practice': 'pages/practice.html', 'Quota PMS': 'pages/quota-pms.html' }[n] || '#work') + '" data-cursor="' + (LINE[n][1] ? 'Coming soon' : 'Open case study') + '"><span class="chip">' + company(n) + '</span><div class="frame"><img src="assets/images/' + IMG[n] + '.jpg" alt="" loading="lazy"></div>'
-    + '<h3>' + LINE[n][0] + '</h3>' + (DESC[n] ? '<p class="desc">' + DESC[n] + '</p>' : '') + (LINE[n][1] ? '<span class="soon">Coming soon</span>' : '') + '</a>').join('') + '</div>').join('');
-  $$('.proj').forEach((p) => {
-    glue(p.querySelector('h3')); if (p.querySelector('.desc')) glue(p.querySelector('.desc'));
-    const sel = document.createElement('span'); sel.className = 'sel';
-    sel.innerHTML = '<i style="left:-5px;top:-5px"></i><i style="right:-5px;top:-5px"></i><i style="left:-5px;bottom:-5px"></i><i style="right:-5px;bottom:-5px"></i>';
-    p.querySelector('.frame').after(sel);
-    const fit = () => { sel.style.height = (p.querySelector('.frame').offsetHeight + 20) + 'px'; };
-    fit(); addEventListener('resize', fit);
-  });
-
-  /* ---------- Reviews: las tarjetas suben una por una y se apilan sobre el título ---------- */
-  const pile = $('#pile'), shuffleSec = $('.shuffle');
-  const N = V4.REVIEWS.length;
-  const TILT = [-4, 3, -2, 4, -3, 2], SHIFT = [-6, 7, -3, 5, -7, 3];
-  const AV = ['var(--l4)', 'var(--l1)', 'var(--l0)', 'var(--l3)', 'var(--l2)'];
-  // Sticker: una estrella de puntas con borde negro (sin texto)
-  const stamp = (c) => '<svg class="stamp" viewBox="0 0 60 60" aria-hidden="true"><path d="' + Array.from({ length: 24 }, (_, j) => { const an = j / 24 * Math.PI * 2, r = j % 2 ? 23 : 28; return (j ? 'L' : 'M') + (30 + r * Math.cos(an)).toFixed(1) + ' ' + (30 + r * Math.sin(an)).toFixed(1); }).join(' ') + 'Z" fill="' + c + '" stroke="var(--outline)" stroke-width="2.4" stroke-linejoin="round"/><path d="M30 18l3.5 7.6 8.3.9-6.2 5.6 1.8 8.2L30 36.1l-7.4 4.2 1.8-8.2-6.2-5.6 8.3-.9z" fill="var(--paper)" stroke="var(--outline)" stroke-width="2.2" stroke-linejoin="round"/></svg>';
-  const pileMode = () => vw >= 900 && vw / vh >= 0.85;
-  shuffleSec.style.height = (130 + 75 * N) + 'vh';
-  const cards = V4.REVIEWS.map((r, i) => {
-    const el = document.createElement('article');
-    el.className = 'rv-card';
-    el.innerHTML = '<span class="grid-corner"></span>' + stamp(AV[(i + 1) % AV.length])
-      + '<div class="who"><span class="av" style="background:' + AV[i % AV.length] + '">' + r.initials + '</span><span><span class="name">' + r.name + '</span><span class="ctx">' + r.context + '</span></span></div>'
-      + '<blockquote>' + [].concat(r.text).map((p) => '<p>' + p + '</p>').join('') + '</blockquote>';
-    $$('blockquote p', el).forEach(glue);
-    pile.appendChild(el);
-    return el;
-  });
-  let shTop = 0, shLen = 1, k = 0;
-  function measureShuffle() { shTop = shuffleSec.getBoundingClientRect().top + scrollY; shLen = shuffleSec.offsetHeight - vh; }
-  const easeOut = (t) => 1 - Math.pow(1 - t, 3);
-  function drawShuffle() {
-    if (!pileMode()) return;
-    cards.forEach((el, i) => {
-      const t = easeOut(i === 0 ? 0.45 + 0.55 * clamp(k, 0, 1) : clamp(k - i, 0, 1));
-      const below = (1 - t) * (vh * 0.75 + el.offsetHeight);
-      const rot = TILT[i % TILT.length] * (0.4 + 0.6 * t) + (1 - t) * 8;
-      el.style.zIndex = 10 + i;
-      el.style.transform = 'translate(calc(-50% + ' + (N > 1 ? SHIFT[i % SHIFT.length] * 0.5 : 0) + 'vw), calc(-50% + ' + below.toFixed(1) + 'px)) rotate(' + rot.toFixed(2) + 'deg)';
-    });
-  }
-
-  /* ---------- Contacto: copiar el email (check durante 3 s) y año ---------- */
-  $('#year').textContent = new Date().getFullYear();
-  $('.copy').addEventListener('click', (e) => {
-    const b = e.currentTarget;
-    (navigator.clipboard ? navigator.clipboard.writeText(b.dataset.email) : Promise.reject()).catch(() => {});
-    b.classList.add('done'); b.setAttribute('aria-label', 'Copied');
-    setTimeout(() => { b.classList.remove('done'); b.setAttribute('aria-label', 'Copy email'); }, 3000);
-  });
-
-  /* ---------- Cursor propio ---------- */
-  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    const cur = $('.cursor'), tag = $('.tag', cur);
-    let mx = -100, my = -100, cx = -100, cy = -100;
-    addEventListener('pointermove', (e) => {
-      mx = e.clientX; my = e.clientY;
-      document.documentElement.classList.add('has-cursor');
-      const t = e.target.closest('[data-cursor]');
-      cur.classList.toggle('has-tag', !!t);
-      if (t) tag.textContent = t.dataset.cursor;
-      cur.classList.toggle('is-link', !!e.target.closest('a, button'));
-    });
-    document.addEventListener('pointerleave', () => document.documentElement.classList.remove('has-cursor'));
-    (function move() {
-      cx += (mx - cx) * (reduced ? 1 : 0.4); cy += (my - cy) * (reduced ? 1 : 0.4);
-      cur.style.transform = 'translate(' + (cx - 3) + 'px,' + (cy - 3) + 'px)';
-      requestAnimationFrame(move);
-    })();
-  }
-
-  /* ---------- Nav ---------- */
-  const fadeEl = $('.fade');
-  function jump(top) {
-    fadeEl.classList.add('on');
-    setTimeout(() => {
-      scrollTo(0, top);
-      y = (scrollY - stageTop) / vh * 100; k = targetK(); dirty = true;
-      requestAnimationFrame(() => fadeEl.classList.remove('on'));
-      $('.nav').classList.remove('open');
-    }, reduced ? 0 : 200);
-  }
-  $$('[data-jump]').forEach((a) => a.addEventListener('click', (e) => {
-    e.preventDefault();
-    const j = a.dataset.jump;
-    if (j === '0') return jump(0);
-    if (j === 'approach') return jump(stageTop + Choreo.ACTS[0] / 100 * vh); // ronda 36: directo a "I listen"
-    jump($('#' + j).getBoundingClientRect().top + scrollY);
-  }));
-  // Ronda 50: al llegar desde otra página con #approach, directo a I listen detrás del negro, y después el fundido
-  if (document.documentElement.classList.contains('arrive')) {
-    history.scrollRestoration = 'manual';
-    let opened = false;
-    const open = () => {
-      if (opened) return; opened = true;
-      layout();
-      scrollTo(0, stageTop + Choreo.ACTS[0] / 100 * vh);
-      y = (scrollY - stageTop) / vh * 100; dirty = true;
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        fadeEl.classList.add('on', 'slow');
-        document.documentElement.classList.remove('arrive');
-        requestAnimationFrame(() => { fadeEl.classList.remove('on'); setTimeout(() => fadeEl.classList.remove('slow'), 600); });
-      }));
-    };
-    (document.fonts ? document.fonts.ready : Promise.resolve()).then(open);
-    setTimeout(open, 1200); // si las fuentes tardan, se abre igual
-  }
-  $('.nav .menu').addEventListener('click', (e) => { const n = $('.nav'); n.classList.toggle('open'); e.currentTarget.setAttribute('aria-expanded', n.classList.contains('open')); });
-
-  /* ---------- Bucle ---------- */
-  function targetK() { return clamp((scrollY - shTop) / Math.max(1, shLen) * (N + 0.35), 0, N); }
-  function frame(now) {
-    const dt = Math.min(64, now - last); last = now;
-    const target = (scrollY - stageTop) / vh * 100;
-    const f = reduced ? 1 : 1 - Math.pow(0.88, dt / 16.7);
-    const before = y;
-    y += (target - y) * f;
-    vel += (Math.abs(y - before) - vel) * 0.15;
-    const kb = k; k += (targetK() - k) * (reduced ? 1 : 1 - Math.pow(0.86, dt / 16.7));
-    if (dirty || Math.abs(y - before) > 0.002 || vel > 0.002) draw();
-    if (dirty || Math.abs(k - kb) > 0.0005) drawShuffle();
-    dirty = false;
-    requestAnimationFrame(frame);
-  }
-
-  $$('.lab button[data-k]').forEach((b) => b.addEventListener('click', () => { cfg[b.dataset.k] = b.dataset.v; applyConfig(); }));
-  addEventListener('resize', layout);
-  layout();
-  applyConfig();
-  y = (scrollY - stageTop) / vh * 100; k = targetK();
-  requestAnimationFrame(frame);
-})();
-</script>
+<script src="js/nav-transitions.js?v=20261028a"></script>
+<script src="js/home-scroll.js?v=20261028a"></script>
+<script src="js/scroll-chevrons.js?v=20261024c"></script>
+<script src="js/load-in.js?v=20261028a"></script>
+<script src="js/approach-tile.js?v=20261028a"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie_light.min.js"></script>
+<script src="js/lottie-tiles.js?v=20261028a"></script>
+<script src="js/grid-reveal.js?v=20261024c"></script>
+<script src="js/cover-reveal.js?v=7"></script>
 </body>
 </html>

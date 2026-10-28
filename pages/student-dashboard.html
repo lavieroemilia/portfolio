@@ -1,257 +1,322 @@
-<!doctype html>
+<!DOCTYPE html>
+<!--
+  Case study template. Student dashboard.
+  Content, order, images and links come unchanged from the previous page.
+  Same structure as before; decisions now use the decision rows (as Dino). See README.md (Fase 10).
+-->
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <title>Student dashboard · Emilia Laviero</title>
 <meta name="description" content="A redesigned start experience that guides students every day, from their first visit to exam day.">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<script>document.documentElement.classList.add("js");</script>
 <link rel="canonical" href="https://emilialaviero.com/pages/student-dashboard.html">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Emilia Laviero">
 <meta property="og:title" content="Student dashboard · Emilia Laviero">
 <meta property="og:description" content="A redesigned start experience that guides students every day, from their first visit to exam day.">
 <meta property="og:url" content="https://emilialaviero.com/pages/student-dashboard.html">
-<meta property="og:site_name" content="Emilia Laviero">
-<meta property="og:image" content="https://emilialaviero.com/assets/images/project-ucademy-dashboard.jpg">
+<meta property="og:image" content="https://emilialaviero.com/assets/images/dashboard-cover.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="stylesheet" href="../css/webflow.css?v=20261028a">
+<link rel="stylesheet" href="../css/global.css?v=20261028a">
+<link rel="stylesheet" href="../css/tiles.css?v=20261028a">
+<link rel="stylesheet" href="../css/menu-button.css?v=12">
+<link rel="stylesheet" href="../css/transitions.css?v=20261028a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Bungee&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/case-study.css">
-<script defer src="https://cloud.umami.is/script.js" data-website-id="fcb351f4-7b90-480b-a4d0-76a9ef057f95"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..700&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<link rel="stylesheet" href="../css/identity.css?v=20261028a">
+<link rel="stylesheet" href="../css/interior-nav.css?v=20261028a">
+<link rel="stylesheet" href="../css/editorial.css?v=20261028a">
+<link rel="stylesheet" href="../css/grid-reveal.css?v=20261028a">
+<link rel="stylesheet" href="../css/cover-reveal.css?v=3">
+<link rel="stylesheet" href="../css/cover.css?v=1">
+<link rel="stylesheet" href="../css/case-study.css?v=20261028a">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="fcb351f4-7b90-480b-a4d0-76a9ef057f95" data-domains="emilialaviero.com,www.emilialaviero.com"></script>
+<script defer src="../js/analytics.js?v=1"></script>
 </head>
-<body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <filter id="sticker" x="-20%" y="-60%" width="140%" height="220%" color-interpolation-filters="sRGB">
-    <feMorphology in="SourceAlpha" operator="dilate" radius="5" result="paperShape"/>
-    <feMorphology in="SourceAlpha" operator="dilate" radius="7.5" result="borderShape"/>
-    <feOffset in="borderShape" dx="3.5" dy="3.5" result="shadowShape"/>
-    <feFlood flood-color="#0A0710" result="ink"/>
-    <feComposite in="ink" in2="shadowShape" operator="in" result="shadow"/>
-    <feComposite in="ink" in2="borderShape" operator="in" result="border"/>
-    <feFlood flood-color="#FFF6EA"/>
-    <feComposite in2="paperShape" operator="in" result="paper"/>
-    <feMerge><feMergeNode in="shadow"/><feMergeNode in="border"/><feMergeNode in="paper"/><feMergeNode in="SourceGraphic"/></feMerge>
-  </filter>
+<body class="cs-page" data-page-title="Work">
+<div class="nav-container">
+<div class="nav-scroll-indicator"></div>
+<div class="nav-border-line"></div>
+<div class="nav"><nav class="nav-wrapper"><div class="nav-tile nav-tile-1"><a data-track="open-work" data-track-from="menu" id="tilework" href="../work.html" data-first-cover="../assets/images/project-dino-app.jpg" class="tile color work w-inline-block"><div class="tile-title">Work</div><div class="color-visual-container"><div class="color-tile-embed w-embed"></div><div class="color-visual-square"><div class="color-visual-square-square"><div class="color-color-block block-1"><div class="w-embed"><svg class="color-color-circle" viewBox="0 0 150 150">
+<path d="M75 25C42.7594 25 25 42.7563 25 75C25 107.244 42.7594 125 75 125C107.241 125 125 107.244 125 75C125 42.7563 107.241 25 75 25Z"/>
+</svg></div></div><div class="color-color-block block-2"><div class="w-embed"><svg class="color-color-circle" viewBox="0 0 150 150">
+<path d="M75 25C42.7594 25 25 42.7563 25 75C25 107.244 42.7594 125 75 125C107.241 125 125 107.244 125 75C125 42.7563 107.241 25 75 25Z"/>
+</svg></div></div></div></div></div></a></div><div class="nav-tile nav-tile-2"><a data-track="open-contact" data-track-from="menu" id="tilecontact" href="../contact.html" class="tile contact w-inline-block"><div class="tile-title">Contact</div><div class="typography-visual-container"><div class="typography-visual-square"><div class="typography-visual-type-embed w-embed"><svg class="typography-visual-type contact-visual-type" viewBox="0 0 196 110" aria-hidden="true">
+  <defs>
+    <path id="contact-visual-type-path" d="M26 0.5L46 0.5L46 44L92 44L92 0.5L112 0.5L112 106.6L92 106.6L92 62L46 62L46 106.6L26 106.6ZM134 0.5L154 0.5L154 20.5L134 20.5ZM134 30L154 30L154 106.6L134 106.6ZM176 0.5L196 0.5L193 78L179 78ZM176 86.6L196 86.6L196 106.6L176 106.6Z">
+      <animate attributeName="d" dur="0.35s" fill="freeze" keyTimes="0; 1" keySplines=".4 0 .2 1" calcMode="spline" to="M0 0.5L34 0.5L34 40L66 40L66 0.5L100 0.5L100 106.6L66 106.6L66 66L34 66L34 106.6L0 106.6ZM114 0.5L148 0.5L148 28.5L114 28.5ZM114 36L148 36L148 106.6L114 106.6ZM162 0.5L196 0.5L191 70L167 70ZM162 78.6L196 78.6L196 106.6L162 106.6Z" begin="tilecontact.mouseover"/>
+      <animate attributeName="d" dur="0.35s" fill="freeze" keyTimes="0; 1" keySplines=".4 0 .2 1" calcMode="spline" to="M26 0.5L46 0.5L46 44L92 44L92 0.5L112 0.5L112 106.6L92 106.6L92 62L46 62L46 106.6L26 106.6ZM134 0.5L154 0.5L154 20.5L134 20.5ZM134 30L154 30L154 106.6L134 106.6ZM176 0.5L196 0.5L193 78L179 78ZM176 86.6L196 86.6L196 106.6L176 106.6Z" begin="tilecontact.mouseout"/>
+    </path>
+    <clipPath id="contact-visual-type-clip">
+      <use href="#contact-visual-type-path"/>
+    </clipPath>
+  </defs>
+  <use href="#contact-visual-type-path" stroke-width="4px" clip-path="url(#contact-visual-type-clip)"/>
+</svg></div></div></div></a></div><div class="nav-tile nav-tile-3"><a data-track="open-resume" data-track-from="menu" id="tileresume" href="https://drive.google.com/file/d/1UBUYoUBQmqR8Oo1AWpUcdBWm7KlIhkAL/view?usp=sharing" target="_blank" rel="noopener" class="tile resume w-inline-block"><div class="tile-title">Resume</div><div class="resume-visual-container"><div class="lottie-visual resume-visual" data-src="../assets/lottie-animations/Profile 3.json" data-viewbox="27.9 58.6 1141.4 1141.4" data-motion="0,30" data-once></div></div></a></div><div class="nav-tile nav-tile-4"><a data-track="open-approach" data-track-from="menu" id="tileapproach" href="../approach.html" class="tile motion approach w-inline-block"><div class="tile-title">Approach</div><div class="motion-visual-container"><div class="approach-visual" data-src="../assets/lottie-animations/approach.svg"></div></div></a></div><div class="nav-tile nav-tile-5"><a data-track="open-about" data-track-from="menu" id="tileabout" href="../about.html" class="tile voice-tone about w-inline-block"><div class="tile-title">About</div><div class="voice-tone-visual-container"><div class="w-embed"><svg class="voice-tone-quotation-mark left" width="204" height="163" viewBox="0 0 204 163">
+  <defs>
+    <clipPath id="clip-shape">
+      <path d="M8.16 50.9646C2.72 65.2502 0 82.2384 0 101.929C0 116.987 1.36 128.763 4.08 137.257C7.18857 145.751 12.0457 151.929 18.6514 155.79C25.2571 159.264 34 161.002 44.88 161.002C54.9829 161.002 63.1429 159.651 69.36 156.948C75.5771 154.245 80.0457 149.805 82.7657 143.628C85.8743 137.45 87.4286 129.149 87.4286 118.724C87.4286 107.528 86.0686 99.2266 83.3486 93.8213C81.0171 88.0298 77.1314 84.1689 71.6914 82.2384C66.2514 79.9218 59.0629 78.7635 50.1257 78.7635C47.4878 78.7635 44.9198 78.9721 42.4217 79.3891C43.1347 71.3966 44.537 64.4314 46.6286 58.4935C49.7371 50.7716 54.2057 44.594 60.0343 39.9609C65.8629 35.3277 72.8571 32.6251 81.0172 31.8529L75.7714 0C58.6743 2.31657 44.4914 7.91495 33.2229 16.7951C21.9543 25.2893 13.6 36.6791 8.16 50.9646Z"/>
+      <path d="M124.731 50.9646C119.291 65.2502 116.571 82.2384 116.571 101.929C116.571 116.987 117.931 128.763 120.651 137.257C123.76 145.751 128.617 151.929 135.223 155.79C141.829 159.264 150.571 161.002 161.451 161.002C171.554 161.002 179.714 159.651 185.931 156.948C192.149 154.245 196.617 149.805 199.337 143.628C202.446 137.45 204 129.149 204 118.724C204 107.528 202.64 99.2266 199.92 93.8213C197.589 88.0298 193.703 84.1689 188.263 82.2384C182.823 79.9218 175.634 78.7635 166.697 78.7635C164.059 78.7635 161.491 78.9721 158.993 79.3891C159.706 71.3966 161.108 64.4314 163.2 58.4935C166.309 50.7716 170.777 44.594 176.606 39.9609C182.434 35.3277 189.429 32.6251 197.589 31.8529L192.343 0C175.246 2.31657 161.063 7.91495 149.794 16.7951C138.526 25.2893 130.171 36.6791 124.731 50.9646Z"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip-shape)">
+    <path d="M8.16 50.9646C2.72 65.2502 0 82.2384 0 101.929C0 116.987 1.36 128.763 4.08 137.257C7.18857 145.751 12.0457 151.929 18.6514 155.79C25.2571 159.264 34 161.002 44.88 161.002C54.9829 161.002 63.1429 159.651 69.36 156.948C75.5771 154.245 80.0457 149.805 82.7657 143.628C85.8743 137.45 87.4286 129.149 87.4286 118.724C87.4286 107.528 86.0686 99.2266 83.3486 93.8213C81.0171 88.0298 77.1314 84.1689 71.6914 82.2384C66.2514 79.9218 59.0629 78.7635 50.1257 78.7635C47.4878 78.7635 44.9198 78.9721 42.4217 79.3891C43.1347 71.3966 44.537 64.4314 46.6286 58.4935C49.7371 50.7716 54.2057 44.594 60.0343 39.9609C65.8629 35.3277 72.8571 32.6251 81.0172 31.8529L75.7714 0C58.6743 2.31657 44.4914 7.91495 33.2229 16.7951C21.9543 25.2893 13.6 36.6791 8.16 50.9646Z"/>
+    <path d="M124.731 50.9646C119.291 65.2502 116.571 82.2384 116.571 101.929C116.571 116.987 117.931 128.763 120.651 137.257C123.76 145.751 128.617 151.929 135.223 155.79C141.829 159.264 150.571 161.002 161.451 161.002C171.554 161.002 179.714 159.651 185.931 156.948C192.149 154.245 196.617 149.805 199.337 143.628C202.446 137.45 204 129.149 204 118.724C204 107.528 202.64 99.2266 199.92 93.8213C197.589 88.0298 193.703 84.1689 188.263 82.2384C182.823 79.9218 175.634 78.7635 166.697 78.7635C164.059 78.7635 161.491 78.9721 158.993 79.3891C159.706 71.3966 161.108 64.4314 163.2 58.4935C166.309 50.7716 170.777 44.594 176.606 39.9609C182.434 35.3277 189.429 32.6251 197.589 31.8529L192.343 0C175.246 2.31657 161.063 7.91495 149.794 16.7951C138.526 25.2893 130.171 36.6791 124.731 50.9646Z"/>
+  </g>
+</svg>
+<svg class="voice-tone-quotation-mark right" width="204" height="163" viewBox="0 0 204 163">
+  <defs>
+    <clipPath id="clip-shape">
+      <path d="M8.16 50.9646C2.72 65.2502 0 82.2384 0 101.929C0 116.987 1.36 128.763 4.08 137.257C7.18857 145.751 12.0457 151.929 18.6514 155.79C25.2571 159.264 34 161.002 44.88 161.002C54.9829 161.002 63.1429 159.651 69.36 156.948C75.5771 154.245 80.0457 149.805 82.7657 143.628C85.8743 137.45 87.4286 129.149 87.4286 118.724C87.4286 107.528 86.0686 99.2266 83.3486 93.8213C81.0171 88.0298 77.1314 84.1689 71.6914 82.2384C66.2514 79.9218 59.0629 78.7635 50.1257 78.7635C47.4878 78.7635 44.9198 78.9721 42.4217 79.3891C43.1347 71.3966 44.537 64.4314 46.6286 58.4935C49.7371 50.7716 54.2057 44.594 60.0343 39.9609C65.8629 35.3277 72.8571 32.6251 81.0172 31.8529L75.7714 0C58.6743 2.31657 44.4914 7.91495 33.2229 16.7951C21.9543 25.2893 13.6 36.6791 8.16 50.9646Z"/>
+      <path d="M124.731 50.9646C119.291 65.2502 116.571 82.2384 116.571 101.929C116.571 116.987 117.931 128.763 120.651 137.257C123.76 145.751 128.617 151.929 135.223 155.79C141.829 159.264 150.571 161.002 161.451 161.002C171.554 161.002 179.714 159.651 185.931 156.948C192.149 154.245 196.617 149.805 199.337 143.628C202.446 137.45 204 129.149 204 118.724C204 107.528 202.64 99.2266 199.92 93.8213C197.589 88.0298 193.703 84.1689 188.263 82.2384C182.823 79.9218 175.634 78.7635 166.697 78.7635C164.059 78.7635 161.491 78.9721 158.993 79.3891C159.706 71.3966 161.108 64.4314 163.2 58.4935C166.309 50.7716 170.777 44.594 176.606 39.9609C182.434 35.3277 189.429 32.6251 197.589 31.8529L192.343 0C175.246 2.31657 161.063 7.91495 149.794 16.7951C138.526 25.2893 130.171 36.6791 124.731 50.9646Z"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip-shape)">
+    <path d="M8.16 50.9646C2.72 65.2502 0 82.2384 0 101.929C0 116.987 1.36 128.763 4.08 137.257C7.18857 145.751 12.0457 151.929 18.6514 155.79C25.2571 159.264 34 161.002 44.88 161.002C54.9829 161.002 63.1429 159.651 69.36 156.948C75.5771 154.245 80.0457 149.805 82.7657 143.628C85.8743 137.45 87.4286 129.149 87.4286 118.724C87.4286 107.528 86.0686 99.2266 83.3486 93.8213C81.0171 88.0298 77.1314 84.1689 71.6914 82.2384C66.2514 79.9218 59.0629 78.7635 50.1257 78.7635C47.4878 78.7635 44.9198 78.9721 42.4217 79.3891C43.1347 71.3966 44.537 64.4314 46.6286 58.4935C49.7371 50.7716 54.2057 44.594 60.0343 39.9609C65.8629 35.3277 72.8571 32.6251 81.0172 31.8529L75.7714 0C58.6743 2.31657 44.4914 7.91495 33.2229 16.7951C21.9543 25.2893 13.6 36.6791 8.16 50.9646Z"/>
+    <path d="M124.731 50.9646C119.291 65.2502 116.571 82.2384 116.571 101.929C116.571 116.987 117.931 128.763 120.651 137.257C123.76 145.751 128.617 151.929 135.223 155.79C141.829 159.264 150.571 161.002 161.451 161.002C171.554 161.002 179.714 159.651 185.931 156.948C192.149 154.245 196.617 149.805 199.337 143.628C202.446 137.45 204 129.149 204 118.724C204 107.528 202.64 99.2266 199.92 93.8213C197.589 88.0298 193.703 84.1689 188.263 82.2384C182.823 79.9218 175.634 78.7635 166.697 78.7635C164.059 78.7635 161.491 78.9721 158.993 79.3891C159.706 71.3966 161.108 64.4314 163.2 58.4935C166.309 50.7716 170.777 44.594 176.606 39.9609C182.434 35.3277 189.429 32.6251 197.589 31.8529L192.343 0C175.246 2.31657 161.063 7.91495 149.794 16.7951C138.526 25.2893 130.171 36.6791 124.731 50.9646Z"/>
+  </g>
 </svg>
 
-<a class="brand display" href="../" aria-label="Emilia Laviero, home"><span class="sticker">Emilia Laviero</span></a>
-<nav class="nav" aria-label="Main">
-  <button class="menu" type="button" aria-expanded="false">Menu</button>
-  <ul>
-    <li><a class="nav-link is-active" href="../#work">Work</a></li>
-    <li><a class="nav-link" href="../#approach">Approach</a></li>
-    <li><a class="nav-link" href="../about.html">About</a></li>
-    <li><a class="nav-link" href="#contact">Contact</a></li>
-  </ul>
-</nav>
+</div></div></a></div></nav></div>
+<div class="menu"><button id="nav-button" aria-label="Navigation menu" class="tile-menu-tile nav-button"><div class="nav-button-highlight"></div><div class="nav-button-content"><div class="nav-button-svg menu-logo w-embed"><svg viewBox="49.125 28 287.553 344.637" fill="currentColor">
+  <path d="M118.081 324.357L49.2422 284.635L49.125 191.55L118.081 151.76Z"/>
+  <path d="M198.67 105.441L129.653 144.14L129.889 332.134L198.67 371.851Z"/>
+  <path d="M336.335 107.56L211.597 179.538L211.622 100.147L336.292 28.0001Z"/>
+  <path d="M336.678 204.531L212.344 276.276L212.368 196.885L336.635 124.971Z"/>
+  <path d="M336.44 300.794L211.935 372.637L211.96 293.247L336.397 221.234Z"/>
+</svg></div><div class="nav-button-svg menu-hamburger w-embed"><svg viewBox="0 0 41 41" fill="currentColor">
+<path d="M32.6719 19.2188H8.32812V21.7812H32.6719V19.2188Z"/>
+<path d="M32.6719 9.96875H8.32812V12.5312H32.6719V9.96875Z"/>
+<path d="M32.6719 29.1094H8.32812V31.6719H32.6719V29.1094Z"/>
+</svg></div><div class="nav-button-svg menu-arrow w-embed">
 
-<main>
-  <!-- 1 · La imagen primero, el título debajo -->
-  <figure class="cover"><div class="frame"><img src="../assets/images/dashboard-cover.jpg" alt="The redesigned Ucademy dashboard"></div></figure>
-  <header class="head grid">
-    <span class="chip">Ucademy</span>
-    <h1 class="display">Redesigning the student dashboard</h1>
-    <ul class="meta">
-      <li><span>Timeline</span>Q1 2025</li>
-      <li><span>Role</span>Sole Product Designer</li>
-      <li><span>Platform</span>Web and app</li>
-      <li><span>Goal</span>Activation and engagement</li>
-    </ul>
-  </header>
+<div class="menu-arrow-icon">
+<svg viewBox="0 0 41 41" fill="currentColor">
+  <path d="M21.8547 31.1429L13.2634 22.208L32.4624 22.208V19.6455L13.2634 19.6455L21.8547 10.7107L20.0075 8.93457L8.47656 20.9268L20.0075 32.919L21.8547 31.1429Z"/>
+</svg>
+</div></div><div class="nav-button-svg menu-close w-embed"><svg viewBox="0 0 41 41" fill="currentColor">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M22.311 20.5001L30.8009 28.9899L28.9889 30.8019L20.4991 22.312L12.0092 30.8019L10.1973 28.9899L18.6871 20.5001L10.1973 12.0102L12.0092 10.1982L20.4991 18.6881L28.9889 10.1982L30.8009 12.0102L22.311 20.5001Z"/>
+</svg></div></div></button></div>
+<div class="nav-page-title"></div>
+<a data-track="open-home" data-track-from="rail" class="nav-brand" href="../index.html">Emilia Laviero</a>
+<div class="nav-background"></div>
+</div>
 
-  <!-- 2 · Ficha y resumen en tres frases (ronda 12, variante B, ronda 13: más simple) -->
-  <section aria-label="Summary">
-    <div class="tldr">
-      <div><h2>The challenge</h2><p>Around 5,000 Ucademy students a day landed on a dashboard that didn&rsquo;t show what to study next or where their courses were. <mark>New students got lost</mark>, and many turned to Customer Care just to find their&nbsp;way.</p></div>
-      <div><h2>What I did</h2><p>I redesigned the dashboard around <mark>today&rsquo;s study plan</mark>, put every course, test and contact one click away, and added an onboarding to get new students started in their first&nbsp;week.</p></div>
-      <div><h2>The outcome</h2><p>Students <mark>reach a main action twice as fast</mark>, 50%+ follow their study plan and 40%+ of new students complete First steps in their first&nbsp;week.</p></div>
-    </div>
-  </section>
+<main class="cs" id="main">
 
-  <!-- 3 · Decisiones: una tarjeta grande que cambia con el scroll (desktop); en mobile, una debajo de otra -->
-  <section aria-labelledby="dec-title">
-    <h2 class="display sec-title" id="dec-title"><span class="box">Decisions</span></h2>
-    <div class="zoom" id="zoom">
-      <div class="zoom-sticky">
-        <div class="zcard">
-          <div class="zframe" aria-hidden="true"><div class="zlayer"><img src="../assets/img/dashboard-full.jpg" alt=""><span class="zring"><i></i><i></i><i></i><i></i></span></div></div>
-          <div class="ztext">
-            <nav class="zindex" aria-label="Decisions"></nav>
-            <ol class="zsteps"></ol>
-          </div>
+  <!-- 1 · Cover: the whole width next to the rail, from the top of the screen. On desktop the wide
+       original of the cover (same background, capture in the centre) fills the surface -->
+  <figure class="cs-hero"><picture><source media="(min-width: 992px) and (min-aspect-ratio: 4/3)" srcset="../assets/images/dashboard-hero.jpg"><img class="cs-hero-img" src="../assets/images/dashboard-cover.jpg" alt="The redesigned Ucademy dashboard" fetchpriority="high" decoding="sync"></picture></figure>
+
+  <div class="cs-body">
+    <div class="cs-wrap">
+      <span class="line-v at-start" aria-hidden="true"></span>
+      <span class="line-v at-end" aria-hidden="true"></span>
+
+      <!-- 2 · Title and project data on one row (two-column composition) -->
+      <header class="cs-block cs-head cs-reveal">
+        <div class="cs-head-title cs-fade">
+          <p class="cs-company">Ucademy</p>
+          <h1 class="cs-h1">Redesigning the student dashboard</h1>
         </div>
+        <dl class="cs-facts cs-fade">
+          <div><dt>Timeline</dt><dd>Q1 2025</dd></div>
+          <div><dt>Role</dt><dd>Sole Product Designer</dd></div>
+          <div><dt>Platform</dt><dd>Web and app</dd></div>
+          <div><dt>Goal</dt><dd>Activation and engagement</dd></div>
+        </dl>
+      </header>
+
+      <!-- 3 · Summary: three boxes on one row; the outcome is the highlighted one -->
+      <section class="cs-block cs-summary cs-reveal" aria-label="Summary">
+        <div class="cs-boxes cs-fade">
+        <div class="cs-box"><h2 class="cs-box-title">The challenge</h2><p class="cs-text">Around 5,000 Ucademy students a day landed on a dashboard that didn&rsquo;t show what to study next or where their courses were. <mark>New students got lost</mark>, and many turned to Customer Care just to find their&nbsp;way.</p></div>
+        <div class="cs-box"><h2 class="cs-box-title">What I did</h2><p class="cs-text">I redesigned the dashboard around <mark>today&rsquo;s study plan</mark>, put every course, test and contact one click away, and added an onboarding to get new students started in their first&nbsp;week.</p></div>
+        <div class="cs-box"><h2 class="cs-box-title">The outcome</h2><p class="cs-text">Students <mark>reach a main action twice as fast</mark>, 50%+ follow their study plan and 40%+ of new students complete First steps in their first&nbsp;week.</p></div>
+        </div>
+      </section>
+
+      <!-- 4 · Decisions: one row per decision. Number, goal and title stay on the
+           left while Need, Decision, the result and the screen scroll on the right -->
+      <section class="cs-block cs-dec-block has-line cs-reveal" aria-labelledby="dec-title">
+        <span class="line-h" aria-hidden="true"></span>
+        <h2 class="cs-h2 cs-fade" id="dec-title">Decisions</h2>
+        <ol class="cs-dlist">
+          <li class="cs-ditem">
+            <div class="cs-ditem-head"><div class="cs-ditem-sticky"><p class="cs-step-id"><span>01 · Welcome tour</span><span class="cs-tag">Activation</span></p><h3 class="cs-dec-title">Show new students around</h3></div></div>
+            <div class="cs-ditem-body">
+              <div class="cs-ditem-text">
+                <div class="cs-part"><p class="cs-label">Need</p><p class="cs-text">Session recordings showed new students clicking everywhere and taking long to reach the main&nbsp;actions.</p></div>
+                <div class="cs-part"><p class="cs-label">Decision</p><p class="cs-text">An optional tour on the first visit: under a minute, seven steps that show where everything&nbsp;is.</p></div>
+              </div>
+              <div class="cs-ditem-result"><p class="cs-label">Result</p><p class="cs-text">Students understood the platform from their first&nbsp;visit.</p></div>
+              <figure class="cs-ditem-media"><div class="cs-ui"><img src="../assets/images/dashboard-tour-step-0.jpg" alt="" loading="lazy"></div></figure>
+            </div>
+          </li>
+          <li class="cs-ditem">
+            <div class="cs-ditem-head"><div class="cs-ditem-sticky"><p class="cs-step-id"><span>02 · First steps</span><span class="cs-tag">Activation</span></p><h3 class="cs-dec-title">Give new students somewhere to start</h3></div></div>
+            <div class="cs-ditem-body">
+              <div class="cs-ditem-text">
+                <div class="cs-part"><p class="cs-label">Need</p><p class="cs-text">New students didn’t know where to begin. To activate them, they had to try the platform’s key features early and feel that getting started was&nbsp;easy.</p></div>
+                <div class="cs-part"><p class="cs-label">Decision</p><p class="cs-text">Four key actions worth points for new students: complete their profile, join a live class, do their first task and take a&nbsp;test.</p></div>
+              </div>
+              <div class="cs-ditem-result"><p class="cs-label">Result</p><p class="cs-text"><b>40%+</b> of new students completed First steps in their first&nbsp;week.</p></div>
+              <figure class="cs-ditem-media"><div class="cs-ui"><img src="../assets/images/dashboard-first-steps.jpg" alt="" loading="lazy"></div></figure>
+            </div>
+          </li>
+          <li class="cs-ditem">
+            <div class="cs-ditem-head"><div class="cs-ditem-sticky"><p class="cs-step-id"><span>03 · Study plan and progress</span><span class="cs-tag">Engagement and retention</span></p><h3 class="cs-dec-title">Tell students what to study today</h3></div></div>
+            <div class="cs-ditem-body">
+              <div class="cs-ditem-text">
+                <div class="cs-part"><p class="cs-label">Need</p><p class="cs-text">Exams are stressful, and students didn’t know how to organise their study to be ready on time. Nothing told them what to do each&nbsp;day.</p></div>
+                <div class="cs-part"><p class="cs-label">Decision</p><p class="cs-text">The study plan is the key feature, so it comes first: the first thing students see is what to do today, without having to think. Below, their progress next to the ideal plan shows they’ll reach the exam on time if they follow&nbsp;it.</p></div>
+              </div>
+              <div class="cs-ditem-result"><p class="cs-label">Result</p><p class="cs-text">Most active students followed their plan: less to decide every day, and the reassurance of being on track for the&nbsp;exam.</p></div>
+              <figure class="cs-ditem-media"><div class="cs-ui"><img src="../assets/images/dashboard-crop-tasks.jpg" alt="" loading="lazy"></div></figure>
+            </div>
+          </li>
+          <li class="cs-ditem">
+            <div class="cs-ditem-head"><div class="cs-ditem-sticky"><p class="cs-step-id"><span>04 · My courses</span><span class="cs-tag">Lower support costs</span></p><h3 class="cs-dec-title">Keep every course one click away</h3></div></div>
+            <div class="cs-ditem-body">
+              <div class="cs-ditem-text">
+                <div class="cs-part"><p class="cs-label">Need</p><p class="cs-text">Only one course was visible, and switching meant finding a hidden&nbsp;dropdown.</p></div>
+                <div class="cs-part"><p class="cs-label">Decision</p><p class="cs-text">The last three courses they studied, each with its progress and next lesson, plus a page with all of&nbsp;them.</p></div>
+              </div>
+              <div class="cs-ditem-result"><p class="cs-label">Result</p><p class="cs-text">Students went straight into their courses, switched between them on their own and stopped asking Customer Care where to find&nbsp;them.</p></div>
+              <figure class="cs-ditem-media"><div class="cs-ui"><img src="../assets/images/dashboard-crop-courses.jpg" alt="" loading="lazy"></div></figure>
+            </div>
+          </li>
+          <li class="cs-ditem">
+            <div class="cs-ditem-head"><div class="cs-ditem-sticky"><p class="cs-step-id"><span>05 · Tests</span><span class="cs-tag">Engagement and retention</span></p><h3 class="cs-dec-title">Bring practice to the front</h3></div></div>
+            <div class="cs-ditem-body">
+              <div class="cs-ditem-text">
+                <div class="cs-part"><p class="cs-label">Need</p><p class="cs-text">Very few students found Practice, and most didn’t know they could create their own&nbsp;tests.</p></div>
+                <div class="cs-part"><p class="cs-label">Decision</p><p class="cs-text">Tests moved onto the dashboard: their latest results and a button to create their own, so practising is one click away from the study&nbsp;plan.</p></div>
+              </div>
+              <div class="cs-ditem-result"><p class="cs-label">Result</p><p class="cs-text"><b>20%</b> more tests created by&nbsp;students.</p></div>
+              <figure class="cs-ditem-media"><div class="cs-ui"><img src="../assets/images/dashboard-crop-tests.jpg" alt="" loading="lazy"></div></figure>
+            </div>
+          </li>
+          <li class="cs-ditem">
+            <div class="cs-ditem-head"><div class="cs-ditem-sticky"><p class="cs-step-id"><span>06 · Ranking</span><span class="cs-tag">Engagement and retention</span></p><h3 class="cs-dec-title">Make studying a friendly competition</h3></div></div>
+            <div class="cs-ditem-body">
+              <div class="cs-ditem-text">
+                <div class="cs-part"><p class="cs-label">Need</p><p class="cs-text">Preparing for an exam is a long race. A touch of gamification keeps it motivating: students didn’t want to fall behind in the&nbsp;ranking.</p></div>
+                <div class="cs-part"><p class="cs-label">Decision</p><p class="cs-text">The monthly ranking sits on the dashboard: their position, the students around them and the points they need to move up. The study streak multiplies those&nbsp;points.</p></div>
+              </div>
+              <div class="cs-ditem-result"><p class="cs-label">Result</p><p class="cs-text">Together with the daily tasks, the ranking and the streak brought students back more&nbsp;often.</p></div>
+              <figure class="cs-ditem-media"><div class="cs-ui"><img src="../assets/img/dashboard-crop-ranking.jpg" alt="" loading="lazy"></div></figure>
+            </div>
+          </li>
+          <li class="cs-ditem">
+            <div class="cs-ditem-head"><div class="cs-ditem-sticky"><p class="cs-step-id"><span>07 · Advisor contact</span><span class="cs-tag">Lower support costs</span></p><h3 class="cs-dec-title">Put help where students look</h3></div></div>
+            <div class="cs-ditem-body">
+              <div class="cs-ditem-text">
+                <div class="cs-part"><p class="cs-label">Need</p><p class="cs-text">Students didn’t know who to ask, and often wrote to the sales&nbsp;team.</p></div>
+                <div class="cs-part"><p class="cs-label">Decision</p><p class="cs-text">Their advisor’s phone, email and WhatsApp, always on the dashboard. Customer Care asked for&nbsp;it.</p></div>
+              </div>
+              <div class="cs-ditem-result"><p class="cs-label">Result</p><p class="cs-text">Messages moved to the right&nbsp;channels.</p></div>
+              <figure class="cs-ditem-media"><div class="cs-ui"><img src="../assets/img/dashboard-crop-advisor.jpg" alt="" loading="lazy"></div></figure>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Empty row of the grid -->
+      <div class="cs-row" aria-hidden="true"><span class="line-v"></span></div>
+
+      <!-- 5 · Impact: a band between two lines across the page; title and description on the
+           left, four figures on the right -->
+      <section class="cs-block cs-impact cs-reveal" aria-labelledby="impact-title">
+        <span class="line-h" aria-hidden="true"></span>
+        <span class="line-h at-bottom" aria-hidden="true"></span>
+        <div class="cs-side cs-fade">
+          <h2 class="cs-h2" id="impact-title">Impact</h2>
+          <p class="cs-desc">Students switched courses without asking Customer Care, and messages reached the right channel. The welcome tour and First steps helped them understand the platform from their first&nbsp;visit.</p>
+        </div>
+        <div class="cs-metrics cs-fade">
+          <div class="cs-metric"><b>2&times;</b><p>faster to reach a main action</p></div>
+          <div class="cs-metric"><b>50%+</b><p>of students follow their study plan</p></div>
+          <div class="cs-metric"><b>40%+</b><p>of new students complete First steps in week one</p></div>
+          <div class="cs-metric"><b>~5,000</b><p>students open the dashboard every day</p></div>
+        </div>
+      </section>
+
+      <!-- Empty row of the grid -->
+      <div class="cs-row" aria-hidden="true"><span class="line-v"></span></div>
+
+      <!-- 6 · Learnings: title aligned with the first learning -->
+      <section class="cs-block cs-learnings has-line cs-reveal" aria-labelledby="learn-title">
+        <span class="line-h" aria-hidden="true"></span>
+        <span class="line-v cs-learn-line" aria-hidden="true"></span>
+        <div class="cs-side cs-fade"><h2 class="cs-h2" id="learn-title">Learnings</h2></div>
+        <div class="cs-learn-list cs-fade">
+          <div class="cs-learn"><span class="cs-learn-n">01</span><div><h3 class="cs-learn-title">Customer Care knows first</h3><p class="cs-text">What students ask Customer Care shows where the product is failing them. I review those questions alongside the analytics.</p></div></div>
+          <div class="cs-learn"><span class="cs-learn-n">02</span><div><h3 class="cs-learn-title">Decide what onboarding should move</h3><p class="cs-text">Before building an onboarding, decide which behaviour it should change. Then measure that from day&nbsp;one.</p></div></div>
+          <div class="cs-learn"><span class="cs-learn-n">03</span><div><h3 class="cs-learn-title">Retention lives in the core product</h3><p class="cs-text">Students completed the tour and First steps, but cancellations depended on the course content. Onboarding opens the door, and what keeps students is what they came&nbsp;for.</p></div></div>
+        </div>
+      </section>
+
+      <!-- 7 · More work: title on top, three projects on one row, with the hover lid of Work (../css/cover.css) -->
+      <section class="cs-block cs-more has-line cs-reveal" aria-labelledby="more-title">
+        <span class="line-h" aria-hidden="true"></span>
+        <div class="cs-more-head cs-fade"><span class="line-h" aria-hidden="true"></span><div class="cs-more-title"><h2 class="cs-h2" id="more-title">More work</h2></div><div class="cs-more-gap" aria-hidden="true"></div><div class="cs-more-action"><a data-track="open-work" data-track-from="more-work" class="cs-more-button" href="../work.html">All projects ↗</a></div></div>
+        <div class="cs-more-row cs-fade" aria-hidden="true"><span class="line-v"></span><span class="line-v"></span><span class="line-v"></span></div>
+        <div class="cs-cells cs-fade">
+          <a data-track="open-project" data-track-project="dino" data-track-from="more-work" class="cs-cell" href="dino.html"><div class="cs-cell-media"><img src="../assets/images/project-dino-app.jpg" alt="" loading="lazy"><div class="work-hover" aria-hidden="true"><p class="p">An MVP for a new line of business at Ucademy, launched to find product-market fit.</p></div></div>
+            <div class="cs-cell-caption"><h3 class="cs-cell-title">Gamified learning app</h3><span class="cs-cell-meta">Dino</span></div></a>
+          <a data-track="open-project" data-track-project="practice" data-track-from="more-work" class="cs-cell" href="practice.html"><div class="cs-cell-media"><img src="../assets/images/project-ucademy-practice.jpg" alt="" loading="lazy"><div class="work-hover" aria-hidden="true"><p class="p">A hidden feature turned into a sales argument and a reason for students to come back.</p></div></div>
+            <div class="cs-cell-caption"><h3 class="cs-cell-title">Tests and practice</h3><span class="cs-cell-meta">Ucademy</span></div></a>
+          <div class="cs-cell is-soon"><div class="cs-cell-media"><img src="../assets/images/project-dino-design-system.jpg" alt="" loading="lazy"></div>
+            <div class="cs-cell-caption"><h3 class="cs-cell-title">Dino design system, built from zero</h3><span class="cs-cell-meta">Dino · Coming soon</span></div></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Footer: three quiet columns on the thirds of the grid. Contact (the email copies the address,
+       no mailto), Sitemap (the main pages) and Work (the case studies that have a page) -->
+  <footer class="cs-footer" id="contact" aria-label="Footer">
+    <div class="cs-footer-inner">
+      <div class="cs-footer-cols">
+        <div class="cs-footer-col">
+          <p class="cs-footer-label">Contact</p>
+          <ul>
+            <li><button data-track="copy-email" data-track-from="footer" class="cs-footer-link" type="button" data-copy="lavieroemilia@gmail.com"><svg class="cs-footer-icon" viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5"/><path d="m2 4.5 6 4.5 6-4.5"/></svg><span class="copy-label" aria-live="polite">lavieroemilia@gmail.com</span></button></li>
+            <li><a data-track="open-linkedin" data-track-from="footer" class="cs-footer-link" href="https://www.linkedin.com/in/emilialaviero/" target="_blank" rel="noopener"><svg class="cs-footer-icon is-fill" viewBox="0 0 16 16" aria-hidden="true"><defs><mask id="cs-in-mask"><rect width="16" height="16" rx="3" fill="#fff"/><g fill="#000"><rect x="3" y="6.2" width="2.2" height="6.8"/><circle cx="4.1" cy="3.9" r="1.3"/><path d="M7 6.2h2.1v1c.4-.7 1.2-1.2 2.3-1.2 1.8 0 2.6 1.1 2.6 3V13h-2.2V9.4c0-.9-.3-1.5-1.2-1.5-.9 0-1.4.6-1.4 1.6V13H7z"/></g></mask></defs><rect width="16" height="16" rx="3" fill="currentColor" mask="url(#cs-in-mask)"/></svg>LinkedIn</a></li>
+            <li><a data-track="open-resume" data-track-from="footer" class="cs-footer-link" href="https://drive.google.com/file/d/1UBUYoUBQmqR8Oo1AWpUcdBWm7KlIhkAL/view?usp=sharing" target="_blank" rel="noopener"><svg class="cs-footer-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 1.5H4A1.5 1.5 0 0 0 2.5 3v10A1.5 1.5 0 0 0 4 14.5h8a1.5 1.5 0 0 0 1.5-1.5V5.5z"/><path d="M9.5 1.5v4h4M5.5 8.5h5M5.5 11h5"/></svg>Resume</a></li>
+          </ul>
+        </div>
+        <nav class="cs-footer-col" aria-label="Sitemap">
+          <p class="cs-footer-label">Sitemap</p>
+          <ul><li><a data-track="open-home" data-track-from="footer" class="cs-footer-link" href="../index.html">Home</a></li><li><a data-track="open-work" data-track-from="footer" class="cs-footer-link" href="../work.html">Work</a></li><li><a data-track="open-about" data-track-from="footer" class="cs-footer-link" href="../about.html">About</a></li><li><a data-track="open-approach" data-track-from="footer" class="cs-footer-link" href="../approach.html">Approach</a></li><li><a data-track="open-contact" data-track-from="footer" class="cs-footer-link" href="../contact.html">Contact</a></li></ul>
+        </nav>
+        <nav class="cs-footer-col" aria-label="Case studies">
+          <p class="cs-footer-label">Work</p>
+          <ul><li><a data-track="open-project" data-track-project="dino" data-track-from="footer" class="cs-footer-link" href="dino.html">Gamified learning app</a></li><li><a data-track="open-project" data-track-project="student-dashboard" data-track-from="footer" class="cs-footer-link" href="student-dashboard.html" aria-current="page">Student dashboard</a></li><li><a data-track="open-project" data-track-project="practice" data-track-from="footer" class="cs-footer-link" href="practice.html">Tests and practice</a></li><li><a data-track="open-project" data-track-project="quota" data-track-from="footer" class="cs-footer-link" href="quota-pms.html">Property management platform</a></li></ul>
+        </nav>
       </div>
+      <div class="cs-footer-bottom"><span>Emilia Laviero &copy; 2026</span><span>Madrid, Spain</span><a href="#main">Back to top ↑</a></div>
     </div>
-  </section>
-
-  <!-- 3b · Impacto: las cifras, después de las decisiones -->
-  <section class="impact grid" aria-labelledby="impact-title">
-    <h2 class="display sec-title" id="impact-title" style="grid-column: 1 / -1"><span class="box">Impact</span></h2>
-    <p class="closing">Students switched courses without asking Customer Care, and messages reached the right channel. The welcome tour and First steps helped them understand the platform from their first&nbsp;visit.</p>
-    <div class="nums">
-      <div><b>2&times;</b><p>faster to reach a main action</p></div>
-      <div><b>50%+</b><p>of students follow their study plan</p></div>
-      <div><b>40%+</b><p>of new students complete First steps in week one</p></div>
-      <div><b>~5,000</b><p>students open the dashboard every day</p></div>
-    </div>
-  </section>
-
-  <!-- 4 · Learnings -->
-  <section aria-labelledby="learn-title">
-    <h2 class="display sec-title" id="learn-title"><span class="box">Learnings</span></h2>
-    <div class="learn grid"><span class="n">01</span><h3>Customer Care knows first</h3><p>What students ask Customer Care shows where the product is failing them. I review those questions alongside the analytics.</p></div>
-    <div class="learn grid"><span class="n">02</span><h3>Decide what onboarding should move</h3><p>Before building an onboarding, decide which behaviour it should change. Then measure that from day&nbsp;one.</p></div>
-    <div class="learn grid"><span class="n">03</span><h3>Retention lives in the core product</h3><p>Students completed the tour and First steps, but cancellations depended on the course content. Onboarding opens the door, and what keeps students is what they came&nbsp;for.</p></div>
-  </section>
-
-  <!-- 5 · Más case studies -->
-  <section class="divided" aria-labelledby="more-title">
-    <div class="more-head"><h2 class="display sec-title" id="more-title" style="margin: 0"><span class="box">More work</span></h2><a href="../#work">All projects ↗</a></div>
-    <div class="cards">
-      <a class="proj" data-umami-event="open-project" data-umami-event-project="Dino" href="dino.html"><span class="chip">Dino</span><div class="frame"><img src="../assets/images/project-dino-app.jpg" alt="" loading="lazy"></div><h4>Gamified learning app</h4><p class="desc">An MVP for a new line of business at Ucademy, launched to find product-market&nbsp;fit.</p></a>
-      <a class="proj" data-umami-event="open-project" data-umami-event-project="Practice" href="practice.html"><span class="chip">Ucademy</span><div class="frame"><img src="../assets/images/project-ucademy-practice.jpg" alt="" loading="lazy"></div><h4>Tests and practice</h4><p class="desc">A hidden feature turned into a sales argument and a reason for students to come&nbsp;back.</p></a>
-      <a class="proj" href="#"><span class="chip">Dino</span><div class="frame"><img src="../assets/images/project-dino-design-system.jpg" alt="" loading="lazy"></div><h4>Dino design system, built from zero</h4><span class="soon">Coming soon</span></a>
-    </div>
-  </section>
+  </footer>
 </main>
 
-<!-- 6 · Footer: el mismo de la home -->
-<footer class="contact" id="contact" aria-labelledby="contact-title">
-  <p class="label">Thank you for reading!</p>
-  <h2 class="display" id="contact-title">I&rsquo;d love to <span class="box">know you</span> too</h2>
-  <ul class="links">
-    <li><a href="#">lavieroemilia@gmail.com</a></li>
-    <li><a data-umami-event="open-linkedin" href="https://www.linkedin.com/in/emilialaviero/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
-    <li><a data-umami-event="open-medium" href="https://medium.com/@emilaviero" target="_blank" rel="noopener">Medium ↗</a></li>
-    <li><a data-umami-event="open-resume" href="https://drive.google.com/file/d/1TCPcE9fgOwlY57MC0pf6gdawFP0CLo67/view?usp=sharing" target="_blank" rel="noopener">Resume ↗</a></li>
-  </ul>
-  <div class="foot"><span>Emilia Laviero &copy; 2026</span><span>Madrid, Spain</span><a class="to-top" href="#">Back to top ↑</a></div>
-</footer>
-
-<script>
-(function () {
-  'use strict';
-  const $ = (s, r = document) => r.querySelector(s);
-  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-  const IMG = '../assets/images/';
-
-  // Las decisiones de V2 (ronda 11: el tour y First steps primero). area = izquierda, arriba, derecha, abajo (% de la imagen); src = otra pantalla.
-  const DEC = [
-    { goal: 'Activation', title: 'Show new students around', widget: 'Welcome tour', area: '29.2,21.5,70.8,68.4', src: 'dashboard-tour-step-0.jpg', crop: 'dashboard-tour-step-0.jpg',
-      need: 'Session recordings showed new students clicking everywhere and taking long to reach the main actions.',
-      dec: 'An optional tour on the first visit: under a minute, seven steps that show where everything is.',
-      res: 'Students understood the platform from their first visit.' },
-    { goal: 'Activation', title: 'Give new students somewhere to start', widget: 'First steps', area: '8.4,15,91.6,47.5', src: 'dashboard-first-steps.jpg', crop: 'dashboard-first-steps.jpg',
-      need: 'New students didn’t know where to begin. To activate them, they had to try the platform’s key features early and feel that getting started was easy.',
-      dec: 'Four key actions worth points for new students: complete their profile, join a live class, do their first task and take a test.',
-      res: '<b>40%+</b> of new students completed First steps in their first week.' },
-    { goal: 'Engagement and retention', title: 'Tell students what to study today', widget: 'Study plan and progress', area: '8.4,5.8,66.1,46.4', crop: 'dashboard-crop-tasks.jpg',
-      need: 'Exams are stressful, and students didn’t know how to organise their study to be ready on time. Nothing told them what to do each day.',
-      dec: 'The study plan is the key feature, so it comes first: the first thing students see is what to do today, without having to think. Below, their progress next to the ideal plan shows they’ll reach the exam on time if they follow it.',
-      res: 'Most active students followed their plan: less to decide every day, and the reassurance of being on track for the exam.' },
-    { goal: 'Lower support costs', title: 'Keep every course one click away', widget: 'My courses', area: '8.4,47.3,66.1,58.2', crop: 'dashboard-crop-courses.jpg',
-      need: 'Only one course was visible, and switching meant finding a hidden dropdown.',
-      dec: 'The last three courses they studied, each with its progress and next lesson, plus a page with all of them.',
-      res: 'Students went straight into their courses, switched between them on their own and stopped asking Customer Care where to find them.' },
-    { goal: 'Engagement and retention', title: 'Bring practice to the front', widget: 'Tests', area: '8.4,70.6,66.1,82.7', crop: 'dashboard-crop-tests.jpg',
-      need: 'Very few students found Practice, and most didn’t know they could create their own tests.',
-      dec: 'Tests moved onto the dashboard: their latest results and a button to create their own, so practising is one click away from the study plan.',
-      res: '<b>20%</b> more tests created by students.' },
-    { goal: 'Engagement and retention', title: 'Make studying a friendly competition', widget: 'Ranking', area: '37.9,83.5,66.2,97.4', crop: '../assets/img/dashboard-crop-ranking.jpg',
-      need: 'Preparing for an exam is a long race. A touch of gamification keeps it motivating: students didn’t want to fall behind in the ranking.',
-      dec: 'The monthly ranking sits on the dashboard: their position, the students around them and the points they need to move up. The study streak multiplies those points.',
-      res: 'Together with the daily tasks, the ranking and the streak brought students back more often.' },
-    { goal: 'Lower support costs', title: 'Put help where students look', widget: 'Advisor contact', area: '68.4,44.3,91.6,57.1', crop: '../assets/img/dashboard-crop-advisor.jpg',
-      need: 'Students didn’t know who to ask, and often wrote to the sales team.',
-      dec: 'Their advisor’s phone, email and WhatsApp, always on the dashboard. Customer Care asked for it.',
-      res: 'Messages moved to the right channels.' }
-  ];
-  const pic = (f) => (f.startsWith('../assets/img/') ? '' : IMG) + f; // las de V4 viven en v4-lab/img
-  const nb = (s) => s.replace(/ (\S+)$/, '&nbsp;$1'); // ninguna palabra sola en la última línea
-  const num = (i) => String(i + 1).padStart(2, '0');
-  const zoom = $('#zoom');
-  zoom.style.setProperty('--steps', DEC.length);
-  $('.zindex').innerHTML = DEC.map((d, i) => '<button type="button" data-go="' + i + '" aria-label="Decision ' + (i + 1) + ': ' + d.title + '">' + num(i) + '</button>').join('');
-  $('.zsteps').innerHTML = DEC.map((d, i) => '<li class="zstep">'
-    + '<img class="zcrop" src="' + pic(d.crop) + '" alt="" loading="lazy">'
-    + '<p class="goal">' + num(i) + ' · ' + d.widget + ' · ' + d.goal + '</p><h3>' + d.title + '</h3>'
-    + '<div class="part"><span class="label">Need</span>' + nb(d.need) + '</div>'
-    + '<div class="part"><span class="label">Decision</span>' + nb(d.dec) + '</div>'
-    + '<div class="part result"><span class="label">Result</span>' + nb(d.res) + '</div></li>').join('');
-
-  /* La tarjeta: el marco queda quieto; el dashboard se mueve y se acerca al widget del paso que se lee
-     (lógica de V2). El paso cambia con el scroll; los números saltan a cada decisión. */
-  const frame = $('.zframe'), layer = $('.zlayer'), img = $('img', layer), ring = $('.zring');
-  const steps = $$('.zstep'), dots = $$('[data-go]');
-  const desktop = matchMedia('(min-width: 900px)');
-  const base = img.getAttribute('src');
-  let current = -1;
-
-  function place(i) {
-    const W = frame.clientWidth, H = frame.clientHeight;
-    if (!W || !img.naturalWidth) return;
-    const imgH = W * img.naturalHeight / img.naturalWidth;
-    const [l, t, r, b] = DEC[i].area.split(',').map(Number);
-    const rx = l / 100 * W, ry = t / 100 * imgH, rw = (r - l) / 100 * W, rh = (b - t) / 100 * imgH;
-    const s = Math.max(Math.min(W / (rw * 1.25), H / (rh * 1.25), 1.9), H / imgH);
-    let tx = W / 2 - s * (rx + rw / 2), ty = H / 2 - s * (ry + rh / 2);
-    if (s >= 1) tx = Math.min(0, Math.max(W - s * W, tx));
-    if (s * imgH >= H) ty = Math.min(0, Math.max(H - s * imgH, ty));
-    layer.style.setProperty('--w', W + 'px');
-    layer.style.setProperty('--s', s.toFixed(3));
-    layer.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + s + ')';
-    Object.assign(ring.style, { left: l + '%', top: t + '%', width: (r - l) + '%', height: (b - t) + '%' });
-    ring.classList.add('on');
-  }
-  function setStep(i) {
-    if (i === current) return;
-    current = i;
-    steps.forEach((s, k) => s.classList.toggle('is-active', k === i));
-    dots.forEach((d) => d.classList.toggle('is-active', +d.dataset.go === i));
-    const src = new URL(DEC[i].src ? IMG + DEC[i].src : base, location.href).href;
-    if (src === img.src) { layer.classList.remove('swap'); place(i); return; }
-    layer.classList.add('swap');
-    setTimeout(() => {
-      if (current !== i) return;
-      img.addEventListener('load', () => {
-        layer.style.transition = 'none'; place(i); layer.offsetHeight; layer.style.transition = '';
-        layer.classList.remove('swap');
-      }, { once: true });
-      img.src = src;
-    }, 250);
-  }
-  function onScroll() {
-    if (!desktop.matches) return;
-    const travel = zoom.offsetHeight - innerHeight;
-    const p = Math.min(0.999, Math.max(0, -zoom.getBoundingClientRect().top / travel));
-    setStep(Math.floor(p * steps.length));
-  }
-  dots.forEach((d) => d.addEventListener('click', () => {
-    const travel = zoom.offsetHeight - innerHeight;
-    const top = zoom.getBoundingClientRect().top + scrollY;
-    scrollTo({ top: top + (+d.dataset.go + 0.5) / steps.length * travel, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-  }));
-  addEventListener('scroll', onScroll, { passive: true });
-  addEventListener('resize', () => { if (current >= 0) place(current); onScroll(); });
-  if (!img.complete) img.addEventListener('load', () => place(Math.max(0, current)), { once: true });
-  setStep(0);
-  onScroll();
-
-  $('.nav .menu').addEventListener('click', (e) => { const n = $('.nav'); n.classList.toggle('open'); e.currentTarget.setAttribute('aria-expanded', n.classList.contains('open')); });
-})();
-</script>
-<!-- Ronda 50: ir a Approach desde esta página, con un fundido a negro (la home abre directo en I listen) -->
-<div class="leave" aria-hidden="true"></div>
-<script>
-  (function () {
-    const leave = document.querySelector('.leave');
-    document.querySelectorAll('a[href$="#approach"]').forEach((a) => a.addEventListener('click', (e) => {
-      e.preventDefault(); leave.classList.add('on'); setTimeout(() => { location.href = a.href; }, 260);
-    }));
-    addEventListener('pageshow', () => leave.classList.remove('on'));
-  })();
-</script>
+<script src="../js/nav-transitions.js?v=20261028a"></script>
+<script src="../js/interior-nav.js?v=20261028b"></script>
+<script src="../js/approach-tile.js?v=20261028a"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie_light.min.js"></script>
+<script src="../js/lottie-tiles.js?v=20261028a"></script>
+<script src="../js/grid-reveal.js?v=12"></script>
+<script src="../js/cover-reveal.js?v=7"></script>
+<script src="../js/case-study.js?v=20261026a"></script>
+<script src="../js/cover.js?v=2"></script>
 </body>
 </html>

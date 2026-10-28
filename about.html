@@ -1,311 +1,363 @@
-<!doctype html>
+<!DOCTYPE html>
+<!--
+  About. Built on the case study grid (css/case-study.css) plus css/about.css.
+  Copy: validated with Ema in chat (26 Oct 2026); the bridge "I make sure every story ends in numbers" and the
+  first sentence of Tool stack are pending validation.
+-->
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <title>About · Emilia Laviero</title>
-<meta name="description" content="From writing stories to shaping products: how Emilia Laviero works, what she believes in and what she does outside work.">
+<meta name="description" content="Product Maker in Madrid, with five years in B2B and B2C startups. I still tell stories, but now I make sure they end in numbers.">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<script>
+  document.documentElement.classList.add("js");
+  // Cover Reveal: coming from the About or Approach tile of the menu (flag set by cover-reveal.js), the cover title is already in place
+  (function () {
+    try {
+      var t = +sessionStorage.getItem("coverReveal");
+      sessionStorage.removeItem("coverReveal");
+      if (t && Date.now() - t < 5000 && window.innerWidth > 991 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("cover-reveal");
+      }
+    } catch (e) {}
+  })();
+</script>
 <link rel="canonical" href="https://emilialaviero.com/about.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="About · Emilia Laviero">
-<meta property="og:description" content="From writing stories to shaping products: how Emilia Laviero works, what she believes in and what she does outside work.">
-<meta property="og:url" content="https://emilialaviero.com/about.html">
 <meta property="og:site_name" content="Emilia Laviero">
-<meta property="og:image" content="https://emilialaviero.com/assets/images/personal-photo-1.jpg">
+<meta property="og:title" content="About · Emilia Laviero">
+<meta property="og:description" content="Product Maker in Madrid, with five years in B2B and B2C startups. I still tell stories, but now I make sure they end in numbers.">
+<meta property="og:url" content="https://emilialaviero.com/about.html">
+<meta property="og:image" content="https://emilialaviero.com/assets/images/og-home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="css/webflow.css?v=20261028a">
+<link rel="stylesheet" href="css/global.css?v=20261028a">
+<link rel="stylesheet" href="css/tiles.css?v=20261028a">
+<link rel="stylesheet" href="css/menu-button.css?v=12">
+<link rel="stylesheet" href="css/transitions.css?v=20261028a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Bungee&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/case-study.css">
-<style>
-  /* Ronda 26: dos colores para resaltar (azafrán y periwinkle) y Mantras antes de Outside work.
-     Página About (ronda 25: misma grilla en las tres secciones, foto en 2-6 y texto en 7-12; un solo color para resaltar).
-     Ronda 24: Estructura de párrafos de Arodav: de dónde vengo, qué hago hoy y fuera del trabajo;
-     después, los mantras. La experiencia queda en el CV (ronda 36). Mismo lenguaje que los case studies. */
-  section { margin-bottom: 0; }
-  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-
-  /* Bloques de historia: una foto en marco y, al lado, una frase en Bungee y los párrafos */
-  .story { align-items: center; }
-  .story .photo { position: relative; }
-  .story .photo .frame { border-radius: 24px; }
-  .story .photo img { width: 100%; height: 100%; object-fit: cover; }
-  .story .txt { display: grid; gap: 3.2vh; justify-items: start; }
-  .story .say { font-family: var(--display); font-size: clamp(26px, 2.7vw, 50px); line-height: 1.05; text-wrap: balance; margin-bottom: 1.5vh; }
-  .story .txt p:not(.say) { font-size: clamp(16px, 1.1vw, 19px); line-height: 1.5; font-weight: 500; }
-  /* Ronda 38: una sola grilla en toda la página. Columna izquierda 2-6, derecha 7-12 (simétrica); el texto llena su columna */
-  .story .txt a { font-weight: 650; text-underline-offset: .18em; }
-
-  /* 1 · De dónde vengo y qué hago hoy */
-  .intro { min-height: calc(100vh - var(--nav-h) - 3vh); padding: 4vh 0 10vh; }
-  .intro .photo { grid-column: 2 / 6; }
-  .intro .photo .frame { aspect-ratio: 4 / 5; box-shadow: 10px 10px 0 var(--ink); transform: rotate(-1.5deg); }
-  .intro .photo img { object-position: 40% 50%; }
-  .intro .txt { grid-column: 7 / 12; }
-  mark { color: var(--ink); padding: .02em .22em; border-radius: .2em; font-weight: 650; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
-  mark { background: var(--l4); }
-  mark.alt { background: var(--l0); }
-  .pill-btn { margin-top: 1.5vh; display: inline-flex; align-items: center; gap: 10px; font-size: clamp(15px, 1.15vw, 18px); font-weight: 650; padding: 12px 20px; border-radius: 99px; background: var(--paper); border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); transition: transform .3s var(--spring), box-shadow .3s var(--spring); }
-  .pill-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
-  .pill-btn svg { width: 16px; height: 16px; }
-
-
-  /* 2 · Fuera del trabajo: el texto a la izquierda, la foto del ensayo a la derecha */
-  .outside { padding: 16vh 0 22vh; }
-  .outside .sec-title { grid-column: 7 / 12; grid-row: 1; align-self: end; margin-bottom: 4vh; }
-  .outside .txt { grid-column: 7 / 12; grid-row: 2; align-self: start; }
-  .outside .photo { grid-column: 2 / 6; grid-row: 1 / 3; }
-  .outside .photo .frame { aspect-ratio: 4 / 5; box-shadow: 10px 10px 0 var(--ink); transform: rotate(1.5deg); }
-  .outside .photo img { object-position: 30% 50%; }
-
-  /* 3 · Mantras: el mazo de la home, sobre el papel (sin fondo de color) */
-  .mantras { position: relative; height: 320vh; }
-  .mantras .pin { position: sticky; top: 0; height: 100vh; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gutter); padding: calc(var(--nav-h) + 6vh) 0 8vh; }
-  .m-side { grid-column: 2 / 6; display: flex; flex-direction: column; justify-content: center; gap: 6vh; }
-  .m-side h2 { font-size: clamp(28px, 2.8vw, 50px); } /* ronda 36: mismo tamaño que los otros títulos */
-  .m-desc { font-size: clamp(16px, 1.1vw, 19px); line-height: 1.5; font-weight: 500; } /* ronda 27: igual que el resto del texto */
-  .deck-wrap { grid-column: 7 / 12; display: grid; grid-template-rows: 1fr auto; justify-items: center; gap: 2vh; }
-  .deck { position: relative; width: 100%; height: 100%; min-height: 50vh; }
-  .card { position: absolute; left: 50%; top: 50%; width: 100%; aspect-ratio: 5 / 4; border-radius: 24px; padding: clamp(22px, 2.4vw, 38px); display: flex; flex-direction: column; justify-content: space-between; border: var(--line-w) solid var(--ink); box-shadow: 8px 8px 0 var(--ink); will-change: transform; overflow: hidden; }
-  .card h3 { font-size: clamp(22px, 2.1vw, 38px); line-height: 1; position: relative; max-width: 12em; }
-  .card p { font-size: clamp(15px, 1.12vw, 19px); line-height: 1.5; font-weight: 500; position: relative; max-width: 44ch; }
-  .card svg { position: absolute; right: -10%; top: -26%; width: 42%; height: auto; }
-  .scroll-hint { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; display: inline-flex; gap: 8px; align-items: center; }
-  .scroll-hint i { font-style: normal; display: inline-block; animation: bob 1.4s ease-in-out infinite; }
-  @keyframes bob { 50% { transform: translateY(4px); } }
-
-  /* 4 · Tool stack: título y texto a la izquierda (2-6), las herramientas en grupos a la derecha (7-12) */
-  .stack { padding: 16vh 0 0; align-items: start; }
-  .stack .sec-title { grid-column: 2 / 6; grid-row: 1; align-self: end; margin-bottom: 4vh; }
-  .stack .lead { grid-column: 2 / 6; grid-row: 2; align-self: start; }
-  .stack .tools { grid-column: 7 / 12; grid-row: 1 / 3; align-self: center; margin-top: 0; }
-  .tools { list-style: none; display: grid; grid-template-columns: repeat(4, 72px); justify-content: center; gap: 24px 36px; /* centrado en la columna, como la carta de mantras */ margin-top: 14px; } /* 4 por fila, 3 renglones: nunca un logo solo */
-  .tool { display: grid; justify-items: center; gap: 10px; white-space: nowrap; font-size: 14px; font-weight: 600; text-align: center; }
-  .tool .logo { display: grid; place-items: center; width: 100%; max-width: 72px; aspect-ratio: 1; border-radius: 18px; background: #fff; border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); transition: transform .3s var(--spring), box-shadow .3s var(--spring); }
-  .tool .logo img { width: 32px; height: 32px; }
-  .tool:hover .logo { transform: translate(-2px, -2px) rotate(-4deg); box-shadow: 6px 6px 0 var(--ink); }
-
-
-  /* Footer: el de la home, con el email para copiar */
-  .links .email { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); font-size: clamp(15px, 1.2vw, 19px); font-weight: 650; padding: 12px 20px; border-radius: 99px; background: var(--paper); border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
-  .copy { display: inline-grid; width: 22px; height: 22px; }
-  .copy svg { grid-area: 1 / 1; width: 100%; height: 100%; transition: opacity .2s, transform .3s var(--spring); }
-  .copy .i-check { opacity: 0; transform: scale(.4); }
-  .copy.done .i-copy { opacity: 0; transform: scale(.4); }
-  .copy.done .i-check { opacity: 1; transform: scale(1); }
-
-  @media (max-width: 899px) {
-    .intro { min-height: 0; padding: 4vh 0 12vh; }
-    .story .photo { margin: 0 8% 7vh 4%; }
-    .outside .photo { grid-row: 1 !important; }
-    .outside .sec-title { grid-row: 2 !important; }
-    .outside .txt { grid-row: 3 !important; }
-    .mantras .pin > * { grid-column: 1 / -1; }
-    .outside { padding: 2vh 0 12vh; }
-    .stack { padding: 4vh 0 10vh; }
-    .stack .sec-title, .stack .lead, .stack .tools { grid-row: auto !important; }
-    .stack .tools { margin-top: 5vh; }
-    .tools { grid-template-columns: repeat(4, 64px); justify-content: space-between; gap: 18px 12px; }
-    .tool { font-size: 12px; }
-    .mantras { height: auto; }
-    .mantras .pin { position: relative; height: auto; display: block; padding: 6vh 0 14vh; }
-    .m-side { margin-bottom: 6vh; }
-    .deck-wrap { display: block; }
-    .deck { height: auto; min-height: 0; display: grid; gap: 4vh; }
-    .card { position: relative; left: auto; top: auto; width: 100%; aspect-ratio: auto; gap: 4vh; transform: none !important; opacity: 1 !important; }
-    .scroll-hint { display: none; }
-  }
-  @media (prefers-reduced-motion: reduce) { .tool .logo, .pill-btn, .copy svg { transition: none; } .scroll-hint i { animation: none; } }
-</style>
-<script defer src="https://cloud.umami.is/script.js" data-website-id="fcb351f4-7b90-480b-a4d0-76a9ef057f95"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..700&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<link rel="stylesheet" href="css/identity.css?v=20261028a">
+<link rel="stylesheet" href="css/interior-nav.css?v=20261028a">
+<link rel="stylesheet" href="css/editorial.css?v=20261028a">
+<link rel="stylesheet" href="css/grid-reveal.css?v=20261028a">
+<link rel="stylesheet" href="css/cover-reveal.css?v=3">
+<link rel="stylesheet" href="css/cover.css?v=1">
+<link rel="stylesheet" href="css/case-study.css?v=20261028a">
+<link rel="stylesheet" href="css/about.css?v=20261028a">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="fcb351f4-7b90-480b-a4d0-76a9ef057f95" data-domains="emilialaviero.com,www.emilialaviero.com"></script>
+<script defer src="js/analytics.js?v=1"></script>
 </head>
-<body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <filter id="sticker" x="-20%" y="-60%" width="140%" height="220%" color-interpolation-filters="sRGB">
-    <feMorphology in="SourceAlpha" operator="dilate" radius="5" result="paperShape"/>
-    <feMorphology in="SourceAlpha" operator="dilate" radius="7.5" result="borderShape"/>
-    <feOffset in="borderShape" dx="3.5" dy="3.5" result="shadowShape"/>
-    <feFlood flood-color="#0A0710" result="ink"/>
-    <feComposite in="ink" in2="shadowShape" operator="in" result="shadow"/>
-    <feComposite in="ink" in2="borderShape" operator="in" result="border"/>
-    <feFlood flood-color="#FFF6EA"/>
-    <feComposite in2="paperShape" operator="in" result="paper"/>
-    <feMerge><feMergeNode in="shadow"/><feMergeNode in="border"/><feMergeNode in="paper"/><feMergeNode in="SourceGraphic"/></feMerge>
-  </filter>
+<body class="cs-page about-page" data-page-title="About">
+<div class="nav-container">
+<div class="nav-scroll-indicator"></div>
+<div class="nav-border-line"></div>
+<div class="nav"><nav class="nav-wrapper"><div class="nav-tile nav-tile-1"><a data-track="open-work" data-track-from="menu" id="tilework" href="work.html" data-first-cover="assets/images/project-dino-app.jpg" class="tile color work w-inline-block"><div class="tile-title">Work</div><div class="color-visual-container"><div class="color-tile-embed w-embed"></div><div class="color-visual-square"><div class="color-visual-square-square"><div class="color-color-block block-1"><div class="w-embed"><svg class="color-color-circle" viewBox="0 0 150 150">
+<path d="M75 25C42.7594 25 25 42.7563 25 75C25 107.244 42.7594 125 75 125C107.241 125 125 107.244 125 75C125 42.7563 107.241 25 75 25Z"/>
+</svg></div></div><div class="color-color-block block-2"><div class="w-embed"><svg class="color-color-circle" viewBox="0 0 150 150">
+<path d="M75 25C42.7594 25 25 42.7563 25 75C25 107.244 42.7594 125 75 125C107.241 125 125 107.244 125 75C125 42.7563 107.241 25 75 25Z"/>
+</svg></div></div></div></div></div></a></div><div class="nav-tile nav-tile-2"><a data-track="open-contact" data-track-from="menu" id="tilecontact" href="contact.html" class="tile contact w-inline-block"><div class="tile-title">Contact</div><div class="typography-visual-container"><div class="typography-visual-square"><div class="typography-visual-type-embed w-embed"><svg class="typography-visual-type contact-visual-type" viewBox="0 0 196 110" aria-hidden="true">
+  <defs>
+    <path id="contact-visual-type-path" d="M26 0.5L46 0.5L46 44L92 44L92 0.5L112 0.5L112 106.6L92 106.6L92 62L46 62L46 106.6L26 106.6ZM134 0.5L154 0.5L154 20.5L134 20.5ZM134 30L154 30L154 106.6L134 106.6ZM176 0.5L196 0.5L193 78L179 78ZM176 86.6L196 86.6L196 106.6L176 106.6Z">
+      <animate attributeName="d" dur="0.35s" fill="freeze" keyTimes="0; 1" keySplines=".4 0 .2 1" calcMode="spline" to="M0 0.5L34 0.5L34 40L66 40L66 0.5L100 0.5L100 106.6L66 106.6L66 66L34 66L34 106.6L0 106.6ZM114 0.5L148 0.5L148 28.5L114 28.5ZM114 36L148 36L148 106.6L114 106.6ZM162 0.5L196 0.5L191 70L167 70ZM162 78.6L196 78.6L196 106.6L162 106.6Z" begin="tilecontact.mouseover"/>
+      <animate attributeName="d" dur="0.35s" fill="freeze" keyTimes="0; 1" keySplines=".4 0 .2 1" calcMode="spline" to="M26 0.5L46 0.5L46 44L92 44L92 0.5L112 0.5L112 106.6L92 106.6L92 62L46 62L46 106.6L26 106.6ZM134 0.5L154 0.5L154 20.5L134 20.5ZM134 30L154 30L154 106.6L134 106.6ZM176 0.5L196 0.5L193 78L179 78ZM176 86.6L196 86.6L196 106.6L176 106.6Z" begin="tilecontact.mouseout"/>
+    </path>
+    <clipPath id="contact-visual-type-clip">
+      <use href="#contact-visual-type-path"/>
+    </clipPath>
+  </defs>
+  <use href="#contact-visual-type-path" stroke-width="4px" clip-path="url(#contact-visual-type-clip)"/>
+</svg></div></div></div></a></div><div class="nav-tile nav-tile-3"><a data-track="open-resume" data-track-from="menu" id="tileresume" href="https://drive.google.com/file/d/1UBUYoUBQmqR8Oo1AWpUcdBWm7KlIhkAL/view?usp=sharing" target="_blank" rel="noopener" class="tile resume w-inline-block"><div class="tile-title">Resume</div><div class="resume-visual-container"><div class="lottie-visual resume-visual" data-src="assets/lottie-animations/Profile 3.json" data-viewbox="27.9 58.6 1141.4 1141.4" data-motion="0,30" data-once></div></div></a></div><div class="nav-tile nav-tile-4"><a data-track="open-approach" data-track-from="menu" id="tileapproach" href="approach.html" class="tile motion approach w-inline-block"><div class="tile-title">Approach</div><div class="motion-visual-container"><div class="approach-visual" data-src="assets/lottie-animations/approach.svg"></div></div></a></div><div class="nav-tile nav-tile-5"><a data-track="open-about" data-track-from="menu" id="tileabout" href="about.html" class="tile voice-tone about w-inline-block"><div class="tile-title">About</div><div class="voice-tone-visual-container"><div class="w-embed"><svg class="voice-tone-quotation-mark left" width="204" height="163" viewBox="0 0 204 163">
+  <defs>
+    <clipPath id="clip-shape">
+      <path d="M8.16 50.9646C2.72 65.2502 0 82.2384 0 101.929C0 116.987 1.36 128.763 4.08 137.257C7.18857 145.751 12.0457 151.929 18.6514 155.79C25.2571 159.264 34 161.002 44.88 161.002C54.9829 161.002 63.1429 159.651 69.36 156.948C75.5771 154.245 80.0457 149.805 82.7657 143.628C85.8743 137.45 87.4286 129.149 87.4286 118.724C87.4286 107.528 86.0686 99.2266 83.3486 93.8213C81.0171 88.0298 77.1314 84.1689 71.6914 82.2384C66.2514 79.9218 59.0629 78.7635 50.1257 78.7635C47.4878 78.7635 44.9198 78.9721 42.4217 79.3891C43.1347 71.3966 44.537 64.4314 46.6286 58.4935C49.7371 50.7716 54.2057 44.594 60.0343 39.9609C65.8629 35.3277 72.8571 32.6251 81.0172 31.8529L75.7714 0C58.6743 2.31657 44.4914 7.91495 33.2229 16.7951C21.9543 25.2893 13.6 36.6791 8.16 50.9646Z"/>
+      <path d="M124.731 50.9646C119.291 65.2502 116.571 82.2384 116.571 101.929C116.571 116.987 117.931 128.763 120.651 137.257C123.76 145.751 128.617 151.929 135.223 155.79C141.829 159.264 150.571 161.002 161.451 161.002C171.554 161.002 179.714 159.651 185.931 156.948C192.149 154.245 196.617 149.805 199.337 143.628C202.446 137.45 204 129.149 204 118.724C204 107.528 202.64 99.2266 199.92 93.8213C197.589 88.0298 193.703 84.1689 188.263 82.2384C182.823 79.9218 175.634 78.7635 166.697 78.7635C164.059 78.7635 161.491 78.9721 158.993 79.3891C159.706 71.3966 161.108 64.4314 163.2 58.4935C166.309 50.7716 170.777 44.594 176.606 39.9609C182.434 35.3277 189.429 32.6251 197.589 31.8529L192.343 0C175.246 2.31657 161.063 7.91495 149.794 16.7951C138.526 25.2893 130.171 36.6791 124.731 50.9646Z"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip-shape)">
+    <path d="M8.16 50.9646C2.72 65.2502 0 82.2384 0 101.929C0 116.987 1.36 128.763 4.08 137.257C7.18857 145.751 12.0457 151.929 18.6514 155.79C25.2571 159.264 34 161.002 44.88 161.002C54.9829 161.002 63.1429 159.651 69.36 156.948C75.5771 154.245 80.0457 149.805 82.7657 143.628C85.8743 137.45 87.4286 129.149 87.4286 118.724C87.4286 107.528 86.0686 99.2266 83.3486 93.8213C81.0171 88.0298 77.1314 84.1689 71.6914 82.2384C66.2514 79.9218 59.0629 78.7635 50.1257 78.7635C47.4878 78.7635 44.9198 78.9721 42.4217 79.3891C43.1347 71.3966 44.537 64.4314 46.6286 58.4935C49.7371 50.7716 54.2057 44.594 60.0343 39.9609C65.8629 35.3277 72.8571 32.6251 81.0172 31.8529L75.7714 0C58.6743 2.31657 44.4914 7.91495 33.2229 16.7951C21.9543 25.2893 13.6 36.6791 8.16 50.9646Z"/>
+    <path d="M124.731 50.9646C119.291 65.2502 116.571 82.2384 116.571 101.929C116.571 116.987 117.931 128.763 120.651 137.257C123.76 145.751 128.617 151.929 135.223 155.79C141.829 159.264 150.571 161.002 161.451 161.002C171.554 161.002 179.714 159.651 185.931 156.948C192.149 154.245 196.617 149.805 199.337 143.628C202.446 137.45 204 129.149 204 118.724C204 107.528 202.64 99.2266 199.92 93.8213C197.589 88.0298 193.703 84.1689 188.263 82.2384C182.823 79.9218 175.634 78.7635 166.697 78.7635C164.059 78.7635 161.491 78.9721 158.993 79.3891C159.706 71.3966 161.108 64.4314 163.2 58.4935C166.309 50.7716 170.777 44.594 176.606 39.9609C182.434 35.3277 189.429 32.6251 197.589 31.8529L192.343 0C175.246 2.31657 161.063 7.91495 149.794 16.7951C138.526 25.2893 130.171 36.6791 124.731 50.9646Z"/>
+  </g>
+</svg>
+<svg class="voice-tone-quotation-mark right" width="204" height="163" viewBox="0 0 204 163">
+  <defs>
+    <clipPath id="clip-shape">
+      <path d="M8.16 50.9646C2.72 65.2502 0 82.2384 0 101.929C0 116.987 1.36 128.763 4.08 137.257C7.18857 145.751 12.0457 151.929 18.6514 155.79C25.2571 159.264 34 161.002 44.88 161.002C54.9829 161.002 63.1429 159.651 69.36 156.948C75.5771 154.245 80.0457 149.805 82.7657 143.628C85.8743 137.45 87.4286 129.149 87.4286 118.724C87.4286 107.528 86.0686 99.2266 83.3486 93.8213C81.0171 88.0298 77.1314 84.1689 71.6914 82.2384C66.2514 79.9218 59.0629 78.7635 50.1257 78.7635C47.4878 78.7635 44.9198 78.9721 42.4217 79.3891C43.1347 71.3966 44.537 64.4314 46.6286 58.4935C49.7371 50.7716 54.2057 44.594 60.0343 39.9609C65.8629 35.3277 72.8571 32.6251 81.0172 31.8529L75.7714 0C58.6743 2.31657 44.4914 7.91495 33.2229 16.7951C21.9543 25.2893 13.6 36.6791 8.16 50.9646Z"/>
+      <path d="M124.731 50.9646C119.291 65.2502 116.571 82.2384 116.571 101.929C116.571 116.987 117.931 128.763 120.651 137.257C123.76 145.751 128.617 151.929 135.223 155.79C141.829 159.264 150.571 161.002 161.451 161.002C171.554 161.002 179.714 159.651 185.931 156.948C192.149 154.245 196.617 149.805 199.337 143.628C202.446 137.45 204 129.149 204 118.724C204 107.528 202.64 99.2266 199.92 93.8213C197.589 88.0298 193.703 84.1689 188.263 82.2384C182.823 79.9218 175.634 78.7635 166.697 78.7635C164.059 78.7635 161.491 78.9721 158.993 79.3891C159.706 71.3966 161.108 64.4314 163.2 58.4935C166.309 50.7716 170.777 44.594 176.606 39.9609C182.434 35.3277 189.429 32.6251 197.589 31.8529L192.343 0C175.246 2.31657 161.063 7.91495 149.794 16.7951C138.526 25.2893 130.171 36.6791 124.731 50.9646Z"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip-shape)">
+    <path d="M8.16 50.9646C2.72 65.2502 0 82.2384 0 101.929C0 116.987 1.36 128.763 4.08 137.257C7.18857 145.751 12.0457 151.929 18.6514 155.79C25.2571 159.264 34 161.002 44.88 161.002C54.9829 161.002 63.1429 159.651 69.36 156.948C75.5771 154.245 80.0457 149.805 82.7657 143.628C85.8743 137.45 87.4286 129.149 87.4286 118.724C87.4286 107.528 86.0686 99.2266 83.3486 93.8213C81.0171 88.0298 77.1314 84.1689 71.6914 82.2384C66.2514 79.9218 59.0629 78.7635 50.1257 78.7635C47.4878 78.7635 44.9198 78.9721 42.4217 79.3891C43.1347 71.3966 44.537 64.4314 46.6286 58.4935C49.7371 50.7716 54.2057 44.594 60.0343 39.9609C65.8629 35.3277 72.8571 32.6251 81.0172 31.8529L75.7714 0C58.6743 2.31657 44.4914 7.91495 33.2229 16.7951C21.9543 25.2893 13.6 36.6791 8.16 50.9646Z"/>
+    <path d="M124.731 50.9646C119.291 65.2502 116.571 82.2384 116.571 101.929C116.571 116.987 117.931 128.763 120.651 137.257C123.76 145.751 128.617 151.929 135.223 155.79C141.829 159.264 150.571 161.002 161.451 161.002C171.554 161.002 179.714 159.651 185.931 156.948C192.149 154.245 196.617 149.805 199.337 143.628C202.446 137.45 204 129.149 204 118.724C204 107.528 202.64 99.2266 199.92 93.8213C197.589 88.0298 193.703 84.1689 188.263 82.2384C182.823 79.9218 175.634 78.7635 166.697 78.7635C164.059 78.7635 161.491 78.9721 158.993 79.3891C159.706 71.3966 161.108 64.4314 163.2 58.4935C166.309 50.7716 170.777 44.594 176.606 39.9609C182.434 35.3277 189.429 32.6251 197.589 31.8529L192.343 0C175.246 2.31657 161.063 7.91495 149.794 16.7951C138.526 25.2893 130.171 36.6791 124.731 50.9646Z"/>
+  </g>
 </svg>
 
-<a class="brand display" href="./" aria-label="Emilia Laviero, home"><span class="sticker">Emilia Laviero</span></a>
-<nav class="nav" aria-label="Main">
-  <button class="menu" type="button" aria-expanded="false">Menu</button>
-  <ul>
-    <li><a class="nav-link" href="./#work">Work</a></li>
-    <li><a class="nav-link" href="./#approach">Approach</a></li>
-    <li><a class="nav-link is-active" href="about.html" aria-current="page">About</a></li>
-    <li><a class="nav-link" href="#contact">Contact</a></li>
-  </ul>
-</nav>
+</div></div></a></div></nav></div>
+<div class="menu"><button id="nav-button" aria-label="Navigation menu" class="tile-menu-tile nav-button"><div class="nav-button-highlight"></div><div class="nav-button-content"><div class="nav-button-svg menu-logo w-embed"><svg viewBox="49.125 28 287.553 344.637" fill="currentColor">
+  <path d="M118.081 324.357L49.2422 284.635L49.125 191.55L118.081 151.76Z"/>
+  <path d="M198.67 105.441L129.653 144.14L129.889 332.134L198.67 371.851Z"/>
+  <path d="M336.335 107.56L211.597 179.538L211.622 100.147L336.292 28.0001Z"/>
+  <path d="M336.678 204.531L212.344 276.276L212.368 196.885L336.635 124.971Z"/>
+  <path d="M336.44 300.794L211.935 372.637L211.96 293.247L336.397 221.234Z"/>
+</svg></div><div class="nav-button-svg menu-hamburger w-embed"><svg viewBox="0 0 41 41" fill="currentColor">
+<path d="M32.6719 19.2188H8.32812V21.7812H32.6719V19.2188Z"/>
+<path d="M32.6719 9.96875H8.32812V12.5312H32.6719V9.96875Z"/>
+<path d="M32.6719 29.1094H8.32812V31.6719H32.6719V29.1094Z"/>
+</svg></div><div class="nav-button-svg menu-arrow w-embed">
 
-<main>
-  <!-- 1 · De dónde vengo y qué hago hoy -->
-  <section class="story intro grid" aria-label="Where I come from">
-    <figure class="photo">
-      <div class="frame"><img src="assets/images/personal-photo-1.jpg" alt="Emilia smiling on the grass, holding a Truman Capote novel"></div>
-    </figure>
-    <div class="txt">
-      <h1 class="say">From writing stories to shaping&nbsp;products</h1>
-      <p>My story starts with words. I began my career coordinating creative projects and working in <mark>copywriting</mark>, writing for different brands and creating educational&nbsp;content.</p>
-      <p>Little by little, the words led me to the whole experience. First came UX writing, then <mark>product design</mark>. Over the past five years I&rsquo;ve designed <mark class="alt">B2B and B2C</mark> products in startups: first in PropTech, with tools for property management, and then in <mark class="alt">EdTech</mark>, with learning experiences and educational&nbsp;apps.</p>
-      <p>Today I work on <mark>strategy</mark>, asking the big questions that set a product&rsquo;s direction, and I <mark>build the solutions</mark> that answer&nbsp;them.</p>
-      <a data-umami-event="open-resume" class="pill-btn" href="https://drive.google.com/file/d/1TCPcE9fgOwlY57MC0pf6gdawFP0CLo67/view?usp=sharing" target="_blank" rel="noopener">View Resume <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-    </div>
-  </section>
+<div class="menu-arrow-icon">
+<svg viewBox="0 0 41 41" fill="currentColor">
+  <path d="M21.8547 31.1429L13.2634 22.208L32.4624 22.208V19.6455L13.2634 19.6455L21.8547 10.7107L20.0075 8.93457L8.47656 20.9268L20.0075 32.919L21.8547 31.1429Z"/>
+</svg>
+</div></div><div class="nav-button-svg menu-close w-embed"><svg viewBox="0 0 41 41" fill="currentColor">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M22.311 20.5001L30.8009 28.9899L28.9889 30.8019L20.4991 22.312L12.0092 30.8019L10.1973 28.9899L18.6871 20.5001L10.1973 12.0102L12.0092 10.1982L20.4991 18.6881L28.9889 10.1982L30.8009 12.0102L22.311 20.5001Z"/>
+</svg></div></div></button></div>
+<div class="nav-page-title"></div>
+<a data-track="open-home" data-track-from="rail" class="nav-brand" href="index.html">Emilia Laviero</a>
+<div class="nav-background"></div>
+</div>
 
+<main class="cs ab" id="main">
 
-  <!-- 2 · Mantras (pasan de la home al About), sin fondo de color -->
-  <section class="mantras" id="mantras" aria-labelledby="mantras-h">
-    <div class="pin">
-      <div class="m-side">
-        <h2 class="display" id="mantras-h"><span class="box">Mantras</span></h2>
-        <p class="m-desc">What I believe in, and try to put into practice every&nbsp;day.</p>
+  <!-- 1 · Cover: the dark opening. The title in the middle, between two lines;
+       an empty row above and below it; cells of the grid around it with a quote mark, two photos and a
+       colour box. "Change approach" changes the box to another sense of the approach (js/about.js) -->
+  <header class="ab-cover" aria-labelledby="about-title">
+    <div class="ab-cover-grid">
+      <span class="ab-cover-v at-start" aria-hidden="true"></span>
+      <span class="ab-cover-v at-title" aria-hidden="true"></span>
+      <span class="ab-cover-v at-box" aria-hidden="true"></span>
+      <span class="ab-cover-v at-end" aria-hidden="true"></span>
+      <span class="ab-cover-v at-half" aria-hidden="true"></span>
+      <span class="ab-cover-v at-five" aria-hidden="true"></span>
+      <span class="ab-cover-h at-1" aria-hidden="true"></span>
+      <span class="ab-cover-h at-2" aria-hidden="true"></span>
+      <span class="ab-cover-h at-3" aria-hidden="true"></span>
+      <span class="ab-cover-h at-4" aria-hidden="true"></span>
+      <span class="ab-cover-mark" aria-hidden="true">&ldquo;</span>
+      <div class="ab-quote is-green">
+        <span class="ab-quote-mark" aria-hidden="true">&ldquo;</span>
+        <p class="ab-quote-text" aria-live="polite">The user&rsquo;s voice, even when they&rsquo;re not in the&nbsp;room.</p>
+        <span class="ab-quote-mark is-end" aria-hidden="true">&rdquo;</span>
+        <div class="ab-suggest">
+          <button class="ab-suggest-btn" type="button"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 6A5.5 5.5 0 0 0 3.2 4.2L2 5.5"/><path d="M2 2v3.5h3.5"/><path d="M2.5 10a5.5 5.5 0 0 0 10.3 1.8L14 10.5"/><path d="M14 14v-3.5h-3.5"/></svg><span class="ab-suggest-label">Change approach</span><span class="ab-suggest-dots" aria-hidden="true"><i></i><i></i><i></i></span></button>
+          <svg class="ab-suggest-caret" viewBox="0 0 8 14" aria-hidden="true"><path d="M0 0 8 7 0 14Z"/></svg>
+        </div>
       </div>
-      <div class="deck-wrap"><div class="deck" id="deck"></div><span class="scroll-hint" aria-hidden="true">Scroll to shift <i><svg class="ico" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M12 4v16M5 13l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div>
+      <div class="ab-cover-title-row">
+        <h1 class="ab-cover-title" id="about-title">About</h1>
+      </div>
+      <span class="ab-cover-mark is-end" aria-hidden="true">&rdquo;</span>
+      <figure class="ab-shot ab-shot-portrait"><img src="assets/images/about-emilia.jpg" alt="Portrait of Emilia Laviero" fetchpriority="high"></figure>
+      <figure class="ab-shot ab-shot-book"><img src="assets/images/personal-photo-1.jpg" alt="Emilia reading in a park" fetchpriority="high"></figure>
     </div>
-  </section>
+  </header>
 
-  <!-- 4 · Tool stack (antes de Outside work). Pendiente de validar por Ema: el texto y la lista de herramientas -->
-  <section class="story stack grid" id="tool-stack" aria-labelledby="stack-h">
-    <h2 class="display sec-title" id="stack-h"><span class="box">Tool stack</span></h2>
-    <div class="txt lead">
-      <p>AI now takes care of much of the surface-level work in design. What keeps its value is thinking in systems and turning complexity into&nbsp;clarity.</p>
-      <p>I&rsquo;m always exploring and learning new tools. These are the ones I use most right&nbsp;now.</p>
+  <div class="cs-body">
+    <div class="cs-wrap">
+      <span class="line-v at-start" aria-hidden="true"></span>
+      <span class="line-v at-end" aria-hidden="true"></span>
+
+      <!-- 2 · The presentation title, in the middle of the screen, inside a box of lines that follow
+           the text: across the page on its top and bottom, down the page on its left edge. The sentence
+           "I'm a Product Maker with a background in storytelling" is validated by Ema (26 Oct 2026) -->
+      <section class="cs-block ab-lead cs-reveal" aria-labelledby="lead-title">
+        <span class="line-v at-text" aria-hidden="true"></span>
+        <div class="ab-lead-box cs-fade">
+          <span class="line-h" aria-hidden="true"></span>
+          <span class="line-h at-bottom" aria-hidden="true"></span>
+          <h2 class="ab-lead-title" id="lead-title">I&rsquo;m a Product Maker with a background in&nbsp;storytelling</h2>
+        </div>
+      </section>
+
+      <!-- 2 · Who I am on the first two thirds, the experience on the last third, both from the top -->
+      <section class="cs-block ab-intro-block cs-reveal" aria-label="Who I am">
+        <span class="line-h" aria-hidden="true"></span>
+        <span class="line-v ab-line-23" aria-hidden="true"></span>
+        <div class="ab-intro cs-fade">
+          <p class="ab-p">My story starts with words. I began my career as a <mark>project manager and copywriter</mark>, coordinating creative projects for different brands and creating educational content. Then came UX writing, then product&nbsp;design.</p>
+          <p class="ab-p">Over the past five years I&rsquo;ve designed <mark>B2B and B2C products in startups</mark>: first in PropTech, building the foundations of an early-stage product, and then in EdTech, with learning experiences and educational apps during a period of fast&nbsp;growth.</p>
+          <p class="ab-p">Today I bring both together. I find <mark>the problems that matter most</mark> to users and the business, prioritise what to build and build it with AI. My years as a copywriter gave me a tool I use every day: <mark>telling a strategy</mark> so that every team understands why we do what we do, and designing products that users understand and want to&nbsp;use.</p>
+        </div>
+        <div class="ab-exp cs-fade">
+          <ol class="ab-jobs" aria-label="Experience">
+            <li><span class="ab-role">Product Maker</span><span class="ab-meta"><span>Ucademy</span><span>2024&ndash;2026</span></span></li>
+            <li><span class="ab-role">Lead Product Designer</span><span class="ab-meta"><span>Quota Rent</span><span>2021&ndash;2024</span></span></li>
+            <li><span class="ab-role">Graphic Designer</span><span class="ab-meta"><span>Holiday Gym</span><span>2019&ndash;2020</span></span></li>
+            <li><span class="ab-role">Project Manager &amp; Copywriter</span><span class="ab-meta"><span>Gianina Michelotti Comunicación Estratégica</span><span>2014&ndash;2018</span></span></li>
+          </ol>
+          <div class="ab-exp-actions">
+            <a data-track="open-resume" data-track-from="page" class="ab-button" href="https://drive.google.com/file/d/1UBUYoUBQmqR8Oo1AWpUcdBWm7KlIhkAL/view?usp=sharing" target="_blank" rel="noopener">View Resume ↗</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · Bridge: the sentence in a box, in one cell of a grid of lines that follow it. Pending validation -->
+      <section class="cs-block ab-voice has-line cs-reveal" aria-labelledby="stories-title">
+        <span class="line-h" aria-hidden="true"></span>
+        <span class="line-h at-gap" aria-hidden="true"></span>
+        <span class="line-h at-tail" aria-hidden="true"></span>
+        <span class="line-v at-box-end" aria-hidden="true"></span>
+        <div class="ab-voice-box cs-fade"><h2 class="ab-statement" id="stories-title">I still tell stories, but now I make sure they end in&nbsp;numbers</h2></div>
+      </section>
+
+      <!-- 4 · Two stories side by side, sharing the line in the middle -->
+      <section class="cs-block ab-band ab-proof has-line cs-reveal" aria-label="Two stories">
+        <span class="line-h" aria-hidden="true"></span>
+        <span class="line-h at-bottom" aria-hidden="true"></span>
+        <div class="ab-stories cs-fade">
+          <article class="ab-story">
+            <p class="ab-p">At Ucademy, I noticed in usage metrics and error reports that students weren&rsquo;t practising. With the CTO, I defined a new practice experience: six modes, progress by topic and feedback on every answer. It became a key sales argument, and the following quarter, sales&nbsp;doubled.</p>
+            <a data-track="open-project" data-track-project="practice" data-track-from="page" class="ab-link" href="pages/practice.html">Read the case study ↗</a>
+          </article>
+          <article class="ab-story">
+            <p class="ab-p">For a new line of business, an AI study app, I led discovery and experience design. Most students finished onboarding and didn&rsquo;t start a practice, so we made the first practice the last step of onboarding. Activation over downloads rose from about 7% to about&nbsp;36%.</p>
+            <a data-track="open-project" data-track-project="dino" data-track-from="page" class="ab-link" href="pages/dino.html">Read the case study ↗</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- Empty row of the grid -->
+      <div class="cs-row" aria-hidden="true"><span class="line-v"></span></div>
+
+      <!-- 4 · Mantras: each mantra is a looping illustration (Emilia's
+           Lotties, in the tones of each card) with its name below; on hover a lid rises with the text
+           (css/cover.css). On touch the text shows under the name -->
+      <section class="cs-block ab-band ab-mantras has-line cs-reveal" aria-labelledby="mantras-title">
+        <span class="line-h" aria-hidden="true"></span>
+        <span class="line-h at-bottom" aria-hidden="true"></span>
+        <div class="cs-side cs-fade">
+          <h2 class="cs-h2" id="mantras-title">Mantras</h2>
+          <p class="cs-desc">What I believe in, and try to put into practice every&nbsp;day.</p>
+        </div>
+        <div class="ab-mcards cs-fade">
+          <article class="ab-mcard" tabindex="0">
+            <div class="ab-mvisual is-green">
+              <div class="ab-lottie" data-lottie-loop="assets/lottie-animations/mantra-question.json?v=2"></div>
+              <div class="work-hover"><p class="p">Doubt isn&rsquo;t a roadblock, but an opportunity. Asking questions opens the door to new ideas and reveals other ways&nbsp;forward.</p></div>
+            </div>
+            <div class="ab-msplit"><h3 class="ab-mtitle">Question everything</h3><span class="ab-minfo" aria-hidden="true">i</span></div>
+            <p class="ab-mtext">Doubt isn&rsquo;t a roadblock, but an opportunity. Asking questions opens the door to new ideas and reveals other ways&nbsp;forward.</p>
+          </article>
+          <article class="ab-mcard" tabindex="0">
+            <div class="ab-mvisual is-blue">
+              <div class="ab-lottie" data-lottie-loop="assets/lottie-animations/mantra-launch.json?v=2"></div>
+              <div class="work-hover"><p class="p">In theatre, a play comes together when it meets its audience. Shipping early makes it possible to test hypotheses against real results and find out whether an idea&nbsp;works.</p></div>
+            </div>
+            <div class="ab-msplit"><h3 class="ab-mtitle">Launch before you have all the answers</h3><span class="ab-minfo" aria-hidden="true">i</span></div>
+            <p class="ab-mtext">In theatre, a play comes together when it meets its audience. Shipping early makes it possible to test hypotheses against real results and find out whether an idea&nbsp;works.</p>
+          </article>
+          <article class="ab-mcard" tabindex="0">
+            <div class="ab-mvisual is-pink">
+              <div class="ab-lottie" data-lottie-loop="assets/lottie-animations/mantra-direction.json?v=2"></div>
+              <div class="work-hover"><p class="p">To reach the right destination, the whole team needs to understand which problem it is solving and what goal it is pursuing. The strategy may change along the way, but the destination must be&nbsp;shared.</p></div>
+            </div>
+            <div class="ab-msplit"><h3 class="ab-mtitle">Everyone should share the same direction</h3><span class="ab-minfo" aria-hidden="true">i</span></div>
+            <p class="ab-mtext">To reach the right destination, the whole team needs to understand which problem it is solving and what goal it is pursuing. The strategy may change along the way, but the destination must be&nbsp;shared.</p>
+          </article>
+          <article class="ab-mcard" tabindex="0">
+            <div class="ab-mvisual is-purple">
+              <div class="ab-lottie" data-lottie-loop="assets/lottie-animations/mantra-objective.json?v=2"></div>
+              <div class="work-hover"><p class="p">For centuries, philosophy has asked why and what for. These questions help determine what to do and why it matters. Without them, it&rsquo;s easy to fall in love with an output that creates no real&nbsp;change.</p></div>
+            </div>
+            <div class="ab-msplit"><h3 class="ab-mtitle">Never lose sight of what it&rsquo;s for</h3><span class="ab-minfo" aria-hidden="true">i</span></div>
+            <p class="ab-mtext">For centuries, philosophy has asked why and what for. These questions help determine what to do and why it matters. Without them, it&rsquo;s easy to fall in love with an output that creates no real&nbsp;change.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Empty row of the grid -->
+      <div class="cs-row" aria-hidden="true"><span class="line-v"></span></div>
+
+      <!-- 5 · Tool stack: title and text on the first third, the tools in cells that share their edges -->
+      <section class="cs-block ab-band has-line cs-reveal" aria-labelledby="stack-title">
+        <span class="line-h" aria-hidden="true"></span>
+        <span class="line-h at-bottom" aria-hidden="true"></span>
+        <div class="cs-side cs-fade">
+          <h2 class="cs-h2" id="stack-title">Tool stack</h2>
+          <!-- Pending validation: the first sentence replaces the previous text -->
+          <p class="cs-desc">I use AI from insight to prototype: synthesising research, then prototyping and building on top of the design system to validate&nbsp;earlier.</p>
+          <p class="cs-desc">These are the ones I use most right&nbsp;now.</p>
+        </div>
+        <ul class="ab-tools cs-fade">
+          <li><img src="assets/logos/figma.svg" alt="" width="32" height="32">Figma</li>
+          <li><img src="assets/logos/claude.svg" alt="" width="32" height="32">Claude</li>
+          <li><img src="assets/logos/cursor.svg" alt="" width="32" height="32">Cursor</li>
+          <li><img src="assets/logos/lovable.svg" alt="" width="32" height="32">Lovable</li>
+          <li><img src="assets/logos/antigravity.svg" alt="" width="32" height="32">Antigravity</li>
+          <li><img src="assets/logos/github.svg" alt="" width="32" height="32">GitHub</li>
+          <li><img src="assets/logos/storybook.svg" alt="" width="32" height="32">Storybook</li>
+          <li><img src="assets/logos/framer.svg" alt="" width="32" height="32">Framer</li>
+          <li><img src="assets/logos/mixpanel.svg" alt="" width="32" height="32">Mixpanel</li>
+          <li><img src="assets/logos/posthog.svg" alt="" width="32" height="32">PostHog</li>
+          <li><img src="assets/logos/miro.svg" alt="" width="32" height="32">Miro</li>
+          <li><img src="assets/logos/adobe.svg" alt="" width="32" height="32">Adobe</li>
+        </ul>
+      </section>
+
+      <!-- 6 · Outside work, told as a story: the title in a grey box on the left, the text in a box on
+           the right one step lower, then three photos in a row across the grid. Lines follow the boxes -->
+      <section class="cs-block ab-outside has-line cs-reveal" aria-labelledby="outside-title">
+        <span class="line-h" aria-hidden="true"></span>
+        <div class="ab-voice-box ab-outside-title cs-fade"><p class="cs-label ab-kicker">Outside work</p><h2 class="ab-statement" id="outside-title">You&rsquo;ll usually find me creating&nbsp;stories</h2></div>
+        <div class="ab-outside-text cs-fade">
+          <p class="ab-p">Theatre, cinema and literature have always been a big part of my life. I act, write scripts and work behind the scenes in&nbsp;theatre.</p>
+          <p class="ab-p">I&rsquo;m the assistant director of the play <a data-track="open-link" data-track-link="la-distorsion" data-track-from="page" href="https://ladistorsion.vercel.app/" target="_blank" rel="noopener">La Distorsi&oacute;n&nbsp;↗</a>, and I wrote the short film <a data-track="open-link" data-track-link="youtube" data-track-from="page" href="https://www.youtube.com/watch?v=5o5coP0kEQQ" target="_blank" rel="noopener">Agobiada&nbsp;↗</a> and the fiction series <a data-track="open-link" data-track-link="youtube" data-track-from="page" href="https://www.youtube.com/watch?v=vDRZuveIakg" target="_blank" rel="noopener">Riff&nbsp;↗</a>.</p>
+          <p class="ab-p">I&rsquo;m also part of <a data-track="open-link" data-track-link="instagram" data-track-from="page" href="https://www.instagram.com/elchispazo.cc/" target="_blank" rel="noopener">El Chispazo&nbsp;↗</a>, a cultural project I organise with friends to bring people together through art, performance and creative&nbsp;experiences.</p>
+        </div>
+        <div class="ab-photos cs-fade">
+          <figure><img src="assets/images/personal-photo-2.jpg" alt="Emilia acting in a theatre rehearsal" loading="lazy"></figure>
+          <figure><img src="assets/images/outside-friends.jpg" alt="Emilia and a friend smiling at the camera" loading="lazy"></figure>
+          <figure><img src="assets/images/outside-audience.jpg" alt="An audience sitting on the floor while a musician plays the piano" loading="lazy"></figure>
+        </div>
+      </section>
     </div>
-    <ul class="tools">
-      <li class="tool"><span class="logo"><img src="assets/logos/figma.svg" alt="" width="32" height="32"></span>Figma</li>
-      <li class="tool"><span class="logo"><img src="assets/logos/adobe.svg" alt="" width="32" height="32"></span>Adobe</li>
-      <li class="tool"><span class="logo"><img src="assets/logos/miro.svg" alt="" width="32" height="32"></span>Miro</li>
-      <li class="tool"><span class="logo"><img src="assets/logos/storybook.svg" alt="" width="32" height="32"></span>Storybook</li>
-      <li class="tool"><span class="logo"><img src="assets/logos/claude.svg" alt="" width="32" height="32"></span>Claude</li>
-      <li class="tool"><span class="logo"><img src="assets/logos/cursor.svg" alt="" width="32" height="32"></span>Cursor</li>
-      <li class="tool"><span class="logo"><img src="assets/logos/lovable.svg" alt="" width="32" height="32"></span>Lovable</li>
-      <li class="tool"><span class="logo"><img src="assets/logos/framer.svg" alt="" width="32" height="32"></span>Framer</li>
-      <li class="tool"><span class="logo"><img src="assets/logos/github.svg" alt="" width="32" height="32"></span>GitHub</li>
-      <li class="tool"><span class="logo"><img src="assets/logos/mixpanel.svg" alt="" width="32" height="32"></span>Mixpanel</li>
-      <li class="tool"><span class="logo"><img src="assets/logos/posthog.svg" alt="" width="32" height="32"></span>PostHog</li>
-      <li class="tool"><span class="logo"><img src="assets/logos/antigravity.svg" alt="" width="32" height="32"></span>Antigravity</li>
-    </ul>
-  </section>
+  </div>
 
-  <!-- 3 · Fuera del trabajo (texto de V3; los proyectos, como links dentro del texto) -->
-  <section class="story outside grid" id="outside-work" aria-labelledby="outside-h">
-    <h2 class="display sec-title" id="outside-h"><span class="box">Outside work</span></h2>
-    <div class="txt">
-      <p class="say">You&rsquo;ll usually find me creating&nbsp;stories</p>
-      <p>Theatre, cinema and literature have always been a big part of my life. I act, write scripts and work behind the scenes in&nbsp;theatre.</p>
-      <!-- Pendiente de validar por Ema: la frase de los tres proyectos (datos de V2) -->
-      <p>I&rsquo;m the assistant director of the play <a href="https://ladistorsion.vercel.app/" target="_blank" rel="noopener">La Distorsi&oacute;n&nbsp;↗</a>, and I wrote the short film <a href="https://www.youtube.com/watch?v=5o5coP0kEQQ" target="_blank" rel="noopener">Agobiada&nbsp;↗</a> and the fiction series <a href="https://www.youtube.com/watch?v=vDRZuveIakg" target="_blank" rel="noopener">Riff&nbsp;↗</a>.</p>
-      <p>I&rsquo;m also part of <a href="https://www.instagram.com/elchispazo.cc/" target="_blank" rel="noopener">El Chispazo&nbsp;↗</a>, a cultural project I organise with friends to bring people together through art, performance and creative&nbsp;experiences.</p>
+  <!-- Footer: three quiet columns on the thirds of the grid. Contact (the email copies the address,
+       no mailto), Sitemap (the main pages) and Work (the case studies that have a page) -->
+  <footer class="cs-footer" id="contact" aria-label="Footer">
+    <div class="cs-footer-inner">
+      <div class="cs-footer-cols">
+        <div class="cs-footer-col">
+          <p class="cs-footer-label">Contact</p>
+          <ul>
+            <li><button data-track="copy-email" data-track-from="footer" class="cs-footer-link" type="button" data-copy="lavieroemilia@gmail.com"><svg class="cs-footer-icon" viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5"/><path d="m2 4.5 6 4.5 6-4.5"/></svg><span class="copy-label" aria-live="polite">lavieroemilia@gmail.com</span></button></li>
+            <li><a data-track="open-linkedin" data-track-from="footer" class="cs-footer-link" href="https://www.linkedin.com/in/emilialaviero/" target="_blank" rel="noopener"><svg class="cs-footer-icon is-fill" viewBox="0 0 16 16" aria-hidden="true"><defs><mask id="cs-in-mask"><rect width="16" height="16" rx="3" fill="#fff"/><g fill="#000"><rect x="3" y="6.2" width="2.2" height="6.8"/><circle cx="4.1" cy="3.9" r="1.3"/><path d="M7 6.2h2.1v1c.4-.7 1.2-1.2 2.3-1.2 1.8 0 2.6 1.1 2.6 3V13h-2.2V9.4c0-.9-.3-1.5-1.2-1.5-.9 0-1.4.6-1.4 1.6V13H7z"/></g></mask></defs><rect width="16" height="16" rx="3" fill="currentColor" mask="url(#cs-in-mask)"/></svg>LinkedIn</a></li>
+            <li><a data-track="open-resume" data-track-from="footer" class="cs-footer-link" href="https://drive.google.com/file/d/1UBUYoUBQmqR8Oo1AWpUcdBWm7KlIhkAL/view?usp=sharing" target="_blank" rel="noopener"><svg class="cs-footer-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 1.5H4A1.5 1.5 0 0 0 2.5 3v10A1.5 1.5 0 0 0 4 14.5h8a1.5 1.5 0 0 0 1.5-1.5V5.5z"/><path d="M9.5 1.5v4h4M5.5 8.5h5M5.5 11h5"/></svg>Resume</a></li>
+          </ul>
+        </div>
+        <nav class="cs-footer-col" aria-label="Sitemap">
+          <p class="cs-footer-label">Sitemap</p>
+          <ul><li><a data-track="open-home" data-track-from="footer" class="cs-footer-link" href="index.html">Home</a></li><li><a data-track="open-work" data-track-from="footer" class="cs-footer-link" href="work.html">Work</a></li><li><a data-track="open-about" data-track-from="footer" class="cs-footer-link" href="about.html" aria-current="page">About</a></li><li><a data-track="open-approach" data-track-from="footer" class="cs-footer-link" href="approach.html">Approach</a></li><li><a data-track="open-contact" data-track-from="footer" class="cs-footer-link" href="contact.html">Contact</a></li></ul>
+        </nav>
+        <nav class="cs-footer-col" aria-label="Case studies">
+          <p class="cs-footer-label">Work</p>
+          <ul><li><a data-track="open-project" data-track-project="dino" data-track-from="footer" class="cs-footer-link" href="pages/dino.html">Gamified learning app</a></li><li><a data-track="open-project" data-track-project="student-dashboard" data-track-from="footer" class="cs-footer-link" href="pages/student-dashboard.html">Student dashboard</a></li><li><a data-track="open-project" data-track-project="practice" data-track-from="footer" class="cs-footer-link" href="pages/practice.html">Tests and practice</a></li><li><a data-track="open-project" data-track-project="quota" data-track-from="footer" class="cs-footer-link" href="pages/quota-pms.html">Property management platform</a></li></ul>
+        </nav>
+      </div>
+      <div class="cs-footer-bottom"><span>Emilia Laviero &copy; 2026</span><span>Madrid, Spain</span><a href="#main">Back to top ↑</a></div>
     </div>
-    <figure class="photo"><div class="frame"><img src="assets/images/personal-photo-2.jpg" alt="Emilia acting in a theatre rehearsal" loading="lazy"></div></figure>
-  </section>
-
+  </footer>
 </main>
 
-<!-- Footer: el mismo de la home -->
-<footer class="contact" id="contact" aria-labelledby="contact-title">
-  <p class="label">Thank you for reading!</p>
-  <h2 class="display" id="contact-title">I&rsquo;d love to <span class="box">know you</span> too</h2>
-  <ul class="links">
-    <li><span class="email">lavieroemilia@gmail.com <button type="button" data-umami-event="copy-email" class="copy" data-email="lavieroemilia@gmail.com" aria-label="Copy email"><svg class="i-copy" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="i-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5L10 17.5L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></span></li>
-    <li><a data-umami-event="open-linkedin" href="https://www.linkedin.com/in/emilialaviero/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
-    <li><a data-umami-event="open-medium" href="https://medium.com/@emilaviero" target="_blank" rel="noopener">Medium ↗</a></li>
-    <li><a data-umami-event="open-resume" href="https://drive.google.com/file/d/1TCPcE9fgOwlY57MC0pf6gdawFP0CLo67/view?usp=sharing" target="_blank" rel="noopener">Resume ↗</a></li>
-  </ul>
-  <div class="foot"><span>Emilia Laviero &copy; <span id="year">2026</span></span><span>Madrid, Spain</span><a class="to-top" href="#">Back to top ↑</a></div>
-</footer>
-
-<script src="assets/js/content.js"></script>
-<script>
-(function () {
-  'use strict';
-  const $ = (s, r = document) => r.querySelector(s);
-  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const desktop = matchMedia('(min-width: 900px)');
-  const nb = (s) => s.replace(/ (\S+)$/, '&nbsp;$1'); // ninguna palabra sola en la última línea
-
-  /* ---------- Mantras: el mazo de la home; la carta de adelante sale hacia la derecha ---------- */
-  const deck = $('#deck'), sec = $('.mantras');
-  const N = V4.MANTRAS.length;
-  const TILT = [-3, 2, -2, 3];
-  const CARD = ['var(--l0)', 'var(--l4)', 'var(--l1)', 'var(--l3)'];
-  const motif = '<svg viewBox="0 0 100 100" aria-hidden="true">' + [0, 1, 2, 3, 4].map((k) => '<circle cx="100" cy="0" r="' + (36 + k * 9) + '" stroke="var(--ink)" stroke-width="10.6" fill="none"/><circle cx="100" cy="0" r="' + (36 + k * 9) + '" stroke="var(--paper)" stroke-width="7.4" fill="none"/>').join('') + '</svg>';
-  const cards = V4.MANTRAS.map((m, i) => {
-    const el = document.createElement('article');
-    el.className = 'card';
-    el.style.background = CARD[i];
-    el.innerHTML = motif + '<h3 class="display">' + nb(m.title.replace(/\.$/, '')) + '</h3><p>' + nb(m.text) + '</p>';
-    deck.appendChild(el);
-    return el;
-  });
-  let k = 0, kTarget = 0;
-  function drawDeck() {
-    cards.forEach((el, i) => {
-      const pos = (((i - k) % N) + N) % N;
-      let depth = pos, x = 0, rot, z, op, lift = 0;
-      if (pos > N - 1) {
-        const e = N - pos;
-        depth = e * (N - 1);
-        x = Math.sin(e * Math.PI) * 52;
-        lift = Math.sin(e * Math.PI) * 10;
-        rot = 12 * Math.sin(e * Math.PI) + TILT[i] * e;
-        z = e < 0.5 ? 100 : 1;
-        op = 1;
-      } else {
-        rot = -1 + (TILT[i] + 1) * Math.min(depth, 1);
-        z = 50 - Math.round(depth * 4);
-        op = clamp(4 - depth, 0, 1);
-      }
-      const d = Math.min(depth, 3.5);
-      el.style.zIndex = z; el.style.opacity = op;
-      el.style.transform = 'translate(calc(-50% + ' + x + '%), calc(-50% - ' + (d * 14 + lift) + 'px)) scale(' + (1 - d * 0.045) + ') rotate(' + rot + 'deg)';
-    });
-  }
-  function onScroll() {
-    if (!desktop.matches) return;
-    const r = sec.getBoundingClientRect();
-    kTarget = clamp(-r.top / (sec.offsetHeight - innerHeight), 0, 1) * (N - 1);
-  }
-  (function tick() {
-    if (desktop.matches && Math.abs(kTarget - k) > 0.001) { k += (kTarget - k) * (reduced ? 1 : 0.14); drawDeck(); }
-    requestAnimationFrame(tick);
-  })();
-  addEventListener('scroll', onScroll, { passive: true });
-  addEventListener('resize', onScroll);
-  onScroll(); drawDeck();
-
-  /* ---------- Footer: copiar el email (check durante 3 s), año y menú ---------- */
-  $('#year').textContent = new Date().getFullYear();
-  $('.copy').addEventListener('click', (e) => {
-    const b = e.currentTarget;
-    (navigator.clipboard ? navigator.clipboard.writeText(b.dataset.email) : Promise.reject()).catch(() => {});
-    b.classList.add('done'); b.setAttribute('aria-label', 'Copied');
-    setTimeout(() => { b.classList.remove('done'); b.setAttribute('aria-label', 'Copy email'); }, 3000);
-  });
-  $('.nav .menu').addEventListener('click', (e) => { const n = $('.nav'); n.classList.toggle('open'); e.currentTarget.setAttribute('aria-expanded', n.classList.contains('open')); });
-})();
-</script>
-<!-- Ronda 50: ir a Approach desde esta página, con un fundido a negro (la home abre directo en I listen) -->
-<div class="leave" aria-hidden="true"></div>
-<script>
-  (function () {
-    const leave = document.querySelector('.leave');
-    document.querySelectorAll('a[href$="#approach"]').forEach((a) => a.addEventListener('click', (e) => {
-      e.preventDefault(); leave.classList.add('on'); setTimeout(() => { location.href = a.href; }, 260);
-    }));
-    addEventListener('pageshow', () => leave.classList.remove('on'));
-  })();
-</script>
+<script src="js/nav-transitions.js?v=20261028a"></script>
+<script src="js/interior-nav.js?v=20261028b"></script>
+<script src="js/approach-tile.js?v=20261028a"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie_light.min.js"></script>
+<script src="js/lottie-tiles.js?v=20261028a"></script>
+<script src="js/grid-reveal.js?v=12"></script>
+<script src="js/cover-reveal.js?v=7"></script>
+<script src="js/case-study.js?v=20261026a"></script>
+<script src="js/lottie-loop.js?v=1"></script>
+<script src="js/about.js?v=20261028a"></script>
 </body>
 </html>

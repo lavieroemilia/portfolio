@@ -1,0 +1,1373 @@
+/* ==========================================================================
+   case-study.css
+   Case study template, version 3.2 (pilot: Student dashboard).
+   The grid is the structure of the page: lines define the boxes that hold
+   images, text and controls. Boxes share their edges (no double borders).
+
+   Alignment rule
+   - Lines: six columns without gutters, so every vertical line sits on one of
+     the same axes down the page (the edges, 1/3, 2/3 and 5/6 of the grid).
+     Inner lines are always the left edge of the cell on their right.
+   - Text: always --cs-pad from the lines of its cell (32px, 24px below 1200px,
+     22px on mobile). Only the cell has that padding, never its contents, so
+     titles and the text that goes with them share one axis.
+   - Images: they fill their cell, no padding.
+   - Empty rows (.cs-row) separate the large blocks: grid cells with nothing
+     in them, crossed by the vertical lines.
+   Grey surfaces are gone; colour is kept for specific highlights.
+   Type: titles in Figtree (--font-family--title), body in Archivo. Sentence case everywhere.
+   ========================================================================== */
+
+.cs-page {
+  --cs-title-font: var(--font-family--title);
+  --cs-title-axes: normal;
+  --cs-body-font: "Archivo", Arial, sans-serif;
+  /* Capitals start 0.25em below the top of a 1.2 line box (Figtree, measured) */
+  --cs-trim: 0.25;
+  /* One line for the whole page: the Work grid line (#5f9dff at 40% on white), made solid so
+     it reads the same over white and over colour images, and never darkens where lines meet */
+  --cs-line: #bfd8ff;
+  --cs-border: 1px solid var(--cs-line);
+  --cs-block: 96px;
+  /* Height of an empty row of the grid */
+  --cs-row: 96px;
+  /* Space between the cover and the top of the title */
+  --cs-head-top: 80px;
+  --cs-pad: 32px;
+  --cs-gap: var(--body-gutter);
+  --cs-sticky-top: 48px;
+  --cs-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  background-color: var(--surface--background-light);
+  color: var(--text--text-light);
+  font-family: var(--cs-body-font);
+}
+
+/* All grid lines of the page use the same colour */
+.cs-page .line-v,
+.cs-page .line-h {
+  background-color: var(--cs-line);
+}
+
+/* --- Type ------------------------------------------------------------------ */
+
+.cs-h1,
+.cs-h2,
+.cs-box-title,
+.cs-dec-title,
+.cs-learn-title,
+.cs-cell-title,
+.cs-metric b {
+  margin: 0;
+  font-family: var(--cs-title-font);
+  font-weight: var(--font-weight--title);
+  font-variation-settings: var(--cs-title-axes);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  text-wrap: balance;
+}
+
+/* Titles that open a block start with their capitals on the block's top edge */
+.cs-h1,
+.cs-h2,
+.cs-learn-title {
+  position: relative;
+  top: calc(var(--cs-trim) * -1em);
+}
+
+.cs-h1 { font-size: 60px; }
+.cs-h2 { font-size: 40px; }
+.cs-dec-title { font-size: 30px; }
+.cs-box-title,
+.cs-learn-title { font-size: 24px; }
+.cs-cell-title { font-size: 22px; }
+
+.cs-text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 26px;
+  text-wrap: pretty;
+}
+
+.cs-label,
+.cs-company,
+.cs-learn-n,
+.cs-step-id {
+  margin: 0;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--text--text-subtle-light);
+}
+
+/* Short highlights: a colour block in the flow of the text, used sparingly */
+.cs-page mark {
+  padding: 1px 5px;
+  background-color: var(--color--brand--green);
+  color: var(--text--text-light);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* --- Layout ---------------------------------------------------------------- */
+
+/* Cover: from the top of the screen, the whole width next to the rail, the height of the
+   screen. On desktop it shows the wide original of the cover (the same background, the
+   capture in the centre), so the background simply goes on to the edges; the capture is
+   always whole. Below 992px, the 3:2 cover. (cover.js lands the shared transition here.) */
+.cs-hero {
+  position: relative;
+  height: 100svh;
+  margin: 0 0 0 60px;
+  overflow: hidden;
+  background-color: var(--surface--background-dark);
+}
+
+.cs-hero-img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cs-body {
+  position: relative;
+  margin-left: 60px;
+  overflow-x: clip;
+}
+
+.cs-wrap {
+  position: relative;
+  max-width: 1920px;
+  margin-left: 60px;
+  margin-right: 120px;
+}
+
+/* The two edges of the grid, from the cover to the footer, above images */
+.cs-wrap > .line-v {
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+}
+.cs-wrap > .line-v.at-start { left: 0; }
+.cs-wrap > .line-v.at-end { right: 0; }
+
+/* Six columns without gutters: the lines are the gutters */
+.cs-block {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: start;
+  padding: var(--cs-block) 0;
+}
+
+/* A large block starts on a line across the page */
+.cs-block > .line-h {
+  top: 0;
+  z-index: 3;
+}
+.cs-block > .line-h.at-bottom {
+  top: auto;
+  bottom: 0;
+}
+
+.cs-block + .cs-block:not(.has-line),
+.cs-row + .cs-block:not(.has-line) {
+  padding-top: 0;
+}
+
+/* An empty row of the grid between two large blocks: real negative space, bounded by the
+   lines of the blocks above and below and crossed by the vertical line at 1/3 (the edges
+   are the lines of the wrap) */
+.cs-row {
+  position: relative;
+  height: var(--cs-row);
+}
+.cs-row > .line-v {
+  z-index: 3;
+  left: calc(100% / 3);
+}
+
+/* --- 1. Title and project data --------------------------------------------- */
+
+.cs-head {
+  padding-top: var(--cs-head-top);
+}
+
+.cs-head-title {
+  grid-column: 1 / span 4;
+  padding: 0 var(--cs-pad);
+}
+
+.cs-company {
+  margin-bottom: 16px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* The project data on white, closed by lines above and below, with lines between rows.
+   It takes the last third, the column of the third summary box. Its left line is the grid
+   line at 2/3: it starts at the bottom of the cover and runs down to that box, so the data
+   is part of the page structure. */
+.cs-facts {
+  grid-column: 5 / -1;
+  align-self: stretch;
+  position: relative;
+  margin: 0;
+  border-top: var(--cs-border);
+}
+
+.cs-facts > div:last-child {
+  border-bottom: var(--cs-border);
+}
+
+.cs-facts::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(var(--cs-head-top) * -1 - 1px);
+  bottom: calc(var(--cs-block) * -1);
+  width: 1px;
+  background-color: var(--cs-line);
+  pointer-events: none;
+}
+
+.cs-facts > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px var(--cs-pad);
+}
+
+.cs-facts > div + div {
+  border-top: var(--cs-border);
+}
+
+.cs-facts dt {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--text--text-subtle-light);
+}
+
+.cs-facts dd {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  text-align: right;
+}
+
+/* --- 2. Summary: three boxes on one row, sharing their edges ---------------- */
+
+.cs-boxes {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: var(--cs-border);
+  border-bottom: var(--cs-border);
+}
+
+/* Each box draws its left line; the right edge is the line of the wrap */
+.cs-box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: var(--cs-pad);
+  border-left: var(--cs-border);
+}
+
+/* --- 3. Decisions: title, number, goal tag and labels (the rows are in the decision rows section) --- */
+
+.cs-dec-block > .cs-h2 {
+  grid-column: 1 / -1;
+  margin-bottom: 40px;
+  padding: 0 var(--cs-pad);
+}
+
+.cs-step-id {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+/* Goal tag: neutral, outlined with the grid line, square corners */
+.cs-tag {
+  padding: 2px 8px 1px;
+  border: var(--cs-border);
+  color: var(--text--text-subtle-light);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+/* Need, Decision and Result: type and spacing do the grouping */
+.cs-part .cs-label {
+  margin-bottom: 4px;
+}
+
+/* --- 4. Impact: a 2 x 2 grid of cells sharing their edges ------------------- */
+
+.cs-side {
+  grid-column: 1 / span 2;
+  padding: var(--cs-pad);
+}
+
+.cs-desc {
+  max-width: 34ch;
+  margin: 8px 0 0;
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--text--text-subtle-light);
+  text-wrap: pretty;
+}
+
+/* The last two thirds, like the Decisions screen above and the Learnings list below: one
+   vertical line at 1/3 runs through the three, and the line between the two columns of
+   figures is the line at 2/3 */
+.cs-metrics {
+  grid-column: 3 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: var(--cs-border);
+  border-bottom: var(--cs-border);
+}
+
+.cs-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 200px;
+  padding: var(--cs-pad);
+  border-left: var(--cs-border);
+}
+
+.cs-metric:nth-child(n + 3) {
+  border-top: var(--cs-border);
+}
+
+.cs-metric b {
+  position: relative;
+  top: -0.12em;
+  font-size: 60px;
+  color: var(--color--brand--indigo);
+}
+
+.cs-metric p {
+  margin: auto 0 0;
+  max-width: 30ch;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+/* --- 5. Learnings: one vertical line on the left, lines between learnings ----- */
+
+.cs-learn-line {
+  z-index: 3;
+  left: calc(100% / 3);
+  top: 0;
+  bottom: 0;
+}
+
+.cs-learn-list {
+  grid-column: 3 / -1;
+}
+
+.cs-learn {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  column-gap: var(--cs-gap);
+  padding: var(--cs-pad);
+}
+
+/* From the vertical line to the right edge of the grid */
+.cs-learn + .cs-learn {
+  border-top: var(--cs-border);
+}
+
+.cs-learn-n {
+  padding-top: 2px;
+}
+
+.cs-learn-title {
+  margin-bottom: 10px;
+}
+
+.cs-learn .cs-text {
+  max-width: 62ch;
+}
+
+/* --- 6. More work: a row of header cells (title, empty, button) over three project cells --- */
+
+.cs-more {
+  padding-top: 0;
+}
+
+.cs-more-head {
+  grid-column: 1 / -1;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  min-height: 200px;
+}
+
+/* The bottom line of the header row runs across the page */
+.cs-more-head > .line-h {
+  top: auto;
+  bottom: 0;
+  z-index: 3;
+}
+
+.cs-more-title {
+  grid-column: span 4;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 var(--cs-pad) var(--cs-pad);
+}
+
+/* Empty row between the header and the projects: the lines of both rows go through it
+   (1/3 and 2/3 of the projects, 2/3 and 5/6 of the header) */
+.cs-more-row {
+  grid-column: 1 / -1;
+  position: relative;
+  height: var(--cs-row);
+}
+.cs-more-row > .line-v {
+  z-index: 3;
+}
+.cs-more-row > .line-v:nth-child(1) { left: calc(100% / 3); }
+.cs-more-row > .line-v:nth-child(2) { left: calc(100% * 2 / 3); }
+.cs-more-row > .line-v:nth-child(3) { left: calc(100% * 5 / 6); }
+
+.cs-more-title .cs-h2 {
+  top: auto;
+}
+
+.cs-more-gap {
+  border-left: var(--cs-border);
+}
+
+.cs-more-action {
+  display: flex;
+  align-items: flex-end;
+  border-left: var(--cs-border);
+}
+
+/* Primary button as a grid cell: indigo, square corners, sized by the grid */
+.cs-more-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 72px;
+  background-color: var(--color--brand--indigo);
+  color: #fff;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.35s var(--cs-ease);
+}
+
+@media (any-hover: hover) {
+  .cs-more-button:hover {
+    background-color: color-mix(in srgb, var(--color--brand--indigo) 82%, black);
+  }
+}
+
+.cs-more-button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -6px;
+}
+
+/* Three project cells sharing their edges; the outer border closes the composition */
+.cs-cells {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: var(--cs-border);
+  border-bottom: var(--cs-border);
+}
+
+.cs-cell {
+  display: flex;
+  flex-direction: column;
+  border-left: var(--cs-border);
+  color: var(--text--text-light);
+  text-decoration: none;
+}
+
+/* The image reaches the edges of its cell; the same proportion for every project */
+.cs-cell-media {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+
+.cs-cell-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cs-cell-caption {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 24px var(--cs-pad) 32px;
+  background-color: var(--surface--background-light);
+}
+
+.cs-cell-meta {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--text--text-subtle-light);
+}
+
+/* Hover: the lid of Work (css/cover.css) rises over the image only; the text of the lid
+   in the body type of the case study */
+.cs-cell .work-hover .p {
+  font-family: var(--cs-body-font);
+}
+
+.cs-cell:focus-visible {
+  outline: 2px solid var(--color--brand--indigo);
+  outline-offset: -2px;
+}
+
+/* --- 7. Footer: a black closing plane --------------------------------------- */
+
+.cs-footer {
+  margin-left: 60px;
+  background-color: var(--surface--background-dark);
+  color: #fff;
+}
+
+.cs-footer-inner {
+  max-width: 1920px;
+  margin-left: 60px;
+  margin-right: 120px;
+  padding: 64px 0 40px;
+}
+
+/* Three quiet columns, one per third of the grid (the same axes as the page): Contact,
+   Sitemap and Work. Links in the body type (B2: 15/24, regular), never bold */
+.cs-footer-cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 64px;
+}
+
+.cs-footer-col {
+  padding: 0 var(--cs-pad);
+}
+
+.cs-footer-col ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cs-footer-label {
+  margin: 0 0 16px;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--text--text-subtle-dark);
+}
+
+.cs-footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  font: 400 15px/24px var(--cs-body-font);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.35s var(--cs-ease);
+}
+
+.cs-footer-icon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: var(--text--text-subtle-dark);
+  transition: color 0.35s var(--cs-ease);
+}
+
+.cs-footer-icon.is-fill {
+  stroke: none;
+}
+
+/* The current page is dimmed */
+.cs-footer-link[aria-current="page"] {
+  color: var(--text--text-subtle-dark);
+}
+
+@media (any-hover: hover) {
+  .cs-footer-link:hover,
+  .cs-footer-link:hover .cs-footer-icon {
+    color: var(--color--brand--blue);
+  }
+}
+
+.cs-footer-link:focus-visible,
+.cs-footer-bottom a:focus-visible {
+  outline: 2px solid var(--color--brand--blue);
+  outline-offset: 2px;
+}
+
+/* The only line of the footer */
+.cs-footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding: 24px var(--cs-pad) 0;
+  border-top: 1px solid var(--color--accent--line);
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--text--text-subtle-dark);
+}
+
+.cs-footer-bottom a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cs-footer-bottom a:hover {
+  color: #fff;
+}
+
+/* --- Entrance: block lines draw, content fades in (once) --------------------- */
+
+.js .cs-reveal > .line-h {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.5s cubic-bezier(.5,0,0,1);
+}
+
+.js .cs-reveal.is-in > .line-h {
+  transform: scaleX(1);
+}
+
+.js .cs-reveal .cs-fade {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s ease 0.15s, transform 0.6s cubic-bezier(.4,0,.2,1) 0.15s;
+}
+
+.js .cs-reveal.is-in .cs-fade {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Desktop: one continuous grid from Decisions to Learnings ------------------ */
+
+@media screen and (min-width: 992px) {
+  /* Decisions ends on the bottom line of its structure; an empty row; Impact between two
+     lines across the page; another empty row; Learnings. Impact and Learnings are bands of
+     cells: their text keeps the cell padding, the blocks add no padding of their own. */
+  .cs-dec-block,
+  .cs-impact,
+  .cs-learnings,
+  .cs-block:has(+ .cs-row) {
+    padding-bottom: 0;
+  }
+  .cs-impact,
+  .cs-learnings {
+    padding-top: 0;
+  }
+  /* Its two lines across the page are the top and bottom of the figures. The figures fill
+     the band, so their lines reach the bottom line even when the text on the left is taller */
+  .cs-metrics {
+    align-self: stretch;
+    grid-auto-rows: 1fr;
+    border-top: 0;
+    border-bottom: 0;
+  }
+  /* The title starts at the height of the first figure */
+  .cs-impact .cs-side {
+    padding-top: calc(var(--cs-pad) + 7px);
+  }
+}
+
+/* --- Responsive (site breakpoints) --------------------------------------------- */
+
+@media screen and (max-width: 1199px) {
+  .cs-page { --cs-pad: 24px; }
+  .cs-h1 { font-size: 48px; }
+}
+
+@media screen and (max-width: 991px) {
+  .cs-page {
+    --cs-block: 64px;
+    --cs-pad: 22px;
+  }
+
+  /* The cover keeps its proportion on narrow screens */
+  .cs-hero {
+    height: auto;
+    aspect-ratio: 3 / 2;
+  }
+
+  .cs-hero,
+  .cs-body,
+  .cs-footer {
+    margin-left: 0;
+  }
+
+  .cs-wrap,
+  .cs-footer-inner {
+    margin-left: 60px;
+    margin-right: 60px;
+  }
+
+  .cs-block {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--cs-gap);
+  }
+
+  .cs-facts {
+    align-self: auto;
+    margin-left: 0;
+  }
+  .cs-facts::before { display: none; }
+
+  .cs-block > *,
+  .cs-head-title,
+  .cs-facts,
+  .cs-side,
+  .cs-metrics,
+  .cs-learn-list {
+    grid-column: 1 / -1;
+  }
+
+  .cs-head { padding-top: 48px; }
+  .cs-h1 { font-size: 36px; }
+  .cs-h2 { font-size: 28px; }
+  .cs-dec-title { font-size: 24px; }
+  .cs-box-title,
+  .cs-learn-title { font-size: 20px; }
+  .cs-cell-title { font-size: 20px; }
+
+  /* Stacked boxes and projects: a line between each one */
+  .cs-boxes,
+  .cs-cells {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cs-box + .cs-box,
+  .cs-cell + .cs-cell {
+    border-top: var(--cs-border);
+  }
+
+  /* Empty rows: on a single column the blocks keep their own spacing instead */
+  .cs-row,
+  .cs-more-row,
+  .cs-impact > .line-h,
+  .cs-more-head > .line-h {
+    display: none;
+  }
+
+  .cs-side {
+    padding: 0 var(--cs-pad);
+  }
+  .cs-impact .cs-side,
+  .cs-learnings .cs-side {
+    margin-bottom: 8px;
+  }
+
+  /* Learnings: the list keeps its left line, now at the edge of the column */
+  .cs-learn-line { left: 0; top: auto; display: none; }
+  .cs-learn-list { border-left: var(--cs-border); }
+  .cs-learn { grid-template-columns: 40px minmax(0, 1fr); padding-left: var(--cs-pad); }
+
+  .cs-dec-block > .cs-h2 { margin-bottom: 24px; }
+
+  .cs-metric {
+    min-height: 0;
+  }
+  .cs-metric b { font-size: 40px; }
+
+  /* More work: title row, then the button as a full-width cell, then the projects
+     (no gap: the button cell sits right on top of the first project) */
+  .cs-more { row-gap: 0; }
+  .cs-more-head {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+  .cs-more-title {
+    grid-column: 1;
+    padding: 48px var(--cs-pad) var(--cs-pad);
+  }
+  .cs-more-gap { display: none; }
+  .cs-more-action {
+    border-left: 0;
+  }
+  .cs-more-button { height: 64px; }
+
+  .cs-footer-inner { padding: 48px 0 calc(48px + 24px); }
+  .cs-footer-cols { margin-bottom: 48px; }
+}
+
+@media screen and (max-width: 767px) {
+  .cs-wrap,
+  .cs-footer-inner {
+    margin-left: 32px;
+    margin-right: 32px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  /* Contact on its own row; Sitemap and Work side by side below */
+  .cs-footer-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 40px; }
+  .cs-footer-col:first-child { grid-column: 1 / -1; }
+}
+
+@media screen and (max-width: 479px) {
+  .cs-metric { padding: var(--cs-pad); }
+  .cs-metric b { font-size: 32px; }
+  .cs-metric p { font-size: 13px; line-height: 20px; }
+  .cs-learn { grid-template-columns: 1fr; row-gap: 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-more-button,
+  .cs-footer-link,
+  .cs-footer-icon,
+  .js .cs-reveal > .line-h,
+  .js .cs-reveal .cs-fade {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   Decision rows and later sections (first used by Dino). Same grid, axes and padding as above; new parts:
+   a lede under the title, a link that opens a dialog, decisions as rows with a sticky
+   title, a What we shipped gallery and the dialog itself. See README.md (Fase 10).
+   ========================================================================== */
+
+/* --- Lede: one sentence under the title -------------------------------------- */
+
+.cs-lede {
+  max-width: 46ch;
+  margin: 24px 0 0;
+  font-size: 20px;
+  line-height: 30px;
+  color: var(--text--text-subtle-light);
+  text-wrap: pretty;
+}
+
+/* --- Inline link that opens a dialog ------------------------------------------ */
+
+.cs-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--color--brand--indigo);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.cs-link:focus-visible {
+  outline: 2px solid var(--color--brand--indigo);
+  outline-offset: 2px;
+}
+
+/* --- Decisions as rows: number and title stay put on the left (1/3) while the text,
+   the result and the screens scroll on the right (2/3). The line at 1/3 is the left edge
+   of the right cell, the same axis as the Outcome figures and the Reflections list. ---- */
+
+.cs-dlist {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: var(--cs-border);
+}
+
+.cs-ditem {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  border-top: var(--cs-border);
+}
+
+.cs-ditem-head {
+  grid-column: 1 / span 2;
+  padding: var(--cs-pad);
+}
+
+.cs-ditem-sticky {
+  position: sticky;
+  top: calc(var(--cs-sticky-top) + var(--cs-pad));
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cs-ditem-body {
+  grid-column: 3 / -1;
+  border-left: var(--cs-border);
+}
+
+.cs-ditem-text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: var(--cs-pad);
+}
+
+.cs-ditem-text .cs-text,
+.cs-ditem-result .cs-text {
+  max-width: 64ch;
+}
+
+/* The result in its own cell, one step larger than the text */
+.cs-ditem-result {
+  padding: var(--cs-pad);
+  border-top: var(--cs-border);
+}
+
+.cs-ditem-result .cs-label {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 1px 5px;
+  background-color: var(--color--brand--green);
+  color: var(--text--text-light);
+}
+
+.cs-ditem-result .cs-text {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+/* The screens of a decision on one brand-grey plane, so they read as a single image */
+.cs-ditem-media {
+  margin: 0;
+  border-top: var(--cs-border);
+  background-color: var(--surface--overlay-subtle);
+}
+
+.cs-ditem-media .cs-screens {
+  padding: 56px var(--cs-pad);
+}
+
+/* A web capture (Student dashboard): whole, centred on the same grey plane, with the same
+   short shadow as the phone screens */
+.cs-ui {
+  display: flex;
+  justify-content: center;
+  padding: 48px var(--cs-pad);
+}
+
+.cs-ui img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 480px;
+  border-radius: 6px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.06));
+}
+
+/* Screens carousel (Practice): the web captures of a decision in a row on the brand-grey plane,
+   at a height that keeps them readable. The next screen peeks on the right, so it reads as a
+   carousel; the arrows sit between two lines from the text axis (as the Approach reviews), with
+   the count on the right. Each screen keeps its caption (js/case-study.js, 4) */
+.cs-car {
+  /* A wide capture takes about three quarters of the row, so the next one always peeks */
+  --cs-car-h: clamp(200px, 26vw, 380px);
+}
+
+.cs-car-track {
+  position: relative;
+  display: flex;
+  gap: 24px;
+  margin: 0;
+  padding: 48px var(--cs-pad) 40px;
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: var(--cs-pad);
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.cs-car-track::-webkit-scrollbar { display: none; }
+.cs-car-track:focus-visible { outline: 2px solid var(--color--brand--indigo); outline-offset: -2px; }
+
+.cs-car-slide {
+  flex: none;
+  scroll-snap-align: start;
+}
+
+.cs-car-slide img {
+  display: block;
+  width: auto;
+  height: var(--cs-car-h);
+  border-radius: 6px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.06));
+}
+
+/* The caption never makes the screen wider: it wraps to the width of the image */
+.cs-car-caption {
+  contain: inline-size;
+  margin: 16px 0 0;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--text--text-subtle-light);
+  text-wrap: pretty;
+}
+
+.cs-car-bar {
+  display: flex;
+  align-items: center;
+  padding-left: var(--cs-pad);
+  border-top: var(--cs-border);
+  background-color: var(--surface--background-light);
+}
+
+.cs-car-btn {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 0;
+  border-right: var(--cs-border);
+  background: none;
+  color: var(--text--base);
+  cursor: pointer;
+  transition: background-color 0.2s var(--cs-ease), color 0.2s var(--cs-ease), opacity 0.2s var(--cs-ease);
+}
+
+.cs-car-btn:first-child { border-left: var(--cs-border); }
+
+.cs-car-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cs-car-btn:hover { background-color: var(--text--base); color: #fff; }
+.cs-car-btn:focus-visible { outline: 2px solid var(--color--brand--indigo); outline-offset: -2px; }
+.cs-car-btn[aria-disabled="true"] { opacity: 0.3; cursor: default; }
+.cs-car-btn[aria-disabled="true"]:hover { background: none; color: var(--text--base); }
+
+.cs-car-count {
+  margin-left: auto;
+  padding: 0 var(--cs-pad);
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--text--text-subtle-light);
+}
+
+/* A single screen: centred, no arrows */
+.cs-car.is-single .cs-car-track { justify-content: center; }
+
+/* Need and Decision, when a decision is written in labelled parts */
+.cs-ditem-text .cs-part + .cs-part {
+  margin-top: 8px;
+}
+
+/* Screens in a row, each one whole, with a short soft shadow that follows its corners */
+.cs-screens {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.cs-screens img {
+  display: block;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 200px;
+  height: auto;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.06));
+}
+
+/* --- Outcome: a second paragraph under the first ----------------------------- */
+
+.cs-desc + .cs-desc {
+  margin-top: 12px;
+}
+
+/* --- What we shipped: three cells per row, sharing their edges ----------------- */
+
+.cs-gallery {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 64px;
+  border-top: var(--cs-border);
+  border-bottom: var(--cs-border);
+}
+
+.cs-shot {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  border-left: var(--cs-border);
+}
+
+.cs-shot:nth-child(n + 4) {
+  border-top: var(--cs-border);
+}
+
+/* One to three screens, centred on white, the same height in every cell */
+.cs-shot-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  padding: 24px var(--cs-pad);
+  background-color: #fff;
+}
+
+.cs-shot-media .cs-screens {
+  width: 100%;
+  height: 100%;
+  gap: 12px;
+}
+
+.cs-shot-media .cs-screens img {
+  flex: 0 1 auto;
+  width: auto;
+  height: 100%;
+  max-width: 31%;
+  object-fit: contain;
+}
+
+.cs-shot figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 24px var(--cs-pad) 32px;
+}
+
+.cs-shot figcaption .cs-text {
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--text--text-subtle-light);
+}
+
+/* --- Dialog: a box of the grid over a dark backdrop --------------------------- */
+
+/* The global reset removes the margin that centres a native dialog: it goes back here */
+.cs-dialog {
+  width: min(720px, calc(100% - 32px));
+  max-height: 85vh;
+  margin: auto;
+  padding: 0;
+  border: var(--cs-border);
+  background-color: var(--surface--background-light);
+  color: var(--text--text-light);
+  font-family: var(--cs-body-font);
+}
+
+.cs-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.cs-dialog[open] {
+  animation: cs-dialog-in 0.4s var(--cs-ease);
+}
+
+@keyframes cs-dialog-in {
+  from { opacity: 0; transform: translateY(12px); }
+}
+
+.cs-dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px var(--cs-pad);
+}
+
+.cs-dialog-head form {
+  margin: 0;
+}
+
+.cs-dialog-close {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: var(--cs-border);
+  border-radius: 50%;
+  background: none;
+  color: inherit;
+  font: 400 22px/1 var(--cs-body-font);
+  cursor: pointer;
+  transition: border-color 0.35s var(--cs-ease), color 0.35s var(--cs-ease);
+}
+
+@media (any-hover: hover) {
+  .cs-dialog-close:hover {
+    border-color: var(--color--brand--indigo);
+    color: var(--color--brand--indigo);
+  }
+}
+
+.cs-dialog-close:focus-visible {
+  outline: 2px solid var(--color--brand--indigo);
+  outline-offset: 3px;
+}
+
+.cs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.cs-table th,
+.cs-table td {
+  padding: 14px var(--cs-pad);
+  border-top: var(--cs-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.cs-table th + th,
+.cs-table td + td {
+  border-left: var(--cs-border);
+}
+
+.cs-table th {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--text--text-subtle-light);
+}
+
+.cs-table td:last-child {
+  font-weight: 500;
+}
+
+/* --- Decision rows: responsive ---------------------------------------------------- */
+
+@media screen and (max-width: 991px) {
+  .cs-lede {
+    font-size: 17px;
+    line-height: 26px;
+  }
+
+  /* Decisions: one under another; the title scrolls with its text */
+  .cs-ditem {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cs-ditem-head,
+  .cs-ditem-body {
+    grid-column: 1 / -1;
+  }
+  .cs-ditem-head {
+    padding-bottom: 0;
+  }
+  .cs-ditem-sticky {
+    position: static;
+    gap: 8px;
+  }
+  .cs-ditem-body {
+    border-left: 0;
+  }
+  .cs-ditem-result .cs-text {
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .cs-ditem-media .cs-screens {
+    padding: 32px var(--cs-pad);
+    gap: 8px;
+  }
+  .cs-ui {
+    padding: 32px var(--cs-pad);
+  }
+
+  .cs-gallery {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 0;
+  }
+  .cs-shot + .cs-shot {
+    border-top: var(--cs-border);
+  }
+  .cs-shot.is-empty {
+    display: none;
+  }
+  .cs-shipped .cs-side {
+    margin-bottom: 8px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  /* The screens of a decision in an even grid: two by two, or three by two when it shows six */
+  .cs-ditem-media .cs-screens {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 150px));
+    justify-content: center;
+    gap: 12px;
+  }
+  .cs-ditem-media .cs-screens:has(> img:nth-child(6)) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .cs-ditem-media .cs-screens img {
+    width: 100%;
+    max-width: none;
+  }
+
+  /* Screens carousel: a shorter row, the next screen still peeking */
+  .cs-car { --cs-car-h: 150px; }
+  .cs-car-track { gap: 16px; padding: 32px var(--cs-pad) 28px; }
+  .cs-car-btn { width: 48px; height: 48px; }
+
+  /* The dialog rises from the bottom, the whole width */
+  .cs-dialog {
+    width: 100%;
+    max-width: 100%;
+    margin: auto 0 0;
+    border-width: 1px 0 0;
+  }
+  .cs-table th,
+  .cs-table td {
+    padding: 12px 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-car-track {
+    scroll-behavior: auto;
+  }
+  .cs-dialog[open] {
+    animation: none;
+  }
+  .cs-dialog-close {
+    transition: none;
+  }
+}

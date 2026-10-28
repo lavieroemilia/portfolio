@@ -1,0 +1,93 @@
+/* transitions.css: click transition (selected tile enlarges, the rest fade, the button shrinks). */
+
+  .nav-container.close .menu {
+    z-index: 100;
+    transform: translate(0, 50%) !important;
+    /*transform: translate(-50%, -50%) translateX(calc(-50vw + var(--button-size) / 3))!important;*/
+    transition: transform 0.5s var(--nav-easing-swoop) 0.05s!important;
+  }
+
+  @media (max-width: 991px) {
+    .nav-container.close .menu {
+      transform: translate(-50%, 0) !important;
+      /*transform: translate(-50%, -50%) translateY(calc(50dvh - var(--button-size)* 0.75 / 2))!important;*/
+    }
+  }
+
+  @keyframes scaleToClose {
+  	from {
+    	transform: scale(1);
+    }
+    to {
+      transform: scale(0.666667);
+    }
+  }
+
+  .nav-container.close .nav-button {
+    transform: scale(calc(2 / 3));
+    animation: scaleToClose 0.3s var(--nav-easing) forwards !important;
+    transition: transform 0.3s var(--nav-easing)!important;
+  }
+
+  .nav-container.close .nav-tile {
+    opacity: 0;
+    transition: 0.2s ease;
+  }
+
+  .nav-container.close .nav-tile.enlarge a {
+    padding-left: var(--opening-col-2-left);
+  }
+
+  .nav-container.close .nav-tile.enlarge .tile-title {
+    color: #fff!important;
+    top: 50%;
+    transform: translateY(-50%) scale(4);
+    transition: 0.6s var(--nav-easing);
+    transition-property: top, transform;
+  }
+
+  @media (max-width: 991px) {
+    .nav-container.close .nav-tile.enlarge a {
+      padding-left: var(--opening-col-1-left);
+    }
+    .nav-container.close .nav-tile.enlarge .tile-title {
+      transform: translateY(-50%) scale(2.5);
+    }
+  }
+
+  .nav-tile.enlarge {
+    opacity: 1!important;
+    transition: 0.6s cubic-bezier(.65,0,.15,1)!important;
+    z-index: 99;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  /* Each of the five tiles grows from the edges it is anchored to
+     (Work, Contact, Resume: bottom; Work, Contact, About: left; Resume, Approach: right; Approach, About: top). */
+  .nav-tile-1.enlarge, .nav-tile-2.enlarge, .nav-tile-3.enlarge {
+    bottom: 0;
+  }
+  .nav-tile-1.enlarge, .nav-tile-2.enlarge, .nav-tile-5.enlarge {
+    left: 0;
+  }
+  .nav-tile-4.enlarge, .nav-tile-5.enlarge {
+    top: 0;
+  }
+  .nav-tile-3.enlarge, .nav-tile-4.enlarge {
+    right: 0;
+  }
+
+  .nav-tile.enlarge a {
+    background-color: var(--surface--background-dark)!important;
+    border-radius: 0px;
+  }
+
+  .nav-tile a div:nth-child(2) {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  .nav-tile.enlarge a div:nth-child(2) {
+    opacity: 0;
+  }

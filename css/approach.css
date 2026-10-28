@@ -1,0 +1,312 @@
+/* ==========================================================================
+   approach.css
+   Approach. On top of the case study grid (css/case-study.css) and
+   the About cover, presentation title and intro (css/about.css). New here:
+   - Cover: squares in the colours of the senses on
+     the cells of the grid, each with a rounded shape in the darker tone of its
+     range; the eye of "I see" in its pink square; a strip of the five colours.
+   - Senses: the decision rows of the case studies in three: title, an
+     illustration as tall as the text, and the text; 20px between senses.
+   - Reviews: a carousel to the side, laid out like Mantras.
+   ========================================================================== */
+
+/* The colour of each sense, the same as the About cover box (js/about.js) */
+.is-blue   { --ap-bg: var(--color--brand--blue);   --ap-ink: var(--color--brand--on-blue); }
+.is-pink   { --ap-bg: var(--color--brand--pink);   --ap-ink: var(--color--brand--on-pink); }
+.is-green  { --ap-bg: var(--color--brand--green);  --ap-ink: var(--color--brand--on-green); }
+.is-purple { --ap-bg: var(--color--brand--purple); --ap-ink: var(--color--brand--on-purple); }
+.is-plum   { --ap-bg: var(--color--brand--plum);   --ap-ink: var(--color--accent--azalea); }
+
+/* --- 1. Cover ---------------------------------------------------------------- */
+
+/* "Approach" is 4.53em wide (Figtree Semi Bold, -0.02em, measured): it fills half the grid,
+   from 1/6 to 2/3. Keep in sync with js/cover-reveal.js */
+.ap-cover { --ab-title-size: calc((100cqw - 240px) / 2 / 4.26); }
+
+/* A square of one column, with a rounded shape in the middle. Under the
+   lines, which are drawn over the fills */
+.ap-sq {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  background-color: var(--ap-bg);
+}
+
+.ap-sq > i,
+.ap-swatches i {
+  width: 62%;
+  aspect-ratio: 1;
+  border-radius: 40%;
+  background-color: var(--ap-ink);
+}
+
+/* Top row: blue cut by the top of the screen; the eye resting on the line above the title */
+.ap-sq-top { grid-column: 3; grid-row: 1; align-self: start; margin-top: -45%; }
+.ap-sq-eye { grid-column: 5; grid-row: 1; align-self: end; }
+.ap-sq-eye .ap-lottie { width: 84%; }
+
+/* Bottom row: green cut by the bottom of the screen, purple only a little */
+.ap-sq-low { grid-column: 2; grid-row: 5; align-self: end; margin-bottom: -50%; }
+.ap-sq-corner { grid-column: 6; grid-row: 5; align-self: end; margin-bottom: -22%; }
+
+/* The five colours hanging from the line under the title, from 2/3 to the right edge */
+.ap-swatches {
+  grid-column: 5 / -1;
+  grid-row: 4;
+  align-self: start;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ap-swatches li {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  background-color: var(--ap-bg);
+}
+
+.ap-swatches i { width: 58%; }
+
+.js .ap-sq,
+.js .ap-swatches {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.js .ab-cover.is-in .ap-sq,
+.js .ab-cover.is-in .ap-swatches {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s ease, transform 0.9s var(--cs-ease);
+}
+.js .ab-cover.is-in .ap-sq-top { transition-delay: 0.75s; }
+.js .ab-cover.is-in .ap-sq-eye { transition-delay: 0.85s; }
+.js .ab-cover.is-in .ap-swatches { transition-delay: 0.95s; }
+.js .ab-cover.is-in .ap-sq-low { transition-delay: 1.05s; }
+.js .ab-cover.is-in .ap-sq-corner { transition-delay: 1.15s; }
+
+/* --- 2. Presentation ------------------------------------------------------------ */
+
+/* The vision under the title, without the experience column of About */
+.ap-vision .ab-intro .ab-p + .ab-p { margin-top: 16px; }
+
+/* --- 3. Senses ------------------------------------------------------------------ */
+
+.ap-senses { padding-bottom: 0; }
+
+.ap-senses .cs-dlist { border-bottom: 0; }
+
+/* In three: number and title (sticky), text, illustration */
+.ap-sense .cs-ditem-body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ap-tagline {
+  margin: 0;
+  font-family: var(--cs-title-font);
+  font-weight: var(--font-weight--title);
+  font-variation-settings: var(--cs-title-axes);
+  font-size: 24px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* 20px and two lines between senses, so the colours of two illustrations never touch */
+.ap-sense { border-bottom: var(--cs-border); }
+.ap-sense + .ap-sense { margin-top: 20px; }
+
+/* The text after the illustration, on its own cell */
+.ap-sense .cs-ditem-text { border-left: var(--cs-border); }
+
+/* The illustration on the colour of its sense, in the middle column, as tall as the text */
+.ap-visual {
+  position: relative;
+  background-color: var(--ap-bg);
+}
+
+.ap-visual .ap-lottie {
+  position: absolute;
+  inset: var(--cs-pad);
+  aspect-ratio: auto;
+}
+
+.ap-lottie { aspect-ratio: 1; }
+.ap-lottie svg { display: block; }
+
+/* --- 4. Reviews ----------------------------------------------------------------- */
+
+.ap-reviews { align-items: stretch; }
+
+.ap-rv-head {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+/* The arrows start on the text axis and sit between two lines */
+.ap-rv-nav {
+  display: flex;
+  margin-left: calc(var(--cs-pad) * -1);
+  margin-right: calc(var(--cs-pad) * -1);
+  margin-bottom: calc(var(--cs-pad) * -1);
+  padding-left: var(--cs-pad);
+  border-top: var(--cs-border);
+}
+
+.ap-rv-btn {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 0;
+  border-right: var(--cs-border);
+  background: none;
+  color: var(--text--base);
+  cursor: pointer;
+  transition: background-color 0.2s var(--cs-ease), color 0.2s var(--cs-ease), opacity 0.2s var(--cs-ease);
+}
+
+.ap-rv-btn:first-child { border-left: var(--cs-border); }
+
+.ap-rv-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ap-rv-btn:hover { background-color: var(--text--base); color: #fff; }
+.ap-rv-btn:focus-visible { outline: 2px solid var(--color--brand--indigo); outline-offset: -2px; }
+.ap-rv-btn[aria-disabled="true"] { opacity: 0.3; cursor: default; }
+.ap-rv-btn[aria-disabled="true"]:hover { background: none; color: var(--text--base); }
+
+/* Cards are never narrower than a comfortable line (--ap-rv-card, about 50 characters at 16px):
+   on a wide screen two cards and part of the third are in view; where that would make them narrow,
+   fewer cards, and on a phone one, with the next one peeking so it reads as a carousel */
+.ap-rv-track {
+  --ap-rv-card: 440px;
+  grid-column: 3 / -1;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max(40%, min(var(--ap-rv-card), 88%));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-left: var(--cs-border);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.ap-rv-track::-webkit-scrollbar { display: none; }
+.ap-rv-track:focus-visible { outline: 2px solid var(--color--brand--indigo); outline-offset: -2px; }
+
+.ap-rv-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: var(--cs-pad);
+  scroll-snap-align: start;
+}
+
+.ap-rv-card + .ap-rv-card { border-left: var(--cs-border); }
+
+.ap-rv-mark {
+  font-family: var(--cs-title-font);
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 0.6;
+  height: 0.45em;
+  color: var(--color--brand--indigo);
+}
+
+/* The reviews in the body type (Archivo regular); blockquote would take the DB Sharp axes of global.css */
+.ap-rv-text { margin: 0; font-variation-settings: normal; }
+
+.ap-rv-text p {
+  margin: 0;
+  font-family: var(--cs-body-font);
+  font-weight: 400;
+  font-variation-settings: normal;
+  font-size: 16px;
+  line-height: 26px;
+  text-wrap: pretty;
+}
+
+.ap-rv-who {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: auto 0 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text--text-subtle-light);
+}
+
+.ap-rv-name {
+  font-weight: 600;
+  color: var(--text--base);
+}
+
+/* --- Responsive (site breakpoints) --------------------------------------------- */
+
+@media screen and (max-width: 991px) {
+  /* The title on the whole width, as "About" on two columns. The squares take one column each */
+  .ap-cover { --ab-title-size: calc((100cqw - 120px) / 4.26); }
+  .ap-sq-top { grid-column: 1; }
+  .ap-sq-eye { grid-column: 2; }
+  .ap-swatches { grid-column: 2; }
+  .ap-sq-low { grid-column: 1; }
+  .ap-sq-corner { grid-column: 2; }
+
+  /* Senses: the text, then the illustration, a band as wide as the text */
+  .ap-sense .cs-ditem-body { grid-template-columns: minmax(0, 1fr); }
+  .ap-visual { height: 200px; border-top: var(--cs-border); }
+  .ap-sense .cs-ditem-text { border-left: 0; border-top: var(--cs-border); }
+  .ap-tagline { font-size: 20px; }
+
+  .ap-rv-head { grid-column: 1 / -1; padding-bottom: var(--cs-pad); }
+  .ap-rv-nav { margin-bottom: 0; border-bottom: var(--cs-border); }
+  .ap-rv-track {
+    grid-column: 1 / -1;
+    border-left: var(--cs-border);
+    border-right: var(--cs-border);
+    border-bottom: var(--cs-border);
+  }
+  .ap-rv-text p { font-size: 15px; line-height: 24px; }
+}
+
+/* The grid margins drop to 32px here (css/about.css) */
+@media screen and (max-width: 767px) {
+  .ap-cover { --ab-title-size: calc((100cqw - 64px) / 4.26); }
+}
+
+/* Phones: one card almost the whole width, a sliver of the next one on the right */
+@media screen and (max-width: 479px) {
+  .ap-rv-track { grid-auto-columns: 92%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .ap-sq,
+  .js .ap-swatches {
+    transform: none !important;
+    transition: none !important;
+  }
+  .ap-rv-track { scroll-behavior: auto; }
+}

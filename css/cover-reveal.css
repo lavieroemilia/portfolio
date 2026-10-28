@@ -1,0 +1,39 @@
+/* ==========================================================================
+   cover-reveal.css
+   "Cover Reveal": transition from the menu to the pages with a dark cover
+   (About, Approach, Contact), desktop only. See js/cover-reveal.js.
+   1. Leave: the title of the tile travels straight to the place and size of the
+      cover title (set by the script as custom properties).
+   2. Enter: the cover title is in place from the first frame and never fades.
+      The cover runs under the rail, so the rail is already black.
+   ========================================================================== */
+
+/* --- 1. Leave ------------------------------------------------------------- */
+
+/* The tile keeps its padding (the original moves the title to column 2) */
+.nav-container.close.cover-reveal-leave .nav-tile.enlarge a {
+  padding-left: 23px;
+}
+
+/* The title goes straight to the cover title, with the timing of the original title */
+.nav-container.close.cover-reveal-leave .nav-tile.enlarge .tile-title {
+  top: 0;
+  transform-origin: 0 0;
+  transform: translate(var(--cover-reveal-x), var(--cover-reveal-y)) scale(var(--cover-reveal-scale));
+  letter-spacing: calc(-0.02em + var(--cover-reveal-spacing));
+}
+
+/* --- 2. Enter ------------------------------------------------------------- */
+
+/* The title is already there: no fade, no rise */
+html.cover-reveal .ab-cover-title {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* The rail texts appear once the page is handed back */
+html.cover-reveal .nav-page-title,
+html.cover-reveal .nav-brand {
+  opacity: 0 !important;
+}

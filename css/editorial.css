@@ -1,0 +1,87 @@
+/* ==========================================================================
+   editorial.css
+   Reusable rules for inner pages: section titles at the h2 scale, 1px blue lines that run past
+   the content to mark alignments.
+   ========================================================================== */
+
+/* --- Section title ---
+   Editorial scale of the h1 on inner pages (60px desktop, 36px below 992px) with the
+   Figma "Heading 3" type (Figtree Semi Bold, -0.02em). Sentence case, never all caps.
+   The top of the capitals sits exactly on the line above it, titles are aligned to the
+   grid lines: the capitals start var(--section-title-trim) below the top of a 1.2 line box.
+   Applied to Work only in this iteration. */
+:root {
+  --section-title-size: 60px;
+  /* Figtree Semi Bold, 1.2 line box: capitals start at 0.25em, baseline at 0.95em */
+  --section-title-trim: 0.25;
+  --section-title-baseline: 0.95;
+  /* Space between the baseline and the line under the title: none, the line touches the baseline
+     (it was 24px) */
+  --section-title-pad: 0px;
+  /* How far the two lines go past the right edge of the title box */
+  --section-title-line-end: 0px;
+}
+
+@media screen and (max-width: 991px) {
+  :root {
+    --section-title-size: 36px;
+  }
+}
+
+.section-title {
+  position: relative;
+  top: calc(var(--section-title-trim) * -1em);
+  margin: 0;
+  font-family: var(--font-family--title);
+  font-weight: var(--font-weight--title-strong);
+  font-variation-settings: normal;
+  font-size: var(--section-title-size);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  text-wrap: balance;
+  color: var(--text--text-light);
+}
+
+/* Contained between two lines, framing the title: one on the top of the capitals,
+   one on the baseline. They run out to the left like the rest of the grid lines. */
+.section-title::before,
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: -100vw;
+  right: calc(var(--section-title-line-end) * -1);
+  height: 1px;
+  background-color: var(--color--accent--line);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.section-title::before {
+  top: calc(var(--section-title-trim) * 1em);
+}
+
+/* Measured from the bottom, so it sits under the last line of a title that wraps */
+.section-title::after {
+  bottom: calc((1.2 - var(--section-title-baseline)) * 1em - var(--section-title-pad) - 1px);
+}
+
+/* --- Lines: same colour as the home grid (#5f9dff at 40%) --- */
+.line-h,
+.line-v {
+  position: absolute;
+  background-color: var(--color--accent--line);
+  pointer-events: none;
+}
+
+.line-h {
+  height: 1px;
+  left: -100vw;
+  width: 300vw;
+}
+
+.line-v {
+  width: 1px;
+  top: 0;
+  bottom: 0;
+}
