@@ -38,8 +38,8 @@
 
         tile.addEventListener("click", () => {
             if (window.innerWidth <= 991 || reduced) return;
-            // Already on that page: nav-transitions.js and the browser handle it as a normal link
-            if (tile.pathname === window.location.pathname) return;
+            // Also from the same page (Approach tile on Approach): nav-transitions.js loads it again,
+            // and the title must land in place as from any other page
 
             const cover = COVERS[id];
             const vw = window.innerWidth;

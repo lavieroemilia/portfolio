@@ -9,8 +9,9 @@
   /* Distance from the top of the screen to the line where the title and each cover start. */
   --work-top: clamp(40px, 8vh, 80px);
   /* How much of the next cover (plus the gap) stays visible at the bottom. */
-  --work-peek: clamp(80px, 14vh, 140px);
-  --work-gap: var(--body-gutter);
+  --work-peek: clamp(120px, calc(14vh + 40px), 180px);
+  /* Air between one case study and the next cover */
+  --work-gap: 64px;
   /* Cover + caption row (8px gap, 24px row). */
   --work-split: 24px;
   --work-card-h: calc(100svh - var(--work-top) - var(--work-peek));
@@ -65,6 +66,7 @@
 }
 
 .work-grid > .line-v.at-start { left: 0; }
+.work-grid > .line-v.at-title { left: calc(3 * (var(--col) + var(--body-gutter))); }
 .work-grid > .line-v.at-list { left: calc(4 * (var(--col) + var(--body-gutter))); }
 .work-grid > .line-v.at-end { right: 0; }
 
@@ -80,14 +82,14 @@
   top: var(--work-top);
 }
 
-/* The title fills its column, from the left line of the grid to the line of the covers, as the
-   cover titles of About, Approach and Contact fill theirs ("Work" is 2.282em wide, Figtree Semi
-   Bold, -0.02em, measured). Its two lines end on the vertical line of the covers column.
+/* The title fills three of the twelve columns, at the scale of the cover titles of About, Approach
+   and Contact ("Work" is 2.282em wide, Figtree Semi Bold, -0.02em, measured). It ends on its own
+   vertical line (.line-v.at-title), one empty column before the covers, and its two lines end there.
    Keep in sync with js/grid-reveal.js */
 .work-aside .section-title {
   --work-title-em: 2.282;
-  --section-title-line-end: var(--body-gutter);
-  font-size: calc((4 * (100cqw - 11 * var(--body-gutter)) / 12 + 4 * var(--body-gutter)) / var(--work-title-em));
+  --section-title-line-end: calc((100cqw - 11 * var(--body-gutter)) / -12);
+  font-size: calc((3 * (100cqw - 11 * var(--body-gutter)) / 12 + 3 * var(--body-gutter)) / var(--work-title-em));
 }
 
 /* --- Right column: case studies (columns 5-12, up to the right line of the grid) --- */
@@ -196,6 +198,14 @@ a.work-card:focus-visible {
   color: var(--text--text-subtle-light);
 }
 
+/* The caption and the description keep the padding of the text in the case studies, so they never
+   touch the lines */
+.work-split,
+.work-desc {
+  padding-left: var(--cs-pad);
+  padding-right: var(--cs-pad);
+}
+
 /* Mobile and touch: the description is always visible under the caption */
 .work-desc {
   display: none;
@@ -279,6 +289,7 @@ a.work-card:focus-visible {
     top: calc(var(--work-top) * -1);
     bottom: calc((var(--work-top) + 48px) * -1);
   }
+  .work-grid > .line-v.at-title,
   .work-grid > .line-v.at-list { display: none; }
 
   /* The title at the size of the cover titles on this screen (Contact), its lines out to both
@@ -306,17 +317,15 @@ a.work-card:focus-visible {
     display: none;
   }
 
-  /* One cover per screen, the next one peeking: the card keeps the height of the screen and the
-     cover is square (it only trims the sides of the 3:2 images); the rest is white space under
-     the text, the same for every project. */
+  /* The covers keep the proportion of the images (3:2, as on desktop), whole, with the same air
+     under every project */
   .work-card {
     width: 100%;
     height: auto;
-    min-height: var(--work-card-h);
   }
   .work-media {
     flex: none;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 3 / 2;
   }
   /* The full title is always readable: the caption row grows instead of cutting it */
   .work-split {
