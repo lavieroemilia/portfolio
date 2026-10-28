@@ -23,6 +23,17 @@
     if (workTile && navContainer) {
         workTile.addEventListener("click", () => {
             if (window.innerWidth <= 991 || reduced) return;
+
+            // The Work title fills its column (css/work.css): the grid starts after the 60px rail and
+            // a 60px margin, ends 120px before the edge, 12 columns with 24px gutters; "Work" is
+            // 2.282em wide and runs over four columns and four gutters. Its capitals sit on
+            // --work-top (clamp(40px, 8vh, 80px)), 0.25em below the top of its line box.
+            const grid = Math.min(document.documentElement.clientWidth - 240, 1920);
+            const size = (4 * (grid - 11 * 24) / 12 + 4 * 24) / 2.282;
+            const top = Math.min(Math.max(40, 0.08 * window.innerHeight), 80);
+            const tileSize = parseFloat(getComputedStyle(workTile.querySelector(".tile-title")).fontSize) || 36;
+            navContainer.style.setProperty("--grid-reveal-title-y", top - 0.25 * size + "px");
+            navContainer.style.setProperty("--grid-reveal-title-scale", String(size / tileSize));
             navContainer.classList.add("grid-reveal-leave");
             try { sessionStorage.setItem(FLAG, String(Date.now())); } catch (e) {}
 

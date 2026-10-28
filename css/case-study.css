@@ -8,8 +8,8 @@
    - Lines: six columns without gutters, so every vertical line sits on one of
      the same axes down the page (the edges, 1/3, 2/3 and 5/6 of the grid).
      Inner lines are always the left edge of the cell on their right.
-   - Text: always --cs-pad from the lines of its cell (32px, 24px below 1200px,
-     22px on mobile). Only the cell has that padding, never its contents, so
+   - Text: always --cs-pad from the lines of its cell (28px, 20px below 1200px,
+     18px on mobile). Only the cell has that padding, never its contents, so
      titles and the text that goes with them share one axis.
    - Images: they fill their cell, no padding.
    - Empty rows (.cs-row) separate the large blocks: grid cells with nothing
@@ -33,7 +33,7 @@
   --cs-row: 96px;
   /* Space between the cover and the top of the title */
   --cs-head-top: 80px;
-  --cs-pad: 32px;
+  --cs-pad: 28px;
   --cs-gap: var(--body-gutter);
   --cs-sticky-top: 48px;
   --cs-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -622,6 +622,47 @@
   color: var(--text--text-subtle-dark);
 }
 
+/* The email, and next to it a small button that copies it (js/case-study.js): "Copied" appears
+   next to the icon for two seconds */
+.cs-footer-mail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+}
+
+.cs-footer-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 28px;
+  min-width: 28px;
+  padding: 0 6px;
+  border: 1px solid var(--color--accent--line);
+  background: none;
+  color: var(--text--text-subtle-dark);
+  font: 500 13px/20px var(--cs-body-font);
+  cursor: pointer;
+  transition: color 0.35s var(--cs-ease), border-color 0.35s var(--cs-ease);
+}
+
+.cs-footer-copy .copy-label:empty { display: none; }
+.cs-footer-copy.is-copied,
+.cs-footer-copy.is-copied .cs-footer-icon { color: var(--color--brand--green); }
+
+@media (any-hover: hover) {
+  .cs-footer-copy:hover,
+  .cs-footer-copy:hover .cs-footer-icon {
+    border-color: var(--color--brand--blue);
+    color: var(--color--brand--blue);
+  }
+}
+
+.cs-footer-copy:focus-visible {
+  outline: 2px solid var(--color--brand--blue);
+  outline-offset: 2px;
+}
+
 @media (any-hover: hover) {
   .cs-footer-link:hover,
   .cs-footer-link:hover .cs-footer-icon {
@@ -714,14 +755,14 @@
 /* --- Responsive (site breakpoints) --------------------------------------------- */
 
 @media screen and (max-width: 1199px) {
-  .cs-page { --cs-pad: 24px; }
+  .cs-page { --cs-pad: 20px; }
   .cs-h1 { font-size: 48px; }
 }
 
 @media screen and (max-width: 991px) {
   .cs-page {
     --cs-block: 64px;
-    --cs-pad: 22px;
+    --cs-pad: 18px;
   }
 
   /* The cover keeps its proportion on narrow screens */
@@ -832,15 +873,20 @@
 @media screen and (max-width: 767px) {
   .cs-wrap,
   .cs-footer-inner {
-    margin-left: 32px;
-    margin-right: 32px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  /* Case studies: the side lines are the edges of the screen, so text and images use the whole
+     width and the images run to the edge */
+  .cs-page:not(.about-page) .cs-wrap {
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
 @media screen and (max-width: 767px) {
-  /* Contact on its own row; Sitemap and Work side by side below */
-  .cs-footer-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 40px; }
-  .cs-footer-col:first-child { grid-column: 1 / -1; }
+  /* One column: Contact, Sitemap and Work one under another */
+  .cs-footer-cols { grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
 }
 
 @media screen and (max-width: 479px) {
@@ -1142,14 +1188,14 @@
   border-top: var(--cs-border);
 }
 
-/* One to three screens, centred on white, the same height in every cell */
+/* One to three screens, centred on grey, the same height in every cell */
 .cs-shot-media {
   display: flex;
   align-items: center;
   justify-content: center;
   aspect-ratio: 4 / 3;
   padding: 24px var(--cs-pad);
-  background-color: #fff;
+  background-color: var(--surface--overlay-subtle);
 }
 
 .cs-shot-media .cs-screens {

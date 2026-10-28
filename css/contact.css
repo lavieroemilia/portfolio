@@ -227,13 +227,19 @@
   .ct-copy .ab-suggest-caret { display: none; }
   .ct-cursor { grid-column: 2; grid-row: 5; margin: 12px 0 0 12%; }
   .ct-in { grid-column: 1; }
-  .ct-sq-at { grid-column: 2; }
+  /* "Hi!" and "@" take half the height of their row: "Hi!" on top, "@" at the bottom, so the
+     email box and its button have the bottom half of the top row to themselves */
+  .ct-sq { height: 50%; }
+  .ct-sq-hi { align-self: start; }
+  .ct-sq-at { grid-column: 2; align-self: end; }
+  .ct-sq b { font-size: calc(var(--ct-cell) * 0.42); }
+  .ct-sq-hi svg { width: 50%; }
 }
 
 @media screen and (max-width: 767px) {
   .ct-cover {
-    --ab-title-size: calc((100cqw - 64px) / var(--ct-em));
-    --ct-cell: calc((100cqw - 64px) / 2);
+    --ab-title-size: calc((100cqw - 40px) / var(--ct-em));
+    --ct-cell: calc((100cqw - 40px) / 2);
   }
 }
 

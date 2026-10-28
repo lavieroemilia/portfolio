@@ -453,7 +453,9 @@
   border-bottom: var(--cs-border);
 }
 
+/* It starts on the text axis and runs to the right line of the column */
 .ab-button {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -839,7 +841,10 @@
   }
   .ab-cover-v.at-title,
   .ab-cover-mark { display: none; }
-  .ab-cover-v.at-box { left: 50%; }
+  /* The middle line only separates the two photos: the bottom row, never across the title or the
+     colour box (as Contact) */
+  .ab-cover-v.at-box { left: 50%; top: auto; bottom: 0; height: var(--ab-row-1); }
+  .js .ab-cover-v.at-box { transform-origin: 50% 100%; }
   .ab-quote { grid-column: 1 / -1; }
   .ab-cover-title-row { grid-column: 1 / -1; }
   .ab-cover-v.at-half,
@@ -903,9 +908,9 @@
 }
 
 @media screen and (max-width: 767px) {
-  .ab-cover-grid { margin-left: 32px; margin-right: 32px; }
-  /* The title on the whole width between the 32px margins */
-  .ab-cover { --ab-title-size: calc((100cqw - 64px) / 2.699); }
+  .ab-cover-grid { margin-left: 20px; margin-right: 20px; }
+  /* The title on the whole width between the 20px margins */
+  .ab-cover { --ab-title-size: calc((100cqw - 40px) / 2.699); }
 }
 
 @media screen and (max-width: 479px) {

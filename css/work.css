@@ -44,6 +44,7 @@
 .work-grid {
   --col: calc((100% - 11 * var(--body-gutter)) / 12);
   position: relative;
+  container-type: inline-size;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--body-gutter);
@@ -79,9 +80,14 @@
   top: var(--work-top);
 }
 
-/* The two title lines end on the vertical line of the covers column */
+/* The title fills its column, from the left line of the grid to the line of the covers, as the
+   cover titles of About, Approach and Contact fill theirs ("Work" is 2.282em wide, Figtree Semi
+   Bold, -0.02em, measured). Its two lines end on the vertical line of the covers column.
+   Keep in sync with js/grid-reveal.js */
 .work-aside .section-title {
+  --work-title-em: 2.282;
   --section-title-line-end: var(--body-gutter);
+  font-size: calc((4 * (100cqw - 11 * var(--body-gutter)) / 12 + 4 * var(--body-gutter)) / var(--work-title-em));
 }
 
 /* --- Right column: case studies (columns 5-12, up to the right line of the grid) --- */
@@ -201,28 +207,13 @@ a.work-card:focus-visible {
   .work-card { height: auto; min-height: var(--work-card-h); }
 }
 
-/* --- Footer --- */
+/* --- Footer: the black footer of the other pages (css/case-study.css), with the values it
+       reads from .cs-page --- */
 
-.work-foot {
-  position: relative;
-  margin-left: 60px;
-  overflow-x: clip;
-}
-
-.work-foot-inner {
-  display: flex;
-  justify-content: space-between;
-  gap: 24px;
-  margin-left: 60px;
-  margin-right: 120px;
-  padding: 24px 0 32px;
-}
-
-.work-foot .annotation {
-  font-size: 12px;
-  line-height: 20px;
-  font-weight: 500;
-  color: var(--text--text-subtle-light);
+.work-page {
+  --cs-pad: 28px;
+  --cs-body-font: "Archivo", Arial, sans-serif;
+  --cs-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* --- Entrance: lines draw like the home grid, text and covers fade in. Nothing moves on its own
@@ -290,6 +281,13 @@ a.work-card:focus-visible {
   }
   .work-grid > .line-v.at-list { display: none; }
 
+  /* The title at the size of the cover titles on this screen (Contact), its lines out to both
+     edges of the screen */
+  .work-aside .section-title {
+    --section-title-line-end: 100vw;
+    font-size: calc(100cqw / 3.542);
+  }
+
   /* Natural reading on small screens: the title is not sticky */
   .work-aside {
     grid-column: 1;
@@ -326,18 +324,18 @@ a.work-card:focus-visible {
     min-height: var(--work-split);
     align-items: flex-start;
   }
-  .work-name {
+  /* The title on its own line; the company and the dates (or "Coming soon") on a second line */
+  .work-split {
     flex-wrap: wrap;
-    column-gap: 12px;
-    row-gap: 0;
+    row-gap: 2px;
+  }
+  .work-name {
+    display: contents;
   }
   .work-title {
+    flex: 1 0 100%;
     white-space: normal;
     overflow: visible;
-  }
-  .work-timeline,
-  .work-soon {
-    padding-top: 2px;
   }
   .work-desc {
     display: block;
@@ -346,22 +344,20 @@ a.work-card:focus-visible {
     font-size: 14px;
     line-height: 22px;
   }
+}
 
-  .work-foot {
-    margin-left: 0;
-    padding-bottom: 48px;
-  }
-  .work-foot-inner {
-    margin-left: 60px;
-    margin-right: 60px;
-  }
+@media screen and (max-width: 1199px) {
+  .work-page { --cs-pad: 20px; }
+}
+
+@media screen and (max-width: 991px) {
+  .work-page { --cs-pad: 18px; }
 }
 
 @media screen and (max-width: 767px) {
-  .work-grid,
-  .work-foot-inner {
-    margin-left: 32px;
-    margin-right: 32px;
+  .work-grid {
+    margin-left: 20px;
+    margin-right: 20px;
   }
 }
 

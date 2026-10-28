@@ -9,9 +9,8 @@
       lines of Work draw in and every cell they bound turns white, left to right.
    ========================================================================== */
 
-/* Where the Work title ends. Keep in sync with work.css and editorial.css: rail (60px) +
-   grid margin (60px); --work-top minus the cap trim of .section-title (0.25em of 60px);
-   60px .section-title from a 36px tile title. */
+/* Where the Work title ends: rail (60px) + grid margin (60px). js/grid-reveal.js sets the y and the
+   scale on click from the size of the title (css/work.css); these are the fallbacks. */
 :root {
   --grid-reveal-title-x: 120px;
   --grid-reveal-title-y: calc(clamp(40px, 8vh, 80px) - 0.25 * 60px);
