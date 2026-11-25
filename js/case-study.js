@@ -4,6 +4,7 @@
 // 3. Copy email: a button with data-copy copies the address (the footer, the Contact cover).
 // 4. Screens carousel (Practice): the arrows move one screen and fade at either end; the counter
 //    follows the screen in place. Swipe, trackpad and keyboard scroll work natively.
+// 5. Enlarge a screen: a click on a carousel screen opens it larger in a dialog, with its caption.
 
 (function () {
     "use strict";
@@ -112,4 +113,44 @@
         $$("img", track).forEach((img) => img.addEventListener("load", update));
         update();
     });
+
+    // ---- 5. Enlarge a screen ------------------------------------------------------
+    // Each carousel screen becomes a button that opens it in one shared dialog, as large as the
+    // window allows, with its caption. On phones it fills the height and pans sideways.
+    // Esc, the close button, the backdrop or the empty space around the screen close it, and the
+    // focus goes back to the screen that opened it.
+    const shots = $$(".cs-car-slide img");
+    if (shots.length && window.HTMLDialogElement) {
+        const zoom = document.createElement("dialog");
+        zoom.className = "cs-dialog cs-zoom";
+        zoom.setAttribute("aria-label", "Enlarged screen");
+        zoom.innerHTML = '<div class="cs-dialog-head"><p class="cs-zoom-caption"></p><form method="dialog"><button class="cs-dialog-close" aria-label="Close">&times;</button></form></div><div class="cs-zoom-body"><img alt=""></div>';
+        document.body.append(zoom);
+        const big = zoom.querySelector(".cs-zoom-body img");
+        const caption = zoom.querySelector(".cs-zoom-caption");
+        let opener = null;
+
+        shots.forEach((img) => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "cs-car-zoom";
+            button.setAttribute("aria-label", `Enlarge screen: ${img.alt}`);
+            img.replaceWith(button);
+            button.append(img);
+            button.addEventListener("click", () => {
+                big.src = img.currentSrc || img.src;
+                big.alt = img.alt;
+                const text = img.closest(".cs-car-slide").querySelector(".cs-car-caption");
+                caption.textContent = text ? text.textContent : "";
+                opener = button;
+                zoom.showModal();
+                zoom.querySelector(".cs-zoom-body").scrollTo(0, 0);
+            });
+        });
+
+        zoom.addEventListener("click", (e) => {
+            if (e.target === zoom || e.target.classList.contains("cs-zoom-body")) zoom.close();
+        });
+        zoom.addEventListener("close", () => { if (opener) opener.focus(); });
+    }
 })();

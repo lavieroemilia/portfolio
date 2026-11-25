@@ -1288,6 +1288,67 @@
   outline-offset: 3px;
 }
 
+/* --- Enlarged screen: a carousel screen in the dialog, as large as the window allows ---- */
+/* The screens are buttons (js/case-study.js, 5.): they look the same, with a zoom cursor */
+.cs-car-zoom {
+  display: block;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  cursor: zoom-in;
+}
+
+.cs-car-zoom:focus-visible {
+  outline: 2px solid var(--color--brand--indigo);
+  outline-offset: 4px;
+}
+
+.cs-zoom {
+  width: min(1600px, calc(100% - 48px));
+  max-height: calc(100vh - 48px);
+  max-height: calc(100dvh - 48px);
+}
+
+.cs-zoom[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-zoom .cs-dialog-head {
+  flex: none;
+  border-bottom: var(--cs-border);
+}
+
+.cs-zoom-caption {
+  margin: 0;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--text--text-subtle-light);
+}
+
+/* The screen on the brand-grey plane of the carousel; the 132 px are the head, the padding and the borders */
+.cs-zoom-body {
+  min-height: 0;
+  overflow: auto;
+  padding: 24px var(--cs-pad);
+  background-color: var(--surface--overlay-subtle);
+  cursor: zoom-out;
+}
+
+.cs-zoom-body img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 48px - 132px);
+  max-height: calc(100dvh - 48px - 132px);
+  margin: 0 auto;
+  border-radius: 6px;
+  cursor: default;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.06));
+}
+
 .cs-table {
   width: 100%;
   border-collapse: collapse;
@@ -1399,6 +1460,24 @@
     max-width: 100%;
     margin: auto 0 0;
     border-width: 1px 0 0;
+  }
+
+  /* The enlarged screen takes the whole screen: it fills the height and pans sideways */
+  .cs-zoom {
+    height: 100vh;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    border-width: 0;
+  }
+  .cs-zoom-body {
+    flex: 1;
+    padding: 24px 16px;
+  }
+  .cs-zoom-body img {
+    max-width: none;
+    height: 100%;
+    max-height: none;
   }
   .cs-table th,
   .cs-table td {
